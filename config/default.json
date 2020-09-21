@@ -1,0 +1,4 @@
+{
+  "port": 5000,
+  "mongoUrl": "mongodb+srv://aynurDav:comment@cluster0.aigjq.mongodb.net/<dbname>?retryWrites=true&w=majority"
+}
