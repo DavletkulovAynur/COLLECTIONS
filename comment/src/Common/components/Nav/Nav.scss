@@ -1,0 +1,32 @@
+.Nav {
+  padding: 12px;
+  width: 100%;
+
+  .links {
+    display: flex;
+    //justify-content: center;
+    //align-items: center;
+    flex-direction: column;
+
+    .link {
+      text-transform: uppercase;
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 16px;
+      font-weight: 700;
+
+
+      a {
+        //color: #007bff;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+
+    .logo {
+      width: 40px;
+    }
+  }
+}

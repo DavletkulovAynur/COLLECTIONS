@@ -1,0 +1,17 @@
+.Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: hsla(0,0%,100%,.5);
+    border-radius: 6px;
+    background-color: hsla(0,0%,100%,.1);
+    transition: all .3s;
+    cursor: pointer;
+    padding: 6px 48px;
+    text-transform: uppercase;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+}

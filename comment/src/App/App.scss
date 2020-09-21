@@ -1,0 +1,15 @@
+@import '../Common/assets/styles/grid';
+
+.App {
+  .Nav-wrapper {
+    margin-top: 36px;
+    min-width: 220px;
+  }
+  .page {
+    max-width: 1480px;
+    padding: 0 16px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}

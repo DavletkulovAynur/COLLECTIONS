@@ -1,0 +1,21 @@
+.Article-view-template {
+  .title {
+    text-transform: uppercase;
+    margin: 12px 0;
+    font-weight: bold;
+  }
+
+  .comments {
+    .comment-title {
+      font-weight: bold;
+      text-transform: uppercase;
+
+    }
+
+    .comment-item {
+      border-bottom: 1px solid #eeeeee;
+      margin: 8px 0;
+      padding-bottom: 8px;
+    }
+  }
+}
