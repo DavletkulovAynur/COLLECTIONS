@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getArticle} from "../../../Common/utils/templates";
 import {MainPageHeader} from "./сomponents/MainPageHeader";
 
+
 function Main() {
   // Возвращаем полученный ответ с сервера (комментарии)
   const games = useSelector(state => state.gameReducer)
@@ -18,7 +19,6 @@ function Main() {
 
   return (
     <div className='Main-page'>
-
       <div className='main-page-header-wrapper'>
         <MainPageHeader/>
       </div>
