@@ -1,0 +1,19 @@
+.comment-wrapper {
+  margin: 24px 0;
+  width: 100%;
+  color: #fff;
+  background-color: rgba(0,0,0,.3);
+  padding: 16px 24px 22px;
+  border-radius: 12px;
+  transition: all .3s;
+
+  .title {
+
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .textarea {
+    width: 100%;
+  }
+}

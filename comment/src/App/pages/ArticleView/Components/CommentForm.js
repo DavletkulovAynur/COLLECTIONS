@@ -1,5 +1,6 @@
-import React, {useRef} from "react";
-import {useInput} from "../../../../Common/utils/hooks";
+import React, {useRef} from 'react'
+import {useInput} from '../../../../Common/utils/hooks'
+import './styles/CommentsForm.scss'
 
 export function CommentForm({handleSubmit}) {
   const commentValue = useInput('')
@@ -9,8 +10,9 @@ export function CommentForm({handleSubmit}) {
     e.preventDefault()
   }
   return (
-    <form className='form' onSubmit={submitForm}>
-      <textarea className="form-control comment-input" placeholder="оставить отзыв"  {...commentValue.bind}/>
+    <form className='form comment-wrapper' onSubmit={submitForm}>
+      <div className='title'>write a comment...</div>
+      <textarea className="textarea" placeholder=""  {...commentValue.bind}/>
       <input className='button' type='submit' value='ОТПРАВИТЬ'/>
     </form>
   )
