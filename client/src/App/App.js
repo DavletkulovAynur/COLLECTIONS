@@ -7,6 +7,7 @@ import ArticleView from "./pages/ArticleView/ArticleView";
 import {getArticle} from "../Common/utils/templates";
 import Nav from "../Common/components/Nav/Nav";
 import AddArticle from "./pages/AddArticle/AddArticle";
+import {Header} from "../Common/components/Header/Header";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header/>
       <div className='page'>
         <div className='Nav-wrapper'>
           <Nav/>
