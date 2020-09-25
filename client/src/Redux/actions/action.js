@@ -1,10 +1,26 @@
-import {APP_HIDE_LOADING, APP_LOADING, GET_GAMES} from '../types'
+import {APP_ALERT_HIDDEN, APP_ALERT_SHOW, APP_HIDE_LOADING, APP_LOADING, GET_GAMES} from '../types'
 
 export function appLoading() {
   return({
     type: APP_LOADING
   })
 }
+
+// ALERT
+
+export function appAlertShow() {
+  return({
+    type: APP_ALERT_SHOW
+  })
+}
+
+export function appAlertHidden() {
+  return({
+    type: APP_ALERT_HIDDEN
+  })
+}
+
+/////
 
 export function appHideLoading() {
   return({

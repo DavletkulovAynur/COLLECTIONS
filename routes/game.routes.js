@@ -31,7 +31,12 @@ router.get('/get', async (req, res) => {
 router.put('/update', async (req, res) => {
   const {comments, id} = req.body
   try {
-    await GAME_MODEL.update({_id: id}, {$push: {comments : [comments]}})
+    await GAME_MODEL.update({_id: id},
+            {$push: {comments:
+                  { $each: [comments],
+                    $position: 0 }
+                }
+            })
     res.status(201).json({message: 'Game update', status: true})
   } catch (e) {
     res.status(500).json({message: "error", status: false})

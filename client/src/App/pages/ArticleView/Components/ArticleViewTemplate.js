@@ -4,7 +4,7 @@ import {CommentForm} from './CommentForm'
 import './styles/ArticleViewTemplate.scss'
 
 const images = [
-  'https://s1.1zoom.ru/big0/858/348570-blackangel.jpg',
+  'https://st.overclockers.ru/images/lab/2019/10/27/1/001_art_big.jpg',
   'https://s1.1zoom.ru/big0/123/396284-blackangel.jpg',
   'https://images2.alphacoders.com/795/795229.jpg',
   'https://images2.alphacoders.com/601/thumb-1920-601148.jpg',
@@ -12,6 +12,7 @@ const images = [
 ]
 
 const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomniac']
+
 export function ArticleViewTemplate({game, handleSubmit}) {
   const bg = {background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)), url(${game.img})` }
 
@@ -27,9 +28,9 @@ export function ArticleViewTemplate({game, handleSubmit}) {
           <h2 className='title-72'>{game.name}</h2>
 
           <div className='tags'>
-            {tags.map((tag) => {
+            {tags.map((tag, index) => {
               return (
-                <div className='tag'>{tag}</div>
+                <div key={index} className='tag'>{tag}</div>
               )
             })}
           </div>
@@ -37,7 +38,7 @@ export function ArticleViewTemplate({game, handleSubmit}) {
 
           <CommentForm handleSubmit={handleSubmit}/>
           <div  className='comments'>
-            <div className='comment-title'>Комментарии (12)</div>
+            <div className='comment-title'>Comments <sup>{game.comments.length}</sup></div>
             {game.comments.map((comment, index) => {
               return (
                 <div className='comment-item' key={index}>{comment}</div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.scss'
 
-export function Header() {
+export function Header({changeStatePopup}) {
     return (
         <div className='Header'>
             <div className='Header-wrapper'>
@@ -18,7 +18,7 @@ export function Header() {
                     </form>
                 </div>
                 <div className='Header-item'>
-                    <a href='/' className="Header-item-link">Вход</a>
+                    <div href='/' className="Header-item-link" onClick={() => changeStatePopup()}>Вход</div>
                     <a href='/' className="Header-item-link">Регистрация</a>
                 </div>
             </div>

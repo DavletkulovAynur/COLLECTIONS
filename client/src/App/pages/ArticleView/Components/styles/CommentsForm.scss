@@ -1,19 +1,45 @@
-.comment-wrapper {
+.Comment-form {
   margin: 24px 0;
   width: 100%;
   color: #fff;
-  background-color: rgba(0,0,0,.3);
+  background: rgba(256, 256, 256, 0.1);
   padding: 16px 24px 22px;
   border-radius: 12px;
   transition: all .3s;
 
-  .title {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    .plus {
+      display: block;
+      background: url('../../../../../Common/assets/images/icons/plus.svg');
+      width: 24px;
+      height: 24px;
+    }
 
-    font-size: 24px;
-    font-weight: 500;
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+      margin-left: 12px;
+    }
   }
 
-  .textarea {
+
+  &__form {
     width: 100%;
+    .form__message {
+      margin: 8px 0;
+      max-height: 100px;
+      resize: none;
+    }
+
+    .form__title {
+      margin: 8px 0;
+    }
+
+    .form__button {
+      margin-top: 12px;
+    }
   }
 }

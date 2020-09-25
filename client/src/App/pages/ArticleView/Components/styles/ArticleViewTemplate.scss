@@ -47,12 +47,13 @@
   .comments {
     .comment-title {
       font-weight: bold;
-      text-transform: uppercase;
+      font-size: 18px;
+      margin: 12px 0;
     }
 
     .comment-item {
       padding: 32px 32px 24px;
-      background-color: rgba(0,0,0,.3);
+      background: rgba(256, 256, 256, 0.1);
       border-radius: 4px;
       margin-bottom: 16px;
     }
