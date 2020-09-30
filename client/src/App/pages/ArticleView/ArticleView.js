@@ -1,11 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "../../../Common/utils/hooks";
 import './ArticleView.scss'
 import Fetcher from "../../../Common/utils/fetch";
 import {ArticleViewTemplate} from "./Components/ArticleViewTemplate";
+import {appAlertHidden, appAlertShow} from "../../../Redux/actions/action";
 
 function ArticleView(props) {
+  const dispatch = useDispatch()
   const router = useRouter()
   const games = useSelector(state => state.gameReducer)
   const [game, setGame] = useState(null)
@@ -14,10 +16,9 @@ function ArticleView(props) {
   const commentUpdateApp = async (comment) => {
     try {
        const data = await Fetcher('http://localhost:5000/game/update', 'PUT', comment)
-      console.log('super')
         updateArticle(data, comment)
     } catch (e) {
-      console.log('ERROR', e)
+      console.log(e)
     }
   }
 
@@ -32,21 +33,22 @@ function ArticleView(props) {
     }
   }, [games])
 
-  function ddf() {
-    console.log('sss')
-  }
-
   const updateArticle =  (data, comment) => {
     if(data.status) {
-      // 1 вариант update данных локально
+      dispatch(appAlertShow())
+      setTimeout(() => {
+        dispatch(appAlertHidden())
+      }, 2000)
+      // 1) вариант update данных локально
       const newArraw = game.comments.slice()
-      newArraw.push(comment.comments)
+      newArraw.unshift(comment.comments)
       setGame({...game, comments: newArraw})
-    }
-    // const game = {
+      // 2) запрос данных с сервера
+      // const game = {
       //   id: routerId
       // }
       // const gameId = await Fetcher('http://localhost:5000/game/get/id', 'POST', game)
+    }
   }
 
   const handleSubmit = (commentValue) => {

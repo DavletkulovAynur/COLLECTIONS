@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import {useInput} from '../../../../Common/utils/hooks'
+import {useInput} from 'Common/utils/hooks'
 import './styles/CommentsForm.scss'
 
 export function CommentForm({handleSubmit}) {
@@ -10,10 +10,16 @@ export function CommentForm({handleSubmit}) {
     e.preventDefault()
   }
   return (
-    <form className='form comment-wrapper' onSubmit={submitForm}>
-      <div className='title'>write a comment...</div>
-      <textarea className="textarea" placeholder=""  {...commentValue.bind}/>
-      <input className='button' type='submit' value='ОТПРАВИТЬ'/>
-    </form>
+    <div className='Comment-form'>
+      <div className='Comment-form__header'>
+        <span className='plus'></span>
+        <div className='title'>write a comment...</div>
+      </div>
+      <form className='Comment-form__form'  onSubmit={submitForm}>
+        <input className='form__title com-input-styles' placeholder='title'></input>
+        <textarea className="form__message com-input-styles" placeholder="description"  {...commentValue.bind}/>
+        <input className='form__button' type='submit' value='ОТПРАВИТЬ'/>
+      </form>
+    </div>
   )
 }

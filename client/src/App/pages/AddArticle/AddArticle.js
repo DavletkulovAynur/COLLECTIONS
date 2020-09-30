@@ -1,8 +1,8 @@
 import React, {useRef, useState} from "react";
 
-import {useInput} from "../../../Common/utils/hooks";
-import Fetcher from "../../../Common/utils/fetch";
-import {getArticle} from "../../../Common/utils/templates";
+import {useInput} from "Common/utils/hooks";
+import Fetcher from "Common/utils/fetch";
+import {getArticle} from "Common/utils/templates";
 import {useDispatch} from "react-redux";
 
 function AddArticle(props) {
