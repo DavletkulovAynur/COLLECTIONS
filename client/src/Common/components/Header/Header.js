@@ -1,15 +1,25 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './Header.scss'
+import {useHistory} from 'react-router-dom'
+import {AuthContext} from "App/context/AuthContext";
 
-export function Header({changeStatePopup}) {
+export function Header() {
+  const history = useHistory()
+    const auth = useContext(AuthContext)
+
+    const logoutHandler = (e) => {
+      e.preventDefault()
+      auth.logout()
+      history.push('/login')
+    }
     return (
         <div className='Header'>
             <div className='Header-wrapper'>
-                <div className='Header-item'>
-                    <a className='Header-item-link Header-logo' href="/">
-                        <div className='Logo'></div>
-                    </a>
-                </div>
+                {/*<div className='Header-item'>*/}
+                {/*    <a className='Header-item-link Header-logo' href="/">*/}
+                {/*        <div className='Logo'></div>*/}
+                {/*    </a>*/}
+                {/*</div>*/}
                 <div className='Header-item'>
                     <form className='Header-search-form' >
                         <div className='Header-search-input'>
@@ -18,9 +28,11 @@ export function Header({changeStatePopup}) {
                     </form>
                 </div>
                 <div className='Header-item'>
-                    <div href='/' className="Header-item-link" onClick={() => changeStatePopup()}>Вход</div>
-                    <a href='/' className="Header-item-link">Регистрация</a>
+                    <div href='/' className="Header-item-link">USER</div>
                 </div>
+                <button onClick={logoutHandler}>
+                  ВЫЙТИ
+                </button>
             </div>
         </div>
     )

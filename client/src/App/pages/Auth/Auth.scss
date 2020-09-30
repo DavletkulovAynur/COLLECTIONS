@@ -1,0 +1,49 @@
+.Auth-popup {
+  z-index: 3;
+  color: #000;
+  padding: 24px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+  border-radius: 6px;
+  background-color: #fff;
+  width: 408px;
+
+  .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #000;
+    &__title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .popup-body {
+    input {
+      margin-bottom: 16px;
+    }
+  }
+
+  .popup-footer {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 14px;
+
+    span {
+      font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .button {
+    width: 100%;
+    margin: 12px 0;
+  }
+
+  .login {
+
+  }
+}

@@ -1,5 +1,6 @@
 {
   "port": 5000,
   "jwtSecret": "Aynur",
-  "mongoUrl": "mongodb+srv://aynurDav:comment@cluster0.aigjq.mongodb.net/<dbname>?retryWrites=true&w=majority"
+  "mongoUrl": "mongodb+srv://aynurDav:comment@cluster0.aigjq.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "baseUrl": "http//localhost:5000"
 }
