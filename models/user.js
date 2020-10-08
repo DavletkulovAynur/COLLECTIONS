@@ -1,10 +1,10 @@
 const {Schema, model} = require('mongoose')
 
-const auth = ({
+const USER = ({
   email: {type: String, required: true},
   password: {type: String, required: true},
-  name: {type: String},
-  collection: {type: Array}
+  username: {type: String},
+  userCollection: {type: Array}
 })
 
-module.exports = model('users', auth)
+module.exports = model('USERS', USER)

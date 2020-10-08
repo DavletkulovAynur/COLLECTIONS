@@ -7,6 +7,8 @@ import {Login} from "App/pages/Auth/components/Login";
 import {Registration} from "App/pages/Auth/components/Registration";
 
 import './Auth.scss'
+import {useDispatch, useSelector} from "react-redux";
+import {writeUserName} from "Redux/actions/action";
 
 export function Auth() {
   const message = useMessage()
@@ -22,7 +24,8 @@ export function Auth() {
   const fetchLogin = async (user) => {
     try {
       const data = await request('http://localhost:5000/auth/login', 'POST', user)
-      auth.login(data.token, data.userId)
+      const {token, userId} = data
+      auth.login(token, userId, data.user.username)
     } catch (e) {
       console.log(e)
     }

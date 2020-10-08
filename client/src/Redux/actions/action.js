@@ -1,4 +1,10 @@
-import {APP_ALERT_HIDDEN, APP_ALERT_SHOW, APP_HIDE_LOADING, APP_LOADING, GET_GAMES} from '../types'
+import {
+  APP_ALERT_HIDDEN,
+  APP_ALERT_SHOW,
+  APP_HIDE_LOADING,
+  APP_LOADING,
+  GET_GAMES, USER_NAME
+} from '../types'
 
 export function appLoading() {
   return({
@@ -31,5 +37,12 @@ export function appHideLoading() {
 export function getGames() {
   return({
     type: GET_GAMES
+  })
+}
+
+export function writeUserName(userName) {
+  return({
+    type: USER_NAME,
+    payload: userName
   })
 }

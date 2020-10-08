@@ -1,4 +1,3 @@
-export const TEST = 'TEST'
 export const FOLDER_STATE = 'FOLDER_STATE'
 
 //Loading
@@ -12,3 +11,6 @@ export const APP_ALERT_HIDDEN = 'APP_ALERT_HIDDEN'
 //GAME
 export const GET_GAMES = 'GET_GAMES'
 export const WRITE_DOWN_GAMES = 'WRITE_DOWN_GAMES'
+
+//Header
+export const USER_NAME = 'USER_NAME'
