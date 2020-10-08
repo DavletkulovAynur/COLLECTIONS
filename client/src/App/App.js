@@ -1,26 +1,23 @@
 import React, {useEffect, useState} from 'react'
-import {Route, Switch} from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux";
 import './App.scss'
-import Main from './pages/Main/Main'
-import ArticleView from "./pages/ArticleView/ArticleView";
 import {getArticle} from "../Common/utils/templates";
-import Nav from "Common/components/Nav/Nav";
-import AddArticle from "./pages/AddArticle/AddArticle";
-import {Header} from "Common/components/Header/Header";
 import {Alert} from "Common/components/Alert/Alert";
-import {AuthPopup} from 'Common/components/AuthPopup/AuthPopup'
 import {useAuth} from 'Common/utils/hooks/auth.hook'
 import {AuthContext} from "./context/AuthContext";
+import {useRoutes} from "App/routes";
 
 
 function App() {
-  const {login, logout, token, userId} = useAuth
+  const {login, logout, token, userId, ready} = useAuth()
   const dispatch = useDispatch()
   const stateAlert = useSelector(state => state.appReducer.alert)
-  const [statePopup, setStatePopup] = useState(false)
+  const [statePopup, setStatePopup] = useState(true)
 
   const isAuthenticated = !!token
+
+  const routes = useRoutes(isAuthenticated)
+
   // первоначальное обновление данных
   useEffect(() => {
     getArticle(dispatch)
@@ -28,27 +25,20 @@ function App() {
   }, [])
 
   const changeStatePopup = () => {
-    setStatePopup(true)
+    setStatePopup(!statePopup)
+  }
+
+  if (!ready) {
+    return null
   }
 
   return (
     <AuthContext.Provider value={{
-      login, logout, token, userId
+      login, logout, token, userId, isAuthenticated
     }}>
       <div className="App">
-        <Header changeStatePopup={changeStatePopup}/>
-        <div className='page'>
-          <div className='Nav-wrapper'>
-            <Nav/>
-          </div>
-          <Switch>
-            <Route path='/' component={Main} exact/>
-            <Route path='/article-view/:id' component={ArticleView} exact/>
-            <Route path='/add' component={AddArticle} exact/>
-          </Switch>
-        </div>
-        {stateAlert ? <Alert/> : null}
-        {statePopup ? <AuthPopup/> : null}
+        {routes}
+        {/*{stateAlert ? <Alert/> : null}*/}
       </div>
     </AuthContext.Provider>
   );

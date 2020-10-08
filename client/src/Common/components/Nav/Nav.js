@@ -4,14 +4,13 @@ import {Link} from "react-router-dom";
 
 function Nav() {
   return (
-    <nav className='Nav'>
+    <div className='Nav'>
       <div className='links'>
-        <div className='link'><Link to='/'>home</Link></div>
-        <div className='link'><Link to='/'>movies</Link></div>
-        <div className='link'><Link to='/'>games</Link></div>
-        <div className='link'><Link to='/'>books</Link></div>
+        <div className='link'><Link to='/'>friends</Link></div>
+        <div className='link'><Link to='/'>лента</Link></div>
+        <div className='link'><Link to='/'>My collection</Link></div>
       </div>
-    </nav>
+    </div>
   );
 }
 

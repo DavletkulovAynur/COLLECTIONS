@@ -13,5 +13,24 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 760px) {
+      .Nav-wrapper {
+        display: none;
+      }
+    }
+  }
+
+  .Auth-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15%;
+
+    .text {
+      font-size: 46px;
+      margin-right: 36px;
+    }
   }
 }
