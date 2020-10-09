@@ -4,7 +4,7 @@ const config = require('config')
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 
-const AUTH_MODEL = require('../models/auth')
+const USER_MODEL = require('../models/user')
 
 const router = Router()
 
@@ -23,15 +23,15 @@ router.post('/register',
         message: 'Некорректные данные при регистрации'})
     }
 
-    const {email, password} = req.body
-    const candidate = await AUTH_MODEL.findOne({email})
+    const {email, password, username} = req.body
+    const candidate = await USER_MODEL.findOne({email})
 
     if(candidate) {
       return res.status(400).json({message: 'Такой пользователь уже существует'})
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
-    const user = new AUTH_MODEL({email, password: hashedPassword })
+    const user = new USER_MODEL({email, username, password: hashedPassword,  userCollection: [] })
 
     await user.save()
     res.status(201).json({message: 'Пользователь создан'})
@@ -59,7 +59,7 @@ router.post('/login',
 
     const {email, password} = req.body
 
-    const user = await AUTH_MODEL.findOne({ email })
+    const user = await USER_MODEL.findOne({ email })
 
     if(!user) {
       return res.status(400).json({message: 'Пользователь не найден'})
@@ -77,7 +77,7 @@ router.post('/login',
       { expiresIn: '1h'}
     )
 
-    res.json({ token, userId: user.id})
+    res.json({ token, userId: user.id, user})
     
   } catch (e) {
 

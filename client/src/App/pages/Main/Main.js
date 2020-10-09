@@ -1,9 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import './Main.scss'
-import Fetcher from '../../../Common/utils/fetch'
 import Article from "./сomponents/Article";
 import {useDispatch, useSelector} from "react-redux";
-import {getArticle} from "../../../Common/utils/templates";
 import {MainPageHeader} from "./сomponents/MainPageHeader";
 
 
