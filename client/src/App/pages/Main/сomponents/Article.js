@@ -7,7 +7,7 @@ import './styles/Article.scss'
 function Article({games}) {
   return (
     <div className='Article Article-root Com-main-grid'>
-      <CommonCard games={games}/>
+      <CommonCard data={games}/>
     </div>
   )
 }

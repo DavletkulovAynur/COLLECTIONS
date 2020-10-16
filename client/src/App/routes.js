@@ -6,6 +6,7 @@ import AddArticle from "App/pages/AddArticle/AddArticle";
 import {Header} from "Common/components/Header/Header";
 import Nav from "Common/components/Nav/Nav";
 import {Auth} from "App/pages/Auth/Auth";
+import {MyCollection} from "App/pages/MyCollection/MyCollection";
 
 export const useRoutes = isAuthenticated => {
   if(isAuthenticated) {
@@ -26,6 +27,9 @@ export const useRoutes = isAuthenticated => {
             </Route>
             <Route exact path='/add'>
               <AddArticle/>
+            </Route>
+            <Route exact path='/my-collection'>
+              <MyCollection/>
             </Route>
             <Redirect to="/"/>
           </Switch>

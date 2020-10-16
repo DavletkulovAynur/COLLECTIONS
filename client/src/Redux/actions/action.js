@@ -3,7 +3,7 @@ import {
   APP_ALERT_SHOW,
   APP_HIDE_LOADING,
   APP_LOADING,
-  GET_GAMES, USER_NAME
+  GET_GAMES, GET_MY_COLLECTION, USER_NAME
 } from '../types'
 
 export function appLoading() {
@@ -44,5 +44,11 @@ export function writeUserName(userName) {
   return({
     type: USER_NAME,
     payload: userName
+  })
+}
+
+export function getMyCollection() {
+  return({
+    type: GET_MY_COLLECTION
   })
 }
