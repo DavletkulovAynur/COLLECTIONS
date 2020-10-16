@@ -8,6 +8,7 @@ export function CommonCard({data}) {
       backgroundImage: 'url(' + img + ')',
     }
   };
+  console.log(data)
   return (
     <>
     {data.map((item) => {
@@ -20,10 +21,12 @@ export function CommonCard({data}) {
             </div>
 
             <div className='info'>
+              <span className="info__publisher">{item.nameCollection}</span>
               <span className="info__publisher">{item.publisher}</span>
               <div className='info__name'>
                 <Link to={`/article-view/${item._id}`} className='title'>{item.title}</Link>
               </div>
+              <span className="info__publisher">{item.author}</span>
             </div>
           </div>
         )

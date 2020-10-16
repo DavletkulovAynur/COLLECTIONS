@@ -1,12 +1,12 @@
 import React, {useContext, useRef, useState} from "react";
 
-import {useInput} from "Common/utils/hooks";
-// import Fetcher from "Common/utils/fetch";
+
+import {useInput} from 'Common/utils/hooks/input.hook'
 import {AuthContext} from "App/context/AuthContext";
 import {useHttp} from "Common/utils/hooks/http.hook";
 
 function AddArticle(props) {
-  const nameCollection = useInput('')
+  const nameCollection = useInput()
   const {loading, error, request, clearError} = useHttp()
   const title = useInput('')
   const img = useInput('')

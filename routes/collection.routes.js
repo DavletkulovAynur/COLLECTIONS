@@ -26,6 +26,16 @@ router.post('/add',
   }
 })
 
+router.get('/get-all',
+  async (req, res) => {
+    try {
+      const collection = await COLLECTION_MODEL.find()
+      res.json(collection)
+    } catch (e) {
+      console.log(e)
+    }
+  })
+
 router.get('/get',
   async (req, res) => {
     const collection = await COLLECTION_MODEL.find({owner: '5f881f3a520e1c1db4ab7197'})

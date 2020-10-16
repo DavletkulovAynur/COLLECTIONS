@@ -7,7 +7,7 @@ import {MainPageHeader} from "./сomponents/MainPageHeader";
 
 function Main() {
   // Возвращаем полученный ответ с сервера (комментарии)
-  const games = useSelector(state => state.gameReducer)
+  const {allCollection} = useSelector(state => state.collectionReducer)
     // Индикатор загрузки
   const loading = useSelector(state => state.appReducer.loading)
 
@@ -20,7 +20,7 @@ function Main() {
       <div className='main-page-header-wrapper'>
         <MainPageHeader/>
       </div>
-      <Article games={games}/>
+      <Article games={allCollection}/>
     </div>
   );
 }

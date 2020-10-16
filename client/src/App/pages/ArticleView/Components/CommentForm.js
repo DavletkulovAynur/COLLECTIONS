@@ -1,7 +1,8 @@
 import React, {useContext, useRef} from 'react'
-import {useInput} from 'Common/utils/hooks'
+import {useInput} from 'Common/utils/hooks/input.hook'
+
+import {AuthContext} from '../../../context/AuthContext'
 import './styles/CommentsForm.scss'
-import {AuthContext} from "../../../context/AuthContext";
 
 export function CommentForm({handleSubmit}) {
   const auth = useContext(AuthContext)
