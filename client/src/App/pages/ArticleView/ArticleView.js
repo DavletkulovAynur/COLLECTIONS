@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "../../../Common/utils/hooks";
+import {useRouter} from "Common/utils/hooks/useRouter.hook";
 import './ArticleView.scss'
 import Fetcher from "../../../Common/utils/fetch";
 import {ArticleViewTemplate} from "./Components/ArticleViewTemplate";
@@ -9,7 +9,7 @@ import {appAlertHidden, appAlertShow} from "../../../Redux/actions/action";
 function ArticleView(props) {
   const dispatch = useDispatch()
   const router = useRouter()
-  const games = useSelector(state => state.gameReducer)
+  const {allCollection} = useSelector(state => state.collectionReducer)
   const [game, setGame] = useState(null)
   const routerId = router.match.params.id
 
@@ -27,11 +27,11 @@ function ArticleView(props) {
   }
 
   useEffect( () => {
-    if(games.length > 0) {
-      const data = filterGames(games)
+    if(allCollection.length > 0) {
+      const data = filterGames(allCollection)
       setGame(data[0])
     }
-  }, [games])
+  }, [allCollection])
 
   const updateArticle =  (data, comment) => {
     if(data.status) {

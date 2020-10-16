@@ -6,17 +6,16 @@ import './MyCollection.scss'
 
 export function MyCollection() {
   const dispatch = useDispatch()
-  const collection = useSelector(state => state.myCollectionReducer)
+  const {myCollection} = useSelector(state => state.collectionReducer)
 
   useEffect(() =>{
     dispatch(getMyCollection())
   }, [])
 
-  console.log(collection)
   return (
     <div className='My-collection'>
       <div className='Com-main-grid'>
-        <CommonCard data={collection}/>
+        <CommonCard data={myCollection}/>
       </div>
     </div>
   )

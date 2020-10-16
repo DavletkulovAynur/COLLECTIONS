@@ -1,5 +1,5 @@
 import React from 'react'
-import {useInput} from 'Common/utils/hooks'
+import {useInput} from 'Common/utils/hooks/input.hook'
 
 export const Registration = ({fetchRegistration, changeStateLogin}) => {
   const username = useInput('')
