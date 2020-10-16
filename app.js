@@ -9,10 +9,11 @@ app.use(cors())
 
 app.use(express.json({ extentded: true}))
 
-app.use('/app', require('./routes/test.routes'))
+app.use('/auth', require('./routes/auth.routes'))
+
 app.use('/comment', require('./routes/comment.routes'))
 app.use('/game', require('./routes/game.routes'))
-app.use('/auth', require('./routes/auth.routes'))
+app.use('/collection', require('./routes/collection.routes'))
 
 
 const PORT = config.get('port') || 5000

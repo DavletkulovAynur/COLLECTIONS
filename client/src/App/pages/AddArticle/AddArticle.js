@@ -1,36 +1,42 @@
-import React, {useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 
 import {useInput} from "Common/utils/hooks";
-import Fetcher from "Common/utils/fetch";
-import {getArticle} from "Common/utils/templates";
-import {useDispatch} from "react-redux";
+// import Fetcher from "Common/utils/fetch";
+import {AuthContext} from "App/context/AuthContext";
+import {useHttp} from "Common/utils/hooks/http.hook";
 
 function AddArticle(props) {
-  const dispatch = useDispatch()
-  const inputName = useInput('')
-  const inputImg = useInput('')
-  const inputPublisher = useInput('')
-  const inputDescription = useInput('')
+  const nameCollection = useInput('')
+  const {loading, error, request, clearError} = useHttp()
+  const title = useInput('')
+  const img = useInput('')
+  const publisher = useInput('')
+  const description = useInput('')
+  const {userName, userId} = useContext(AuthContext)
 
-  const fetchEvent = async (game) => {
-    const data = await Fetcher('http://localhost:5000/game/add', 'POST', game)
-    if(data.status) {
-      console.log('игра успешно добавлена')
-      getArticle(dispatch)
-    }
+  const fetchEvent = async (collection) => {
+    const data = await request('http://localhost:5000/collection/add', 'POST', collection)
+    // if(data.status) {
+    //   console.log('игра успешно добавлена')
+    //   getArticle(dispatch)
+    // }
   }
 
   const handleSubmit = (e) => {
     const comments = []
-    const games = {
-      name: inputName.value,
-      img: inputImg.value,
-      publisher: inputPublisher.value,
-      description: inputDescription.value,
-      comments
+    const collection = {
+      nameCollection: 'book',
+      title: title.value,
+      img: img.value,
+      publisher: publisher.value,
+      description: description.value,
+      author: userName,
+      comments,
+      userId
     }
-    fetchEvent(games)
-    inputClear([inputName, inputImg, inputPublisher, inputDescription])
+
+    fetchEvent(collection)
+    inputClear([title, img, publisher, description])
     e.preventDefault()
   }
 
@@ -40,14 +46,20 @@ function AddArticle(props) {
     })
   }
 
+  function inputForm(placeholder, input) {
+    return (
+      <input className='form-control' type='text' placeholder={placeholder} {...input.bind}/>
+    )
+  }
+
   return (
     <div className='Form'>
       <h1>ADD GAME</h1>
       <form onSubmit={handleSubmit}>
-        <input className='form-control' type='text' name='name' placeholder='title' {...inputName.bind}/>
-        <input className='form-control' type='text' name='img' placeholder='img' {...inputImg.bind}/>
-        <input className='form-control' type='text' name='publisher' placeholder='publisher' {...inputPublisher.bind}/>
-        <textarea className='form-control' type='' name='description' placeholder='description' {...inputDescription.bind}/>
+        {inputForm('title', title)}
+        {inputForm('img', img)}
+        {inputForm('publisher', publisher)}
+        {inputForm('description', description)}
         <input type="submit" className="btn btn-primary" value="SEND"/>
       </form>
     </div>
