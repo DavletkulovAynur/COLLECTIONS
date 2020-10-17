@@ -6,7 +6,7 @@ import './styles/CommentsForm.scss'
 
 export function CommentForm({handleSubmit}) {
   const auth = useContext(AuthContext)
-  console.log(auth)
+
   const commentValue = useInput('')
   const submitForm = (e) => {
     handleSubmit(commentValue.value)
@@ -15,7 +15,6 @@ export function CommentForm({handleSubmit}) {
   }
   return (
     <div className='Comment-form'>
-      {auth.isAuthenticated ? <h1>МЫ В СИСТЕМЕ</h1>: null}
       <div className='Comment-form__header'>
         <span className='plus'></span>
         <div className='title'>write a comment...</div>

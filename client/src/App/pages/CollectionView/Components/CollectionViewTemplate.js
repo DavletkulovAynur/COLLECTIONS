@@ -13,8 +13,8 @@ const images = [
 
 const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomniac']
 
-export function ArticleViewTemplate({game, handleSubmit}) {
-  const bg = {background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)), url(${game.img})` }
+export function CollectionViewTemplate({certainCollection, handleSubmit}) {
+  const bg = {background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)), url(${certainCollection.img})` }
 
   return (
       <div className='Article-view-template'>
@@ -25,7 +25,7 @@ export function ArticleViewTemplate({game, handleSubmit}) {
             </div>
           </div>
 
-          <h2 className='title-72'>{game.name}</h2>
+          <h2 className='title-72'>{certainCollection.name}</h2>
 
           <div className='tags'>
             {tags.map((tag, index) => {
@@ -34,12 +34,12 @@ export function ArticleViewTemplate({game, handleSubmit}) {
               )
             })}
           </div>
-          <div className='description'>{game.description}</div>
+          <div className='description'>{certainCollection.description}</div>
 
           <CommentForm handleSubmit={handleSubmit}/>
           <div  className='comments'>
-            <div className='comment-title'>Comments <sup>{game.comments.length}</sup></div>
-            {game.comments.map((comment, index) => {
+            <div className='comment-title'>Comments <sup>{certainCollection.comments.length}</sup></div>
+            {certainCollection.comments.map((comment, index) => {
               return (
                 <div className='comment-item' key={index}>{comment}</div>
               )
@@ -62,7 +62,7 @@ export function ArticleViewTemplate({game, handleSubmit}) {
   )
 }
 
-ArticleViewTemplate.propTypes = {
+CollectionViewTemplate.propTypes = {
   game: PropTypes.object,
   handleSubmit: PropTypes.func
 }
