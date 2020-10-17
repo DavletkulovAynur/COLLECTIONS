@@ -1,12 +1,12 @@
 import React, {useContext} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import Main from "App/pages/Main/Main";
-import ArticleView from "App/pages/ArticleView/ArticleView";
 import AddArticle from "App/pages/AddArticle/AddArticle";
 import {Header} from "Common/components/Header/Header";
 import Nav from "Common/components/Nav/Nav";
 import {Auth} from "App/pages/Auth/Auth";
 import {MyCollection} from "App/pages/MyCollection/MyCollection";
+import CollectionView from "App/pages/CollectionView/CollectionView";
 
 export const useRoutes = isAuthenticated => {
   if(isAuthenticated) {
@@ -23,7 +23,7 @@ export const useRoutes = isAuthenticated => {
               <Main/>
             </Route>
             <Route exact path='/article-view/:id'>
-              <ArticleView/>
+              <CollectionView/>
             </Route>
             <Route exact path='/add'>
               <AddArticle/>
