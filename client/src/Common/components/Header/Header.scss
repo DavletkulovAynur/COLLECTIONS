@@ -1,42 +1,51 @@
 .Header {
-  .Header-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 40px;
-  }
-  .Logo {
-    width: 104px;
-    height: 41px;
-    margin-right: 18px;
-    background-image: url(
-    data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTk5JyBoZWlnaHQ9Jzg0JyB2aWV3Qm94PScwIDAgMTk5IDg0JyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxwYXRoIGQ9J005OC4wNzcuNXYyNi4xMTVIMTEwTDExMC4zMDguNWg1NS43Njl2MjMuNzNMMTgxLjM0Ny41aDE3LjE3MnY1NS4yM2wtMTkuMDc3IDE0SDk4LjA3N3YxMy45NDNINjQuNDhMNTQuMjUgNjkuNzMxSDE4LjkwNEwwIDU1LjM0NlYuNWg5OC4wNzd6bS0yLjg4NSAyLjg4NUg1MHY0Mi44MDdoMzMuNTM4djYuMzg1SDU3LjEzNXYxMy4xMzVoMzguMTM0bC0uMDc3LTYyLjMyN3ptLTQ4LjQ0MiAwSDIuODg1djEyLjk0MmgzMi40NjF2NS4wNzdIMi44ODV2MzEuMDJINDYuNzVWMy4zODN6bTUxLjMyNyAzNS43Njl2MTMuMjdoMTJWMzkuMTkxbC0xMi0uMDM4em0xNS4xNzMtMzUuNzd2NDkuMDRoMTEuNTM4VjE2LjMyNmgyMy42NTRWMy4zODVIMTEzLjI1em00OS45NDIgMEgxNTEuNzd2NDkuMDRoNDMuODY2VjMuMzgzaC0xMS40MjNsLjAxOSAzNi4xMzVoLTIxLjAzOVYzLjM4NXpNMzUuNDQyIDMzLjE5M3Y2LjczMWwtMjEuMjUtLjA5NnYtNi42MzVoMjEuMjV6bTQ3LjI1LTE2LjUzOHYxNi41MzhINjEuMzg1VjE2LjY1NGgyMS4zMDd6JyBmaWxsPScjRkVGRkZGJy8+PC9zdmc+);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
+
+  &__logo {
+    width: 44px;
+    height: 44px;
+    background-image: url("../../assets/images/icons/logo.svg");
     background-size: contain;
-    background-position: 50%;
     background-repeat: no-repeat;
-    position: relative;
-    font-size: 18px;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 5px;
-    color: #fff;
   }
-  .Header-item {
+
+
+  &__search {
+    width: 60%;
+
+    input {
+      width: 100%;
+      transition: color .3s,background-color .3s,opacity .3s,width .05s linear;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.3;
+      padding: 12px 36px;
+      background: url(../../assets/images/icons/loupe.svg) no-repeat scroll 16px;
+      color: hsla(0,0%,100%,.6);
+      background-size: 14px;
+      background-color: hsla(0,0%,100%,.16);
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__user {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
-  .Header-item-link {
-    background-image: none;
-    font-size: 14px;
-    line-height: normal;
-    position: relative;
-    text-transform: uppercase;
-    color: #fff;
-    border: none;
-    white-space: nowrap;
-    margin-right: 16px;
-  }
+    .user-img {
+      background: url("../../assets/images/users/superhero.svg") no-repeat;
+      background-size: contain;
+      width: 36px;
+      height: 36px;
+    }
 
-
+    .user-name {
+      margin-left: 8px;
+      text-transform: uppercase;
+    }
+  }
 }
