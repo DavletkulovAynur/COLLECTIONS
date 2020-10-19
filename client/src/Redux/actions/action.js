@@ -4,7 +4,7 @@ import {
   APP_HIDE_LOADING,
   APP_LOADING,
 
-  GET_ALL_COLLECTION,
+  GET_ALL_COLLECTION, GET_ALL_USERS,
   GET_MY_COLLECTION
 } from '../types'
 
@@ -36,6 +36,14 @@ export function appHideLoading() {
   })
 }
 
+//USERS
+export function getAllUsers() {
+  return({
+    type: GET_ALL_USERS
+  })
+}
+
+//COLLECTION
 export function getAllCollection() {
   return({
     type: GET_ALL_COLLECTION

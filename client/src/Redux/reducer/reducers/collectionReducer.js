@@ -6,7 +6,6 @@ const initialState = {
 }
 
 export const collectionReducer = (state = initialState, action) => {
-  console.log(action.payload)
   switch (action.type) {
     case WRITE_DOWN_COLLECTION:
       return {...state, myCollection: [...action.payload]}

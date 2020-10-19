@@ -6,7 +6,7 @@ import {useAuth} from 'Common/utils/hooks/auth.hook'
 import {AuthContext} from './context/AuthContext'
 import {useRoutes} from 'App/routes'
 import './App.scss'
-import {getAllCollection} from 'Redux/actions/action'
+import {getAllCollection, getAllUsers} from 'Redux/actions/action'
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   // первоначальное обновление данных
   useEffect(() => {
     dispatch(getAllCollection())
+    dispatch(getAllUsers())
   }, [])
 
   if (!ready) {

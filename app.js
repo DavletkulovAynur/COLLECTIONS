@@ -11,6 +11,7 @@ app.use(express.json({ extentded: true}))
 
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/collection', require('./routes/collection.routes'))
+app.use('/users', require('./routes/users.routes'))
 
 
 const PORT = config.get('port') || 5000
