@@ -7,8 +7,6 @@ import {Login} from "App/pages/Auth/components/Login";
 import {Registration} from "App/pages/Auth/components/Registration";
 
 import './Auth.scss'
-import {useDispatch, useSelector} from "react-redux";
-import {writeUserName} from "Redux/actions/action";
 
 export function Auth() {
   const message = useMessage()
@@ -45,8 +43,14 @@ export function Auth() {
   }
 
   return (
-    <div>
-      <div className='Auth-popup'>
+    <div className='Auth'>
+
+      <div className='logo'>
+        <div className='img'></div>
+        <span className='text'>COLLECTION</span>
+      </div>
+
+      <div className='login-registration-wrapper'>
         {login
           ? <Login fetchLoginUser={fetchLogin} changeStateLogin={changeStateLogin}/>
           :  <Registration fetchRegistration={fetchRegistration} changeStateLogin={changeStateLogin}/>}

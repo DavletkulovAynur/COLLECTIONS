@@ -8,6 +8,7 @@ import {useHttp} from "Common/utils/hooks/http.hook";
 function AddArticle(props) {
   const nameCollection = useInput()
   const {loading, error, request, clearError} = useHttp()
+  const testSelect = useInput('')
   const title = useInput('')
   const img = useInput('')
   const publisher = useInput('')
@@ -25,7 +26,7 @@ function AddArticle(props) {
   const handleSubmit = (e) => {
     const comments = []
     const collection = {
-      nameCollection: 'book',
+      nameCollection: testSelect.value,
       title: title.value,
       img: img.value,
       publisher: publisher.value,
@@ -56,6 +57,12 @@ function AddArticle(props) {
     <div className='Form'>
       <h1>ADD GAME</h1>
       <form onSubmit={handleSubmit}>
+        <select {...testSelect.bind}>
+          <option>book</option>
+          <option>movie</option>
+          <option>game</option>
+          <option>photo</option>
+        </select>
         {inputForm('title', title)}
         {inputForm('img', img)}
         {inputForm('publisher', publisher)}

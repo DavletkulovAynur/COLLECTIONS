@@ -40,8 +40,7 @@ export const useRoutes = isAuthenticated => {
 
   return (
       <div className='page'>
-        <div className='Auth-login'>
-          <div className='text'>FACEBOOK</div>
+        <div className='Auth-page-wrapper'>
           <Switch>
             <Route exact path='/login'>
               <Auth/>

@@ -1,5 +1,6 @@
 import React from 'react'
 import {useInput} from 'Common/utils/hooks/input.hook'
+import Button from "Common/components/Button/Button";
 
 export const Registration = ({fetchRegistration, changeStateLogin}) => {
   const username = useInput('')
@@ -15,20 +16,22 @@ export const Registration = ({fetchRegistration, changeStateLogin}) => {
     fetchRegistration(user)
     e.preventDefault()
   }
+
   return (
     <div>
-      <div className='popup-header'>
-        <div className='popup-header__title'>Sign up</div>
-        <div className='popup-header__close'></div>
+      <div className='header'>
+        <div className='title'>Sign up for your account</div>
       </div>
-      <form className='popup-body' onSubmit={handleAuth}>
-        <input className="validate" placeholder='name' required {...username.bind}/>
-        <input className="validate" placeholder='Email' required {...email.bind}/>
+
+      <form className='body'>
+        <input className='com-input-styles' placeholder='name' required {...username.bind}/>
+        <input className='com-input-styles' placeholder='Email' required {...email.bind}/>
         <input className='com-input-styles' placeholder='password' required {...password.bind}/>
-        <input type='submit' value='login'/>
+        <Button name='Sign up' logoutHandler={handleAuth}></Button>
       </form>
-      <div className='popup-footer'>
-        Есть аккаунт? <span onClick={() => changeStateLogin()}>Войти</span>
+
+      <div className='footer'>
+        Already have an account? <span className='link' onClick={() => changeStateLogin()}>Log In</span>
       </div>
     </div>
   )
