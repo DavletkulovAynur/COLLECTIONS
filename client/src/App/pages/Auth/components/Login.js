@@ -1,5 +1,6 @@
 import React from 'react'
 import {useInput} from 'Common/utils/hooks/input.hook'
+import Button from "Common/components/Button/Button";
 
 export const Login = ({fetchLoginUser, changeStateLogin}) => {
   const handleLogin = (e) => {
@@ -16,19 +17,19 @@ export const Login = ({fetchLoginUser, changeStateLogin}) => {
 
   return (
     <div className='login'>
-      <div className='popup-header'>
-        <div className='popup-header__title'>Sign in</div>
-        <div className='popup-header__close'></div>
+      <div className='header'>
+        <div className='title'>Log in to Collection</div>
       </div>
-      <form className='popup-body' onSubmit={handleLogin}>
-        <input id="email" type="email" className="validate" placeholder='Email' className='' {...login.bind}/>
-        <input id="password" type="password" className="validate" placeholder='Password'
+
+      <form className='body'>
+        <input id="email" type="email" className="com-input-styles" placeholder='Email'  {...login.bind}/>
+        <input id="password" type="password" placeholder='Password'
                className='com-input-styles' {...password.bind}/>
-        <input type='submit' className="button btn waves-effect waves-teal" value='войти'/>
+        <Button logoutHandler={handleLogin} name='Log in'></Button>
       </form>
 
-      <div className='popup-footer'>
-        Нет аккаунта? <span onClick={() => changeStateLogin()}>Регистрация</span>
+      <div className='footer'>
+        Can't log in? <span className='link' onClick={() => changeStateLogin()}> Sign up for an account</span>
       </div>
     </div>
   )

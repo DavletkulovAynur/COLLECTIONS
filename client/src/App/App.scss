@@ -21,16 +21,9 @@
     }
   }
 
-  .Auth-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .Auth-page-wrapper {
     width: 100%;
-    margin-top: 15%;
-
-    .text {
-      font-size: 46px;
-      margin-right: 36px;
-    }
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 }

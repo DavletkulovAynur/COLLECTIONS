@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './CommonCard.scss'
+import {User} from "Common/shared/User";
 
 export function CommonCard({data}) {
   const divStyle = (img) => {
@@ -8,25 +9,30 @@ export function CommonCard({data}) {
       backgroundImage: 'url(' + img + ')',
     }
   };
-  console.log(data)
+
   return (
     <>
     {data.map((item) => {
         return (
           <div key={item._id} className='Common-card'>
-            <div className='media'>
-              <div className='media__wrapper'>
-                <div className='media__wrapper-preview' style={divStyle(item.img)}></div>
+            <div className='Common-card__media'>
+              <div className='Common-card__media-wrapper'>
+                <div className='Common-card__media-wrapper-preview' style={divStyle(item.img)}></div>
               </div>
             </div>
 
-            <div className='info'>
-              <span className="info__publisher">{item.nameCollection}</span>
-              <span className="info__publisher">{item.publisher}</span>
-              <div className='info__name'>
+            <div className='Common-card__info'>
+              <div className='info-wrapper'>
+                <span className="info-publisher">{item.nameCollection}</span>
+                <div className='info-bookmark'></div>
+              </div>
+
+
+              <div className='info-name'>
                 <Link to={`/article-view/${item._id}`} className='title'>{item.title}</Link>
               </div>
-              <span className="info__publisher">{item.author}</span>
+
+              <User name={item.author}/>
             </div>
           </div>
         )

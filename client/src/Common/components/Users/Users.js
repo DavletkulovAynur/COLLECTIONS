@@ -1,6 +1,7 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import './Users.scss'
+import {User} from "Common/shared/User";
 
 
 export function Users() {
@@ -9,14 +10,7 @@ export function Users() {
     <div className='Users'>
       {users.map((user) => {
         return (
-          <div className='Users__user'>
-            <div className='user-img'>
-
-            </div>
-            <div className='user-name'>
-              {user.username}
-            </div>
-          </div>
+          <User name={user.username}/>
         )
       })}
     </div>
