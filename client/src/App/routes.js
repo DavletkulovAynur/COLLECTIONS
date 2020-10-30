@@ -10,7 +10,6 @@ import CollectionView from "App/pages/CollectionView/CollectionView";
 
 export const useRoutes = isAuthenticated => {
   if(isAuthenticated) {
-    console.log('isAuthenticated')
     return (
       <div>
         <Header/>
