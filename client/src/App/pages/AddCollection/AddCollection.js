@@ -4,8 +4,10 @@ import React, {useContext, useRef, useState} from "react";
 import {useInput} from 'Common/utils/hooks/input.hook'
 import {AuthContext} from "App/context/AuthContext";
 import {useHttp} from "Common/utils/hooks/http.hook";
+import './AddCollection.scss'
+import {Select} from "Common/components/Select/Select";
 
-function AddArticle(props) {
+function AddCollection(props) {
   const nameCollection = useInput()
   const {loading, error, request, clearError} = useHttp()
   const testSelect = useInput('')
@@ -49,29 +51,39 @@ function AddArticle(props) {
 
   function inputForm(placeholder, input) {
     return (
-      <input className='form-control' type='text' placeholder={placeholder} {...input.bind}/>
+      <input className='com-input-styles' type='text' placeholder={placeholder} {...input.bind}/>
     )
   }
 
   return (
-    <div className='Form'>
+    <div className='Add-collection'>
       <h1>ADD GAME</h1>
-      <form onSubmit={handleSubmit}>
-        <select {...testSelect.bind}>
-          <option>book</option>
-          <option>movie</option>
-          <option>game</option>
-          <option>photo</option>
-        </select>
-        {inputForm('title', title)}
-        {inputForm('img', img)}
-        {inputForm('publisher', publisher)}
-        {inputForm('description', description)}
-        <input type="submit" className="btn btn-primary" value="SEND"/>
-      </form>
+      <div class='form'>
+        <form onsubmit={handleSubmit}>
+          <Select options={{ data: [
+              {id: '1', value: 'React'},
+              {id: '2', value: 'Angular'},
+              {id: '3', value: 'Vue'},
+              {id: '4', value: 'React Native'},
+              {id: '5', value: 'Next'},
+              {id: '5', value: 'Nest'}
+            ],}}/>
+          <select {...testSelect.bind}>
+            <option>book</option>
+            <option>movie</option>
+            <option>game</option>
+            <option>photo</option>
+          </select>
+          {inputForm('title', title)}
+          {inputForm('img', img)}
+          {inputForm('publisher', publisher)}
+          {inputForm('description', description)}
+          <input type="submit" className="btn btn-primary" value="SEND"/>
+        </form>
+      </div>
     </div>
   )
 }
 
 
-export default AddArticle
+export default AddCollection

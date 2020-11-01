@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import Main from "App/pages/Main/Main";
-import AddArticle from "App/pages/AddArticle/AddArticle";
+import AddArticle from "App/pages/AddCollection/AddCollection";
 import {Header} from "Common/components/Header/Header";
 import Nav from "Common/components/Nav/Nav";
 import {Auth} from "App/pages/Auth/Auth";

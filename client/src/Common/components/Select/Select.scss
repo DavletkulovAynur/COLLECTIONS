@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$height: 48px;
+
+.Select {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  &.open {
+    .Select__dropdown {
+      display: block;
+      background: #00AAF5;
+    }
+
+    .Select__input {
+      border-bottom: none;
+    }
+
+    .Select__backdrop {
+      display: block;
+    }
+  }
+
+  &__input {
+    border: 1px solid #ccc;
+    height: $height;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    cursor: pointer;
+    justify-content: space-between;
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    top: $height;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, .3);
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    .back {
+      background: #6FB719;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    z-index: -1;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+  }
+
+  &__item {
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+
+    &.selected {
+      background-color: bisque;
+    }
+
+    &:hover {
+      background-color: #eeeeee;
+      cursor: pointer;
+      transition: .15s background-color ease-in;
+    }
+  }
+}
