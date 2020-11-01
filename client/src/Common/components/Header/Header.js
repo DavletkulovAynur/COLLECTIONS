@@ -3,12 +3,12 @@ import './Header.scss'
 import {useHistory} from 'react-router-dom'
 import {AuthContext} from 'App/context/AuthContext'
 import Button from "Common/components/Button/Button";
+import {User} from "Common/shared/User";
 
 export function Header() {
   const history = useHistory()
   const auth = useContext(AuthContext)
 
-  console.log(auth)
   const logoutHandler = (e) => {
     e.preventDefault()
     auth.logout()
@@ -23,10 +23,7 @@ export function Header() {
           <input type="text" className="search-input" placeholder="Search"/>
         </form>
 
-        <div className='Header__user'>
-          <div className='user-img'></div>
-          <div className='user-name'>{auth.userName}</div>
-        </div>
+        <User name={auth.userName} styleName='User-header'/>
 
         <Button name=' Log out' logoutHandler={logoutHandler}/>
       </div>
