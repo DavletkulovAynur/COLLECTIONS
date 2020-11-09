@@ -4,8 +4,8 @@
 
 .App {
   .Nav-wrapper {
-    margin-top: 36px;
-    min-width: 220px;
+    //margin-top: 36px;
+    //min-width: 220px;
   }
   .page {
     max-width: 1480px;
@@ -15,9 +15,7 @@
     justify-content: space-between;
 
     @media (max-width: 760px) {
-      .Nav-wrapper {
-        display: none;
-      }
+      
     }
   }
 

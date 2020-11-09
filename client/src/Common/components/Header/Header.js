@@ -17,13 +17,16 @@ export function Header() {
 
     return (
       <div className='Header'>
-        <a className='Header__logo' href="/"></a>
+        <a className='logo' href="/"></a>
 
-        <form className='Header__search' >
+        <form className='search' >
           <input type="text" className="search-input" placeholder="Search"/>
         </form>
 
-        <User name={auth.userName} styleName='User-header'/>
+        <div className='user'>
+          <User name={auth.userName} styleName='User-header'/>
+        </div>
+
 
         <Button name=' Log out' logoutHandler={logoutHandler}/>
       </div>
