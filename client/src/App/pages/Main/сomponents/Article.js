@@ -4,10 +4,10 @@ import {CommonCard} from '../../../../Common/components/CommonCard/CommonCard'
 import './styles/Article.scss'
 
 
-function Article({games}) {
+function Article({collection}) {
   return (
     <div className='Article Article-root Com-main-grid'>
-      <CommonCard data={games}/>
+      <CommonCard data={collection}/>
     </div>
   )
 }

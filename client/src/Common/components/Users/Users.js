@@ -8,15 +8,14 @@ import {AuthContext} from "App/context/AuthContext";
 export function Users() {
   const users = useSelector(state => state.usersReducer)
   const auth = useContext(AuthContext)
-  console.log(users)
   return (
     <div className='Users'>
       {users.map((user) => {
-        if(user._id == auth.userId) {
-          return
+        if(user._id === auth.userId) {
+          return null
         }
         return (
-          <User name={user.username}/>
+          <User key={user._id} name={user.username}/>
         )
       })}
     </div>

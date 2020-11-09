@@ -4,7 +4,7 @@
   align-items: center;
   padding: 24px 40px;
 
-  &__logo {
+  .logo {
     width: 44px;
     height: 44px;
     background-image: url("../../assets/images/icons/logo.svg");
@@ -13,7 +13,7 @@
   }
 
 
-  &__search {
+  .search {
     width: 60%;
 
     input {
@@ -33,19 +33,13 @@
     }
   }
 
-  &__user {
-    display: flex;
-    align-items: center;
-    .user-img {
-      background: url("../../assets/images/users/superhero.svg") no-repeat;
-      background-size: contain;
-      width: 36px;
-      height: 36px;
+  @media (max-width: 720px) {
+    .search {
+      display: none;
     }
 
-    .user-name {
-      margin-left: 8px;
-      text-transform: uppercase;
+    .user {
+      display: none;
     }
   }
 }

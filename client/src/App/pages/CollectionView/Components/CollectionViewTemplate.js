@@ -14,9 +14,7 @@ const images = [
 const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomniac']
 
 export function CollectionViewTemplate({certainCollection, handleSubmit, getItems}) {
-  console.log('CollectionViewTemplate')
   useEffect(() => {
-    console.log('render')
   }, [getItems])
   const bg = {background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)), url(${certainCollection.img})` }
 
