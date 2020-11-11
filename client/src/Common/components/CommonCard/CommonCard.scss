@@ -50,6 +50,14 @@
         cursor: pointer;
       }
 
+      .info-bookmark-active {
+        background: url("../../assets/images/icons/bookmark_active.svg") no-repeat;
+        width: 24px;
+        height: 24px;
+        background-size: contain;
+        cursor: pointer;
+      }
+
       .info-publisher {
         text-transform: lowercase;
         color: #888888;

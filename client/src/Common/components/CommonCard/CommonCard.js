@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import './CommonCard.scss'
 import {User} from "Common/shared/User";
+import {Bookmark} from 'Common/components/Bookmark/Bookmark'
+
 
 export function CommonCard({data}) {
   const divStyle = (img) => {
@@ -24,7 +26,8 @@ export function CommonCard({data}) {
             <div className='Common-card__info'>
               <div className='info-wrapper'>
                 <span className="info-publisher">{item.nameCollection}</span>
-                <div className='info-bookmark'></div>
+                  <Bookmark id={item._id} />
+                </div>
               </div>
 
 
@@ -34,7 +37,6 @@ export function CommonCard({data}) {
 
               <User name={item.author}/>
             </div>
-          </div>
         )
       })}
       </>
