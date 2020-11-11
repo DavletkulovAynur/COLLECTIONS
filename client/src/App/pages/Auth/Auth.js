@@ -9,9 +9,10 @@ import {Registration} from "App/pages/Auth/components/Registration";
 import './Auth.scss'
 
 export function Auth() {
+  const auth = useContext(AuthContext)
   const message = useMessage()
   const {error, request, clearError} = useHttp()
-  const auth = useContext(AuthContext)
+
   const [login, setLogin] = useState(true)
 
   useEffect(() => {
@@ -23,7 +24,8 @@ export function Auth() {
     try {
       const data = await request('http://localhost:5000/auth/login', 'POST', user)
       const {token, userId} = data
-      auth.login(token, userId, data.user.username)
+      const {username} = data.user
+      auth.login(token, userId, username)
     } catch (e) {
       console.log(e)
     }
