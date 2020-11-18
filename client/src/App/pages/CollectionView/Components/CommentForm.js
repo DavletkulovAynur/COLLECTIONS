@@ -1,18 +1,19 @@
 import React, {useContext, useRef} from 'react'
 import {useInput} from 'Common/utils/hooks/input.hook'
-
-import {AuthContext} from '../../../context/AuthContext'
 import './styles/CommentsForm.scss'
+import {Loading} from "Common/components/Loading/Loading";
 
-export function CommentForm({handleSubmit}) {
-  const auth = useContext(AuthContext)
-
+export function CommentForm({handleSubmit, commentLoader}) {
   const commentValue = useInput('')
+  const commentTitle = useInput('')
+
   const submitForm = (e) => {
-    handleSubmit(commentValue.value)
+    handleSubmit(commentValue.value, commentTitle.value)
     commentValue.clear()
+    commentTitle.clear()
     e.preventDefault()
   }
+
   return (
     <div className='Comment-form'>
       <div className='Comment-form__header'>
@@ -20,9 +21,10 @@ export function CommentForm({handleSubmit}) {
         <div className='title'>write a comment...</div>
       </div>
       <form className='Comment-form__form'  onSubmit={submitForm}>
-        <input className='form__title com-input-styles' placeholder='title'></input>
+        <input className='form__title com-input-styles' {...commentTitle.bind} placeholder='title'></input>
         <textarea className="form__message com-input-styles" placeholder="description"  {...commentValue.bind}/>
-        <input className='form__button' type='submit' value='ОТПРАВИТЬ'/>
+        <input disabled={commentLoader} className='form__button' type='submit' value='ОТПРАВИТЬ'/>
+        {commentLoader ? <Loading/> : null }
       </form>
     </div>
   )

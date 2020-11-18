@@ -13,52 +13,83 @@ const images = [
 
 const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomniac']
 
-export function CollectionViewTemplate({certainCollection, handleSubmit, getItems}) {
-  useEffect(() => {
-  }, [getItems])
-  const bg = {background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)), url(${certainCollection.img})` }
+export function CollectionViewTemplate({certainCollection, handleSubmit, commentLoader}) {
+
+  const bg = {
+    background: `linear-gradient(rgba(15, 15, 15, 0), 
+                 rgb(21, 21, 21)), 
+                 linear-gradient(rgba(21, 21, 21, 0.8), 
+                 rgba(21, 21, 21, 0.5)), 
+                 url(${certainCollection.img}) no-repeat top center` }
+
+  const $comments = () => {
+    return (
+      <div  className='comments'>
+        <div className='comment-title'>Comments <sup>{certainCollection.comments.length}</sup></div>
+        {certainCollection.comments.map((comment, index) => {
+          return (
+            <section key={index}  className='comment-item'>
+              <div>{comment.title}</div>
+              <div >{comment.description}</div>
+              <div>{comment.time}</div>
+              <div>{comment.author}</div>
+            </section>
+          )
+        })}
+      </div>
+      )
+  }
+
+  const $topBackground = () => {
+    return (
+      <div className='bg-wrapper'>
+        <div className='bg-wrapper__art-wrapper'>
+          <div className='helper'></div>
+          <div style={bg}  className='art'>
+
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const $tags = () => {
+    return (
+      <div className='tags'>
+        {tags.map((tag, index) => {
+          return (
+            <div key={index} className='tag'>{tag}</div>
+          )
+        })}
+      </div>
+      )
+  }
+
+  const $images = () => {
+    return (
+      <section className='secondary-content'>
+        <div className='images-screenshots'>
+          {images.map((img, index) => {
+            return (
+              <div key={index} className='images-screenshots__wrapper'>
+                <img className='img' src={img}/>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+    )
+  }
 
   return (
       <div className='Article-view-template'>
         <section className='main-content'>
-          <div className='bg-wrapper'>
-            <div className='bg-wrapper__art-wrapper'>
-              <div style={bg}  className='art'></div>
-            </div>
-          </div>
-
+          {$topBackground()}
           <h2 className='title-72'>{certainCollection.name}</h2>
-
-          <div className='tags'>
-            {tags.map((tag, index) => {
-              return (
-                <div key={index} className='tag'>{tag}</div>
-              )
-            })}
-          </div>
+          {$tags()}
           <div className='description'>{certainCollection.description}</div>
-
-          <CommentForm handleSubmit={handleSubmit}/>
-          <div  className='comments'>
-            <div className='comment-title'>Comments <sup>{certainCollection.comments.length}</sup></div>
-            {certainCollection.comments.map((comment, index) => {
-              return (
-                <div className='comment-item' key={index}>{comment}</div>
-              )
-            })}
-          </div>
-        </section>
-
-        <section className='secondary-content'>
-          <div className='images-screenshots'>
-            {images.map((img, index) => {
-              return (
-                <div key={index} className='images-screenshots__wrapper'>
-                  <img className='img' src={img}/>
-                </div>
-              )
-            })}
-          </div>
+          <CommentForm handleSubmit={handleSubmit} commentLoader={commentLoader}/>
+          {$comments()}
         </section>
       </div>
   )

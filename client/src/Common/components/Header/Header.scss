@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px 40px;
+  position: relative;
 
   .logo {
     width: 44px;
@@ -10,6 +11,24 @@
     background-image: url("../../assets/images/icons/logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
+  }
+
+  .user-container {
+    position: relative;
+    cursor: pointer;
+
+    .user-icon {
+      display: flex;
+      align-items: center;
+
+      .arrow {
+        margin-left: 6px;
+        background-image: url("../../assets/images/icons/down-arrow.svg");
+        width: 12px;
+        height: 12px;
+        background-size: contain;
+      }
+    }
   }
 
 
@@ -30,87 +49,6 @@
       background-color: hsla(0, 0%, 100%, .16);
       border: none;
       outline: none;
-    }
-  }
-
-  .Navbar {
-    width: 200px;
-    position: absolute;
-    top: 88px;
-    right: 90px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    z-index: 10;
-
-    .navbar-user__menu {
-      padding: 15px 0;
-      position: relative;
-    }
-    .navbar-user__menu:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 0;
-      border: 10px solid;
-      border-color: #151515 #151515 #ffffff #151515;
-      left: 90%;
-      bottom: 100%;
-      margin-left: -15px;
-    }
-
-    .menu__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu.\--vertical .menu__link {
-      width: 100%;
-      height: 50px;
-      padding-left: 54px;
-      padding-right: 20px;
-    }
-
-    .menu__link {
-      background-color: transparent;
-      color: black;
-      border: none;
-      display: flex;
-      align-items: center;
-      position: relative;
-      transition: all .3s;
-      width: 100%;
-      outline: none;
-      cursor: pointer;
-    }
-    .menu__link:hover {
-      color: #191966;
-      background-color: #e2e2e2;
-    }
-
-    .menu.\--vertical .menu__icon {
-      left: 32px;
-      top: 50%;
-      width: 0;
-      height: 0;
-      position: absolute;
-    }
-
-    .menu.\--vertical .menu__icon svg,
-    .menu.\--vertical .menu__icon img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
-    }
-
-    .menu.\--vertical .menu__text {
-      font-size: 1rem;
-    }
-    .menu.\--vertical .menu__text:hover {
-
     }
   }
 }
