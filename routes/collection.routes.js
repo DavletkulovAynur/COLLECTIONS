@@ -49,10 +49,17 @@ router.get('/get',
 
 router.put('/comment-update',
   async (req, res) => {
-    const {comments, id} = req.body
+    const {description, id, title, author} = req.body
+    const commentObj = {
+      title,
+      description,
+      time: new Date(),
+      author
+    }
     try {
-      await COLLECTION_MODEL.update({_id: id}, {$push: {comments : [comments]}})
-      res.status(201).json({message: 'Article update'})
+      await  COLLECTION_MODEL.update({_id: id}, {$push: {comments : commentObj}})
+      const collectionComments = await COLLECTION_MODEL.find({_id: id})
+      res.status(201).json({message: 'Collection update', status: true, collectionComments, commentObj})
     } catch (e) {
 
     }

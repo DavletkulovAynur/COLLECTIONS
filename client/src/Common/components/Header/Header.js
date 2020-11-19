@@ -1,14 +1,14 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import './Header.scss'
 import {useHistory} from 'react-router-dom'
 import {AuthContext} from 'App/context/AuthContext'
-import Button from "Common/components/Button/Button";
 import {User} from "Common/shared/User";
-import logout from 'Common/assets/images/logout.svg'
+import {Navbar} from "Common/components/Navbar/Navbar";
 
 export function Header() {
   const history = useHistory()
   const auth = useContext(AuthContext)
+  const [userDetails, setUserDetails] = useState(false)
 
   const logoutHandler = (e) => {
     e.preventDefault()
@@ -16,6 +16,9 @@ export function Header() {
     history.push('/login')
   }
 
+  const detailsUserOpen = () => {
+    setUserDetails(!userDetails)
+  }
 
     return (
       <div className='Header'>
@@ -24,29 +27,13 @@ export function Header() {
         <form className='search'>
           <input type="text" className="search-input" placeholder="Search"/>
         </form>
-
-        <div className='user'>
-          <User name={auth.userName} styleName='User-header'/>
-          <div className='Navbar'>
-            <div className='navbar-user__menu'>
-              <div className='menu --vertical'>
-                <ul className='menu__list'>
-                  <li className='menu__item'>
-                    <button className='menu__link'>
-                      <span className='menu__icon'>
-                        <img src={logout} alt=""/>
-                      </span>
-                      <span className='menu__text'>Выйти</span>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div className='user-container' onClick={detailsUserOpen}>
+          <article className='user-icon'>
+            <User component='Header' name={auth.userName} styleName='User-header'/>
+            <span className='arrow'></span>
+          </article>
+          {userDetails ? <Navbar/> : null}
         </div>
-        </div>
-
-
-        {/*<Button name='Log out' logoutHandler={logoutHandler}/>*/}
       </div>
     )
 }
