@@ -10,44 +10,7 @@
     width: 35%;
   }
 
-  .bg-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -2;
-    width: 1360px;
-    height: 100%;
-    margin: auto;
 
-
-    &__art-wrapper {
-      height: 500px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex-grow: 1;
-      flex-shrink: 0;
-      min-height: 100%;
-
-      .helper {
-        height: 500px;
-        width: 100px;
-        background: red;
-        //background: 'linear-gradient(rgba(15, 15, 15, 0),  rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5))'
-        position: absolute;
-        left: 0;
-        z-index: 2;
-      }
-
-      .art {
-        height: 500px;
-        z-index: 1;
-        position: relative;
-
-      }
-    }
-  }
 
   .description {
     text-align: justify;

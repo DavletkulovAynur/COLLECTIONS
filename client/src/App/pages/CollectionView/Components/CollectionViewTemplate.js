@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import {CommentForm} from './CommentForm'
 import './styles/ArticleViewTemplate.scss'
+import {FeatureBgGradient} from "App/pages/CollectionView/Components/FeatureBgGradient";
 
 const images = [
   'https://st.overclockers.ru/images/lab/2019/10/27/1/001_art_big.jpg',
@@ -15,12 +16,7 @@ const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomn
 
 export function CollectionViewTemplate({certainCollection, handleSubmit, commentLoader}) {
 
-  const bg = {
-    background: `linear-gradient(rgba(15, 15, 15, 0), 
-                 rgb(21, 21, 21)), 
-                 linear-gradient(rgba(21, 21, 21, 0.8), 
-                 rgba(21, 21, 21, 0.5)), 
-                 url(${certainCollection.img}) no-repeat top center` }
+
 
   const $comments = () => {
     return (
@@ -38,19 +34,6 @@ export function CollectionViewTemplate({certainCollection, handleSubmit, comment
         })}
       </div>
       )
-  }
-
-  const $topBackground = () => {
-    return (
-      <div className='bg-wrapper'>
-        <div className='bg-wrapper__art-wrapper'>
-          <div className='helper'></div>
-          <div style={bg}  className='art'>
-
-          </div>
-        </div>
-      </div>
-    )
   }
 
   const $tags = () => {
@@ -84,7 +67,7 @@ export function CollectionViewTemplate({certainCollection, handleSubmit, comment
   return (
       <div className='Article-view-template'>
         <section className='main-content'>
-          {$topBackground()}
+          {/*<FeatureBgGradient certainCollection={certainCollection}/> на будущее*/}
           <h2 className='title-72'>{certainCollection.name}</h2>
           {$tags()}
           <div className='description'>{certainCollection.description}</div>

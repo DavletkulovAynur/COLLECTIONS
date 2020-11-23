@@ -1,0 +1,30 @@
+.Bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -2;
+  width: 1024px;
+  margin: auto;
+
+
+  &__art-wrapper {
+    .art {
+      height: 500px;
+
+      width: 100%;
+      z-index: 1;
+      position: relative;
+
+      .helper {
+        height: 500px;
+        width: 100px;
+        background: linear-gradient(90deg, rgba(15, 15, 15, 0), rgba(21, 21, 21, 0.5) 70.71%);
+        position: absolute;
+        left: 0;
+        z-index: 2;
+      }
+
+    }
+  }
+}
