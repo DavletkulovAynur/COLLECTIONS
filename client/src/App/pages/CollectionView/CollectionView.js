@@ -48,7 +48,6 @@ function CollectionView(props) {
 
 
   const handleSubmit = (commentValue, commentTitle) => {
-    console.log(auth.userName)
     const comment = {
       description: commentValue,
       title: commentTitle,

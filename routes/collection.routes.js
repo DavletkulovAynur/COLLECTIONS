@@ -53,13 +53,12 @@ router.put('/comment-update',
     const commentObj = {
       title,
       description,
-      time: new Date(),
+      time: Date.now(),
       author
     }
     try {
       await  COLLECTION_MODEL.update({_id: id}, {$push: {comments : commentObj}})
-      const collectionComments = await COLLECTION_MODEL.find({_id: id})
-      res.status(201).json({message: 'Collection update', status: true, collectionComments, commentObj})
+      res.status(201).json({message: 'Collection update', status: true, commentObj})
     } catch (e) {
 
     }

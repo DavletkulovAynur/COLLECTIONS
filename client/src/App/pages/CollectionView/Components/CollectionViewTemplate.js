@@ -14,15 +14,15 @@ const images = [
 
 const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomniac']
 
-export function CollectionViewTemplate({certainCollection, handleSubmit, commentLoader}) {
-
-
+export function CollectionViewTemplate({certainCollection = [], handleSubmit, commentLoader}) {
 
   const $comments = () => {
+    let sortComments =  certainCollection.comments
+    sortfunction(sortComments)
     return (
       <div  className='comments'>
         <div className='comment-title'>Comments <sup>{certainCollection.comments.length}</sup></div>
-        {certainCollection.comments.map((comment, index) => {
+        {sortComments.map((comment, index) => {
           return (
             <section key={index}  className='comment-item'>
               <div>{comment.title}</div>
@@ -81,4 +81,10 @@ export function CollectionViewTemplate({certainCollection, handleSubmit, comment
 CollectionViewTemplate.propTypes = {
   game: PropTypes.object,
   handleSubmit: PropTypes.func
+}
+
+function sortfunction(array) {
+  return  array.sort(function sortfunction(a, b) {
+    return b.time - a.time
+  })
 }
