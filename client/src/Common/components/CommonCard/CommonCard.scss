@@ -33,7 +33,7 @@
       }
     }
 
-    &__info {
+    .info {
       padding: 16px 12px 16px;
 
       .info-wrapper {
@@ -68,15 +68,16 @@
         border-radius: 2px;
       }
 
-      .info-name {
-        font-size: 24px;
-        line-height: 28px;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin: 8px 0;
-        color: #888888;
-      }
     }
+
+  .info-name {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 8px 0;
+    color: #888888;
+  }
 
 }
 
