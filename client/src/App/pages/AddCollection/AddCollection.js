@@ -17,8 +17,10 @@ function AddCollection(props) {
   const description = useInput('')
   const {userName, userId} = useContext(AuthContext)
 
-  const fetchEvent = async (collection) => {
+  const fetchEvent = async (collection = []) => {
+    console.log('fetchEvent')
     const data = await request('http://localhost:5000/collection/add', 'POST', collection)
+    console.log(data)
     // if(data.status) {
     //   console.log('игра успешно добавлена')
     //   getArticle(dispatch)
@@ -26,6 +28,8 @@ function AddCollection(props) {
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('submit')
     const comments = []
     const collection = {
       nameCollection: testSelect.value,
@@ -40,7 +44,7 @@ function AddCollection(props) {
 
     fetchEvent(collection)
     inputClear([title, img, publisher, description])
-    e.preventDefault()
+
   }
 
   function inputClear(inputs) {
@@ -59,7 +63,7 @@ function AddCollection(props) {
     <div className='Add-collection'>
       <h1>ADD GAME</h1>
       <div class='form'>
-        <form onsubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Select options={{ data: [
               {id: '1', value: 'React'},
               {id: '2', value: 'Angular'},
