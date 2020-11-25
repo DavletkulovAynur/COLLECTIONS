@@ -64,6 +64,24 @@ router.put('/comment-update',
     }
   })
 
+  router.post('/search',
+  async (req, res) => {
+    try {
+      const {value} = req.body
+
+      const data = await COLLECTION_MODEL.find()
+
+      const searchResult = data.filter((collection) => {
+        return !collection.title.indexOf(value)
+      })
+
+      res.status(201).json({message: 'Collection update', status: true, searchResult})
+
+    } catch (e) {
+
+    }
+  })
+
 module.exports = router
 
 
