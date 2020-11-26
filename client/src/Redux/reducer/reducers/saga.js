@@ -6,6 +6,7 @@ import {
   WRITE_DOWN_COLLECTION,
 } from '../../types'
 import {appHideLoading} from '../../actions/action'
+import Fetcher from '../../../Common/utils/fetch'
 
 export function* sagaWatcher() {
   yield takeEvery(GET_ALL_COLLECTION, sagaAllCollection)
@@ -23,9 +24,12 @@ function* sagaAllCollection() {
   }
 }
 
-function* sagaCollection() {
+function* sagaCollection(data) {
+  const user = {
+    userId: data.payload
+  }
   try {
-    const payload = yield call(() => fetchRequest('http://localhost:5000/collection/get'))
+    const payload = yield call(() => Fetcher('http://localhost:5000/collection/get', 'POST', user))
     yield put({type: WRITE_DOWN_COLLECTION, payload})
   } catch (e) {
     console.log(e)
