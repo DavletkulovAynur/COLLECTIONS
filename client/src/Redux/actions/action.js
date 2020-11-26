@@ -51,8 +51,10 @@ export function getAllCollection() {
 }
 
 
-export function getMyCollection() {
+export function getMyCollection(payload) {
+  console.log('payload', payload)
   return({
-    type: GET_MY_COLLECTION
+    type: GET_MY_COLLECTION,
+    payload
   })
 }

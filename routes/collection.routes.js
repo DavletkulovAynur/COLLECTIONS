@@ -36,12 +36,12 @@ router.get('/get-all',
     }
   })
 
-router.get('/get',
+router.post('/get',
   async (req, res) => {
-    const collection = await COLLECTION_MODEL.find({owner: '5f881f3a520e1c1db4ab7197'})
-    res.json(collection)
   try {
-
+    const {userId} = req.body
+    const collection = await COLLECTION_MODEL.find({owner: userId})
+    res.status(201).json(collection)
   } catch (e) {
     console.log(e)
   }
