@@ -1,67 +1,44 @@
-import {useInput} from 'Common/utils/hooks/input.hook'
 import React, {useEffect, useState} from 'react'
 import {useHttp} from 'Common/utils/hooks/http.hook'
 
 import './Search.scss'
-import {Link} from "react-router-dom";
+import {SearchTemplate} from './Search.template'
 
 export function Search() {
-  const search = useInput('')
+  const [value, setValue] = useState()
+  const {searchResult = []} = GetItemBySearch(value)
 
-  const {searchResult = []} = SearchCollection(search)
-
-  const $resultElements = () => {
-    if(searchResult) {
-      return searchResult.map((item, index) => {
-        return (
-          <div key={index} className='item'>
-            <Link to={`/article-view/${item._id}`} className='link'>
-              <img src={item.img}/>
-              <span className='title'> {item.title}</span>
-            </Link>
-          </div>
-        )
-      })
-    }
+  const getInputValue = (value) => {
+    setValue(value)
   }
 
   return (
-    <div className='Search'>
-      <input type="text" className="search-input" placeholder="Search" {...search.bind}/>
-      {searchResult.length
-        ?  <div className='show-result'>
-          {$resultElements()}
-        </div>
-        : null}
-    </div>
+    <SearchTemplate searchResult={searchResult} getInputValue={getInputValue}/>
   )
 }
 
-function SearchCollection(search) {
+function GetItemBySearch(value) {
   const {error, request, clearError} = useHttp()
-  const [test, setTest] = useState('')
+  const [resultSearch, setResultSearch] = useState('')
 
-  useEffect( () => {
-    if(search.value) {
-      searchFunc()
-    } else {
-      setTest('')
+  useEffect(() => {
+    if(value) {
+      sendingRequestToServer()
     }
-  }, [search.value])
+  }, [value])
 
-  const searchFunc = async () => {
+  const sendingRequestToServer = async () => {
     try {
       const searchElement = {
-        value: search.value
+        value
       }
-
       const data = await request('http://localhost:5000/collection/search', 'POST', searchElement)
-      setTest(data)
+      setResultSearch(data)
 
     } catch (e) {
       console.log(e)
     }
   }
 
-  return test
+  return resultSearch
 }

@@ -1,17 +1,17 @@
 import React, {useContext} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import Main from "App/pages/Main/Main";
 import AddArticle from "App/pages/AddCollection/AddCollection";
 import {Header} from "Common/components/Header/Header";
 import Nav from "Common/components/Nav/Nav";
 import {Auth} from "App/pages/Auth/Auth";
-import {MyCollection} from "App/pages/MyCollection/MyCollection";
 import CollectionView from "App/pages/CollectionView/CollectionView";
+import {PersonalArea} from 'App/pages/PersonalArea/PersonalArea'
+import CollectionsList from './pages/CollectionsList/CollectionsList'
 
 export const useRoutes = isAuthenticated => {
   if(isAuthenticated) {
     return (
-      <div>
+      <>
         <Header/>
         <div className='page'>
           <div className='Nav-wrapper'>
@@ -19,7 +19,7 @@ export const useRoutes = isAuthenticated => {
           </div>
           <Switch>
             <Route exact path='/'>
-              <Main/>
+              <CollectionsList/>
             </Route>
             <Route exact path='/article-view/:id'>
               <CollectionView/>
@@ -28,12 +28,15 @@ export const useRoutes = isAuthenticated => {
               <AddArticle/>
             </Route>
             <Route exact path='/my-collection'>
-              <MyCollection/>
+              <CollectionsList/>
+            </Route>
+            <Route exact path='/personal-area'>
+              <PersonalArea/>
             </Route>
             <Redirect to="/"/>
           </Switch>
         </div>
-      </div>
+      </>
     )
   }
 

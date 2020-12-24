@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 40px;
+  padding: 24px 0;
   position: relative;
 
   .logo {
@@ -13,36 +13,48 @@
     background-repeat: no-repeat;
   }
 
-  .user-container {
-    position: relative;
-    cursor: pointer;
 
-    .user-icon {
-      display: flex;
-      align-items: center;
-
-      .arrow {
-        margin-left: 6px;
-        background-image: url("../../assets/images/icons/down-arrow.svg");
-        width: 12px;
-        height: 12px;
-        background-size: contain;
-      }
-    }
-  }
 
   .search-wrapper {
     width: 60%;
+  }
+
+  .mini-icons-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .add-collection-button-wrapper {
+    margin-right: 24px;
+    .button {
+      background-image: url("../../assets/images/icons/plus.svg");
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .bell-wrapper {
+    cursor: pointer;
+    margin-right: 24px;
+    .bell {
+      background-image: url("../../assets/images/icons/bell.svg");
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
   }
 }
 
 
   @media (max-width: 720px) {
-    .search {
+    .search-wrapper {
       display: none;
     }
 
-    .user {
+    .user-container {
       display: none;
     }
   }
