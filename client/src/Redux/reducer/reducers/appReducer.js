@@ -1,8 +1,9 @@
-import {APP_ALERT_HIDDEN, APP_ALERT_SHOW, APP_HIDE_LOADING, APP_LOADING} from '../../types'
+import {APP_ALERT_HIDDEN, APP_ALERT_SHOW, APP_ERROR, APP_HIDE_LOADING, APP_LOADING} from '../../types'
 
 const initialState = {
   loading: true,
-  alert: false
+  alert: false,
+  error: false
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -15,6 +16,8 @@ export const appReducer = (state = initialState, action) => {
       return {...state, alert: true}
     case APP_ALERT_HIDDEN:
       return {...state, alert: false}
+    case APP_ERROR:
+      return {...state, error: true}
     default:
       return state
   }

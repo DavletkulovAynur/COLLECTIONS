@@ -1,6 +1,6 @@
 import {
   APP_ALERT_HIDDEN,
-  APP_ALERT_SHOW,
+  APP_ALERT_SHOW, APP_ERROR,
   APP_HIDE_LOADING,
   APP_LOADING,
 
@@ -8,13 +8,12 @@ import {
   GET_MY_COLLECTION
 } from '../types'
 
+// APP
 export function appLoading() {
   return({
     type: APP_LOADING
   })
 }
-
-// ALERT
 
 export function appAlertShow() {
   return({
@@ -28,13 +27,18 @@ export function appAlertHidden() {
   })
 }
 
-/////
-
 export function appHideLoading() {
   return({
     type: APP_HIDE_LOADING
   })
 }
+
+export function appError() {
+  return({
+    type: APP_ERROR
+  })
+}
+//
 
 //USERS
 export function getAllUsers() {

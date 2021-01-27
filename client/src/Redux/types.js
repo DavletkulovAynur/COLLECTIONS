@@ -1,10 +1,9 @@
-//Loading
+//APP
 export const APP_LOADING = 'APP_LOADING'
 export const APP_HIDE_LOADING = 'APP_HIDE_LOADING'
-
-//Alert
 export const APP_ALERT_SHOW = 'APP_ALERT_SHOW'
 export const APP_ALERT_HIDDEN = 'APP_ALERT_HIDDEN'
+export const APP_ERROR = 'APP_ERROR'
 
 //COLLECTION
 export const GET_ALL_COLLECTION = 'GET_GAMES'

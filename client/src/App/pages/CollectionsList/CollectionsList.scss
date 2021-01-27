@@ -1,0 +1,35 @@
+.Collections-list {
+  width: 100%;
+
+  .main-page-header-wrapper {
+    margin: 12px 0 24px 0;
+  }
+
+  .loader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+  }
+
+  .error {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    font-size: 24px;
+    text-transform: uppercase;
+    flex-direction: column;
+    align-items: center;
+
+    .icon {
+      background-image: url("../../../Common/assets/images/icons/panda.svg");
+      width: 64px;
+      height: 64px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-top: 24px;
+
+    }
+  }
+}

@@ -6,7 +6,7 @@ import {useAuth} from 'Common/utils/hooks/auth.hook'
 import {AuthContext} from './context/AuthContext'
 import {useRoutes} from 'App/routes'
 import './App.scss'
-import {getAllCollection, getAllUsers} from 'Redux/actions/action'
+import {getAllCollection, getAllUsers, getMyCollection} from 'Redux/actions/action'
 
 
 function App() {
@@ -17,15 +17,15 @@ function App() {
 
   const routes = useRoutes(isAuthenticated)
 
-  // первоначальное обновление данных
-  useEffect(() => {
-    dispatch(getAllCollection())
-    dispatch(getAllUsers())
-  }, [])
-
   if (!ready) {
     return null
   }
+
+  (function getAllData(){
+    dispatch(getMyCollection(userId))
+    dispatch(getAllCollection())
+    dispatch(getAllUsers())
+  })()
 
   return (
     <AuthContext.Provider value={{

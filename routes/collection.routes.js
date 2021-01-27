@@ -41,6 +41,7 @@ router.post('/get',
   try {
     const {userId} = req.body
     const collection = await COLLECTION_MODEL.find({owner: userId})
+    console.log(collection, userId)
     res.status(201).json(collection)
   } catch (e) {
     console.log(e)

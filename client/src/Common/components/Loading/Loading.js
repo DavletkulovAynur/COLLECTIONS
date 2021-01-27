@@ -1,9 +1,21 @@
 import React from 'react'
+import './Loading.scss'
 
 export function Loading() {
   return (
-    <div>
-      <h4>Loader</h4>
-    </div>
+      <div className="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
   )
 }

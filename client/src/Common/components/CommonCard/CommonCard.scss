@@ -1,8 +1,20 @@
+@import "Common/assets/styles/colors";
+
 .Common-card {
     background-color: #202020;
     border-radius: 12px;
     box-shadow: 0 10px 20px 0 rgba(0,0,0,.07);
     overflow: hidden;
+    position: relative;
+
+  .test {
+    position: absolute;
+    bottom: 0;
+    //border-radius: 0 12px 12px 0;
+    background: $grey;
+    width: 100%;
+    padding: 6px 12px;
+  }
 
     &__media {
       width: 100%;
@@ -71,12 +83,43 @@
     }
 
   .info-name {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 28px;
     font-weight: 700;
     text-transform: uppercase;
-    margin: 8px 0;
+    margin: 8px 0 16px;
     color: #888888;
+  }
+
+  .user-emotion-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  .emotion {
+    display: flex;
+    align-items: center;
+    background: $darkGrey;
+    border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+
+    .smile {
+      background-image: url("../../../Common/assets/images/icons/smile/smile.svg");
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .text {
+      font-size: 12px;
+      color: $hoverWhite;
+      margin-left: 12px;
+      text-transform: uppercase;
+    }
   }
 
 }

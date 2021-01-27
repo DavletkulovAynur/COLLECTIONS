@@ -5,7 +5,7 @@ import {
   WRITE_DOWN_ALL_COLLECTION, WRITE_DOWN_ALL_USERS,
   WRITE_DOWN_COLLECTION,
 } from '../../types'
-import {appHideLoading} from '../../actions/action'
+import {appError, appHideLoading} from '../../actions/action'
 import Fetcher from '../../../Common/utils/fetch'
 
 export function* sagaWatcher() {
@@ -20,7 +20,8 @@ function* sagaAllCollection() {
     yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload })
     yield put(appHideLoading())
   } catch (e) {
-    
+    console.log('error', e)
+    yield put(appError())
   }
 }
 
@@ -31,8 +32,10 @@ function* sagaCollection(data) {
   try {
     const payload = yield call(() => Fetcher('http://localhost:5000/collection/get', 'POST', user))
     yield put({type: WRITE_DOWN_COLLECTION, payload})
+    yield put(appHideLoading())
   } catch (e) {
     console.log(e)
+    yield put(appError())
   }
 }
 
