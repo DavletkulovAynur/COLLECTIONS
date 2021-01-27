@@ -12,41 +12,66 @@ export function CommonCard({data}) {
     }
   };
 
+  function mediaTemplate(img) {
+    return (
+      <div className='Common-card__media'>
+        <div className='Common-card__media-wrapper'>
+          <div className='Common-card__media-wrapper-preview' style={divStyle(img)}></div>
+        </div>
+      </div>
+      )
+
+  }
+
+  function infoTemplate(_id, title, nameCollection) {
+    return (
+      <div className='info'>
+        <div className='info-wrapper'>
+          <section className='user-emotion-wrapper'>
+            <div className='emotion'>
+              <span className='smile'></span>
+              <span className='text'>Эмоции</span>
+            </div>
+          </section>
+
+          <Bookmark id={_id} />
+        </div>
+
+        <div className='info-name'>
+          <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
+        </div>
+
+        <span className="info-publisher">{nameCollection}</span>
+
+
+      </div>
+    )
+  }
+
+  function authorTemplate(author) {
+    return (
+      <div className='author'>
+        <User name={author}/>
+      </div>
+    )
+  }
+
   return (
     <>
     {data.map((item) => {
+      const {img,
+            _id,
+            title,
+            nameCollection,
+            author} = item
         return (
-          <div key={item._id} className='Common-card'>
-            <div className='Common-card__media'>
-              <div className='Common-card__media-wrapper'>
-                <div className='Common-card__media-wrapper-preview' style={divStyle(item.img)}></div>
-              </div>
+          <div key={_id} className='Common-card'>
+            <div>
+              {mediaTemplate(img)}
+              {infoTemplate(_id, title, nameCollection)}
             </div>
-
-            <div className='info'>
-              <div className='info-wrapper'>
-                <span className="info-publisher">{item.nameCollection}</span>
-                <Bookmark id={item._id} />
-              </div>
-
-              <div className='info-name'>
-                <Link to={`/article-view/${item._id}`} className='title'>{item.title}</Link>
-              </div>
-
-              <section className='user-emotion-wrapper'>
-                <div className='emotion'>
-                  <span className='smile'></span>
-                  <span className='text'>Эмоции</span>
-                </div>
-              </section>
-
-              </div>
-
-            <div className='test'>
-              <User name={item.author}/>
-            </div>
-
-            </div>
+            {authorTemplate(author)}
+          </div>
         )
       })}
       </>
