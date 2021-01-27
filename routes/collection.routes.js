@@ -73,7 +73,7 @@ router.put('/comment-update',
       const data = await COLLECTION_MODEL.find()
 
       const searchResult = data.filter((collection) => {
-        return !collection.title.indexOf(value)
+        return !collection.title.toLowerCase().indexOf(value.toLowerCase())
       })
 
       res.status(201).json({message: 'Collection update', status: true, searchResult})

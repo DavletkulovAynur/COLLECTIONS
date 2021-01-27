@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 import {useSelector} from 'react-redux'
 import './Users.scss'
-import {User} from "Common/shared/User";
 import {AuthContext} from "App/context/AuthContext";
+import {User} from '../User/User'
 
 
 export function Users() {

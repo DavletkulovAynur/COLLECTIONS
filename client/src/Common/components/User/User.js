@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles/User.scss'
+import './User.scss'
 
 export function User({name, styleName = '', component = ''}) {
   return (

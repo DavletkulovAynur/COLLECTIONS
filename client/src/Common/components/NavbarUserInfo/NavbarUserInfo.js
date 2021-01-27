@@ -4,8 +4,8 @@ import user from 'Common/assets/images/icons/user.svg'
 import './NavbarUserInfo.scss'
 import {AuthContext} from '../../../App/context/AuthContext'
 import {useComponentVisible} from '../../utils/hooks/useComponentVisible'
-import {User} from '../../shared/User'
 import {Link} from 'react-router-dom'
+import {User} from '../User/User'
 
 export function NavbarUserInfo() {
   const {userName} = useContext(AuthContext)
