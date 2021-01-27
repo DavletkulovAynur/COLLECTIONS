@@ -24,19 +24,27 @@ export function CommonCard({data}) {
             </div>
 
             <div className='info'>
-                <div className='info-wrapper'>
-                  <span className="info-publisher">{item.nameCollection}</span>
-                  <Bookmark id={item._id} />
-                </div>
+              <div className='info-wrapper'>
+                <span className="info-publisher">{item.nameCollection}</span>
+                <Bookmark id={item._id} />
+              </div>
 
               <div className='info-name'>
                 <Link to={`/article-view/${item._id}`} className='title'>{item.title}</Link>
               </div>
 
-              <User name={item.author}/>
+              <section className='user-emotion-wrapper'>
+                <div className='emotion'>
+                  <span className='smile'></span>
+                  <span className='text'>Эмоции</span>
+                </div>
+              </section>
+
               </div>
 
-
+            <div className='test'>
+              <User name={item.author}/>
+            </div>
 
             </div>
         )
