@@ -1,8 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './CommonCard.scss'
-import {User} from "Common/shared/User";
+
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
+import {User} from '../User/User'
 
 
 export function CommonCard({data}) {

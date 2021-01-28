@@ -2,7 +2,8 @@ import React from 'react'
 import './Nav.scss'
 import {Link} from "react-router-dom";
 import {Users} from "Common/components/Users/Users";
-import {User} from "Common/shared/User";
+import {User} from '../User/User'
+
 
 function Nav() {
   return (

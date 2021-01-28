@@ -18,7 +18,7 @@ export function Search() {
 }
 
 function GetItemBySearch(value) {
-  const {error, request, clearError} = useHttp()
+  const {request} = useHttp()
   const [resultSearch, setResultSearch] = useState('')
 
   useEffect(() => {
@@ -28,6 +28,7 @@ function GetItemBySearch(value) {
   }, [value])
 
   const sendingRequestToServer = async () => {
+
     try {
       const searchElement = {
         value
