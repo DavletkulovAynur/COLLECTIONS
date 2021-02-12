@@ -1,10 +1,12 @@
 const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload')
 const cors = require('cors')
 
 const app = express()
 
+app.use(fileUpload({}))
 app.use(cors())
 
 app.use(express.json({ extentded: true}))
@@ -12,6 +14,7 @@ app.use(express.json({ extentded: true}))
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/collection', require('./routes/collection.routes'))
 app.use('/users', require('./routes/users.routes'))
+app.use('/uploadTest', require('./routes/uploadTest.routes'))
 
 
 const PORT = config.get('port') || 5000

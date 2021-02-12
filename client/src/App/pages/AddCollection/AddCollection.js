@@ -6,6 +6,7 @@ import {AuthContext} from "App/context/AuthContext";
 import {useHttp} from "Common/utils/hooks/http.hook";
 import './AddCollection.scss'
 import {Select} from "Common/components/Select/Select";
+import AddCollectionTemplate from "./AddCollectionTemplate";
 
 function AddCollection(props) {
   const nameCollection = useInput()
@@ -60,32 +61,14 @@ function AddCollection(props) {
   }
 
   return (
-    <div className='Add-collection'>
-      <h1>ADD GAME</h1>
-      <div class='form'>
-        <form onSubmit={handleSubmit}>
-          <Select options={{ data: [
-              {id: '1', value: 'React'},
-              {id: '2', value: 'Angular'},
-              {id: '3', value: 'Vue'},
-              {id: '4', value: 'React Native'},
-              {id: '5', value: 'Next'},
-              {id: '5', value: 'Nest'}
-            ],}}/>
-          <select {...testSelect.bind}>
-            <option>book</option>
-            <option>movie</option>
-            <option>game</option>
-            <option>photo</option>
-          </select>
-          {inputForm('title', title)}
-          {inputForm('img', img)}
-          {inputForm('publisher', publisher)}
-          {inputForm('description', description)}
-          <input type="submit" className="btn btn-primary" value="SEND"/>
-        </form>
-      </div>
-    </div>
+    <AddCollectionTemplate
+      title={title}
+      img={img}
+      publisher={publisher}
+      description={description}
+      testSelect={testSelect}
+      handleSubmit={handleSubmit}
+    />
   )
 }
 
