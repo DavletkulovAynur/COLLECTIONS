@@ -13,6 +13,7 @@ export const useAuth = () => {
     setUserId(id)
     setUserName(userName)
 
+    localStorage.setItem('token', jwtToken)
     localStorage.setItem(storageName, JSON.stringify({
       token: jwtToken,
       userId: id,
