@@ -23,14 +23,15 @@ export function PersonalArea() {
 		// const response = await request('http://localhost:5000/uploadTest/load', 'POST', formData, {
 		// 	'Content-Type' : "multipart/form-data"
 		// })
-		const response = await axios.post('http://localhost:5000/uploadTest/load', formData)
+		// const response = await axios.post('http://localhost:5000/uploadTest/load', formData)
 
-		// const response = await fetch('http://localhost:5000/uploadTest/load', {
-		// 	method: 'post',
-		// 	body: formData
-		// })
+		const response = await fetch('http://localhost:5000/uploadTest/load', {
+			method: 'post',
+			body: formData,
+			headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+		})
 
-		console.log(response)
+		console.log('response', response)
 
 
 	}
