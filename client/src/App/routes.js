@@ -14,9 +14,9 @@ export const useRoutes = isAuthenticated => {
       <>
         <Header/>
         <div className='page'>
-          <div className='Nav-wrapper'>
-            <Nav/>
-          </div>
+          {/*<div className='Nav-wrapper'>*/}
+          {/*  <Nav/>*/}
+          {/*</div>*/}
           <Switch>
             <Route exact path='/'>
               <CollectionsList/>

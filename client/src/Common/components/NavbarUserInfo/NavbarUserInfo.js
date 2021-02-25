@@ -14,7 +14,7 @@ export function NavbarUserInfo() {
   const { ref, isComponentVisible } = useComponentVisible(false);
 
   useEffect(() => {
-    console.log(isComponentVisible)
+
   }, [isComponentVisible])
 
   return (
