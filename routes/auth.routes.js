@@ -2,6 +2,7 @@ const {Router} = require('express')
 const { check } = require('express-validator');
 
 const authControllers = require('../controllers/auth.controllers')
+const authMiddleware = require('../middleware/auth.middleware')
 
 
 const router = Router()
@@ -17,5 +18,7 @@ router.post('/login',
     check('email', 'Введите корректный email').normalizeEmail().isEmail(),
     check('password', 'Введите пароль').exists()
   ], authControllers.login)
+
+router.get('/testAuth', authMiddleware, authControllers.auth)
 
 module.exports = router

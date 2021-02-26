@@ -13,6 +13,10 @@ function App() {
   const {login, logout, token, userId, ready, userName} = useAuth()
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    testAuth()
+  }, [])
+
   const isAuthenticated = !!token
 
   const routes = useRoutes(isAuthenticated)
@@ -20,6 +24,26 @@ function App() {
   if (!ready) {
     return null
   }
+
+  // подумать над логикой
+  function testAuth() {
+    try {
+      fetch('http://localhost:5000/auth/testAuth',
+              {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}})
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                console.log(data, 'super');
+                localStorage.setItem('token', data.token)
+              });
+
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+
 
   (function getAllData(){
     dispatch(getMyCollection(userId))

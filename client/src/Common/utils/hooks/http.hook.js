@@ -7,7 +7,6 @@ export const useHttp = () => {
   const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
     setLoading(true)
     try {
-      console.log(body)
       if (body) {
         if(headers['Content-Type'] === 'multipart/form-data') {
           console.log('multipart/form-data')

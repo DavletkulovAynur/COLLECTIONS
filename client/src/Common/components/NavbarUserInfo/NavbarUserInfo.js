@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import logout from 'Common/assets/images/logout.svg'
+import logoutIcon from 'Common/assets/images/logout.svg'
 import user from 'Common/assets/images/icons/user.svg'
 import './NavbarUserInfo.scss'
 import {AuthContext} from '../../../App/context/AuthContext'
@@ -7,8 +7,10 @@ import {useComponentVisible} from '../../utils/hooks/useComponentVisible'
 import {Link} from 'react-router-dom'
 import {User} from '../User/User'
 
+
+// подумать над логикой
 export function NavbarUserInfo() {
-  const {userName} = useContext(AuthContext)
+  const {userName, logout} = useContext(AuthContext)
   const [userDetails, setUserDetails] = useState(false)
 
   const { ref, isComponentVisible } = useComponentVisible(false);
@@ -41,7 +43,7 @@ export function NavbarUserInfo() {
                 </li>
 
                 <li className='menu-item'>
-                  {LinkItem('выйти', logout)}
+                  {LinkItem('выйти', logoutIcon, logout)}
                 </li>
               </ul>
 
@@ -55,14 +57,14 @@ export function NavbarUserInfo() {
   )
 }
 
-function LinkItem(text, icon) {
+function LinkItem(text, icon, func = () => {}) {
   return (
     <Link to='/personal-area'>
     <article className='link'>
       <span className='icon'>
         <img src={icon} alt=""/>
       </span>
-      <span className='text'>{text}</span>
+      <span onClick={() => func()} className='text'>{text}</span>
     </article>
     </Link>
   )

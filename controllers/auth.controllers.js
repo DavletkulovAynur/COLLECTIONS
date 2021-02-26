@@ -81,6 +81,22 @@ class AuthControllers {
 
 		}
 }
+
+	async auth(req, res) {
+		try {
+			console.log(req.user.userId)
+			const user = await USER_MODEL.findOne({_id: req.user.userId})
+			console.log(user)
+			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
+			console.log(token)
+			return res.json({
+				token
+			})
+		} catch (e) {
+			console.log(e, 'error')
+			res.send({message: "Server error"})
+		}
+	}
 }
 
 module.exports = new AuthControllers()
