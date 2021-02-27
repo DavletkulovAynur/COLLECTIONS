@@ -1,14 +1,18 @@
 import React from 'react'
 import {useInput} from 'Common/utils/hooks/input.hook'
 import Button from "Common/components/Button/Button";
+import {loginAuth} from '../../../../Redux/actions/action'
+import {useDispatch} from 'react-redux'
 
-export const Login = ({fetchLoginUser, changeStateLogin}) => {
+export const Login = ({changeStateLogin}) => {
+    const dispatch = useDispatch()
   const handleLogin = (e) => {
     const user = {
       email: login.value,
       password: password.value
     }
-    fetchLoginUser(user)
+
+    dispatch(loginAuth(user))
     e.preventDefault()
   }
 

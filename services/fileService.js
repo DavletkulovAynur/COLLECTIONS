@@ -4,7 +4,8 @@ const path = require('path')
 class FileService {
 
 	createDir(file) {
-		const filePath = path.join(__dirname, `../files/${file}`)
+		console.log('super', file)
+		const filePath = path.join(__dirname, `../files/${file.user}`)
 		return new Promise((resolve, reject) => {
 			try {
 				if (!fs.existsSync(filePath)) {

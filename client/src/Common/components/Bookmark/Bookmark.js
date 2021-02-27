@@ -5,16 +5,16 @@ import {useDispatch, useSelector} from "react-redux";
 
 // Оптимизировать работу
 export function Bookmark({id}) {
-  const auth = useContext(AuthContext)
+  // const auth = useContext(AuthContext)
   const {error, request, clearError} = useHttp()
   const [bookmarkState, setBookmarkState] = useState([])
   const users = useSelector(state => state.usersReducer)
 
   useEffect(() => {
-    const user = users.filter((item) => item._id === auth.userId)
-    user.map((item) => {
-      setBookmarkState([...item.bookmark])
-    })
+    // const user = users.filter((item) => item._id === auth.userId)
+    // user.map((item) => {
+    //   setBookmarkState([...item.bookmark])
+    // })
   }, [users])
 
   //  e.persist(); ??????????
@@ -22,7 +22,7 @@ export function Bookmark({id}) {
     e.persist();
     const bookmark = {
       bookmarkID: e.target.id,
-      id: auth.userId
+      // id: auth.userId
     }
 
     try {

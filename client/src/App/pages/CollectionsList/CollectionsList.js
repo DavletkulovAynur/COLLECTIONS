@@ -14,6 +14,7 @@ function CollectionsList() {
 
 
 
+	console.log(allCollection)
 	// красиво сделать
 	if(error) {
 		return (

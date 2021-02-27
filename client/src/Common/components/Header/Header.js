@@ -1,17 +1,17 @@
 import React, {useContext, useState} from 'react'
 import './Header.scss'
 import {useHistory} from 'react-router-dom'
-import {AuthContext} from 'App/context/AuthContext'
+
 import {HeaderTemplate} from './Header.template'
 
 export function Header() {
   const history = useHistory()
-  const auth = useContext(AuthContext)
+  // const auth = useContext(AuthContext)
 
 
   const logoutHandler = (e) => {
     e.preventDefault()
-    auth.logout()
+    // auth.logout()
     history.push('/login')
   }
 

@@ -8,6 +8,21 @@ import {
   GET_MY_COLLECTION
 } from '../types'
 
+//COLLECTION
+export function getAllCollection() {
+  return({
+    type: GET_ALL_COLLECTION
+  })
+}
+
+
+export function getMyCollection(payload) {
+  return({
+    type: GET_MY_COLLECTION,
+    payload
+  })
+}
+
 // APP
 export function appLoading() {
   return({
@@ -47,18 +62,20 @@ export function getAllUsers() {
   })
 }
 
-//COLLECTION
-export function getAllCollection() {
+// Auth
+export function loginAuth(payload) {
   return({
-    type: GET_ALL_COLLECTION
-  })
-}
-
-
-export function getMyCollection(payload) {
-  console.log('payload', payload)
-  return({
-    type: GET_MY_COLLECTION,
+    type: 'LOGIN_AUTH',
     payload
   })
 }
+
+export function checkToken() {
+    return({
+      type: 'CHECK_AUTH'
+    })
+}
+
+// создать Класс
+
+

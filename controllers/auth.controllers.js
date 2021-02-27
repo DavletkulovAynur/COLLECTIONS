@@ -6,6 +6,8 @@ const fs = require('fs')
 const path = require('path')
 
 const USER_MODEL = require('../models/user')
+const FILE_MODEL = require('../models/File')
+const fileService = require('../services/fileService')
 const config = require('config')
 
 class AuthControllers {
@@ -30,13 +32,8 @@ class AuthControllers {
 		const user = new USER_MODEL({email, username, password: hashedPassword })
 
 		await user.save()
-		const filePath = path.join(__dirname, `../files/${user._id}`)
 
-		if (!fs.existsSync(filePath)) {
-			fs.mkdirSync(filePath)
-		}
-
-		// await fileService.createDir(user._id)
+		await fileService.createDir(new FILE_MODEL({user: user._id, name: ''}))
 		res.status(201).json({message: 'Пользователь создан'})
 
 
@@ -70,12 +67,16 @@ class AuthControllers {
 			}
 
 			const token = jwt.sign(
-					{ userId: user.id},
+					{ userId: user._id},
 					config.get('jwtSecret'),
 					{ expiresIn: '1h'}
 			)
 
-			res.json({ token, userId: user.id, user})
+			res.json({ token,
+				userId: user._id,
+				userName: user.username,
+				bookmark: user.bookmark,
+				email: user.email})
 
 		} catch (e) {
 
@@ -84,11 +85,8 @@ class AuthControllers {
 
 	async auth(req, res) {
 		try {
-			console.log(req.user.userId)
 			const user = await USER_MODEL.findOne({_id: req.user.userId})
-			console.log(user)
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
-			console.log(token)
 			return res.json({
 				token
 			})

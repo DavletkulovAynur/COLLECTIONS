@@ -22,10 +22,6 @@ function AddCollection(props) {
     console.log('fetchEvent')
     const data = await request('http://localhost:5000/collection/add', 'POST', collection)
     console.log(data)
-    // if(data.status) {
-    //   console.log('игра успешно добавлена')
-    //   getArticle(dispatch)
-    // }
   }
 
   const handleSubmit = (e) => {

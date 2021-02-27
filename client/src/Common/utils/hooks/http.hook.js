@@ -9,7 +9,6 @@ export const useHttp = () => {
     try {
       if (body) {
         if(headers['Content-Type'] === 'multipart/form-data') {
-          console.log('multipart/form-data')
         } else {
           body = JSON.stringify(body)
           headers['Content-Type'] = 'application/json'
@@ -36,5 +35,4 @@ export const useHttp = () => {
   const clearError = useCallback(() => setError(null), [])
 
   return {loading, request, error, clearError}
-
 }

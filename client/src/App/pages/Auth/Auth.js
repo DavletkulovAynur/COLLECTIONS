@@ -9,7 +9,6 @@ import {Registration} from "App/pages/Auth/components/Registration";
 import './Auth.scss'
 
 export function Auth() {
-  const auth = useContext(AuthContext)
   const message = useMessage()
   const {error, request, clearError} = useHttp()
 
@@ -20,16 +19,16 @@ export function Auth() {
     clearError()
   }, [error, message])
 
-  const fetchLogin = async (user) => {
-    try {
-      const data = await request('http://localhost:5000/auth/login', 'POST', user)
-      const {token, userId} = data
-      const {username} = data.user
-      auth.login(token, userId, username)
-    } catch (e) {
-      console.log(e)
-    }
-  }
+  // const fetchLogin = async (user) => {
+  //   try {
+  //     const data = await request('http://localhost:5000/auth/login', 'POST', user)
+  //     const {token, userId} = data
+  //     const {username} = data.user
+  //     auth.login(token, userId, username)
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }
 
   const fetchRegistration = async (user) => {
     try {
@@ -54,7 +53,7 @@ export function Auth() {
 
       <div className='login-registration-wrapper'>
         {login
-          ? <Login fetchLoginUser={fetchLogin} changeStateLogin={changeStateLogin}/>
+          ? <Login changeStateLogin={changeStateLogin}/>
           :  <Registration fetchRegistration={fetchRegistration} changeStateLogin={changeStateLogin}/>}
       </div>
     </div>

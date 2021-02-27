@@ -8,7 +8,6 @@ import './CollectionView.scss'
 import {AuthContext} from "App/context/AuthContext";
 
 function CollectionView(props) {
-  const auth = useContext(AuthContext)
   const router = useRouter()
   const {allCollection} = useSelector(state => state.collectionReducer)
   const [certainCollection, setCertainCollection] = useState(null)
@@ -52,7 +51,7 @@ function CollectionView(props) {
       description: commentValue,
       title: commentTitle,
       id: routerId,
-      author: auth.userName
+      // author: auth.userName
     }
     commentUpdateApp(comment)
   }
