@@ -4,8 +4,12 @@ import {
   APP_HIDE_LOADING,
   APP_LOADING,
 
-  GET_ALL_COLLECTION, GET_ALL_USERS,
-  GET_MY_COLLECTION
+  GET_MY_COLLECTION,
+  GET_ALL_COLLECTION,
+
+  GET_ALL_USERS,
+
+  SAGA_AUTH_TOKEN, SAGA_LOGIN
 } from '../types'
 
 // APP
@@ -60,5 +64,18 @@ export function getMyCollection(payload) {
   return({
     type: GET_MY_COLLECTION,
     payload
+  })
+}
+
+//auth
+export function checkToken() {
+  return({
+    type: SAGA_AUTH_TOKEN
+  })
+}
+
+export function login() {
+  return({
+    type: SAGA_LOGIN
   })
 }
