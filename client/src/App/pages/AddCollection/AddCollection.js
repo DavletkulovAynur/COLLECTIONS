@@ -19,32 +19,26 @@ function AddCollection(props) {
   const {userName, userId} = useContext(AuthContext)
 
   const fetchEvent = async (collection = []) => {
-    console.log('fetchEvent')
-    const data = await request('http://localhost:5000/collection/add', 'POST', collection)
-    console.log(data)
-    // if(data.status) {
-    //   console.log('игра успешно добавлена')
-    //   getArticle(dispatch)
-    // }
+    await request('http://localhost:5000/collection/add', 'POST', collection)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('submit')
-    const comments = []
-    const collection = {
-      nameCollection: testSelect.value,
-      title: title.value,
-      img: img.value,
-      publisher: publisher.value,
-      description: description.value,
-      author: userName,
-      comments,
-      userId
-    }
-
-    fetchEvent(collection)
-    inputClear([title, img, publisher, description])
+    // e.preventDefault()
+    console.log('super')
+    // const comments = []
+    // const collection = {
+    //   nameCollection: testSelect.value,
+    //   title: title.value,
+    //   img: img.value,
+    //   publisher: publisher.value,
+    //   description: description.value,
+    //   author: userName,
+    //   comments,
+    //   userId
+    // }
+    //
+    // fetchEvent(collection)
+    // inputClear([title, img, publisher, description])
 
   }
 
@@ -54,11 +48,6 @@ function AddCollection(props) {
     })
   }
 
-  function inputForm(placeholder, input) {
-    return (
-      <input className='com-input-styles' type='text' placeholder={placeholder} {...input.bind}/>
-    )
-  }
 
   return (
     <AddCollectionTemplate
