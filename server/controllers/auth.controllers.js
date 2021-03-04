@@ -70,12 +70,16 @@ class AuthControllers {
 			}
 
 			const token = jwt.sign(
-					{ userId: user.id},
+					{ id: user.id},
 					config.get('jwtSecret'),
 					{ expiresIn: '1h'}
 			)
 
-			res.json({ token, userId: user.id, user})
+      res.json({ token,
+        userId: user._id,
+        userName: user.username,
+        bookmark: user.bookmark,
+        email: user.email})
 
 		} catch (e) {
 
@@ -84,14 +88,17 @@ class AuthControllers {
 
 	async auth(req, res) {
 		try {
-			console.log(req.user.userId)
-			const user = await USER_MODEL.findOne({_id: req.user.userId})
-			console.log(user)
+			const user = await USER_MODEL.findOne({_id: req.user.id})
+      console.log('req.user', req.user)
+      console.log('user', user)
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
-			console.log(token)
-			return res.json({
-				token
-			})
+
+      return res.json({ token,
+        userId: user._id,
+        userName: user.username,
+        bookmark: user.bookmark,
+        email: user.email})
+
 		} catch (e) {
 			console.log(e, 'error')
 			res.send({message: "Server error"})

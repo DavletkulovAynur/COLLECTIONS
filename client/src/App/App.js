@@ -1,24 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-
-import {useAuth} from 'Common/utils/hooks/auth.hook'
-import {AuthContext} from './context/AuthContext'
 import {useRoutes} from 'App/routes'
 import './App.scss'
 import {checkToken, getAllCollection, getAllUsers, getMyCollection} from 'Redux/actions/action'
 
 
 function App() {
-  const {login, logout, token, userId, ready, userName} = useAuth()
   const dispatch = useDispatch()
+  const {login, token, userId, ready, userName} = useSelector((state) => state.authReducer)
 
   const isAuthenticated = !!token
 
   const routes = useRoutes(isAuthenticated)
 
   useEffect(() => {
+    console.log('проверяем токен')
     dispatch(checkToken())
+  }, [])
+
+  useEffect(() => {
     if(isAuthenticated) {
       dispatch(getMyCollection(userId))
       dispatch(getAllCollection())
@@ -30,14 +31,15 @@ function App() {
     return null
   }
 
+  if(token) {
+    console.log('localStorage.setItem')
+    localStorage.setItem('token', token)
+  }
+
   return (
-    <AuthContext.Provider value={{
-      login, logout, token, userId, isAuthenticated, userName
-    }}>
-      <div className="App">
-        {routes}
-      </div>
-    </AuthContext.Provider>
+    <div className="App">
+      {routes}
+    </div>
   );
 }
 

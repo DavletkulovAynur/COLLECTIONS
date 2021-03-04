@@ -74,8 +74,9 @@ export function checkToken() {
   })
 }
 
-export function login() {
+export function loginAction(payload) {
   return({
-    type: SAGA_LOGIN
+    type: SAGA_LOGIN,
+    payload
   })
 }
