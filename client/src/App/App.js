@@ -10,13 +10,16 @@ function App() {
   const dispatch = useDispatch()
   const {login, token, userId, ready, userName} = useSelector((state) => state.authReducer)
 
-  console.log(ready)
   const isAuthenticated = !!token
 
   const routes = useRoutes(isAuthenticated)
 
   useEffect(() => {
+    console.log('проверяем токен')
     dispatch(checkToken())
+  }, [])
+
+  useEffect(() => {
     if(isAuthenticated) {
       dispatch(getMyCollection(userId))
       dispatch(getAllCollection())
@@ -26,6 +29,11 @@ function App() {
 
   if (!ready) {
     return null
+  }
+
+  if(token) {
+    console.log('localStorage.setItem')
+    localStorage.setItem('token', token)
   }
 
   return (

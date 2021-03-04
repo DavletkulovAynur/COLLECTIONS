@@ -13,15 +13,19 @@ const initialState = {
   ready: false
 }
 
+// подумать над actions
 export const authReducer = (state = initialState, action) => {
 	switch (action.type){
 		case LOGIN_AUTHENTICATION:
-      const {token, userId, userName, bookmark} = action.payload
-      console.log(action.payload)
-			return {...state, token, userId, userName, bookmark, ready: true}
+			return {...state,
+        token: action.payload.token,
+        userId: action.payload.userId ,
+        userName: action.payload.userName,
+        bookmark: action.payload.bookmark,
+        ready: true}
 		case WRITE_REDUCER_TOKEN:
-			console.log('WRITE_REDUCER_TOKEN')
-			return {...state, ready: true}
+      const {token, userId, userName, bookmark} = action.payload
+			return {...state, token, userId, userName, bookmark, ready: true}
 		default:
 			return {...state}
 	}

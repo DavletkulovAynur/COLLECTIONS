@@ -16,7 +16,7 @@ export function* login(user) {
 export function* auth() {
 	try {
 		const payload = yield call(() => fetchTest('http://localhost:5000/auth/testAuth'))
-		console.log(payload)
+		console.log('получаем данные', payload)
 		yield put({type: WRITE_REDUCER_TOKEN, payload})
 
 	} catch (e) {
