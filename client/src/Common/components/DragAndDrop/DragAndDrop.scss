@@ -1,0 +1,39 @@
+.Drop-and-drop-file {
+  position: relative;
+  background: rgba(256, 256, 256, 0.2);
+  border: 1px dashed rgba(256, 256, 256, 0.9);
+  border-radius: 4px;
+  padding: 30px 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  .cloud {
+    display: flex;
+    align-items: center;
+    .icon {
+      width: 20px;
+      height: 20px;
+      background-image: url("../../../Common/assets/images/icons/add.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 10px;
+    }
+    .text {
+      font-size: 14px;
+      line-height: 16px;
+      color: #ffffff;
+    }
+  }
+
+  label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
+  input {
+    display: none;
+  }
+}
