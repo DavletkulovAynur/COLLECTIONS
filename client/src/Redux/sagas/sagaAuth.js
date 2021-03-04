@@ -1,12 +1,13 @@
 import {call, put} from 'redux-saga/effects'
-import {WRITE_REDUCER_TOKEN, LOGIN} from '../types'
+import {WRITE_REDUCER_TOKEN, LOGIN_AUTHENTICATION} from '../types'
 
 
 export function* login(user) {
 	try {
+	  console.log(user)
 		const payload = yield call(() => fetchRequest('http://localhost:5000/auth/login', user.payload))
-		localStorage.setItem('token', payload.token)
-		yield put({type: LOGIN, payload})
+		// localStorage.setItem('token', payload.token)
+		yield put({type: LOGIN_AUTHENTICATION, payload})
 	} catch (e) {
 		console.log(e)
 	}
