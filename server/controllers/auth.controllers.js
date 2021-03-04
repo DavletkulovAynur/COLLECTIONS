@@ -75,7 +75,11 @@ class AuthControllers {
 					{ expiresIn: '1h'}
 			)
 
-			res.json({ token, userId: user.id, user})
+      res.json({ token,
+        userId: user._id,
+        userName: user.username,
+        bookmark: user.bookmark,
+        email: user.email})
 
 		} catch (e) {
 
