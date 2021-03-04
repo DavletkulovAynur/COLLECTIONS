@@ -1,4 +1,5 @@
 import React from 'react'
+import { InputBase, TextField } from '@material-ui/core';
 
 const AddCollectionTemplate = ({title, img, publisher, description, testSelect, handleSubmit}) => {
 
@@ -42,6 +43,7 @@ const AddCollectionTemplate = ({title, img, publisher, description, testSelect, 
           {/*  <option>photo</option>*/}
           {/*</select>*/}
           {dropArea()}
+          <TextField id="filled-basic" label="Filled" variant="filled" color="white"/>
           {inputForm('title', title)}
           {inputForm('img', img)}
           {inputForm('publisher', publisher)}
