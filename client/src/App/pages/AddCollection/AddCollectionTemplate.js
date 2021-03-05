@@ -5,33 +5,28 @@ import Icon from '@material-ui/core/Icon';
 
 import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 
-const AddCollectionTemplate = ({handleSubmit}) => {
 
-  const [contentCollection, setContentCollection] = useState({})
-
+const AddCollectionTemplate = ({title, publisher,  description, saveImages, handleSubmit}) => {
   const classes = useStyles();
 
-
-  function handleChange(e) {
-    console.log(e.target)
-  }
 
   return (
     <div className='Add-collection'>
       <h1>ПУБЛИКАЦИЯ</h1>
       <div className='form'>
         <form>
-          <DragAndDrop/>
-          <TextField name='test' required  onChange={handleChange} id="filled-basic" label="Title" variant="filled"
+          <DragAndDrop saveImages={saveImages}/>
+          <TextField  {...title.bind}  name='test' required  id="filled-basic" label="Title" variant="filled"
                      InputLabelProps={{className: classes.multilineColor}}
                      classes={{root: classes.root}}
                      InputProps={{className: classes.input}}/>
-          <TextField required onChange={handleChange} id="filled-basic" label="publisher" variant="filled"
+          <TextField {...publisher.bind} required id="filled-basic" label="publisher" variant="filled"
                      InputLabelProps={{className: classes.multilineColor}}
                      classes={{root: classes.root}}
                      InputProps={{className: classes.input}}/>
-          <TextField id="filled-multiline-static" label="description" multiline rows={4} placeholder="Default Value" variant="filled"
+          <TextField {...description.bind} id="filled-multiline-static" label="description" multiline rows={4} placeholder="Default Value" variant="filled"
                      classes={{root: classes.root}}/>
+
 
           <Button
             variant="contained"
@@ -39,8 +34,7 @@ const AddCollectionTemplate = ({handleSubmit}) => {
             className={classes.button}
             endIcon={<Icon>send</Icon>}
             size="large"
-            onClick={() => handleSubmit()}
-          >
+            onClick={() => handleSubmit()}>
             ОТПРАВИТЬ
           </Button>
         </form>

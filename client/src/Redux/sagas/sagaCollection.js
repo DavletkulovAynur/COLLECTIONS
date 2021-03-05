@@ -32,3 +32,19 @@ async function fetchRequest(url) {
 	const data = await fetch(url)
 	return await data.json()
 }
+
+// payload ???
+export function* addCollection(formData) {
+  try {
+    console.log('formData.payload', ...formData.payload)
+
+    yield call(() => fetch('http://localhost:5000/collection/add', {
+      method: 'POST',
+      body: formData.payload,
+      headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+    }))
+
+  } catch (e) {
+    console.log(e)
+  }
+}

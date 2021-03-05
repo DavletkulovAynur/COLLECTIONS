@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './DragAndDrop.scss'
 
-export function DragAndDrop() {
+export function DragAndDrop({saveImages}) {
   const [drag, setDrag] = useState(true)
 
   function dragStartHandler(e) {
@@ -21,9 +21,8 @@ export function DragAndDrop() {
   }
 
   function loadFile(e) {
-    console.log(e.target.files)
-    // let files = [...e.dataTransfer.files]
-    // console.log(files)
+    const files = e.target.files
+    saveImages(files)
   }
   return (
     <div id="drop-area-js" className="Drop-and-drop-file">

@@ -1,45 +1,49 @@
 import React, {useContext, useRef, useState} from "react";
 
 
-import {useInput} from 'Common/utils/hooks/input.hook'
-import {AuthContext} from "App/context/AuthContext";
-import {useHttp} from "Common/utils/hooks/http.hook";
+
 import './AddCollection.scss'
-import {Select} from "Common/components/Select/Select";
+
 import AddCollectionTemplate from "./AddCollectionTemplate";
+import {useInput} from '../../../Common/utils/hooks/input.hook'
+import {useDispatch} from "react-redux";
+import {addCollectionAction} from '../../../Redux/actions/action';
 
 function AddCollection(props) {
-  const nameCollection = useInput()
-  const {loading, error, request, clearError} = useHttp()
-  const testSelect = useInput('')
+  const formData = new FormData()
+  const dispatch = useDispatch()
   const title = useInput('')
-  const img = useInput('')
   const publisher = useInput('')
   const description = useInput('')
-  const {userName, userId} = useContext(AuthContext)
+  const [files, setFiles] = useState()
 
-  const fetchEvent = async (collection = []) => {
-    await request('http://localhost:5000/collection/add', 'POST', collection)
-  }
 
   const handleSubmit = (e) => {
-    // e.preventDefault()
-    console.log('super')
-    // const comments = []
-    // const collection = {
-    //   nameCollection: testSelect.value,
-    //   title: title.value,
-    //   img: img.value,
-    //   publisher: publisher.value,
-    //   description: description.value,
-    //   author: userName,
-    //   comments,
-    //   userId
-    // }
-    //
-    // fetchEvent(collection)
-    // inputClear([title, img, publisher, description])
+    const test = [...files]
+    test.forEach((file) => {
+      formData.append('file', file)
+    })
+    formData.append('title', title.value)
+    formData.append('publisher', title.value)
+    formData.append('description', title.value)
 
+   // testFetch()
+    dispatch(addCollectionAction(formData))
+
+    inputClear([title, publisher, description])
+
+  }
+
+  const testFetch = async () => {
+    const response = await fetch('http://localhost:5000/collection/add', {
+      method: 'post',
+      body: formData,
+      headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+    })
+  }
+
+  const saveImages = (data) => {
+    setFiles(data)
   }
 
   function inputClear(inputs) {
@@ -52,10 +56,9 @@ function AddCollection(props) {
   return (
     <AddCollectionTemplate
       title={title}
-      img={img}
       publisher={publisher}
       description={description}
-      testSelect={testSelect}
+      saveImages={saveImages}
       handleSubmit={handleSubmit}
     />
   )

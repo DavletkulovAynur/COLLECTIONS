@@ -1,8 +1,10 @@
 import {useState} from "react";
 
 export function useInput(initialValue) {
+
   const [value, setValue] = useState(initialValue)
   const onChange = (event) => {
+    console.log('useInput')
     setValue(event.target.value)
   }
   const clear = () => setValue('')

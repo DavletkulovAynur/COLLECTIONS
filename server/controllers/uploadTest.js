@@ -6,10 +6,10 @@ class UploadTest {
   async loadImage(req, res) {
     try {
       const file = req.files.file
-      console.log('req.user.id', req.user.userId)
+      console.log('req.user.id', file)
 
 
-      let pathWay = path.join(__dirname, `../files/${req.user.userId}/${file.name}`)
+      let pathWay = path.join(__dirname, `../files/${req.user.id}/${file.name}`)
 
       if(fs.existsSync(pathWay)) {
         console.log('super')

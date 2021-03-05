@@ -3,8 +3,9 @@ const {Router} = require('express')
 const collectionControllers = require('../controllers/collection.controllers')
 
 const router = Router()
+const authMiddleware = require('../middleware/auth.middleware')
 
-router.post('/add', collectionControllers.addCollection)
+router.post('/add', authMiddleware, collectionControllers.addCollection)
 
 router.get('/get-all',collectionControllers.getAllCollection)
 
