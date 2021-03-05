@@ -6,10 +6,11 @@ import {
 
   GET_MY_COLLECTION,
   GET_ALL_COLLECTION,
+  ADD_COLLECTION,
 
   GET_ALL_USERS,
 
-  SAGA_AUTH_TOKEN, SAGA_LOGIN
+  SAGA_AUTH_TOKEN, SAGA_LOGIN,
 } from '../types'
 
 // APP
@@ -60,9 +61,15 @@ export function getAllCollection() {
 
 
 export function getMyCollection(payload) {
-  console.log('payload', payload)
   return({
     type: GET_MY_COLLECTION,
+    payload
+  })
+}
+
+export function addCollectionAction(payload) {
+  return({
+    type: ADD_COLLECTION,
     payload
   })
 }

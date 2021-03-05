@@ -3,20 +3,24 @@ const COLLECTION_MODEL = require('../models/collection')
 class CollectionControllers {
 	async addCollection(req, res){
 		try {
-			const {nameCollection, title, img, publisher, description, userId,  author} = req.body
 
-			const collection = new COLLECTION_MODEL({
-				nameCollection,
-				title,
-				img,
-				author,
-				publisher,
-				description,
-				userId,
-				owner: userId
-			})
-
-			await collection.save()
+      const file = req.files.file
+      console.log('file:', file)
+      return res.status(200).json(file)
+			// const {nameCollection, title, img, publisher, description, userId,  author} = req.body
+      //
+			// const collection = new COLLECTION_MODEL({
+			// 	nameCollection,
+			// 	title,
+			// 	img,
+			// 	author,
+			// 	publisher,
+			// 	description,
+			// 	userId,
+			// 	owner: userId
+			// })
+      //
+			// await collection.save()
 			} catch (e) {
 				console.log(e)
 			}
