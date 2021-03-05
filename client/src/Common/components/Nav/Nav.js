@@ -1,8 +1,7 @@
 import React from 'react'
 import './Nav.scss'
 import {Link} from "react-router-dom";
-import {Users} from "Common/components/Users/Users";
-import {User} from '../User/User'
+
 
 
 function Nav() {
@@ -21,7 +20,6 @@ function Nav() {
           <div className='item'>
             Active users
           </div>
-          <Users/>
         </div>
       </div>
 
@@ -29,7 +27,6 @@ function Nav() {
         <div className='list'></div>
         <div className='search'></div>
         <div className='add'></div>
-        <User/>
       </div>
     </div>
   );

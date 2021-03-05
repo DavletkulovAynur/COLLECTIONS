@@ -5,12 +5,12 @@ import './NavbarUserInfo.scss'
 import {AuthContext} from '../../../App/context/AuthContext'
 import {useComponentVisible} from '../../utils/hooks/useComponentVisible'
 import {Link} from 'react-router-dom'
-import {User} from '../User/User'
+import {useSelector} from "react-redux";
 
 
 // подумать над логикой
 export function NavbarUserInfo() {
-  const {userName, logout} = useContext(AuthContext)
+  const {avatar} = useSelector((state) => state.authReducer)
   const [userDetails, setUserDetails] = useState(false)
 
   const { ref, isComponentVisible } = useComponentVisible(false);
@@ -19,10 +19,15 @@ export function NavbarUserInfo() {
 
   }, [isComponentVisible])
 
+  console.log(avatar.path)
+
   return (
     <div  ref={ref}>
       <article className='user-container'  className='user-icon'>
-        <User component='Header' name={userName} styleName='User-header'/>
+        <div className={`User User-header`}>
+          <div className='img'></div>
+          <img/>
+        </div>
         <span className='arrow'></span>
       </article>
       <div>
@@ -34,7 +39,7 @@ export function NavbarUserInfo() {
                 <li className='sign-in-text'>
                   <p>
                     Signed in as <br/>
-                    <span>{userName}</span>
+                    <span>Davletkulov</span>
                   </p>
                 </li>
 
@@ -43,7 +48,7 @@ export function NavbarUserInfo() {
                 </li>
 
                 <li className='menu-item'>
-                  {LinkItem('выйти', logoutIcon, logout)}
+                  {/*{LinkItem('выйти', logoutIcon, logout)}*/}
                 </li>
               </ul>
 

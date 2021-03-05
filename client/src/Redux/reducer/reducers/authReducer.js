@@ -10,7 +10,8 @@ const initialState = {
   logout: noop,
   isAuthenticated: false,
   bookmark: [],
-  ready: false
+  ready: false,
+  avatar: {}
 }
 
 // подумать над actions
@@ -22,10 +23,11 @@ export const authReducer = (state = initialState, action) => {
         userId: action.payload.userId ,
         userName: action.payload.userName,
         bookmark: action.payload.bookmark,
+        avatar: action.payload.avatar,
         ready: true}
 		case WRITE_REDUCER_TOKEN:
-      const {token, userId, userName, bookmark} = action.payload
-			return {...state, token, userId, userName, bookmark, ready: true}
+      const {token, userId, userName, bookmark, avatar} = action.payload
+			return {...state, token, userId, userName, bookmark, avatar, ready: true}
 		default:
 			return {...state}
 	}

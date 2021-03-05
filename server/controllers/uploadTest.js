@@ -1,5 +1,6 @@
 const path = require('path')
 const File = require('../models/File')
+const USER_MODEL = require('../models/user')
 const fs = require('fs')
 
 class UploadTest {
@@ -7,25 +8,34 @@ class UploadTest {
     try {
       const file = req.files.file
       console.log('req.user.id', file)
-
-
-      let pathWay = path.join(__dirname, `../files/${req.user.id}/${file.name}`)
+      let pathWay = path.join(__dirname, `../files/${req.user.id}/avatar/${file.name}`)
 
       if(fs.existsSync(pathWay)) {
-        console.log('super')
+        // такой файл уже сущесттвует
       }
 
       file.mv(pathWay)
 
+
       const type = file.name.split('.').pop()
-      const dbFile = new File({
-        name: file.name,
-        type,
-      })
+      // const dbFile = new File({
+      //   name: file.name,
+      //   type,
+      //   user: req.user.id,
+      //   path: pathWay
+      // })
 
-      await dbFile.save()
 
-      res.json(dbFile)
+      try {
+        await  USER_MODEL.updateOne({_id: req.user.id}, {$set: {avatar: { name: file.name, type, path: pathWay}}}, {upsert: true})
+        res.status(201).json({message: 'Avatar update', status: true})
+      } catch (e) {
+        console.log(e)
+      }
+
+      // await dbFile.save()
+
+      // res.json(dbFile)
 
     } catch (e) {
      console.log(e)
