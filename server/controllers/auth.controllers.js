@@ -74,12 +74,14 @@ class AuthControllers {
 					config.get('jwtSecret'),
 					{ expiresIn: '1h'}
 			)
-
+      // проблема
       res.json({ token,
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,
-        email: user.email})
+        email: user.email,
+        avatar: user.avatar
+      })
 
 		} catch (e) {
 
@@ -97,7 +99,9 @@ class AuthControllers {
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,
-        email: user.email})
+        email: user.email,
+        avatar: user.avatar ? user.avatar : {test: 'test'}
+      })
 
 		} catch (e) {
 			console.log(e, 'error')

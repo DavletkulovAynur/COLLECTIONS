@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import './CommonCard.scss'
 
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
-import {User} from '../User/User'
+
 
 
 export function CommonCard({data}) {
@@ -49,14 +49,6 @@ export function CommonCard({data}) {
     )
   }
 
-  function authorTemplate(author) {
-    return (
-      <div className='author'>
-        <User name={author}/>
-      </div>
-    )
-  }
-
   return (
     <>
     {data.map((item) => {
@@ -71,7 +63,6 @@ export function CommonCard({data}) {
               {mediaTemplate(img)}
               {infoTemplate(_id, title, nameCollection)}
             </div>
-            {authorTemplate(author)}
           </div>
         )
       })}
