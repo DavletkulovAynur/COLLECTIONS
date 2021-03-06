@@ -2,13 +2,17 @@ const path = require('path')
 const File = require('../models/File')
 const USER_MODEL = require('../models/user')
 const fs = require('fs')
+const Uuid = require('uuid')
 
 class UploadTest {
   async loadImage(req, res) {
     try {
       const file = req.files.file
-      console.log('req.user.id', file)
-      let pathWay = path.join(__dirname, `../files/${req.user.id}/avatar/${file.name}`)
+      const type = file.name.split('.').pop()
+
+
+      const avatarName = Uuid.v4() + `.${type}`
+      let pathWay = path.join(__dirname, `../static/${avatarName}`)
 
       if(fs.existsSync(pathWay)) {
         // такой файл уже сущесттвует
@@ -16,14 +20,6 @@ class UploadTest {
 
       file.mv(pathWay)
 
-
-      const type = file.name.split('.').pop()
-      // const dbFile = new File({
-      //   name: file.name,
-      //   type,
-      //   user: req.user.id,
-      //   path: pathWay
-      // })
 
 
       try {

@@ -103,6 +103,30 @@
     margin-right: 8px;
   }
 
+  .imgTest {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .default-user {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(256,256,256,0.5);
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+
+  }
+
   .name {
     font-size: 14px;
   }

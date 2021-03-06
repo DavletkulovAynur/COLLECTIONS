@@ -1,12 +1,11 @@
 import React from 'react'
-import {useHttp} from "../../../Common/utils/hooks/http.hook";
-import PersonalAreaTemplate from "./personalArea.template";
+import PersonalAreaTemplate from './personalArea.template'
+import {useSelector} from 'react-redux'
 
 export function PersonalArea() {
-
-	const {error, request, clearError} = useHttp()
-
+	const {avatar} = useSelector((state) => state.authReducer)
 	async  function fileUploadHandler(event) {
+
 		const formData = new FormData()
 		const files = [...event.target.files]
 
@@ -14,20 +13,18 @@ export function PersonalArea() {
 			formData.append('file', file)
 		})
 
-		formData.append('name', 'Aynur');
-		formData.append('email', 'email');
+		formData.append('avatar', avatar);
 
-		const response = await fetch('http://localhost:5000/uploadTest/load', {
+		const response = await fetch('http://localhost:5000/users/load-avatar', {
 			method: 'post',
 			body: formData,
 			headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
 		})
-
-		console.log('response', response)
-
-
 	}
+
 	return (
-		<PersonalAreaTemplate fileUploadHandler={fileUploadHandler}/>
+		<>
+			<PersonalAreaTemplate fileUploadHandler={fileUploadHandler}/>
+		</>
 	)
 }

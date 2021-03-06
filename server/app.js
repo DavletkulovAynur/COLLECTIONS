@@ -10,6 +10,7 @@ app.use(fileUpload({}))
 app.use(cors())
 
 app.use(express.json({ extentded: true}))
+app.use(express.static('static'))
 
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/collection', require('./routes/collection.routes'))

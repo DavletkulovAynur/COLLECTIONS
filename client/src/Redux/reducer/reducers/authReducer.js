@@ -11,7 +11,7 @@ const initialState = {
   isAuthenticated: false,
   bookmark: [],
   ready: false,
-  avatar: {}
+  avatar: ''
 }
 
 // подумать над actions
