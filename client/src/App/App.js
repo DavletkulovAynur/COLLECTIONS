@@ -8,14 +8,13 @@ import {checkToken, getAllCollection, getAllUsers, getMyCollection} from 'Redux/
 
 function App() {
   const dispatch = useDispatch()
-  const {login, token, userId, ready, userName} = useSelector((state) => state.authReducer)
+  const {login, token, userId, ready, userName, avatar} = useSelector((state) => state.authReducer)
 
   const isAuthenticated = !!token
 
   const routes = useRoutes(isAuthenticated)
 
   useEffect(() => {
-    console.log('проверяем токен')
     dispatch(checkToken())
   }, [])
 
@@ -32,7 +31,6 @@ function App() {
   }
 
   if(token) {
-    console.log('localStorage.setItem')
     localStorage.setItem('token', token)
   }
 

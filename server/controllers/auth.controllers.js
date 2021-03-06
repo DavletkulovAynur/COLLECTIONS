@@ -30,7 +30,7 @@ class AuthControllers {
 		const user = new USER_MODEL({email, username, password: hashedPassword })
 
 		await user.save()
-		const filePath = path.join(__dirname, `../files/${user._id}`)
+		const filePath = path.join(__dirname, `../static/${user._id}`)
 
 		if (!fs.existsSync(filePath)) {
 			fs.mkdirSync(filePath)
@@ -91,8 +91,7 @@ class AuthControllers {
 	async auth(req, res) {
 		try {
 			const user = await USER_MODEL.findOne({_id: req.user.id})
-      console.log('req.user', req.user)
-      console.log('user', user)
+
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
 
       return res.json({ token,
@@ -100,7 +99,7 @@ class AuthControllers {
         userName: user.username,
         bookmark: user.bookmark,
         email: user.email,
-        avatar: user.avatar ? user.avatar : {test: 'test'}
+        avatar: user.avatar
       })
 
 		} catch (e) {

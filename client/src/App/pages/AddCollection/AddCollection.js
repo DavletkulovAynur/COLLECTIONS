@@ -6,10 +6,11 @@ import './AddCollection.scss'
 
 import AddCollectionTemplate from "./AddCollectionTemplate";
 import {useInput} from '../../../Common/utils/hooks/input.hook'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from 'react-redux'
 import {addCollectionAction} from '../../../Redux/actions/action';
 
 function AddCollection(props) {
+  const {userName} = useSelector((state) => state.authReducer)
   const formData = new FormData()
   const dispatch = useDispatch()
   const title = useInput('')
@@ -26,6 +27,7 @@ function AddCollection(props) {
     formData.append('title', title.value)
     formData.append('publisher', title.value)
     formData.append('description', title.value)
+    formData.append('author', userName)
 
    // testFetch()
     dispatch(addCollectionAction(formData))

@@ -1,26 +1,33 @@
 const COLLECTION_MODEL = require('../models/collection')
+const path = require('path')
+const fs = require('fs')
+const USER_MODEL = require('../models/user')
+const Uuid = require('uuid')
 
 class CollectionControllers {
 	async addCollection(req, res){
 		try {
+			const file = req.files.file
+			const {title, publisher, description, author} = req.body
 
-      const file = req.files.file
-      console.log('file:', file)
-      return res.status(200).json(file)
-			// const {nameCollection, title, img, publisher, description, userId,  author} = req.body
-      //
-			// const collection = new COLLECTION_MODEL({
-			// 	nameCollection,
-			// 	title,
-			// 	img,
-			// 	author,
-			// 	publisher,
-			// 	description,
-			// 	userId,
-			// 	owner: userId
-			// })
-      //
-			// await collection.save()
+			const type = file.name.split('.').pop()
+			const mainImg = Uuid.v4() + `.${type}`
+
+			let pathWay = path.join(__dirname, `../static/${req.user.id}/${mainImg}`)
+			file.mv(pathWay)
+
+			const collection = new COLLECTION_MODEL({
+				nameCollection: 'Нужно прописать',
+				title,
+				author,
+				publisher,
+				description,
+				mainImg,
+				owner: req.user.id
+			})
+
+			await collection.save()
+
 			} catch (e) {
 				console.log(e)
 			}

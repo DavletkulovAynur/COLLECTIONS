@@ -4,7 +4,7 @@ const schema = new Schema ({
   nameCollection: {type: String, required: true},
   title: {type: String, required: true},
   author: {type: String, required: true},
-  img: {type: String},
+  mainImg: {type: String},
   publisher: {type: String},
   description: {type: String},
   comments: {type: Array},
