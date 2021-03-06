@@ -1,7 +1,10 @@
+const path = require('path')
+const fs = require('fs')
 const USER_MODEL = require('../models/user')
+const Uuid = require('uuid')
 
 class UserControllers {
-async getUsers(req, res){
+	async getUsers(req, res){
 		try {
 			const users = await USER_MODEL.find()
 			res.json(users)
@@ -10,7 +13,7 @@ async getUsers(req, res){
 		}
 	}
 
-async saveBookmark(req, res){
+	async saveBookmark(req, res){
 	const {bookmarkID, id} = req.body
 		try {
 			await USER_MODEL.update({_id: id}, {$addToSet: {bookmark: bookmarkID}})
@@ -20,13 +23,46 @@ async saveBookmark(req, res){
 		}
 	}
 
-async deleteBookmark(req, res){
+	async deleteBookmark(req, res){
 		const {bookmarkID, id} = req.body
 		try {
 			await USER_MODEL.update({_id: id}, {$pull: {bookmark: bookmarkID}})
 			res.status(201).json({message: 'bookmark delete'})
 		} catch (e) {
 			console.log(e)
+		}
+	}
+
+	async loadAvatar(req, res) {
+		try {
+			const file = req.files.file
+			const type = file.name.split('.').pop()
+			const avatarName = Uuid.v4() + `.${type}`
+			console.log('req.body', req.body.avatar)
+			let pathWay = path.join(__dirname, `../static/avatars/${avatarName}`)
+
+			if(req.body.avatar === '') {
+				console.log('super')
+				// fs.unlinkSync(path.join(__dirname, `../static/avatars/${req.body.avatar}`))
+			}
+
+
+			if(fs.existsSync(pathWay)) {
+				// такой файл уже сущесттвует
+			}
+
+			file.mv(pathWay)
+
+			try {
+				await  USER_MODEL.updateOne({_id: req.user.id}, {$set: {avatar: avatarName}}, {upsert: true})
+				res.status(201).json({message: 'Avatar update', status: true})
+			} catch (e) {
+				console.log(e)
+			}
+
+		} catch(e) {
+			console.log(e)
+			res.status(400).json({message: 'Error load Avatar'})
 		}
 	}
 }

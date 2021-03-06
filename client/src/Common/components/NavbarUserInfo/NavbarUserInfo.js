@@ -1,17 +1,16 @@
 import React, {useContext, useEffect, useState} from 'react'
-import logoutIcon from 'Common/assets/images/logout.svg'
 import user from 'Common/assets/images/icons/user.svg'
 import './NavbarUserInfo.scss'
-import {AuthContext} from '../../../App/context/AuthContext'
 import {useComponentVisible} from '../../utils/hooks/useComponentVisible'
 import {Link} from 'react-router-dom'
 import {useSelector} from "react-redux";
+import {API_URL} from '../../../config'
+import pixelFace from '../../assets/images/pixel-face.svg'
 
 
 // подумать над логикой
 export function NavbarUserInfo() {
   const {avatar} = useSelector((state) => state.authReducer)
-  const [userDetails, setUserDetails] = useState(false)
 
   const { ref, isComponentVisible } = useComponentVisible(false);
 
@@ -19,14 +18,19 @@ export function NavbarUserInfo() {
 
   }, [isComponentVisible])
 
-  console.log(avatar.path)
+
+  const avatarUrl = avatar ? `${API_URL + '/avatars/' + avatar}` : false
 
   return (
     <div  ref={ref}>
       <article className='user-container'  className='user-icon'>
         <div className={`User User-header`}>
-          <div className='img'></div>
-          <img/>
+          {avatarUrl
+                  ? <img className='imgTest' src={avatarUrl}/>
+                  : <div className='default-user'>
+                    <img src={pixelFace}/>
+                  </div>
+          }
         </div>
         <span className='arrow'></span>
       </article>
