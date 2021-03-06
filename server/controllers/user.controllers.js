@@ -38,12 +38,12 @@ class UserControllers {
 			const file = req.files.file
 			const type = file.name.split('.').pop()
 			const avatarName = Uuid.v4() + `.${type}`
-			console.log('req.body', req.body.avatar)
+			const user = await USER_MODEL.findOne({_id: req.user.id})
+
 			let pathWay = path.join(__dirname, `../static/avatars/${avatarName}`)
 
-			if(req.body.avatar === '') {
-				console.log('super')
-				// fs.unlinkSync(path.join(__dirname, `../static/avatars/${req.body.avatar}`))
+			if(user.avatar) {
+				fs.unlinkSync(path.join(__dirname, `../static/avatars/${user.avatar}`))
 			}
 
 
