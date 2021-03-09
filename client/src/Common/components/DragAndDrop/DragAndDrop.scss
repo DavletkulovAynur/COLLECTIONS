@@ -1,7 +1,7 @@
 .Drop-and-drop-file {
   position: relative;
   background: rgba(256, 256, 256, 0.2);
-  border: 1px dashed rgba(256, 256, 256, 0.9);
+  border: 1px dashed rgba(256, 256, 256, 0.5);
   border-radius: 4px;
   padding: 30px 12px;
   margin-bottom: 10px;
@@ -35,5 +35,9 @@
 
   input {
     display: none;
+  }
+
+  &.Drag-and-drop-error {
+    border: 1px dashed rgba(200, 25, 256, 0.9);
   }
 }

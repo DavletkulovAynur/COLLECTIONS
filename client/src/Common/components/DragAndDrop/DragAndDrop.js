@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './DragAndDrop.scss'
 
-export function DragAndDrop({saveImages}) {
+export function DragAndDrop({saveImages, errorFiles}) {
   const [drag, setDrag] = useState(true)
 
   function dragStartHandler(e) {
@@ -24,8 +24,9 @@ export function DragAndDrop({saveImages}) {
     const files = e.target.files
     saveImages(files)
   }
+  console.log(errorFiles)
   return (
-    <div id="drop-area-js" className="Drop-and-drop-file">
+    <div id="drop-area-js" className={`Drop-and-drop-file ${errorFiles ? 'Drag-and-drop-error' : ''}`}>
       <div className="cloud">
         <div className="icon"></div>
         <i className="text">Кликните или перетащите, чтобы загрузить фотографии</i>

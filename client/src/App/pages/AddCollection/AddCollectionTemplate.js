@@ -6,19 +6,22 @@ import Icon from '@material-ui/core/Icon';
 import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 
 
-const AddCollectionTemplate = ({title, publisher,  description, saveImages, handleSubmit}) => {
+const AddCollectionTemplate = ({title, errorTitle, errorFiles,
+                                 publisher,
+                                 description,
+                                 saveImages,
+                                 handleSubmit}) => {
   const classes = useStyles();
-
 
   return (
     <div className='Add-collection'>
       <h1>ПУБЛИКАЦИЯ</h1>
       <div className='form'>
         <form>
-          <DragAndDrop saveImages={saveImages}/>
+          <DragAndDrop errorFiles={errorFiles} saveImages={saveImages}/>
 
           <div className='wrapper-text-field'>
-            <TextField  {...title.bind}  name='test' required  id="filled-basic" label="Title" variant="filled"
+            <TextField error={errorTitle}  {...title.bind}  name='test' required  id="filled-basic" label="Title" variant="filled"
                         InputLabelProps={{className: classes.multilineColor}}
                         classes={{root: classes.root}}
                         InputProps={{className: classes.input}}/>
