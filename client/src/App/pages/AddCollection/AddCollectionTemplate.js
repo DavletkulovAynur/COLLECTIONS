@@ -16,17 +16,25 @@ const AddCollectionTemplate = ({title, publisher,  description, saveImages, hand
       <div className='form'>
         <form>
           <DragAndDrop saveImages={saveImages}/>
-          <TextField  {...title.bind}  name='test' required  id="filled-basic" label="Title" variant="filled"
-                     InputLabelProps={{className: classes.multilineColor}}
-                     classes={{root: classes.root}}
-                     InputProps={{className: classes.input}}/>
-          <TextField {...publisher.bind} required id="filled-basic" label="publisher" variant="filled"
-                     InputLabelProps={{className: classes.multilineColor}}
-                     classes={{root: classes.root}}
-                     InputProps={{className: classes.input}}/>
-          <TextField {...description.bind} id="filled-multiline-static" label="description" multiline rows={4} placeholder="Default Value" variant="filled"
-                     classes={{root: classes.root}}/>
 
+          <div className='wrapper-text-field'>
+            <TextField  {...title.bind}  name='test' required  id="filled-basic" label="Title" variant="filled"
+                        InputLabelProps={{className: classes.multilineColor}}
+                        classes={{root: classes.root}}
+                        InputProps={{className: classes.input}}/>
+          </div>
+
+          <div className='wrapper-text-field'>
+            <TextField {...publisher.bind} required id="filled-basic" label="publisher" variant="filled"
+                       InputLabelProps={{className: classes.multilineColor}}
+                       classes={{root: classes.root}}
+                       InputProps={{className: classes.input}}/>
+          </div>
+
+          <div className='wrapper-text-field'>
+            <TextField {...description.bind} id="filled-multiline-static" label="description" multiline rows={4} placeholder="Default Value" variant="filled"
+                       classes={{root: classes.root}}/>
+          </div>
 
           <Button
             variant="contained"

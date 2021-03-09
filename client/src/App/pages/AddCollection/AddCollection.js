@@ -1,7 +1,4 @@
 import React, {useContext, useRef, useState} from "react";
-
-
-
 import './AddCollection.scss'
 
 import AddCollectionTemplate from "./AddCollectionTemplate";
@@ -20,28 +17,20 @@ function AddCollection(props) {
 
 
   const handleSubmit = (e) => {
-    const test = [...files]
-    test.forEach((file) => {
-      formData.append('file', file)
-    })
-    formData.append('title', title.value)
-    formData.append('publisher', title.value)
-    formData.append('description', title.value)
-    formData.append('author', userName)
+    console.log(title)
+    // const test = [...files]
+    // test.forEach((file) => {
+    //   formData.append('file', file)
+    // })
+    // formData.append('title', title.value)
+    // formData.append('publisher', title.value)
+    // formData.append('description', title.value)
+    // formData.append('author', userName)
 
-   // testFetch()
-    dispatch(addCollectionAction(formData))
+    // dispatch(addCollectionAction(formData))
 
     inputClear([title, publisher, description])
 
-  }
-
-  const testFetch = async () => {
-    const response = await fetch('http://localhost:5000/collection/add', {
-      method: 'post',
-      body: formData,
-      headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
-    })
   }
 
   const saveImages = (data) => {
