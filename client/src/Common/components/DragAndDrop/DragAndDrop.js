@@ -1,8 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './DragAndDrop.scss'
+import DragAndDropTemplate from "./DragAndDrop.template";
+import {useDispatch} from "react-redux";
 
 export function DragAndDrop({saveImages, errorFiles}) {
-  const [drag, setDrag] = useState(true)
+  let reader = new FileReader()
+  const [drag, setDrag] = useState(false)
+  const [previewImg, setPreviewImg] = useState('')
+
+  const [stateFiles, setStateFiles] = useState(errorFiles)
+  console.log(errorFiles)
+  useEffect(() => {
+    console.log('errorFiles', errorFiles)
+    setStateFiles(errorFiles)
+  }, [errorFiles])
 
   function dragStartHandler(e) {
     e.preventDefault()
@@ -17,31 +28,45 @@ export function DragAndDrop({saveImages, errorFiles}) {
   function dropHandler(e) {
     e.preventDefault()
     let files = [...e.dataTransfer.files]
-    console.log(files[0])
+    initialFile(files)
   }
 
   function loadFile(e) {
     const files = e.target.files
+    initialFile(files)
+  }
+
+  const initialFile = (files) => {
+    const arrFiles = [...files]
+    const mainImg = arrFiles[0]
+
+    reader.readAsDataURL(mainImg)
+
+    reader.onload = function () {
+      setPreviewImg(reader.result)
+      setStateFiles(false)
+    }
+
     saveImages(files)
   }
-  console.log(errorFiles)
-  return (
-    <div id="drop-area-js" className={`Drop-and-drop-file ${errorFiles ? 'Drag-and-drop-error' : ''}`}>
-      <div className="cloud">
-        <div className="icon"></div>
-        <i className="text">Кликните или перетащите, чтобы загрузить фотографии</i>
-      </div>
-      <input onChange={(e) => loadFile(e)} className="file-elem-input" type="file" id="fileElem" multiple accept="image/*"/>
-      <label onDragStart={(e) => dragStartHandler(e)}
-             onDragLeave={(e) => dragLeaveHandler(e)}
-             onDragOver={(e) => dragStartHandler(e)}
-             onDrop={(e) => dropHandler(e)}
-             className="button"
-             htmlFor="fileElem">
 
-      </label>
-    </div>
-  )
+  const deleteFile = () => {
+    saveImages()
+    setPreviewImg('')
+  }
+
+  return (
+      <DragAndDropTemplate
+        errorFiles={stateFiles}
+        drag={drag}
+        previewImg={previewImg}
+        dragStartHandler={dragStartHandler}
+        dragLeaveHandler={dragLeaveHandler}
+        dropHandler={dropHandler}
+        loadFile={loadFile}
+        deleteFile={deleteFile}
+      />
+      )
 }
 
 

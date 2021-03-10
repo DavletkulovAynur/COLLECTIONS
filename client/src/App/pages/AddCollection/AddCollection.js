@@ -21,8 +21,9 @@ function AddCollection(props) {
   const [errorFiles, setErrorFiles] = useState(false)
 
 
-  const handleSubmit = (e) => {
 
+  const handleSubmit = (e) => {
+    console.log(errorFiles)
     if(!stateForm()) {
       return
     }
@@ -46,10 +47,11 @@ function AddCollection(props) {
     let error = true
 
     if(!files) {
+      console.log(files)
       setErrorFiles(true)
       error = false
     }
-    if(title.value === '' || files) {
+    if(title.value === '') {
       setErrorTitle(true)
       error = false
     }
