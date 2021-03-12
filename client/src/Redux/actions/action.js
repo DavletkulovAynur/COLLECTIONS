@@ -10,7 +10,7 @@ import {
 
   GET_ALL_USERS,
 
-  SAGA_AUTH_TOKEN, SAGA_LOGIN,
+  SAGA_AUTH_TOKEN, SAGA_LOGIN, DISPATCH_COLLECTION, LOAD_IMG_DRAG_AND_DROP,
 } from '../types'
 
 // APP
@@ -67,9 +67,25 @@ export function getMyCollection(payload) {
   })
 }
 
+
+//ADD Collection
 export function addCollectionAction(payload) {
   return({
     type: ADD_COLLECTION,
+    payload
+  })
+}
+
+export function dispatchCollection(payload) {
+  return({
+    type: DISPATCH_COLLECTION,
+    payload
+  })
+}
+
+export function loadImgDragAndDrop(payload) {
+  return({
+    type: LOAD_IMG_DRAG_AND_DROP,
     payload
   })
 }

@@ -28,6 +28,8 @@ class CollectionControllers {
 
 			await collection.save()
 
+			res.status(201).json({message: 'success', status: true})
+
 			} catch (e) {
 				console.log(e)
 			}

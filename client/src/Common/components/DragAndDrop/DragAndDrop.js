@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import './DragAndDrop.scss'
 import DragAndDropTemplate from "./DragAndDrop.template";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {loadImgDragAndDrop} from "../../../Redux/actions/action";
 
-export function DragAndDrop({saveImages, errorFiles}) {
+export function DragAndDrop({saveImages}) {
   let reader = new FileReader()
+  const {errorFiles, sendCollectionStatus} = useSelector((state) => state.addCollectionReducer)
   const [drag, setDrag] = useState(false)
   const [previewImg, setPreviewImg] = useState('')
+  const dispatch = useDispatch()
 
-  const [stateFiles, setStateFiles] = useState(errorFiles)
-  console.log(errorFiles)
   useEffect(() => {
-    console.log('errorFiles', errorFiles)
-    setStateFiles(errorFiles)
-  }, [errorFiles])
+    deleteFile()
+  }, [sendCollectionStatus])
 
   function dragStartHandler(e) {
     e.preventDefault()
@@ -44,20 +44,18 @@ export function DragAndDrop({saveImages, errorFiles}) {
 
     reader.onload = function () {
       setPreviewImg(reader.result)
-      setStateFiles(false)
+      dispatch(loadImgDragAndDrop({mainImg}))
     }
-
-    saveImages(files)
   }
 
   const deleteFile = () => {
-    saveImages()
+    dispatch(loadImgDragAndDrop({mainImg: null}))
     setPreviewImg('')
   }
 
   return (
       <DragAndDropTemplate
-        errorFiles={stateFiles}
+        errorFiles={errorFiles}
         drag={drag}
         previewImg={previewImg}
         dragStartHandler={dragStartHandler}

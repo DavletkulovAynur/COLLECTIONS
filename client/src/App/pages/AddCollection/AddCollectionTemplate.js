@@ -3,38 +3,22 @@ import {InputBase, makeStyles, TextField} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-// import MenuItem from '@material-ui/core/MenuItem';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
-// import InputLabel from '@material-ui/core/InputLabel';
 
 import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 
-
-
-
-const AddCollectionTemplate = ({title, errorTitle, errorFiles,
+  const AddCollectionTemplate = ({title, errorTitle,
                                  publisher,
                                  description,
-                                 saveImages,
                                  handleSubmit}) => {
 
-
-  // const [age, setAge] = React.useState('');
-
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  //   console.log(age)
-  // };
-
-    const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <div className='Add-collection'>
       <h1>ПУБЛИКАЦИЯ</h1>
       <div className='form'>
         <form>
-          <DragAndDrop errorFiles={errorFiles} saveImages={saveImages}/>
+          <DragAndDrop/>
 
           <div className='wrapper-text-field'>
             <TextField error={errorTitle}  {...title.bind}  name='test' required
@@ -53,25 +37,6 @@ const AddCollectionTemplate = ({title, errorTitle, errorFiles,
                        classes={{root: classes.root}}
                        InputProps={{className: classes.input}}/>
           </div>
-
-          {/*<div>*/}
-          {/*  <FormControl variant="filled" className={classes.formControl}>*/}
-          {/*  <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>*/}
-          {/*  <Select*/}
-          {/*      labelId="demo-simple-select-filled-label"*/}
-          {/*      id="demo-simple-select-filled"*/}
-          {/*      value={age}*/}
-          {/*      onChange={handleChange}*/}
-          {/*  >*/}
-          {/*    <MenuItem value="">*/}
-          {/*      <em>None</em>*/}
-          {/*    </MenuItem>*/}
-          {/*    <MenuItem value={10}>Ten</MenuItem>*/}
-          {/*    <MenuItem value={20}>Twenty</MenuItem>*/}
-          {/*    <MenuItem value={30}>Thirty</MenuItem>*/}
-          {/*  </Select>*/}
-          {/*</FormControl>*/}
-          {/*</div>*/}
 
           <div className='wrapper-text-field'>
             <TextField {...description.bind}
@@ -115,11 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     color: 'white'
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
+  }
 }))
 
 export default AddCollectionTemplate;

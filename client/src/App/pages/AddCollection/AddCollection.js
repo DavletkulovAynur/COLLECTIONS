@@ -4,34 +4,27 @@ import './AddCollection.scss'
 import AddCollectionTemplate from "./AddCollectionTemplate";
 import {useInput} from '../../../Common/utils/hooks/input.hook'
 import {useDispatch, useSelector} from 'react-redux'
-import {addCollectionAction} from '../../../Redux/actions/action';
+import {addCollectionAction, dispatchCollection} from '../../../Redux/actions/action';
 
 function AddCollection(props) {
+  const {errorTitle, errorFiles, mainImg} = useSelector((state) => state.addCollectionReducer)
   const {userName} = useSelector((state) => state.authReducer)
-  const formData = new FormData()
   const dispatch = useDispatch()
-  const title = useInput('')
 
+  const formData = new FormData()
+
+  const title = useInput('')
   const publisher = useInput('')
   const description = useInput('')
-  const [files, setFiles] = useState()
-
-  //errors
-  const [errorTitle, setErrorTitle] = useState(false)
-  const [errorFiles, setErrorFiles] = useState(false)
-
-
 
   const handleSubmit = (e) => {
-    console.log(errorFiles)
+
     if(!stateForm()) {
       return
     }
 
-    const test = [...files]
-    test.forEach((file) => {
-      formData.append('file', file)
-    })
+    formData.append('file', mainImg)
+
     formData.append('title', title.value)
     formData.append('publisher', title.value)
     formData.append('description', title.value)
@@ -45,22 +38,21 @@ function AddCollection(props) {
 
   const stateForm = () => {
     let error = true
+    let files = false
+    let value = false
 
-    if(!files) {
-      console.log(files)
-      setErrorFiles(true)
+    if(!mainImg) {
+      files = true
       error = false
     }
+
     if(title.value === '') {
-      setErrorTitle(true)
+      value = true
       error = false
     }
 
+    dispatch(dispatchCollection({errorTitle: value, errorFiles: files}))
     return error
-  }
-
-  const saveImages = (data) => {
-    setFiles(data)
   }
 
   function inputClear(inputs) {
@@ -77,7 +69,6 @@ function AddCollection(props) {
       errorFiles={errorFiles}
       publisher={publisher}
       description={description}
-      saveImages={saveImages}
       handleSubmit={handleSubmit}
     />
   )

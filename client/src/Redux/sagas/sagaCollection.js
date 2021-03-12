@@ -1,5 +1,5 @@
 import {put, call} from 'redux-saga/effects'
-import {WRITE_DOWN_ALL_COLLECTION, WRITE_DOWN_COLLECTION} from '../types'
+import {SUCCESSFULLY_SEND_COLLECTION, WRITE_DOWN_ALL_COLLECTION, WRITE_DOWN_COLLECTION} from '../types'
 import {appError, appHideLoading} from '../actions/action'
 import Fetcher from '../../Common/utils/fetch'
 
@@ -36,14 +36,12 @@ async function fetchRequest(url) {
 // payload ???
 export function* addCollection(formData) {
   try {
-    console.log('formData.payload', ...formData.payload)
-
-    yield call(() => fetch('http://localhost:5000/collection/add', {
+	  const payload = yield call(() => fetch('http://localhost:5000/collection/add', {
       method: 'POST',
       body: formData.payload,
       headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
     }))
-
+	  yield put({type: SUCCESSFULLY_SEND_COLLECTION, payload})
   } catch (e) {
     console.log(e)
   }

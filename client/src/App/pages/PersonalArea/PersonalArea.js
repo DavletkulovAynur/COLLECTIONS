@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux'
 export function PersonalArea() {
 	const {avatar} = useSelector((state) => state.authReducer)
 	const {myCollection} = useSelector(state => state.collectionReducer)
-	console.log('MY COLLECTION', myCollection)
 
 	async  function fileUploadHandler(event) {
 
