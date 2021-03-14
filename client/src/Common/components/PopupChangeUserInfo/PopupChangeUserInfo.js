@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PopupChangeAvatar() {
+export default function PopupChangeUserInfo() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [fullWidth, setFullWidth] = React.useState(true);
@@ -41,7 +41,7 @@ export default function PopupChangeAvatar() {
     return (
         <React.Fragment>
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Change Avatar
+                Change User Info
             </Button>
             <Dialog
                 fullWidth={fullWidth}
