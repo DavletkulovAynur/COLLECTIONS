@@ -6,16 +6,37 @@
     margin: auto;
 
     .edit-user {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      //display: flex;
+      //flex-direction: column;
+      //justify-content: center;
       margin-bottom: 16px;
       .avatar {
+        display: block;
+        //margin: auto;
         width: 160px;
         height: 160px;
         border-radius: 50%;
         object-fit: cover;
+      }
 
+      .edit-button {
+        margin: 12px 0;
+        display: flex;
+        justify-content: center;
+
+        .item {
+          margin: 0 12px;
+        }
+      }
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      //align-items: flex-start;
+
+      .user-info {
+        margin-left: 36px;
       }
     }
 

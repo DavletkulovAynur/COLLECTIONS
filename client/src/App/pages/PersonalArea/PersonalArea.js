@@ -3,7 +3,7 @@ import PersonalAreaTemplate from './personalArea.template'
 import {useSelector} from 'react-redux'
 
 export function PersonalArea() {
-	const {avatar} = useSelector((state) => state.authReducer)
+	const {avatar, userName} = useSelector((state) => state.authReducer)
 	const {myCollection} = useSelector(state => state.collectionReducer)
 
 	async  function fileUploadHandler(event) {
@@ -26,7 +26,11 @@ export function PersonalArea() {
 
 	return (
 		<>
-			<PersonalAreaTemplate myCollection={myCollection} avatar={avatar} fileUploadHandler={fileUploadHandler}/>
+			<PersonalAreaTemplate
+				userName={userName}
+				myCollection={myCollection}
+				avatar={avatar}
+				fileUploadHandler={fileUploadHandler}/>
 		</>
 	)
 }

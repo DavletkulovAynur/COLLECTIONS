@@ -9,6 +9,8 @@ import Tab from '@material-ui/core/Tab'
 import './PersonalArea.scss'
 import {API_URL} from "../../../config";
 import PopupChangeAvatar from "../../../Common/components/PopupChangeAvatar/PopupChangeAvatar";
+import PopupChangeUserInfo from "../../../Common/components/PopupChangeUserInfo/PopupChangeUserInfo";
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     root: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles({
     },
 });
 
-const PersonalAreaTemplate = ({avatar, myCollection, fileUploadHandler}) => {
+const PersonalAreaTemplate = ({avatar, myCollection, fileUploadHandler, userName}) => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -31,9 +33,31 @@ const PersonalAreaTemplate = ({avatar, myCollection, fileUploadHandler}) => {
 
         <section className='edit-information-block'>
             <div className='edit-user'>
-                <img src={avatarUrl} className='avatar'/>
-                <div>
-                    <PopupChangeAvatar/>
+                <div className='user'>
+                    <img src={avatarUrl} className='avatar'/>
+                    <div className='user-info'>
+                        <div>{userName}</div>
+                        <div className='publication'>
+                            <div>
+                                <span>101</span>
+                                <span>публикаций</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='edit-button'>
+                    <div className='item'>
+                        <PopupChangeAvatar/>
+                    </div>
+                    <div className='item'>
+                        <PopupChangeUserInfo/>
+                    </div>
+                    <div className='item'>
+                        <Button variant="outlined" color="primary">
+                            Выйти
+                        </Button>
+                    </div>
                 </div>
             </div>
 
