@@ -1,0 +1,24 @@
+.Personal-area {
+  width: 100%;
+
+  .edit-information-block {
+    max-width: 720px;
+    margin: auto;
+
+    .edit-user {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 16px;
+      .avatar {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+
+      }
+    }
+
+
+  }
+}
