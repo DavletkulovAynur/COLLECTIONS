@@ -6,17 +6,14 @@
     margin: auto;
 
     .edit-user {
-      //display: flex;
-      //flex-direction: column;
-      //justify-content: center;
       margin-bottom: 16px;
       .avatar {
         display: block;
-        //margin: auto;
         width: 160px;
         height: 160px;
         border-radius: 50%;
         object-fit: cover;
+        flex-shrink: 0;
       }
 
       .edit-button {
@@ -32,11 +29,38 @@
 
     .user {
       display: flex;
-      align-items: center;
-      //align-items: flex-start;
+      align-items: flex-start;
+
+      .user-name {
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .about-user {
+
+      }
 
       .user-info {
         margin-left: 36px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .publication {
+        display: flex;
+        width: 100%;
+        max-width: 420px;
+        justify-content: space-between;
+
+        .item {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+        }
       }
     }
 

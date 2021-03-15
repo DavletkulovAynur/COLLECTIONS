@@ -33,16 +33,28 @@ const PersonalAreaTemplate = ({avatar, myCollection, fileUploadHandler, userName
 
         <section className='edit-information-block'>
             <div className='edit-user'>
+
                 <div className='user'>
                     <img src={avatarUrl} className='avatar'/>
                     <div className='user-info'>
-                        <div>{userName}</div>
-                        <div className='publication'>
-                            <div>
+                        <section className='user-name'>{userName}</section>
+                        <section className='publication'>
+                            <div className='item'>
                                 <span>101</span>
                                 <span>публикаций</span>
                             </div>
-                        </div>
+                            <div className='item'>
+                                <span>1200</span>
+                                <span>Подписчики</span>
+                            </div>
+                            <div className='item'>
+                                <span>209</span>
+                                <div>Подписки</div>
+                            </div>
+                        </section>
+                        <section className='about-user'>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, laboriosam velit! Ab accusamus aperiam, architecto at atque blanditiis deleniti dignissimos dolores dolorum eius error expedita harum iure libero magnam necessitatibus nihil, nostrum perferendis perspiciatis praesentium quo ratione recusandae reiciendis rem rerum tempore velit vero! Ad alias animi at cumque et, eveniet, expedita fuga, hic iste labore laudantium quae quidem rem sunt voluptates. A ab atque commodi cumque distinctio earum eius eveniet explicabo illo maiores molestiae mollitia natus nihil nisi obcaecati perferendis praesentium, provident quam quidem quisquam quo rem rerum suscipit tempora, voluptas? Aspernatur beatae ea, eligendi eos excepturi, fugit illum ipsum iste laboriosam magni minus mollitia nam, nihil non nostrum pariatur quisquam sint soluta sunt tenetur totam vel vero voluptatum.</p>
+                        </section>
                     </div>
                 </div>
 
