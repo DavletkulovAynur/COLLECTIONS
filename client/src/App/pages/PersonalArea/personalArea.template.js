@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     },
 });
 
-const PersonalAreaTemplate = ({avatar, myCollection, fileUploadHandler, userName}) => {
+const PersonalAreaTemplate = ({avatar, myCollection, userName}) => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -53,7 +53,7 @@ const PersonalAreaTemplate = ({avatar, myCollection, fileUploadHandler, userName
                             </div>
                         </section>
                         <section className='about-user'>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, laboriosam velit! Ab accusamus aperiam, architecto at atque blanditiis deleniti dignissimos dolores dolorum eius error expedita harum iure libero magnam necessitatibus nihil, nostrum perferendis perspiciatis praesentium quo ratione recusandae reiciendis rem rerum tempore velit vero! Ad alias animi at cumque et, eveniet, expedita fuga, hic iste labore laudantium quae quidem rem sunt voluptates. A ab atque commodi cumque distinctio earum eius eveniet explicabo illo maiores molestiae mollitia natus nihil nisi obcaecati perferendis praesentium, provident quam quidem quisquam quo rem rerum suscipit tempora, voluptas? Aspernatur beatae ea, eligendi eos excepturi, fugit illum ipsum iste laboriosam magni minus mollitia nam, nihil non nostrum pariatur quisquam sint soluta sunt tenetur totam vel vero voluptatum.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus debitis dolores eligendi esse ex, excepturi facilis harum incidunt molestias mollitia nostrum obcaecati, officia quas sequi suscipit temporibus tenetur, ullam?</p>
                         </section>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ const PersonalAreaTemplate = ({avatar, myCollection, fileUploadHandler, userName
                 </div>
             </div>
 
-            <input onChange={(event) => fileUploadHandler(event)} type='file'/>
+
             <Paper className={classes.root}>
                 <Tabs
                     value={value}
