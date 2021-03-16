@@ -1,34 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React, {useState} from 'react';
+
+import {useSelector} from 'react-redux'
+import './PopupChangeAvatar.scss'
+import PopupChangeAvatarTemplate from './PopupChangeAvatarTemplate'
 
 
-const useStyles = makeStyles((theme) => ({
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        margin: 'auto',
-        width: 'fit-content',
-    },
-    formControl: {
-        marginTop: theme.spacing(2),
-        minWidth: 120,
-    },
-    formControlLabel: {
-        marginTop: theme.spacing(1),
-    },
-}));
+
 
 export default function PopupChangeAvatar() {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-    const [fullWidth, setFullWidth] = React.useState(true);
-    const [maxWidth, setMaxWidth] = React.useState('sm');
+    let reader = new FileReader()
+    const {avatar, userName} = useSelector((state) => state.authReducer)
+    const [open, setOpen] = React.useState(false)
+    const [fullWidth, setFullWidth] = React.useState(true)
+    const [maxWidth, setMaxWidth] = React.useState('sm')
+    const [previewImg, setPreviewImg] = useState('')
+    const [loadAvatar, setLoadAvatar] = useState(null)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,31 +24,47 @@ export default function PopupChangeAvatar() {
         setOpen(false);
     };
 
-    return (
-        <React.Fragment>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Change Avatar
-            </Button>
-            <Dialog
-                fullWidth={fullWidth}
-                maxWidth={maxWidth}
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="max-width-dialog-title"
-            >
-                <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        You can set my maximum width and whether to adapt or not.
-                    </DialogContentText>
+    async  function fileUploadHandler(event) {
+        const files = [...event.target.files]
+        const arrFiles = [...files]
+        const mainImg = arrFiles[0]
+        setLoadAvatar(mainImg)
 
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Close
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </React.Fragment>
+        reader.readAsDataURL(mainImg)
+
+        reader.onload = function () {
+            setPreviewImg(reader.result)
+
+        }
+    }
+
+    const sendAvatar = async () => {
+        const formData = new FormData()
+        formData.append('avatar', avatar)
+        formData.append('file', loadAvatar)
+        const response = await fetch('http://localhost:5000/users/load-avatar', {
+            method: 'post',
+            body: formData,
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+        })
+
+        console.log(response.status)
+
+    }
+
+    const deleteFile = () => {
+        setPreviewImg('')
+    }
+
+    return (
+       <PopupChangeAvatarTemplate fileUploadHandler={fileUploadHandler}
+                                  handleClickOpen={handleClickOpen}
+                                  handleClose={handleClose}
+                                  deleteFile={deleteFile}
+                                  sendAvatar={sendAvatar}
+                                  open={open}
+                                  fullWidth={fullWidth}
+                                  maxWidth={maxWidth}
+                                  previewImg={previewImg}/>
     );
 }
