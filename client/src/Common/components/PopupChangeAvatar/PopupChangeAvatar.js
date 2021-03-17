@@ -15,6 +15,7 @@ export default function PopupChangeAvatar() {
     const [maxWidth, setMaxWidth] = React.useState('sm')
     const [previewImg, setPreviewImg] = useState('')
     const [loadAvatar, setLoadAvatar] = useState(null)
+    const [showMessage, setShowMessage] = useState(false)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -48,12 +49,18 @@ export default function PopupChangeAvatar() {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
         })
 
-        console.log(response.status)
+
+        console.log(response)
+        if(response.ok) {
+            setPreviewImg('')
+            setShowMessage(true)
+        }
 
     }
 
     const deleteFile = () => {
         setPreviewImg('')
+
     }
 
     return (
@@ -62,6 +69,7 @@ export default function PopupChangeAvatar() {
                                   handleClose={handleClose}
                                   deleteFile={deleteFile}
                                   sendAvatar={sendAvatar}
+                                  showMessage={showMessage}
                                   open={open}
                                   fullWidth={fullWidth}
                                   maxWidth={maxWidth}
