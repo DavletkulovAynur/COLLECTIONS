@@ -11,6 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 import './PopupChangeAvatar.scss'
+import {ShowMessage} from "../ShowMessage/ShowMessage";
+
+
 
 
 export default function PopupChangeAvatarTemplate({fileUploadHandler,
@@ -18,11 +21,14 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
                                                       handleClose,
                                                       deleteFile,
                                                       sendAvatar,
+                                                      showMessage,
                                                       maxWidth,
                                                       open,
                                                       fullWidth,
                                                       previewImg}) {
     const classes = useStyles();
+
+
 
     return (
         <React.Fragment>
@@ -41,7 +47,7 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
 
                     <DialogContentText>
                         {!previewImg
-                        ? <div className={classes.root}>
+                        ? <div className={`${classes.root} button-load-image`}>
                                 <input
                                     accept="image/*"
                                     className={classes.input}
@@ -64,11 +70,13 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
                             </div>
                         : <div className='preview-img-wrapper'>
                                 <img src={previewImg} className='preview-img'/>
-                                <div>
+                                <div className='preview-buttons'>
                                     <Button onClick={sendAvatar} color="primary">Оправить</Button>
                                     <Button onClick={deleteFile} color="secondary">Отмена</Button>
                                 </div>
                             </div>}
+
+                            <ShowMessage showMessage={showMessage}/>
 
                     </DialogContentText>
 
@@ -98,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
     },
     root: {
+        margin: 'auto',
         '& > *': {
             margin: theme.spacing(1),
         },

@@ -1,6 +1,25 @@
 
-.preview-img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
+.preview-img-wrapper {
+  //display: flex;
+  //justify-content: center;
+  //flex-direction: column;
+  //align-items: center;
+  max-width: 300px;
+  margin: auto;
+  .preview-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .preview-buttons {
+    margin-top: 12px;
+  }
+}
+
+
+.button-load-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
