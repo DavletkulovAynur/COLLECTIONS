@@ -1,17 +1,17 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useHttp} from "Common/utils/hooks/http.hook";
-import {AuthContext} from "App/context/AuthContext";
+
 import {useDispatch, useSelector} from "react-redux";
 
 // Оптимизировать работу
 export function Bookmark({id}) {
-  const auth = useContext(AuthContext)
-  const {error, request, clearError} = useHttp()
+  const {userId} = useSelector((state) => state.authReducer)
+  const {request} = useHttp()
   const [bookmarkState, setBookmarkState] = useState([])
   const users = useSelector(state => state.usersReducer)
 
   useEffect(() => {
-    const user = users.filter((item) => item._id === auth.userId)
+    const user = users.filter((item) => item._id === userId)
     user.map((item) => {
       setBookmarkState([...item.bookmark])
     })
@@ -22,7 +22,7 @@ export function Bookmark({id}) {
     e.persist();
     const bookmark = {
       bookmarkID: e.target.id,
-      id: auth.userId
+      id: userId
     }
 
     try {

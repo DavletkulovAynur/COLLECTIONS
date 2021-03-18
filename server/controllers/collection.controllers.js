@@ -44,7 +44,7 @@ class CollectionControllers {
 		}
 	}
 
-	async getOwnerUserCollection(req, res){
+	async getOwnerUserCollection(req, res) {
 		try {
 		const {userId} = req.body
 			const collection = await COLLECTION_MODEL.find({owner: userId})
@@ -54,7 +54,18 @@ class CollectionControllers {
 		}
 	}
 
-	async updateCollectionComment(req, res){
+	async getBookmarkCollection(req, res) {
+		try {
+			// test
+			const {id} = req.body
+			const bookmarkCollection = await COLLECTION_MODEL.find({_id: id})
+
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
+	async updateCollectionComment(req, res) {
 		const {description, id, title, author} = req.body
 			const commentObj = {
 				title,
