@@ -1,5 +1,5 @@
 import MuiAlert from "@material-ui/lab/Alert";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 
 function Alert(props) {
@@ -7,17 +7,21 @@ function Alert(props) {
 }
 
 export function ShowMessage({showMessage}) {
+    const [open, setOpen] = useState(false);
 
+    useEffect(() => {
+        setOpen(showMessage)
+    }, [showMessage])
 
     const close = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
 
-        // setOpenTest(false);
+        setOpen(false);
     };
     return (
-        <Snackbar open={showMessage} autoHideDuration={6000} onClose={close}>
+        <Snackbar open={open} autoHideDuration={3000} onClose={close}>
             <Alert onClose={close} severity="success">
                 This is a success message!
             </Alert>
