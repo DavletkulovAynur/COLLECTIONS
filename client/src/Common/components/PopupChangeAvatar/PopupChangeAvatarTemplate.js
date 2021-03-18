@@ -12,6 +12,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 import './PopupChangeAvatar.scss'
 import {ShowMessage} from "../ShowMessage/ShowMessage";
+import {Loading} from "../Loading/Loading";
 
 
 
@@ -21,6 +22,7 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
                                                       handleClose,
                                                       deleteFile,
                                                       sendAvatar,
+                                                      loading,
                                                       showMessage,
                                                       maxWidth,
                                                       open,
@@ -29,6 +31,7 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
     const classes = useStyles();
 
 
+    console.log(loading)
 
     return (
         <React.Fragment>
@@ -44,41 +47,43 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
             >
                 <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
                 <DialogContent>
-
-                    <DialogContentText>
-                        {!previewImg
-                        ? <div className={`${classes.root} button-load-image`}>
-                                <input
-                                    accept="image/*"
-                                    className={classes.input}
-                                    id="contained-button-file"
-                                    multiple
-                                    type="file"
-                                    onChange={(event) => fileUploadHandler(event)}
-                                />
-                                <label htmlFor="contained-button-file">
-                                    <Button variant="contained" color="primary" component="span">
-                                        Upload
-                                    </Button>
-                                </label>
-                                <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
-                                <label htmlFor="icon-button-file">
-                                    <IconButton color="primary" aria-label="upload picture" component="span">
-                                        <PhotoCamera />
-                                    </IconButton>
-                                </label>
-                            </div>
-                        : <div className='preview-img-wrapper'>
-                                <img src={previewImg} className='preview-img'/>
-                                <div className='preview-buttons'>
-                                    <Button onClick={sendAvatar} color="primary">Оправить</Button>
-                                    <Button onClick={deleteFile} color="secondary">Отмена</Button>
+                    {loading
+                        ? <Loading colorLoading={'#000'}/>
+                        : <DialogContentText>
+                            {!previewImg
+                                ? <div className={`${classes.root} button-load-image`}>
+                                    <input
+                                        accept="image/*"
+                                        className={classes.input}
+                                        id="contained-button-file"
+                                        multiple
+                                        type="file"
+                                        onChange={(event) => fileUploadHandler(event)}
+                                    />
+                                    <label htmlFor="contained-button-file">
+                                        <Button variant="contained" color="primary" component="span">
+                                            Upload
+                                        </Button>
+                                    </label>
+                                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+                                    <label htmlFor="icon-button-file">
+                                        <IconButton color="primary" aria-label="upload picture" component="span">
+                                            <PhotoCamera />
+                                        </IconButton>
+                                    </label>
                                 </div>
-                            </div>}
+                                : <div className='preview-img-wrapper'>
+                                    <img src={previewImg} className='preview-img'/>
+                                    <div className='preview-buttons'>
+                                        <Button onClick={sendAvatar} color="primary">Оправить</Button>
+                                        <Button onClick={deleteFile} color="secondary">Отмена</Button>
+                                    </div>
+                                </div>}
 
                             <ShowMessage showMessage={showMessage}/>
 
-                    </DialogContentText>
+                        </DialogContentText>}
+
 
                 </DialogContent>
                 <DialogActions>

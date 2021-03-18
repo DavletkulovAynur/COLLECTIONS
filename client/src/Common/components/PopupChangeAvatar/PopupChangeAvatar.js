@@ -16,6 +16,7 @@ export default function PopupChangeAvatar() {
     const [previewImg, setPreviewImg] = useState('')
     const [loadAvatar, setLoadAvatar] = useState(null)
     const [showMessage, setShowMessage] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -40,6 +41,7 @@ export default function PopupChangeAvatar() {
     }
 
     const sendAvatar = async () => {
+        setLoading(true)
         const formData = new FormData()
         formData.append('avatar', avatar)
         formData.append('file', loadAvatar)
@@ -52,6 +54,8 @@ export default function PopupChangeAvatar() {
 
         console.log(response)
         if(response.ok) {
+            console.log('super')
+            setLoading(false)
             setPreviewImg('')
             setShowMessage(true)
         }
@@ -69,6 +73,7 @@ export default function PopupChangeAvatar() {
                                   handleClose={handleClose}
                                   deleteFile={deleteFile}
                                   sendAvatar={sendAvatar}
+                                  loading={loading}
                                   showMessage={showMessage}
                                   open={open}
                                   fullWidth={fullWidth}
