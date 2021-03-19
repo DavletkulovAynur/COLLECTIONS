@@ -40,9 +40,6 @@ export default function PopupChangeUserInfo() {
 
     return (
         <React.Fragment>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Change User Info
-            </Button>
             <Dialog
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}

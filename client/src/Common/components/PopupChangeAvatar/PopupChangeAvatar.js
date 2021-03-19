@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import './PopupChangeAvatar.scss'
 import PopupChangeAvatarTemplate from './PopupChangeAvatarTemplate'
+import {openPopupChangeAvatar} from "../../../Redux/actions/action";
 
 
 
@@ -10,7 +11,9 @@ import PopupChangeAvatarTemplate from './PopupChangeAvatarTemplate'
 export default function PopupChangeAvatar() {
     let reader = new FileReader()
     const {avatar, userName} = useSelector((state) => state.authReducer)
-    const [open, setOpen] = React.useState(false)
+    const {statePopup} = useSelector((state) => state.personalPageReducer)
+    const dispatch = useDispatch()
+
     const [fullWidth, setFullWidth] = React.useState(true)
     const [maxWidth, setMaxWidth] = React.useState('sm')
     const [previewImg, setPreviewImg] = useState('')
@@ -18,12 +21,8 @@ export default function PopupChangeAvatar() {
     const [showMessage, setShowMessage] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
     const handleClose = () => {
-        setOpen(false);
+        dispatch(openPopupChangeAvatar(false))
     };
 
     async  function fileUploadHandler(event) {
@@ -69,13 +68,12 @@ export default function PopupChangeAvatar() {
 
     return (
        <PopupChangeAvatarTemplate fileUploadHandler={fileUploadHandler}
-                                  handleClickOpen={handleClickOpen}
                                   handleClose={handleClose}
                                   deleteFile={deleteFile}
                                   sendAvatar={sendAvatar}
                                   loading={loading}
                                   showMessage={showMessage}
-                                  open={open}
+                                  open={statePopup}
                                   fullWidth={fullWidth}
                                   maxWidth={maxWidth}
                                   previewImg={previewImg}/>

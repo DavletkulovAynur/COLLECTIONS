@@ -1,6 +1,7 @@
 import {
   APP_ALERT_HIDDEN,
-  APP_ALERT_SHOW, APP_ERROR,
+  APP_ALERT_SHOW,
+  APP_ERROR,
   APP_HIDE_LOADING,
   APP_LOADING,
 
@@ -10,7 +11,12 @@ import {
 
   GET_ALL_USERS,
 
-  SAGA_AUTH_TOKEN, SAGA_LOGIN, DISPATCH_COLLECTION, LOAD_IMG_DRAG_AND_DROP,
+  SAGA_AUTH_TOKEN,
+  SAGA_LOGIN,
+  DISPATCH_COLLECTION,
+  LOAD_IMG_DRAG_AND_DROP,
+  GET_BOOKMARK_COLLECTION,
+  PERSONAL_PAGE_AVATAR_POPUP,
 } from '../types'
 
 // APP
@@ -67,6 +73,13 @@ export function getMyCollection(payload) {
   })
 }
 
+export function getBookmarkCollectionAction(payload){
+  return({
+    type: GET_BOOKMARK_COLLECTION,
+    payload
+  })
+}
+
 
 //ADD Collection
 export function addCollectionAction(payload) {
@@ -100,6 +113,14 @@ export function checkToken() {
 export function loginAction(payload) {
   return({
     type: SAGA_LOGIN,
+    payload
+  })
+}
+
+//PERSONAL_PAGE
+export function openPopupChangeAvatar(payload) {
+  return({
+    type: PERSONAL_PAGE_AVATAR_POPUP,
     payload
   })
 }
