@@ -1,15 +1,12 @@
 export default function(url, method, body = null, headers = {}) {
   return new Promise((resolve, reject) => {
 
-    let _headers = {
+   let _headers = {
       'Content-Type': 'application/json'
     };
 
-    if (headers) {
-      if (headers['Content-Type']){
-        _headers['Content-Type'] = headers['Content-Type'];
-      }
-      _headers = {..._headers, headers};
+    if (!headers['Content-Type']) {
+        _headers = {...headers, ..._headers}
     }
 
     const data = body ? JSON.stringify(body) : null

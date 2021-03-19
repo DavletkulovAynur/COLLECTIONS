@@ -56,12 +56,25 @@ class CollectionControllers {
 
 	async getBookmarkCollection(req, res) {
 		try {
-			// test
-			const {id} = req.body
-			const bookmarkCollection = await COLLECTION_MODEL.find({_id: id})
+
+			const {data } = req.body
+
+			// Promise
+			new Promise((resolve, reject) => {
+				const allCollection = COLLECTION_MODEL.find()
+				resolve(allCollection)
+			}).then((allCollection) => {
+				const bookmarkSave = allCollection.filter((i) => data.includes(String(i._id)))
+				res.status(201).json(bookmarkSave)
+			}).catch((error) => {
+				console.log(error)
+			})
+
+
 
 		} catch (e) {
 			console.log(e)
+			// выводить ошибку
 		}
 	}
 

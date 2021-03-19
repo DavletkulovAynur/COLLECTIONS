@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {CommonCard} from '../../../Common/components/CommonCard/CommonCard'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
+
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
@@ -10,17 +10,29 @@ import './PersonalArea.scss'
 import {API_URL} from "../../../config";
 import PopupChangeAvatar from "../../../Common/components/PopupChangeAvatar/PopupChangeAvatar";
 import PopupChangeUserInfo from "../../../Common/components/PopupChangeUserInfo/PopupChangeUserInfo";
-import Button from '@material-ui/core/Button';
+
+
+import Paper from '@material-ui/core/Paper';
+
+import MenuListComposition from "../../../Common/components/MenuListComposition/MenuListComposition";
 
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
-    },
+    }
 });
 
-const PersonalAreaTemplate = ({avatar, myCollection, userName}) => {
+const PersonalAreaTemplate = ({avatar, myCollection, userName, bookmarkCollection}) => {
+    const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
+    //
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
+
+
+    const changeStateAvatar = () => {
+        setOpenChangeAvatar(true)
+    }
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -35,9 +47,13 @@ const PersonalAreaTemplate = ({avatar, myCollection, userName}) => {
             <div className='edit-user'>
 
                 <div className='user'>
-                    <img src={avatarUrl} className='avatar'/>
-                    <div className='user-info'>
+                    <div>
+                        <img src={avatarUrl} className='avatar'/>
                         <section className='user-name'>{userName}</section>
+                        <MenuListComposition changeStateAvatar={changeStateAvatar}/>
+                    </div>
+
+                    <div className='user-info'>
                         <section className='publication'>
                             <div className='item'>
                                 <span>101</span>
@@ -60,15 +76,10 @@ const PersonalAreaTemplate = ({avatar, myCollection, userName}) => {
 
                 <div className='edit-button'>
                     <div className='item'>
-                        <PopupChangeAvatar/>
+                        <PopupChangeAvatar openChangeAvatar={openChangeAvatar} changeStateAvatar={changeStateAvatar}/>
                     </div>
                     <div className='item'>
                         <PopupChangeUserInfo/>
-                    </div>
-                    <div className='item'>
-                        <Button variant="outlined" color="primary">
-                            Выйти
-                        </Button>
                     </div>
                 </div>
             </div>
@@ -92,7 +103,7 @@ const PersonalAreaTemplate = ({avatar, myCollection, userName}) => {
         <div className='Collections-list'>
             <div className='Com-main-grid'>
                 {value == '0' ? <CommonCard data={myCollection}/> : null}
-                {value == '1' ? 'сохраненных коллекций не найдено' : ''}
+                {value == '1' ? <CommonCard data={bookmarkCollection}/> : null}
             </div>
         </div>
     </div>

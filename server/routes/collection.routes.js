@@ -15,6 +15,8 @@ router.put('/comment-update',collectionControllers.updateCollectionComment)
 
 router.post('/search',collectionControllers.searchCollection)
 
+router.post('/get-bookmark', authMiddleware, collectionControllers.getBookmarkCollection)
+
 module.exports = router
 
 

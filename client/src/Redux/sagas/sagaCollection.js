@@ -1,5 +1,10 @@
 import {put, call} from 'redux-saga/effects'
-import {SUCCESSFULLY_SEND_COLLECTION, WRITE_DOWN_ALL_COLLECTION, WRITE_DOWN_COLLECTION} from '../types'
+import {
+	SUCCESSFULLY_SEND_COLLECTION, WRITE_BOOKMARK_COLLECTION,
+	WRITE_DOWN_ALL_COLLECTION,
+	WRITE_DOWN_ALL_USERS, WRITE_DOWN_BOOKMARK_COLLECTION,
+	WRITE_DOWN_COLLECTION
+} from '../types'
 import {appError, appHideLoading} from '../actions/action'
 import Fetcher from '../../Common/utils/fetch'
 
@@ -25,6 +30,27 @@ export function* getOwnerUserCollection(data) {
 	} catch (e) {
 		console.log(e)
 		yield put(appError())
+	}
+}
+
+export function* getBookmarkCollection(formData) {
+	try {
+
+		const test = {
+			data: formData.payload
+		}
+
+
+		const payload = yield call(() => Fetcher(
+			'http://localhost:5000/collection/get-bookmark',
+			'POST',
+			test,
+			{Authorization: `Bearer ${localStorage.getItem('token')}`}))
+
+		yield put({type: WRITE_DOWN_BOOKMARK_COLLECTION, payload})
+
+	} catch (e) {
+		console.log(e)
 	}
 }
 

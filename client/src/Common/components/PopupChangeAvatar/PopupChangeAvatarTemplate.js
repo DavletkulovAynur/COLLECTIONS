@@ -18,7 +18,6 @@ import {Loading} from "../Loading/Loading";
 
 
 export default function PopupChangeAvatarTemplate({fileUploadHandler,
-                                                      handleClickOpen,
                                                       handleClose,
                                                       deleteFile,
                                                       sendAvatar,
@@ -35,9 +34,6 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
 
     return (
         <React.Fragment>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Change Avatar
-            </Button>
             <Dialog
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
