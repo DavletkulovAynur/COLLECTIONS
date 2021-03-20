@@ -1,8 +1,12 @@
 import React from 'react'
 import {useInput} from 'Common/utils/hooks/input.hook'
 import Button from "Common/components/Button/Button";
+import {useDispatch} from "react-redux";
+import {registrationAction} from "../../../../Redux/actions/action";
 
-export const Registration = ({fetchRegistration, changeStateLogin}) => {
+export const Registration = ({changeStateLogin}) => {
+    const dispatch = useDispatch()
+
   const username = useInput('')
   const email = useInput('')
   const password = useInput('')
@@ -13,7 +17,8 @@ export const Registration = ({fetchRegistration, changeStateLogin}) => {
       email: email.value,
       password: password.value
     }
-    fetchRegistration(user)
+
+    dispatch(registrationAction(user))
     e.preventDefault()
   }
 

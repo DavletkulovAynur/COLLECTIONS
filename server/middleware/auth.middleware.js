@@ -10,13 +10,13 @@ module.exports = (req, res, next) => {
 		const token = req.headers.authorization.split(' ')[1]
 		console.log('token', token)
 		if (!token) {
-			return res.status(401).json({message: 'Auth error'})
+			return res.status(401).json({message: 'Auth error', status: false})
 		}
 		const decoded = jwt.verify(token, config.get('jwtSecret'))
-		console.log('decoded', decoded)
+
 		req.user = decoded
 		next()
 	} catch (e) {
-		return res.status(401).json({message: 'Auth error catch'})
+		return res.status(401).json({message: 'Auth error catch', status: false})
 	}
 }

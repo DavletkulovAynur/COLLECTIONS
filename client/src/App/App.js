@@ -8,9 +8,7 @@ import {checkToken, getAllCollection, getAllUsers, getMyCollection} from 'Redux/
 
 function App() {
   const dispatch = useDispatch()
-  const {login, token, userId, ready, userName, avatar} = useSelector((state) => state.authReducer)
-
-  const isAuthenticated = !!token
+  const {login, token, userId, ready, userName, avatar, isAuthenticated} = useSelector((state) => state.authReducer)
 
   const routes = useRoutes(isAuthenticated)
 

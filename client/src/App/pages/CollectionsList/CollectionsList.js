@@ -3,18 +3,16 @@ import './CollectionsList.scss'
 import {useSelector} from "react-redux";
 import {Loading} from '../../../Common/components/Loading/Loading'
 import {CommonCard} from '../../../Common/components/CommonCard/CommonCard'
-import {useRouter} from '../../../Common/utils/hooks/useRouter.hook'
+
 
 function CollectionsList() {
 	const {allCollection} = useSelector(state => state.collectionReducer)
 	const loading = useSelector(state => state.appReducer.loading)
 	const error = useSelector(state => state.appReducer.error)
-	const {myCollection} = useSelector(state => state.collectionReducer)
-	const {pathname} = useRouter()
+	// const {myCollection} = useSelector(state => state.collectionReducer)
 
 
 
-	// красиво сделать
 	if(error) {
 		return (
 			<div className='Collections-list'>
@@ -26,6 +24,7 @@ function CollectionsList() {
 			</div>
 		)
 	}
+
 	if(loading) {
 		return (
 			<div className='Collections-list'>
@@ -35,18 +34,6 @@ function CollectionsList() {
 			</div>
 		)
 	}
-
-	if(pathname === '/my-collection'){
-		return (
-			<div className='Collections-list'>
-				<div className='Com-main-grid'>
-					<CommonCard data={myCollection}/>
-				</div>
-			</div>
-		)
-	}
-
-
 
 	return (
 		<div className='Collections-list'>

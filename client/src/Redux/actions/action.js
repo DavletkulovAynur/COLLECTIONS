@@ -16,7 +16,7 @@ import {
   DISPATCH_COLLECTION,
   LOAD_IMG_DRAG_AND_DROP,
   GET_BOOKMARK_COLLECTION,
-  PERSONAL_PAGE_AVATAR_POPUP,
+  PERSONAL_PAGE_AVATAR_POPUP, LOGOUT, REGISTRATION,
 } from '../types'
 
 // APP
@@ -113,6 +113,19 @@ export function checkToken() {
 export function loginAction(payload) {
   return({
     type: SAGA_LOGIN,
+    payload
+  })
+}
+
+export function logoutAction() {
+  return({
+    type: LOGOUT
+  })
+}
+
+export function registrationAction(payload) {
+  return({
+    type: REGISTRATION,
     payload
   })
 }
