@@ -24,11 +24,11 @@ export default function(url, method, body = null, headers = {}) {
           let data = await res.json(res);
           reject({ status: res.status, statusText: res.statusText, error: data.error || '' });
         } else {
-          return res.json(res)
+          return res
         }
       })
-      .then((data) => {
-        resolve(data)
+      .then((res) => {
+        resolve({status: res.status})
       })
       .catch(err => {reject(err)});
   });

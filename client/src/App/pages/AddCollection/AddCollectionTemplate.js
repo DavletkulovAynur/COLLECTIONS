@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
-import {InputBase, makeStyles, TextField} from '@material-ui/core';
+import {makeStyles, TextField} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
 
 import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 
-  const AddCollectionTemplate = ({title, errorTitle,
+  const AddCollectionTemplate = ({title,
+                                 errorTitle,
                                  publisher,
                                  description,
                                  handleSubmit}) => {
@@ -21,16 +22,20 @@ import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
           <DragAndDrop/>
 
           <div className='wrapper-text-field'>
-            <TextField error={errorTitle}  {...title.bind}  name='test' required
+            <TextField error={errorTitle}
+                       {...title.bind}
+                       name='test'
+                       required
                         id="filled-basic"
                         label="title" variant="filled"
                         InputLabelProps={{className: classes.multilineColor}}
                         classes={{root: classes.root}}
                         InputProps={{className: classes.input}}/>
-          </div>
+            </div>
 
           <div className='wrapper-text-field'>
-            <TextField {...publisher.bind} id="filled-basic"
+            <TextField {...publisher.bind}
+                       id="filled-basic"
                        label="publisher"
                        variant="filled"
                        InputLabelProps={{className: classes.multilineColor}}

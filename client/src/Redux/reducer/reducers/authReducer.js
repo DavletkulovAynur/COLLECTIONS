@@ -1,4 +1,4 @@
-import {WRITE_REDUCER_TOKEN, LOGIN_AUTHENTICATION} from '../../types'
+import {WRITE_REDUCER_TOKEN, LOGIN_AUTHENTICATION, LOGOUT} from '../../types'
 
 function noop() {}
 
@@ -24,10 +24,23 @@ export const authReducer = (state = initialState, action) => {
         userName: action.payload.userName,
         bookmark: action.payload.bookmark,
         avatar: action.payload.avatar,
+        isAuthenticated: true,
         ready: true}
 		case WRITE_REDUCER_TOKEN:
       const {token, userId, userName, bookmark, avatar} = action.payload
-			return {...state, token, userId, userName, bookmark, avatar, ready: true}
+			return {
+                ...state,
+                token,
+                userId,
+                userName,
+                bookmark,
+                avatar,
+                isAuthenticated: true,
+                ready: true}
+        case LOGOUT:
+            console.log('logout')
+            return {...state, isAuthenticated: false, token: null, ready: true}
+
 		default:
 			return {...state}
 	}

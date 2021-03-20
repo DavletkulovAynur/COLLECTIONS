@@ -1,5 +1,5 @@
 const path = require('path')
-const File = require('../models/File')
+
 const USER_MODEL = require('../models/user')
 const fs = require('fs')
 const Uuid = require('uuid')
@@ -29,9 +29,6 @@ class UploadTest {
         console.log(e)
       }
 
-      // await dbFile.save()
-
-      // res.json(dbFile)
 
     } catch (e) {
      console.log(e)
