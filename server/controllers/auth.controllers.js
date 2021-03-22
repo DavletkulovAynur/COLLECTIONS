@@ -75,7 +75,8 @@ class AuthControllers {
 					{ expiresIn: '1h'}
 			)
       // проблема
-      res.json({ token,
+      res.json({
+	  	token,
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,
@@ -94,7 +95,8 @@ class AuthControllers {
 
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
 
-      return res.json({ token,
+      return res.json({
+	  	token,
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,

@@ -1,11 +1,12 @@
 import {call, put} from 'redux-saga/effects'
 import {WRITE_REDUCER_TOKEN, LOGIN_AUTHENTICATION, LOGOUT} from '../types'
 import Fetcher from '../../Common/utils/fetch'
-import {ShowMessage} from "../../Common/components/ShowMessage/ShowMessage";
+import {ShowMessage} from '../../Common/components/ShowMessage/ShowMessage'
 
 
 export function* login(user) {
 	try {
+		console.log('user:', user)
 		const payload = yield call(() => Fetcher('http://localhost:5000/auth/login',
 											'POST',
 											user.payload,))
@@ -19,14 +20,12 @@ export function* login(user) {
 export function* auth() {
 	try {
 
-		const payload = yield call(() => Fetcher('http://localhost:5000/auth/testAuth', 'GET', '', {
+		const payload = yield call(() => Fetcher('http://localhost:5000/auth/auth', 'GET', '', {
 			Authorization:`Bearer ${localStorage.getItem('token')}`
 		}))
-		console.log('получаем данные', payload)
+
 
 		yield put({type: WRITE_REDUCER_TOKEN, payload})
-
-
 
 	} catch (e) {
 		yield put({type: LOGOUT})
@@ -34,16 +33,16 @@ export function* auth() {
 	}
 }
 
-export function* registration({payload}) {
+export function* registration({user}) {
 	try {
 		console.log(payload)
-		const data = yield call(() => Fetcher('http://localhost:5000/auth/register', 'POST', payload))
+		const payload = yield call(() => Fetcher('http://localhost:5000/auth/register', 'POST', user))
 
-		console.log(data)
-		// if(data.status.ok) {
-		// 	console.log('super')
-		// 	ShowMessage(true)
-		// }
+		const {status} = payload
+		if(status.ok) {
+			console.log('super')
+			ShowMessage(true)
+		}
 	} catch (e) {
 		console.log(e)
 	}

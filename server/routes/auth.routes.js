@@ -19,6 +19,6 @@ router.post('/login',
     check('password', 'Введите пароль').exists()
   ], authControllers.login)
 
-router.get('/testAuth', authMiddleware, authControllers.auth)
+router.get('/auth', authMiddleware, authControllers.auth)
 
 module.exports = router

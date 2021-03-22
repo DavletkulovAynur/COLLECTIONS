@@ -18,18 +18,28 @@ export default function(url, method, body = null, headers = {}) {
       cors: true
     }
 
+    console.log(options)
+
       fetch(`${url}`, options)
       .then(async (res) => {
+
         if(!res.ok) {
+            console.log('then-super', res)
           let data = await res.json(res);
           reject({ status: res.status, statusText: res.statusText, error: data.error || '' });
         } else {
-          return res
+
+          return (res)
         }
       })
-      .then((res) => {
-        resolve({status: res.status})
+      .then( async (res) => {
+          console.log('res:', res)
+        let data = await res.json(res);
+        resolve({status: res.status, statusText: res.statusText, data})
       })
-      .catch(err => {reject(err)});
+      .catch(err => {
+          console.log('catch-error')
+          reject(err)
+      });
   });
 }
