@@ -7,13 +7,14 @@ const initialState = {
 }
 
 export const collectionReducer = (state = initialState, action) => {
+  console.log(action.payload)
   switch (action.type) {
     case WRITE_DOWN_COLLECTION:
-      return {...state, myCollection: [...action.payload]}
+      return {...state, myCollection: [...action.payload.data]}
     case WRITE_DOWN_ALL_COLLECTION:
-      return  {...state, allCollection: [...action.payload]}
+      return  {...state, allCollection: [...action.payload.data]}
     case WRITE_DOWN_BOOKMARK_COLLECTION:
-      return {...state, bookmarkCollection: [...action.payload]}
+      return {...state, bookmarkCollection: [...action.payload.data]}
     default:
       return state
   }

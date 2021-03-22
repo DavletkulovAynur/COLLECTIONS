@@ -5,17 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 
 // Оптимизировать работу
 export function Bookmark({id}) {
-  const {userId} = useSelector((state) => state.authReducer)
+  const {userId, bookmark} = useSelector((state) => state.authReducer)
   const {request} = useHttp()
-  const [bookmarkState, setBookmarkState] = useState([])
-  const users = useSelector(state => state.usersReducer)
 
-  useEffect(() => {
-    const user = users.filter((item) => item._id === userId)
-    user.map((item) => {
-      setBookmarkState([...item.bookmark])
-    })
-  }, [users])
 
   //  e.persist(); ??????????
   const saveMyCollection = async (e) => {
@@ -26,16 +18,16 @@ export function Bookmark({id}) {
     }
 
     try {
-      if(bookmarkState.includes(e.target.id)) {
+      if(bookmark.includes(e.target.id)) {
         const data = await request('http://localhost:5000/users/delete-bookmark', 'PUT', bookmark)
-        const newArr = bookmarkState.filter((item) => {
+        const newArr = bookmark.filter((item) => {
           return item != e.target.id
         })
-        setBookmarkState(newArr)
+        // setBookmarkState(newArr)
       } else {
         const data = await request('http://localhost:5000/users/save-bookmark', 'PUT', bookmark)
         const newElement = e.target.id
-        setBookmarkState([...bookmarkState,  newElement])
+        // setBookmarkState([...bookmarkState,  newElement])
       }
     } catch (e) {
       console.log('ERROR', e)
@@ -48,7 +40,7 @@ export function Bookmark({id}) {
       <div
         id={id}
         onClick={saveMyCollection}
-        className={`info-bookmark ${bookmarkState.includes(id) ? 'info-bookmark-active' : ''}`}>
+        className={`info-bookmark ${bookmark.includes(id) ? 'info-bookmark-active' : ''}`}>
       </div>
     </>
 

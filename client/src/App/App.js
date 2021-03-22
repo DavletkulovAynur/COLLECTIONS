@@ -28,6 +28,7 @@ function App() {
     return null
   }
 
+
   if(token) {
     localStorage.setItem('token', token)
   }

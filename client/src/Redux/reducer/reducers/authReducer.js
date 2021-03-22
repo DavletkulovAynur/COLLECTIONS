@@ -14,31 +14,33 @@ const initialState = {
   avatar: ''
 }
 
-// подумать над actions
+// исправить вложенность
 export const authReducer = (state = initialState, action) => {
-	switch (action.type){
+
+
+	switch (action.type) {
+
 		case LOGIN_AUTHENTICATION:
+            const {data} = action.payload
 			return {...state,
-        token: action.payload.token,
-        userId: action.payload.userId ,
-        userName: action.payload.userName,
-        bookmark: action.payload.bookmark,
-        avatar: action.payload.avatar,
-        isAuthenticated: true,
-        ready: true}
+                    token: data.token,
+                    userId: data.userId ,
+                    userName: data.userName,
+                    bookmark: data.bookmark,
+                    avatar: data.avatar,
+                    isAuthenticated: true,
+                    ready: true}
 		case WRITE_REDUCER_TOKEN:
-      const {token, userId, userName, bookmark, avatar} = action.payload
-			return {
-                ...state,
-                token,
-                userId,
-                userName,
-                bookmark,
-                avatar,
-                isAuthenticated: true,
-                ready: true}
+
+            return {...state,
+                        token: action.payload.data.token,
+                        userId: action.payload.data.userId ,
+                        userName: action.payload.data.userName,
+                        bookmark: action.payload.data.bookmark,
+                        avatar: action.payload.data.avatar,
+                        isAuthenticated: true,
+                        ready: true}
         case LOGOUT:
-            console.log('logout')
             return {...state, isAuthenticated: false, token: null, ready: true}
 
 		default:
