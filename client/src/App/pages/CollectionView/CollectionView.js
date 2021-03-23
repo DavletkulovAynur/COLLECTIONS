@@ -7,7 +7,7 @@ import {CollectionViewTemplate} from './Components/CollectionViewTemplate'
 import './CollectionView.scss'
 
 
-function CollectionView(props) {
+function CollectionView() {
 
   const router = useRouter()
   const {allCollection} = useSelector(state => state.collectionReducer)

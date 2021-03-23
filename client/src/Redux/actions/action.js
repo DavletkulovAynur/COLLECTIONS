@@ -16,7 +16,7 @@ import {
   DISPATCH_COLLECTION,
   LOAD_IMG_DRAG_AND_DROP,
   GET_BOOKMARK_COLLECTION,
-  PERSONAL_PAGE_AVATAR_POPUP, LOGOUT, REGISTRATION, DELETE_BOOKMARK, ADD_BOOKMARK,
+  PERSONAL_PAGE_AVATAR_POPUP, LOGOUT, REGISTRATION, DELETE_BOOKMARK, ADD_BOOKMARK, BOOKMARK_ADD_REMOVE,
 } from '../types'
 
 // APP
@@ -47,14 +47,6 @@ export function appHideLoading() {
 export function appError() {
   return({
     type: APP_ERROR
-  })
-}
-//
-
-//USERS
-export function getAllUsers() {
-  return({
-    type: GET_ALL_USERS
   })
 }
 
@@ -150,5 +142,11 @@ export function addBookmarkAction(payload) {
   return({
     type: ADD_BOOKMARK,
     payload
+  })
+}
+
+export function addBookmarkRemoveEventShowMessage() {
+  return({
+    type: BOOKMARK_ADD_REMOVE
   })
 }

@@ -9,8 +9,6 @@ function CollectionsList() {
 	const {allCollection} = useSelector(state => state.collectionReducer)
 	const loading = useSelector(state => state.appReducer.loading)
 	const error = useSelector(state => state.appReducer.error)
-	// const {myCollection} = useSelector(state => state.collectionReducer)
-
 
 
 	if(error) {

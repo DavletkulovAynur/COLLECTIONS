@@ -2,7 +2,6 @@ import {put, call} from 'redux-saga/effects'
 import {
 	SUCCESSFULLY_SEND_COLLECTION,
 	WRITE_DOWN_ALL_COLLECTION,
-	WRITE_DOWN_BOOKMARK_COLLECTION,
 	WRITE_DOWN_COLLECTION
 } from '../types'
 import {appError, appHideLoading} from '../actions/action'

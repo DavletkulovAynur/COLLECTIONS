@@ -20,7 +20,6 @@ function App() {
     if(isAuthenticated) {
       dispatch(getMyCollection(userId))
       dispatch(getAllCollection())
-      dispatch(getAllUsers())
     }
   }, [isAuthenticated])
 
