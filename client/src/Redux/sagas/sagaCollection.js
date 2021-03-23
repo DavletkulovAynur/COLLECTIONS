@@ -33,24 +33,6 @@ import Fetcher from '../../Common/utils/fetch'
 		}
 	}
 
-	export function* getBookmarkCollection(formData) {
-		try {
-			const test = {
-				data: formData.payload
-			}
-			const payload = yield call(() => Fetcher(
-				'http://localhost:5000/collection/get-bookmark',
-				'POST',
-				test,
-				{Authorization: `Bearer ${localStorage.getItem('token')}`}))
-
-			yield put({type: WRITE_DOWN_BOOKMARK_COLLECTION, payload})
-
-		} catch (e) {
-			console.log(e)
-		}
-	}
-
 	// payload ???
 	export function* addCollection(formData) {
 	  try {

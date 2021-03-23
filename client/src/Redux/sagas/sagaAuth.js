@@ -12,6 +12,7 @@ export function* login(user) {
 											user.payload,))
 
 		yield put({type: LOGIN_AUTHENTICATION, payload})
+		yield put({type: '', payload})
 	} catch (e) {
 		console.log(e)
 	}
@@ -40,7 +41,6 @@ export function* registration({user}) {
 
 		const {status} = payload
 		if(status.ok) {
-			console.log('super')
 			ShowMessage(true)
 		}
 	} catch (e) {

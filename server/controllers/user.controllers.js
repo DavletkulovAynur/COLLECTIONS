@@ -14,9 +14,9 @@ class UserControllers {
 	}
 
 	async saveBookmark(req, res){
-	const {bookmarkID, id} = req.body
+	const {bookmarkID} = req.body
 		try {
-			await USER_MODEL.update({_id: id}, {$addToSet: {bookmark: bookmarkID}})
+			await USER_MODEL.update({_id: req.user.id}, {$addToSet: {bookmark: bookmarkID}})
 			res.status(201).json({message: 'bookmark update'})
 		} catch (e) {
 			console.log(e)
@@ -24,9 +24,9 @@ class UserControllers {
 	}
 
 	async deleteBookmark(req, res){
-		const {bookmarkID, id} = req.body
+		const {bookmarkID} = req.body
 		try {
-			await USER_MODEL.update({_id: id}, {$pull: {bookmark: bookmarkID}})
+			const test = await USER_MODEL.update({_id: req.user.id}, {$pull: {bookmark: bookmarkID}})
 			res.status(201).json({message: 'bookmark delete'})
 		} catch (e) {
 			console.log(e)

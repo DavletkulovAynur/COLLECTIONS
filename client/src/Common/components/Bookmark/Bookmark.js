@@ -1,33 +1,23 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {useHttp} from "Common/utils/hooks/http.hook";
+import React from 'react'
 
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from 'react-redux'
+import {addBookmarkAction, bookmarkDeleteAction} from '../../../Redux/actions/action'
 
-// Оптимизировать работу
 export function Bookmark({id}) {
-  const {userId, bookmark} = useSelector((state) => state.authReducer)
-  const {request} = useHttp()
+  const {bookmark} = useSelector((state) => state.authReducer)
+  const dispatch = useDispatch()
 
-
-  //  e.persist(); ??????????
   const saveMyCollection = async (e) => {
-    e.persist();
-    const bookmark = {
+    const bookmarkInfo = {
       bookmarkID: e.target.id,
-      id: userId
+      allBookmarkArray: bookmark
     }
 
     try {
       if(bookmark.includes(e.target.id)) {
-        const data = await request('http://localhost:5000/users/delete-bookmark', 'PUT', bookmark)
-        const newArr = bookmark.filter((item) => {
-          return item != e.target.id
-        })
-        // setBookmarkState(newArr)
+        dispatch(bookmarkDeleteAction(bookmarkInfo))
       } else {
-        const data = await request('http://localhost:5000/users/save-bookmark', 'PUT', bookmark)
-        const newElement = e.target.id
-        // setBookmarkState([...bookmarkState,  newElement])
+        dispatch(addBookmarkAction(bookmarkInfo))
       }
     } catch (e) {
       console.log('ERROR', e)
