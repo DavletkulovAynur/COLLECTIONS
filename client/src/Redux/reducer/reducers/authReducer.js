@@ -1,4 +1,10 @@
-import {WRITE_REDUCER_TOKEN, LOGIN_AUTHENTICATION, LOGOUT} from '../../types'
+import {
+    WRITE_REDUCER_TOKEN,
+    LOGIN_AUTHENTICATION,
+    LOGOUT,
+    DELETE_BOOKMARK_UPDATE_STATE,
+    ADD_BOOKMARK_UPDATE_STATE
+} from '../../types'
 
 function noop() {}
 
@@ -31,8 +37,7 @@ export const authReducer = (state = initialState, action) => {
                     isAuthenticated: true,
                     ready: true}
 		case WRITE_REDUCER_TOKEN:
-
-            return {...state,
+		    return {...state,
                         token: action.payload.data.token,
                         userId: action.payload.data.userId ,
                         userName: action.payload.data.userName,
@@ -40,6 +45,10 @@ export const authReducer = (state = initialState, action) => {
                         avatar: action.payload.data.avatar,
                         isAuthenticated: true,
                         ready: true}
+        case DELETE_BOOKMARK_UPDATE_STATE:
+            return {...state, bookmark: [...action.payload]}
+        case ADD_BOOKMARK_UPDATE_STATE:
+            return {...state, bookmark: [...action.payload]}
         case LOGOUT:
             return {...state, isAuthenticated: false, token: null, ready: true}
 

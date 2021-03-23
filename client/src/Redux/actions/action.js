@@ -16,7 +16,7 @@ import {
   DISPATCH_COLLECTION,
   LOAD_IMG_DRAG_AND_DROP,
   GET_BOOKMARK_COLLECTION,
-  PERSONAL_PAGE_AVATAR_POPUP, LOGOUT, REGISTRATION,
+  PERSONAL_PAGE_AVATAR_POPUP, LOGOUT, REGISTRATION, DELETE_BOOKMARK, ADD_BOOKMARK,
 } from '../types'
 
 // APP
@@ -134,6 +134,21 @@ export function registrationAction(payload) {
 export function openPopupChangeAvatar(payload) {
   return({
     type: PERSONAL_PAGE_AVATAR_POPUP,
+    payload
+  })
+}
+
+//BOOKMARK
+export function bookmarkDeleteAction(payload) {
+  return({
+    type: DELETE_BOOKMARK,
+    payload
+  })
+}
+
+export function addBookmarkAction(payload) {
+  return({
+    type: ADD_BOOKMARK,
     payload
   })
 }
