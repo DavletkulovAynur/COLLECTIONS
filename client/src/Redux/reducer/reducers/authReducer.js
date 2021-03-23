@@ -22,11 +22,8 @@ const initialState = {
 
 // исправить вложенность
 export const authReducer = (state = initialState, action) => {
-
-
-	switch (action.type) {
-
-		case LOGIN_AUTHENTICATION:
+    switch (action.type) {
+        case LOGIN_AUTHENTICATION:
             const {data} = action.payload
 			return {...state,
                     token: data.token,

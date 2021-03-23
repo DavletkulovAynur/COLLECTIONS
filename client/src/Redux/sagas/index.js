@@ -8,7 +8,7 @@ import {
     SAGA_AUTH_TOKEN, SAGA_LOGIN,
 } from '../types'
 import {addCollection, getAllCollection, getOwnerUserCollection} from './sagaCollection'
-import {sagaGetAllUsers} from './sagaUsers'
+
 import {auth, login, registration} from './sagaAuth'
 import {addBookmark, deleteBookmark, getBookmarkCollection} from "./sagaBookmark";
 
@@ -16,7 +16,6 @@ import {addBookmark, deleteBookmark, getBookmarkCollection} from "./sagaBookmark
 export function* sagaWatcher() {
 	yield takeEvery(GET_ALL_COLLECTION, getAllCollection)
 	yield takeEvery(GET_MY_COLLECTION, getOwnerUserCollection)
-	yield takeEvery(GET_ALL_USERS, sagaGetAllUsers)
 	yield takeEvery(SAGA_AUTH_TOKEN, auth)
     yield takeEvery(REGISTRATION, registration)
     yield takeEvery(SAGA_LOGIN, login)

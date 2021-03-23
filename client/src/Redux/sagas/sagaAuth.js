@@ -1,8 +1,6 @@
 import {call, put} from 'redux-saga/effects'
 import {WRITE_REDUCER_TOKEN, LOGIN_AUTHENTICATION, LOGOUT} from '../types'
 import Fetcher from '../../Common/utils/fetch'
-import {ShowMessage} from '../../Common/components/ShowMessage/ShowMessage'
-
 
 export function* login(user) {
 	try {
@@ -18,33 +16,26 @@ export function* login(user) {
 	}
 }
 
-export function* auth() {
-	try {
+	export function* auth() {
+		try {
+			const payload = yield call(() => Fetcher('http://localhost:5000/auth/auth', 'GET', '', {
+				Authorization:`Bearer ${localStorage.getItem('token')}`
+			}))
 
-		const payload = yield call(() => Fetcher('http://localhost:5000/auth/auth', 'GET', '', {
-			Authorization:`Bearer ${localStorage.getItem('token')}`
-		}))
+			yield put({type: WRITE_REDUCER_TOKEN, payload})
 
-
-		yield put({type: WRITE_REDUCER_TOKEN, payload})
-
-	} catch (e) {
-		yield put({type: LOGOUT})
-		console.log('Error auth loading', e)
-	}
-}
-
-export function* registration({user}) {
-	try {
-		console.log(payload)
-		const payload = yield call(() => Fetcher('http://localhost:5000/auth/register', 'POST', user))
-
-		const {status} = payload
-		if(status.ok) {
-			ShowMessage(true)
+		} catch (e) {
+			yield put({type: LOGOUT})
+			console.log('Error auth loading', e)
 		}
-	} catch (e) {
-		console.log(e)
 	}
-}
+
+	export function* registration({user}) {
+		try {
+			const payload = yield call(() => Fetcher('http://localhost:5000/auth/register', 'POST', user))
+
+		} catch (e) {
+			console.log(e)
+		}
+	}
 
