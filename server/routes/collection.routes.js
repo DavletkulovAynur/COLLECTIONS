@@ -10,6 +10,7 @@ router.post('/add', authMiddleware, collectionControllers.addCollection)
 router.get('/get-all',collectionControllers.getAllCollection)
 
 router.post('/get',collectionControllers.getOwnerUserCollection)
+router.post('/get-collection-view', collectionControllers.getCollectionView)
 
 router.put('/comment-update',collectionControllers.updateCollectionComment)
 

@@ -16,7 +16,14 @@ import {
   DISPATCH_COLLECTION,
   LOAD_IMG_DRAG_AND_DROP,
   GET_BOOKMARK_COLLECTION,
-  PERSONAL_PAGE_AVATAR_POPUP, LOGOUT, REGISTRATION, DELETE_BOOKMARK, ADD_BOOKMARK, BOOKMARK_ADD_REMOVE,
+  PERSONAL_PAGE_AVATAR_POPUP,
+  LOGOUT,
+  REGISTRATION,
+  DELETE_BOOKMARK,
+  ADD_BOOKMARK,
+  BOOKMARK_ADD_REMOVE,
+  COMMENT_UPDATE,
+  GET_COLLECTION_VIEW,
 } from '../types'
 
 // APP
@@ -148,5 +155,20 @@ export function addBookmarkAction(payload) {
 export function addBookmarkRemoveEventShowMessage() {
   return({
     type: BOOKMARK_ADD_REMOVE
+  })
+}
+
+//Collection View
+export function commentUpdateAction(payload) {
+  return({
+    type: COMMENT_UPDATE,
+    payload
+  })
+}
+
+export function getCollectionViewAction(payload) {
+  return({
+    type: GET_COLLECTION_VIEW,
+    payload
   })
 }

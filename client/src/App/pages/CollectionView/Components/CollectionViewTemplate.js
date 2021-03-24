@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import {CommentForm} from './CommentForm'
 import './styles/ArticleViewTemplate.scss'
-import {FeatureBgGradient} from "App/pages/CollectionView/Components/FeatureBgGradient";
+// import {FeatureBgGradient} from "App/pages/CollectionView/Components/FeatureBgGradient";
 
 const images = [
   'https://st.overclockers.ru/images/lab/2019/10/27/1/001_art_big.jpg',
@@ -14,14 +14,15 @@ const images = [
 
 const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomniac']
 
-export function CollectionViewTemplate({certainCollection = [], handleSubmit, commentLoader}) {
+export function CollectionViewTemplate({collection = [], comments, handleSubmit}) {
 
   const $comments = () => {
-    let sortComments =  certainCollection.comments
+    let sortComments =  comments
     sortfunction(sortComments)
+
     return (
       <div  className='comments'>
-        <div className='comment-title'>Comments <sup>{certainCollection.comments.length}</sup></div>
+        <div className='comment-title'>Comments <sup>{sortComments.length}</sup></div>
         {sortComments.map((comment, index) => {
           return (
             <section key={index}  className='comment-item'>
@@ -64,14 +65,16 @@ export function CollectionViewTemplate({certainCollection = [], handleSubmit, co
     )
   }
 
+
+
   return (
       <div className='Article-view-template'>
         <section className='main-content'>
           {/*<FeatureBgGradient certainCollection={certainCollection}/> на будущее*/}
-          <h2 className='title-72'>{certainCollection.name}</h2>
-          {$tags()}
-          <div className='description'>{certainCollection.description}</div>
-          <CommentForm handleSubmit={handleSubmit} commentLoader={commentLoader}/>
+          <h2 className='title-72'>{collection.name}</h2>
+          {/*{$tags()}*/}
+          <div className='description'>{collection.description}</div>
+          <CommentForm handleSubmit={handleSubmit}/>
           {$comments()}
         </section>
       </div>
