@@ -15,7 +15,7 @@ app.use(express.static('static'))
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/collection', require('./routes/collection.routes'))
 app.use('/users', require('./routes/users.routes'))
-app.use('/uploadTest', require('./routes/uploadTest.routes'))
+
 
 
 const PORT = config.get('port') || 5000

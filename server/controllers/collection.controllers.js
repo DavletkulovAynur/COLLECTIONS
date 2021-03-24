@@ -1,7 +1,7 @@
 const COLLECTION_MODEL = require('../models/collection')
+const USER_MODEL = require('../models/user')
 const path = require('path')
 const fs = require('fs')
-const USER_MODEL = require('../models/user')
 const Uuid = require('uuid')
 
 class CollectionControllers {
@@ -89,13 +89,20 @@ class CollectionControllers {
 	}
 
 	async updateCollectionComment(req, res) {
-		const {description, id, title, author} = req.body
-			const commentObj = {
-				title,
-				description,
-				time: Date.now(),
-				author
-			}
+		const {description, id, title} = req.body
+
+
+		const user = await USER_MODEL.find({_id: req.user.id})
+
+		const commentObj = {
+			title,
+			description,
+			time: Date.now(),
+			authorId: req.user.id,
+			authorAvatar: user[0].avatar,
+			authorName: user[0].username
+		}
+
 		try {
 			await  COLLECTION_MODEL.update({_id: id}, {$push: {comments : commentObj}})
 			res.status(201).json({message: 'Collection update', status: true, commentObj})

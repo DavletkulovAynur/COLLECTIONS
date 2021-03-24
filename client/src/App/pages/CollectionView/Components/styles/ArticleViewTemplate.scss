@@ -2,8 +2,10 @@
   display: flex;
   justify-content: space-between;
 
+
+
   .main-content {
-    width: 60%;
+    width: 100%;
   }
 
   .secondary-content {
@@ -19,6 +21,9 @@
   }
 
   .comments {
+    width: 100%;
+    background: #424242;
+    border-radius: 2px;
     .comment-title {
       font-weight: bold;
       font-size: 18px;
@@ -26,10 +31,28 @@
     }
 
     .comment-item {
-      padding: 32px 32px 24px;
-      background: rgba(256, 256, 256, 0.1);
-      border-radius: 4px;
-      margin-bottom: 16px;
+      padding: 12px;
+      border-bottom: 1px solid #fff;
+      display: flex;
+      align-items: flex-start;
+
+      .avatar {
+        margin-right: 12px;
+
+        .test {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+
+      .content {
+        .title {
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
     }
   }
 

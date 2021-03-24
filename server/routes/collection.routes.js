@@ -10,9 +10,9 @@ router.post('/add', authMiddleware, collectionControllers.addCollection)
 router.get('/get-all',collectionControllers.getAllCollection)
 
 router.post('/get',collectionControllers.getOwnerUserCollection)
-router.post('/get-collection-view', collectionControllers.getCollectionView)
+router.post('/get-collection-view', authMiddleware, collectionControllers.getCollectionView)
 
-router.put('/comment-update',collectionControllers.updateCollectionComment)
+router.put('/comment-update',authMiddleware, collectionControllers.updateCollectionComment)
 
 router.post('/search',collectionControllers.searchCollection)
 
