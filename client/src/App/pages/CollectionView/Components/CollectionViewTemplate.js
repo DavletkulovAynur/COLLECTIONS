@@ -21,7 +21,7 @@ export function CollectionViewTemplate({collection = [], comments, handleSubmit}
     let sortComments =  comments
     sortfunction(sortComments)
       return (
-        <section>
+        <section className='Comments'>
           <div className='comment-title'>Comments <sup>{sortComments.length}</sup></div>
 
           <div  className='comments'>
@@ -34,9 +34,9 @@ export function CollectionViewTemplate({collection = [], comments, handleSubmit}
                       </div>
                       <div className='content'>
                           <div className='title'>{comment.title}</div>
-                          <div>{comment.description}</div>
-                          <div>{comment.time}</div>
-                          <div>{comment.authorName}</div>
+                          <span className='author-name'>{comment.authorName}</span>
+                          <span className='content-description'>{comment.description}</span>
+                          <div className='time'>{comment.time}</div>
                       </div>
                   </section>
               )
