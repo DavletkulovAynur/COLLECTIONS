@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import {CommentForm} from './CommentForm'
 import './styles/ArticleViewTemplate.scss'
+import {API_URL} from "../../../../config";
 // import {FeatureBgGradient} from "App/pages/CollectionView/Components/FeatureBgGradient";
 
 const images = [
@@ -19,21 +20,30 @@ export function CollectionViewTemplate({collection = [], comments, handleSubmit}
   const $comments = () => {
     let sortComments =  comments
     sortfunction(sortComments)
+      return (
+        <section>
+          <div className='comment-title'>Comments <sup>{sortComments.length}</sup></div>
 
-    return (
-      <div  className='comments'>
-        <div className='comment-title'>Comments <sup>{sortComments.length}</sup></div>
-        {sortComments.map((comment, index) => {
-          return (
-            <section key={index}  className='comment-item'>
-              <div>{comment.title}</div>
-              <div >{comment.description}</div>
-              <div>{comment.time}</div>
-              <div>{comment.author}</div>
-            </section>
-          )
-        })}
-      </div>
+          <div  className='comments'>
+            {sortComments.map((comment, index) => {
+              const avatarUrl = comment.authorAvatar ? `${API_URL + '/avatars/' + comment.authorAvatar}` : false
+              return (
+                  <section key={index}  className='comment-item'>
+                      <div className='avatar'>
+                          <img className='test' src={avatarUrl}/>
+                      </div>
+                      <div className='content'>
+                          <div className='title'>{comment.title}</div>
+                          <div>{comment.description}</div>
+                          <div>{comment.time}</div>
+                          <div>{comment.authorName}</div>
+                      </div>
+                  </section>
+              )
+            })}
+          </div>
+        </section>
+
       )
   }
 

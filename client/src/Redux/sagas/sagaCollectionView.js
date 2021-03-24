@@ -10,7 +10,10 @@ import {
 export function* commentUpdate(data) {
     try {
         yield put({type: LOADING_COLLECTION_UPDATE})
-        const payload =  yield call(() => Fetcher('http://localhost:5000/collection/comment-update', 'PUT', data.payload))
+        const payload =  yield call(() => Fetcher(`${API_URL}collection/comment-update`,
+            'PUT',
+            data.payload,
+            {Authorization: `Bearer ${localStorage.getItem('token')}`}))
         yield put({type: UPDATE_COLLECTION_VIEW, payload})
         yield put({type: LOADING_HIDDEN_COLLECTION_UPDATE})
     } catch (e) {
@@ -20,7 +23,10 @@ export function* commentUpdate(data) {
 
 export function* getCollectionView(data) {
     try {
-        const payload = yield call(() => Fetcher(`${API_URL}collection/get-collection-view`, 'POST', data.payload))
+        const payload = yield call(() => Fetcher(`${API_URL}collection/get-collection-view`,
+            'POST',
+            data.payload,
+            {Authorization: `Bearer ${localStorage.getItem('token')}`}))
         yield put({type: WRITE_DOWN_COLLECTION_VIEW, payload})
     } catch (e){
         console.log(e)

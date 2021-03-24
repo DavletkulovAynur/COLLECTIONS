@@ -22,7 +22,6 @@ function CollectionView() {
       description: commentValue,
       title: commentTitle,
       id: collectionId,
-
     }
 
     dispatch(commentUpdateAction(comment))
@@ -35,7 +34,7 @@ function CollectionView() {
   }
 
   return(
-    <div className='article-view'>
+    <div className='Collection-view'>
       <CollectionViewTemplate comments={comments} collection={collection[0]} handleSubmit={handleSubmit}/>
     </div>
   )
