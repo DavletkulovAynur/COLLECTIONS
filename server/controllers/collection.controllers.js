@@ -37,12 +37,19 @@ class CollectionControllers {
 
 	async getAllCollection(req, res){
 		try {
-
-		const collection = await COLLECTION_MODEL.find()
-			console.log(collection)
-		res.json(collection)
-
+			const collection = await COLLECTION_MODEL.find()
+			res.json(collection)
 		} catch (e) {
+			console.log(e)
+		}
+	}
+
+	async getCollectionView(req, res) {
+		try {
+			const {collectionId} = req.body
+			const collection = await COLLECTION_MODEL.find({_id: collectionId})
+			res.status(201).json({collection})
+		} catch (e){
 			console.log(e)
 		}
 	}
