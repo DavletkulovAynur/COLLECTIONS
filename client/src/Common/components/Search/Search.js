@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {useHttp} from 'Common/utils/hooks/http.hook'
+import {SearchTemplate} from './Search.template'
+import Fetcher from '../../../Common/utils/fetch'
 
 import './Search.scss'
-import {SearchTemplate} from './Search.template'
+
 
 export function Search() {
   const [value, setValue] = useState()
@@ -18,7 +19,6 @@ export function Search() {
 }
 
 function GetItemBySearch(value) {
-  const {request} = useHttp()
   const [resultSearch, setResultSearch] = useState('')
 
   useEffect(() => {
@@ -33,8 +33,12 @@ function GetItemBySearch(value) {
       const searchElement = {
         value
       }
-      const data = await request('http://localhost:5000/collection/search', 'POST', searchElement)
-      setResultSearch(data)
+
+      //Search saga
+      const data = await Fetcher('http://localhost:5000/collection/search', 'POST', searchElement)
+      console.log('result', data)
+      // Испраить ошибку data
+      setResultSearch(data.data)
 
     } catch (e) {
       console.log(e)
