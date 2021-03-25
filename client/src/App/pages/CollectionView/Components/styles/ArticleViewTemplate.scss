@@ -1,3 +1,4 @@
+@import "Comments";
 .Article-view-template {
   display: flex;
   justify-content: space-between;
@@ -18,42 +19,6 @@
     text-align: justify;
     font-size: 16px;
     line-height: 22px;
-  }
-
-  .comments {
-    width: 100%;
-    background: #424242;
-    border-radius: 2px;
-    .comment-title {
-      font-weight: bold;
-      font-size: 18px;
-      margin: 12px 0;
-    }
-
-    .comment-item {
-      padding: 12px;
-      border-bottom: 1px solid #fff;
-      display: flex;
-      align-items: flex-start;
-
-      .avatar {
-        margin-right: 12px;
-
-        .test {
-          width: 40px;
-          height: 40px;
-          object-fit: cover;
-          border-radius: 50%;
-        }
-      }
-
-      .content {
-        .title {
-          font-size: 18px;
-          font-weight: bold;
-        }
-      }
-    }
   }
 
   .tags {
