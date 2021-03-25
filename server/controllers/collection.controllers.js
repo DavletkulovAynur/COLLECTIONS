@@ -7,8 +7,11 @@ const Uuid = require('uuid')
 class CollectionControllers {
 	async addCollection(req, res){
 		try {
+			console.log('req.files.file', req.files.file)
 			const file = req.files.file
-			const {title, publisher, description, author} = req.body
+			const {title, publisher, description} = req.body
+			const user = await USER_MODEL.find({_id: req.user.id})
+			console.log('user', user)
 
 			const type = file.name.split('.').pop()
 			const mainImg = Uuid.v4() + `.${type}`
@@ -19,7 +22,8 @@ class CollectionControllers {
 			const collection = new COLLECTION_MODEL({
 				nameCollection: 'Нужно прописать',
 				title,
-				author,
+				author: user[0].username,
+				authorAvatar: user[0].avatar,
 				publisher,
 				description,
 				mainImg,
@@ -31,14 +35,15 @@ class CollectionControllers {
 			res.status(201).json({message: 'success', status: true})
 
 			} catch (e) {
-				console.log(e)
+				console.log('error', e)
+			res.status(400).json(e)
 			}
 		}
 
 	async getAllCollection(req, res){
 		try {
 			const collection = await COLLECTION_MODEL.find()
-			res.json(collection)
+			res.status(201).json(collection)
 		} catch (e) {
 			console.log(e)
 		}

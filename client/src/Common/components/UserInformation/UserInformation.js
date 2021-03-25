@@ -5,7 +5,7 @@ import PopupChangeUserInfo from '../PopupChangeUserInfo/PopupChangeUserInfo'
 
 import './UserInformation.scss'
 
-export const UserInformation = ({avatarUrl, userName}) => {
+export const UserInformation = ({avatarUrl, userName, guest = false}) => {
     const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
 
     const changeStateAvatar = () => {
@@ -18,7 +18,9 @@ export const UserInformation = ({avatarUrl, userName}) => {
             <div className='user'>
                 <section className='right-block'>
                     <img src={avatarUrl} className='avatar'/>
-                    <MenuListComposition changeStateAvatar={changeStateAvatar}/>
+                    {guest
+                        ? <button>ПОДПИСКА</button>
+                        : <MenuListComposition changeStateAvatar={changeStateAvatar}/>}
                 </section>
 
                 <section className='left-block'>

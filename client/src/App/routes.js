@@ -7,6 +7,7 @@ import {Auth} from "App/pages/Auth/Auth";
 import CollectionView from "App/pages/CollectionView/CollectionView";
 import {PersonalArea} from 'App/pages/PersonalArea/PersonalArea'
 import CollectionsList from './pages/CollectionsList/CollectionsList'
+import UserArea from "./pages/UserArea/UserArea";
 
 export const useRoutes = isAuthenticated => {
   if(isAuthenticated) {
@@ -32,6 +33,9 @@ export const useRoutes = isAuthenticated => {
             </Route>
             <Route exact path='/personal-area'>
               <PersonalArea/>
+            </Route>
+            <Route exact path='/user-area/:id'>
+                <UserArea/>
             </Route>
             <Redirect to="/"/>
           </Switch>

@@ -4,7 +4,7 @@ import {
     ADD_COLLECTION, COMMENT_UPDATE, DELETE_BOOKMARK,
     GET_ALL_COLLECTION,
     GET_ALL_USERS, GET_BOOKMARK_COLLECTION, GET_COLLECTION_VIEW,
-    GET_MY_COLLECTION, REGISTRATION,
+    GET_MY_COLLECTION, GET_USER, REGISTRATION,
     SAGA_AUTH_TOKEN, SAGA_LOGIN,
 } from '../types'
 import {addCollection, getAllCollection, getOwnerUserCollection} from './sagaCollection'
@@ -12,6 +12,7 @@ import {addCollection, getAllCollection, getOwnerUserCollection} from './sagaCol
 import {auth, login, registration} from './sagaAuth'
 import {addBookmark, deleteBookmark, getBookmarkCollection} from './sagaBookmark'
 import {commentUpdate, getCollectionView} from './sagaCollectionView'
+import {getUser} from './sagaUserArea'
 
 
 export function* sagaWatcher() {
@@ -26,6 +27,7 @@ export function* sagaWatcher() {
     yield takeEvery(ADD_BOOKMARK, addBookmark)
     yield takeEvery(COMMENT_UPDATE, commentUpdate)
     yield takeEvery(GET_COLLECTION_VIEW, getCollectionView)
+    yield takeEvery(GET_USER, getUser)
 }
 
 
