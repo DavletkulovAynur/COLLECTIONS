@@ -26,8 +26,10 @@ export function CommonCard({data}) {
 
   }
 
-  function infoTemplate(_id, title, nameCollection) {
-    return (
+  function infoTemplate(_id, title, nameCollection, author, authorAvatar, owner) {
+      const avatarUrl = authorAvatar ? `${API_URL + '/avatars/' + authorAvatar}` : false
+
+      return (
       <div className='info'>
         <div className='info-wrapper'>
           <section className='user-emotion-wrapper'>
@@ -40,12 +42,23 @@ export function CommonCard({data}) {
           <Bookmark id={_id} />
         </div>
 
-        <div className='info-name'>
-          <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
-        </div>
+          <div className='test'>
+              <div className='info-name'>
+                  <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
+              </div>
 
-        <span className="info-publisher">{nameCollection}</span>
+              <span className="info-publisher">{nameCollection}</span>
+          </div>
 
+
+      <div className='author'>
+         <Link to={`user-area/${owner}`}>
+             <img className='avatar' src={avatarUrl}/>
+             {author}
+         </Link>
+
+
+      </div>
 
       </div>
     )
@@ -60,12 +73,12 @@ export function CommonCard({data}) {
             nameCollection,
               owner,
               mainImg,
-            author} = item
+            author, authorAvatar} = item
         return (
           <div key={_id} className='Common-card'>
             <div>
               {mediaTemplate(owner, mainImg)}
-              {infoTemplate(_id, title, nameCollection)}
+              {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner)}
             </div>
           </div>
         )

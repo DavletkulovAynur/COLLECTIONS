@@ -1,15 +1,31 @@
-export default function(url, method, body = null, headers = {}) {
+export default function(url, method, body = null, headers = {}, test = true) {
   return new Promise((resolve, reject) => {
 
+      console.log('super')
    let _headers = {
       'Content-Type': 'application/json'
     };
 
+
+
+      // ПЕРЕДЕЛАТЬ
     if (!headers['Content-Type']) {
-        _headers = {...headers, ..._headers}
+        if(test) {
+            _headers = {...headers, ..._headers}
+        } else {
+            _headers = {...headers}
+        }
+
     }
 
-    const data = body ? JSON.stringify(body) : null
+    let data
+
+    if(test) {
+        data = body ? JSON.stringify(body) : null
+    } else {
+        data = body
+    }
+
 
     let options = {
       method: method,

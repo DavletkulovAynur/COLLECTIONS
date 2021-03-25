@@ -6,6 +6,7 @@ import {
 } from '../types'
 import {appError, appHideLoading} from '../actions/action'
 import Fetcher from '../../Common/utils/fetch'
+import {API_URL} from "../../config";
 
 	export function* getAllCollection() {
 		try {
@@ -32,15 +33,19 @@ import Fetcher from '../../Common/utils/fetch'
 		}
 	}
 
-	// payload ???
+
 	export function* addCollection(formData) {
 	  try {
-		  const payload = yield call(() => fetch('http://localhost:5000/collection/add', {
-		  method: 'POST',
-		  body: formData.payload,
-		  headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
-		}))
-		  yield put({type: SUCCESSFULLY_SEND_COLLECTION, payload})
+	  	console.log('formData.payload', formData.payload)
+	  	const payload = yield call (() => Fetcher(`${API_URL}collection/add`,
+			'POST',
+			formData.payload,
+			{
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+			},
+			false
+			))
+	  	yield put({type: SUCCESSFULLY_SEND_COLLECTION, payload})
 	  } catch (e) {
 		console.log(e)
 	  }

@@ -23,7 +23,7 @@ import {
   ADD_BOOKMARK,
   BOOKMARK_ADD_REMOVE,
   COMMENT_UPDATE,
-  GET_COLLECTION_VIEW,
+  GET_COLLECTION_VIEW, GET_USER,
 } from '../types'
 
 // APP
@@ -169,6 +169,14 @@ export function commentUpdateAction(payload) {
 export function getCollectionViewAction(payload) {
   return({
     type: GET_COLLECTION_VIEW,
+    payload
+  })
+}
+
+//User_Area
+export function getUserAction(payload) {
+  return({
+    type: GET_USER,
     payload
   })
 }

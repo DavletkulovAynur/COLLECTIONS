@@ -43,6 +43,10 @@ export const REGISTRATION = 'REGISTRATION'
 //Personal_Page
 export const PERSONAL_PAGE_AVATAR_POPUP = 'PERSONAL_PAGE_AVATAR_WINDOW'
 
+//User_area
+export const GET_USER = 'GET_USER'
+export const WRITE_DOWN_GET_USER = 'WRITE_DOWN_GET_USER'
+
 //Collection_View
 export const COMMENT_UPDATE = 'COMMENT_UPDATE'
 export const GET_COLLECTION_VIEW = 'GET_COLLECTION_VIEW'

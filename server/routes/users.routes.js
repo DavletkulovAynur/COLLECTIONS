@@ -7,6 +7,8 @@ const authMiddleware = require('../middleware/auth.middleware')
 
 router.get('/get', userControllers.getUsers)
 
+router.post('/get-user', userControllers.getUser)
+
 router.put('/save-bookmark', authMiddleware, userControllers.saveBookmark)
 
 router.put('/delete-bookmark', authMiddleware, userControllers.deleteBookmark)

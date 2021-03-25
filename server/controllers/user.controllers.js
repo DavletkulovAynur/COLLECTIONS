@@ -4,11 +4,23 @@ const USER_MODEL = require('../models/user')
 const Uuid = require('uuid')
 
 class UserControllers {
-	async getUsers(req, res){
+	async getUsers(req, res) {
 		try {
 			const users = await USER_MODEL.find()
 			res.json(users)
 		} catch (e) {
+			console.log(e)
+		}
+	}
+
+	async getUser(req, res) {
+		try {
+			const {userId} = req.body
+			console.log('userId', userId)
+			const user = await USER_MODEL.find({_id: userId})
+			res.status(201).json({data: user})
+		} catch (e) {
+			res.status(400)
 			console.log(e)
 		}
 	}
