@@ -8,7 +8,11 @@ import './PersonalArea.scss'
 
 
 
-const PersonalAreaTemplate = ({avatarUrl, myCollection, userName, bookmarkCollection}) => {
+const PersonalAreaTemplate = ({ avatarUrl,
+                                myCollection,
+                                countPublication,
+                                userName,
+                                bookmarkCollection}) => {
     const [tabValue, setTabValue] = useState(0);
 
     const changeTabs = (newValueTabs) => {
@@ -19,7 +23,7 @@ const PersonalAreaTemplate = ({avatarUrl, myCollection, userName, bookmarkCollec
     <div className='Personal-area'>
         <div className='user-info-tab-wrapper'>
             <section>
-                <UserInformation avatarUrl={avatarUrl} userName={userName}/>
+                <UserInformation countPublication={countPublication} avatarUrl={avatarUrl} userName={userName}/>
             </section>
 
             <section className='tab-wrapper'>

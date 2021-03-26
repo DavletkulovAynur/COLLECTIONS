@@ -4,10 +4,12 @@ import './CommonCard.scss'
 
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
 import {API_URL} from '../../../config'
+import {useSelector} from "react-redux";
 
 
 
 export function CommonCard({data}) {
+    const {userId} = useSelector((state) => state.authReducer)
 
   const divStyle = (owner, mainImg) => {
     return {
@@ -28,7 +30,12 @@ export function CommonCard({data}) {
 
   function infoTemplate(_id, title, nameCollection, author, authorAvatar, owner) {
       const avatarUrl = authorAvatar ? `${API_URL + '/avatars/' + authorAvatar}` : false
-
+      let link
+      if(userId === owner) {
+          link = `personal-area`
+      } else {
+          link = `user-area/${owner}`
+      }
       return (
       <div className='info'>
         <div className='info-wrapper'>
@@ -52,7 +59,7 @@ export function CommonCard({data}) {
 
 
       <div className='author'>
-         <Link to={`user-area/${owner}`}>
+         <Link to={link}>
              <img className='avatar' src={avatarUrl}/>
              {author}
          </Link>
@@ -71,9 +78,10 @@ export function CommonCard({data}) {
             _id,
             title,
             nameCollection,
-              owner,
-              mainImg,
-            author, authorAvatar} = item
+            owner,
+            mainImg,
+            author,
+            authorAvatar} = item
         return (
           <div key={_id} className='Common-card'>
             <div>

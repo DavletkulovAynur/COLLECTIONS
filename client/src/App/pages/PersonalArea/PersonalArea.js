@@ -9,6 +9,7 @@ export function PersonalArea() {
 	const {myCollection, bookmarkCollection} = useSelector(state => state.collectionReducer)
 	const dispatch = useDispatch()
 	const avatarUrl = avatar ? `${API_URL + '/avatars/' + avatar}` : false
+	const countPublication = myCollection.length
 
 
 	useEffect(() => {
@@ -20,6 +21,7 @@ export function PersonalArea() {
 	return (
 		<>
 			<PersonalAreaTemplate
+				countPublication={countPublication}
 				userName={userName}
 				myCollection={myCollection}
 				bookmarkCollection={bookmarkCollection}

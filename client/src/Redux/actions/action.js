@@ -23,7 +23,9 @@ import {
   ADD_BOOKMARK,
   BOOKMARK_ADD_REMOVE,
   COMMENT_UPDATE,
-  GET_COLLECTION_VIEW, GET_USER,
+  GET_COLLECTION_VIEW,
+  GET_USER,
+  SEARCH_COLLECTION,
 } from '../types'
 
 // APP
@@ -177,6 +179,14 @@ export function getCollectionViewAction(payload) {
 export function getUserAction(payload) {
   return({
     type: GET_USER,
+    payload
+  })
+}
+
+//SEARCH
+export function searchCollectionAction(payload) {
+  return({
+    type: SEARCH_COLLECTION,
     payload
   })
 }
