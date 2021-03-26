@@ -35,10 +35,11 @@
         display: flex;
         align-items: center;
       }
-      img {
+      .test {
         width: 40px;
         height: 40px;
-        object-fit: cover;
+        //object-fit: cover;
+        background-size: cover;
       }
 
       .title {

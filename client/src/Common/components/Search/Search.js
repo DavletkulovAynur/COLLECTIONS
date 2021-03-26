@@ -1,49 +1,35 @@
 import React, {useEffect, useState} from 'react'
 import {SearchTemplate} from './Search.template'
-import Fetcher from '../../../Common/utils/fetch'
+
+import {useDispatch, useSelector} from 'react-redux'
+import {searchCollectionAction} from '../../../Redux/actions/action'
 
 import './Search.scss'
 
 
 export function Search() {
+  const dispatch = useDispatch()
   const [value, setValue] = useState()
-  const {searchResult = []} = GetItemBySearch(value)
+  const {searchCollection} = useSelector((state) => state.collectionReducer)
+
+  useEffect(() => {
+    if(value) {
+      const searchElement = {
+        value
+      }
+      dispatch(searchCollectionAction(searchElement))
+    }
+  }, [value])
+
 
   const getInputValue = (value) => {
+    console.log('getInputValue', value)
     setValue(value)
   }
 
   return (
-    <SearchTemplate searchResult={searchResult} getInputValue={getInputValue}/>
+    <SearchTemplate searchResult={searchCollection} getInputValue={getInputValue}/>
   )
 }
 
-function GetItemBySearch(value) {
-  const [resultSearch, setResultSearch] = useState('')
 
-  useEffect(() => {
-    if(value) {
-      sendingRequestToServer()
-    }
-  }, [value])
-
-  const sendingRequestToServer = async () => {
-
-    try {
-      const searchElement = {
-        value
-      }
-
-      //Search saga
-      const data = await Fetcher('http://localhost:5000/collection/search', 'POST', searchElement)
-      console.log('result', data)
-      // Испраить ошибку data
-      setResultSearch(data.data)
-
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  return resultSearch
-}

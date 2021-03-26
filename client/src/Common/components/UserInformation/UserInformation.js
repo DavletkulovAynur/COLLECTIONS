@@ -5,7 +5,10 @@ import PopupChangeUserInfo from '../PopupChangeUserInfo/PopupChangeUserInfo'
 
 import './UserInformation.scss'
 
-export const UserInformation = ({avatarUrl, userName, guest = false}) => {
+export const UserInformation = ({   avatarUrl,
+                                    userName,
+                                    guest = false,
+                                    countPublication = '0'}) => {
     const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
 
     const changeStateAvatar = () => {
@@ -28,7 +31,7 @@ export const UserInformation = ({avatarUrl, userName, guest = false}) => {
 
                     <div className='publication'>
                         <div className='item'>
-                            <span>101</span>
+                            <span>{countPublication}</span>
                             <span>публикаций</span>
                         </div>
                         <div className='item'>

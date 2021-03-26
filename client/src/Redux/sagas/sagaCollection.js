@@ -2,7 +2,7 @@ import {put, call} from 'redux-saga/effects'
 import {
 	SUCCESSFULLY_SEND_COLLECTION,
 	WRITE_DOWN_ALL_COLLECTION,
-	WRITE_DOWN_COLLECTION
+	WRITE_DOWN_COLLECTION, WRITE_DOWN_SEARCH_COLLECTION
 } from '../types'
 import {appError, appHideLoading} from '../actions/action'
 import Fetcher from '../../Common/utils/fetch'
@@ -49,4 +49,14 @@ import {API_URL} from "../../config";
 	  } catch (e) {
 		console.log(e)
 	  }
+	}
+
+	export function* searchCollection(data) {
+		try {
+			const payload = yield call (() => Fetcher('http://localhost:5000/collection/search', 'POST', data.payload))
+			console.log('payload', payload)
+			yield put({type: WRITE_DOWN_SEARCH_COLLECTION, payload})
+		} catch (e) {
+			console.log('error', e)
+		}
 	}
