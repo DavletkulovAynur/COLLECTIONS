@@ -4,15 +4,24 @@ import PopupChangeAvatar from '../PopupChangeAvatar/PopupChangeAvatar'
 import PopupChangeUserInfo from '../PopupChangeUserInfo/PopupChangeUserInfo'
 
 import './UserInformation.scss'
+import {useDispatch} from 'react-redux'
+import {subscribeOnUserAction} from "../../../Redux/actions/action";
 
 export const UserInformation = ({   avatarUrl,
                                     userName,
+                                    subscriptions = 0,
+                                    userId,
                                     guest = false,
                                     countPublication = '0'}) => {
+    const dispatch = useDispatch()
     const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
 
     const changeStateAvatar = () => {
         setOpenChangeAvatar(true)
+    }
+
+    const subscribeOnUser = () => {
+        dispatch(subscribeOnUserAction(userId))
     }
 
     return (
@@ -22,7 +31,7 @@ export const UserInformation = ({   avatarUrl,
                 <section className='right-block'>
                     <img src={avatarUrl} className='avatar'/>
                     {guest
-                        ? <button>ПОДПИСКА</button>
+                        ? <button onClick={subscribeOnUser}>ПОДПИСКА</button>
                         : <MenuListComposition changeStateAvatar={changeStateAvatar}/>}
                 </section>
 
@@ -35,7 +44,7 @@ export const UserInformation = ({   avatarUrl,
                             <span>публикаций</span>
                         </div>
                         <div className='item'>
-                            <span>1200</span>
+                            <span>{subscriptions.length}</span>
                             <span>Подписчики</span>
                         </div>
                         <div className='item'>

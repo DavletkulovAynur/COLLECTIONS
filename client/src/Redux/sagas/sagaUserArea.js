@@ -9,8 +9,25 @@ export function* getUser(data) {
             userId: data.payload
         }
         const payload = yield call(() => Fetcher(`${API_URL}users/get-user`, 'POST', user))
-        console.log(payload.data.data)
+
         yield put({type: WRITE_DOWN_GET_USER, payload})
+    } catch (e) {
+        console.log('error', e)
+    }
+}
+
+export function* subscribeOnUser(data) {
+    try {
+        const user = {
+            subscribeUserId: data.payload
+        }
+        const payload = yield call(() => Fetcher(
+            `${API_URL}users/subscribe-on-user`,
+            'POST',
+            user,
+            {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        ))
+        console.log(payload)
     } catch (e) {
         console.log('error', e)
     }

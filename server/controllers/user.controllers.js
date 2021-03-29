@@ -25,6 +25,16 @@ class UserControllers {
 		}
 	}
 
+	async subscribeOnUser(req, res) {
+		try {
+			const {subscribeUserId} = req.body
+			await USER_MODEL.update({_id: req.user.id}, {$addToSet: {subscriptions: subscribeUserId}})
+			res.status(201).json({message: 'Успешно'})
+		} catch (e) {
+			console.log('error', e)
+		}
+	}
+
 	async saveBookmark(req, res){
 	const {bookmarkID} = req.body
 		try {

@@ -18,12 +18,13 @@ class CollectionControllers {
 
 			let pathWay = path.join(__dirname, `../static/${req.user.id}/${mainImg}`)
 			file.mv(pathWay)
+			const avatar = user[0].avatar ? user[0].avatar : ''
 
 			const collection = new COLLECTION_MODEL({
 				nameCollection: 'Нужно прописать',
 				title,
 				author: user[0].username,
-				authorAvatar: user[0].avatar,
+				authorAvatar: avatar,
 				publisher,
 				description,
 				mainImg,
