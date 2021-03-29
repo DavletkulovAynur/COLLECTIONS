@@ -5,7 +5,7 @@ import {getBookmarkCollectionAction} from "../../../Redux/actions/action";
 import {API_URL} from "../../../config";
 
 export function PersonalArea() {
-	const {avatar, userName, bookmark} = useSelector((state) => state.authReducer)
+	const {avatar, userName, bookmark, subscriptions} = useSelector((state) => state.authReducer)
 	const {myCollection, bookmarkCollection} = useSelector(state => state.collectionReducer)
 	const dispatch = useDispatch()
 	const avatarUrl = avatar ? `${API_URL + '/avatars/' + avatar}` : false
@@ -18,6 +18,7 @@ export function PersonalArea() {
 
 
 
+
 	return (
 		<>
 			<PersonalAreaTemplate
@@ -26,6 +27,7 @@ export function PersonalArea() {
 				myCollection={myCollection}
 				bookmarkCollection={bookmarkCollection}
 				avatarUrl={avatarUrl}
+				subscriptions={subscriptions}
 			/>
 		</>
 	)

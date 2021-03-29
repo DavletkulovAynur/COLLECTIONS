@@ -5,6 +5,7 @@ const schema = new Schema({
   password: {type: String, required: true},
   username: {type: String},
   bookmark: {type: []},
+  subscriptions: {type: []},
   avatar: {type: String}
 })
 

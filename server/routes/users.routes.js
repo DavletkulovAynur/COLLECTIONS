@@ -15,4 +15,6 @@ router.put('/delete-bookmark', authMiddleware, userControllers.deleteBookmark)
 
 router.post('/load-avatar', authMiddleware, userControllers.loadAvatar)
 
+router.post('/subscribe-on-user', authMiddleware, userControllers.subscribeOnUser)
+
 module.exports = router

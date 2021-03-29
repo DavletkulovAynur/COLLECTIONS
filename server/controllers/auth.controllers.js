@@ -77,6 +77,7 @@ class AuthControllers {
       // проблема
       res.json({
 	  	token,
+		  subscriptions: user.subscriptions,
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,
@@ -97,6 +98,7 @@ class AuthControllers {
 
       return res.json({
 	  	token,
+		  subscriptions: user.subscriptions,
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,
