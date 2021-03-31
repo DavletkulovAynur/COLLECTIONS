@@ -5,7 +5,8 @@ import {authReducer} from './reducers/authReducer'
 import {addCollectionReducer} from './reducers/addCollectionReducer'
 import {personalPageReducer} from './reducers/personalPageReducer'
 import {collectionViewReducer} from './reducers/collectionViewReducer'
-import {userAreaPageReducer} from "./reducers/userAreaPageReducer";
+import {userAreaPageReducer} from './reducers/userAreaPageReducer'
+import {subscribeReducer} from './reducers/subscribeReducer'
 
 const reducer = combineReducers({
   appReducer,
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   addCollectionReducer,
   personalPageReducer,
   collectionViewReducer,
-  userAreaPageReducer
+  userAreaPageReducer,
+  subscribeReducer
 })
 
 export default reducer

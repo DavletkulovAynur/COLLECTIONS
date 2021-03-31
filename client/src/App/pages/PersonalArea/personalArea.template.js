@@ -10,6 +10,7 @@ import './PersonalArea.scss'
 
 const PersonalAreaTemplate = ({ avatarUrl,
                                 myCollection,
+                                  subscribe,
                                 countPublication,
                                   subscriptions,
                                 userName,
@@ -20,7 +21,7 @@ const PersonalAreaTemplate = ({ avatarUrl,
         setTabValue(newValueTabs)
     }
 
-    console.log(subscriptions)
+
 
   return (
     <div className='Personal-area'>
@@ -39,6 +40,7 @@ const PersonalAreaTemplate = ({ avatarUrl,
             <div className='Com-main-grid'>
                 {tabValue == '0' ? <CommonCard data={myCollection}/> : null}
                 {tabValue == '1' ? <CommonCard data={bookmarkCollection}/> : null}
+                {tabValue == '2' ? <CommonCard data={subscribe}/> : null}
             </div>
         </section>
     </div>

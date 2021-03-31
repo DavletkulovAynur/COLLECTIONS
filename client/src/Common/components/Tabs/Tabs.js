@@ -30,6 +30,7 @@ const TabsComponent = ({changeTabs, tabValue}) => {
             >
                 <Tab label="My Collection" />
                 <Tab label="My save" />
+                <Tab label='subscribe'/>
             </Tabs>
         </Paper>
     );

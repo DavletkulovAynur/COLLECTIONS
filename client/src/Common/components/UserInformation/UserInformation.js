@@ -5,7 +5,7 @@ import PopupChangeUserInfo from '../PopupChangeUserInfo/PopupChangeUserInfo'
 
 import './UserInformation.scss'
 import {useDispatch} from 'react-redux'
-import {subscribeOnUserAction} from "../../../Redux/actions/action";
+import {getSubscribeCollectionAction, subscribeOnUserAction} from '../../../Redux/actions/action'
 
 export const UserInformation = ({   avatarUrl,
                                     userName,
@@ -22,6 +22,10 @@ export const UserInformation = ({   avatarUrl,
 
     const subscribeOnUser = () => {
         dispatch(subscribeOnUserAction(userId))
+    }
+
+    const getSubscribeCollection = () => {
+        dispatch(getSubscribeCollectionAction(subscriptions))
     }
 
     return (
@@ -46,6 +50,7 @@ export const UserInformation = ({   avatarUrl,
                         <div className='item'>
                             <span>{subscriptions.length}</span>
                             <span>Подписчики</span>
+                            <button onClick={getSubscribeCollection}>GET_SUBSC</button>
                         </div>
                         <div className='item'>
                             <span>209</span>

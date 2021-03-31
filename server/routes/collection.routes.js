@@ -18,6 +18,8 @@ router.post('/search',collectionControllers.searchCollection)
 
 router.post('/get-bookmark', authMiddleware, collectionControllers.getBookmarkCollection)
 
+router.post('/get-subscribe-collection', authMiddleware, collectionControllers.getSubscribeCollection)
+
 module.exports = router
 
 
