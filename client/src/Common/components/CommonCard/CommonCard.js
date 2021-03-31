@@ -11,6 +11,7 @@ import {useSelector} from "react-redux";
 export function CommonCard({data}) {
     const {userId} = useSelector((state) => state.authReducer)
 
+    console.log('data', data)
   const divStyle = (owner, mainImg) => {
     return {
       backgroundImage: `url(${API_URL}/${owner}/${mainImg})`,

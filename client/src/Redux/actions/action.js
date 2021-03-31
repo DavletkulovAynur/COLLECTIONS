@@ -25,7 +25,7 @@ import {
   COMMENT_UPDATE,
   GET_COLLECTION_VIEW,
   GET_USER,
-  SEARCH_COLLECTION, SUBSCRIBE_ON_USER,
+  SEARCH_COLLECTION, SUBSCRIBE_ON_USER, GET_SUBSCRIBE_COLLECTION,
 } from '../types'
 
 // APP
@@ -195,6 +195,13 @@ export function searchCollectionAction(payload) {
 export function subscribeOnUserAction(payload) {
   return({
     type: SUBSCRIBE_ON_USER,
+    payload
+  })
+}
+
+export function getSubscribeCollectionAction(payload) {
+  return({
+    type: GET_SUBSCRIBE_COLLECTION,
     payload
   })
 }

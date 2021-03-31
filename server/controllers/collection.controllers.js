@@ -7,11 +7,10 @@ const Uuid = require('uuid')
 class CollectionControllers {
 	async addCollection(req, res){
 		try {
-			console.log('req.files.file', req.files.file)
 			const file = req.files.file
 			const {title, publisher, description} = req.body
 			const user = await USER_MODEL.find({_id: req.user.id})
-			console.log('user', user)
+
 
 			const type = file.name.split('.').pop()
 			const mainImg = Uuid.v4() + `.${type}`
@@ -131,6 +130,39 @@ class CollectionControllers {
 
 		} catch (e) {
 			console.log(e)
+		}
+	}
+
+	async getSubscribeCollection(req, res) {
+		try {
+			//переделать
+			const {userSubscribe} = req.body
+			console.log(userSubscribe)
+			// let test = []
+			// userSubscribe.map(async (id) => {
+			// 	const user = await COLLECTION_MODEL.find({owner: id})
+			// 	test.push(user)
+			// })
+
+			async function processArray(array) {
+				let test = []
+				for(const id of array) {
+					const user = await COLLECTION_MODEL.find({owner: id})
+					test.push(user)
+				}
+				return test
+			}
+
+			const val = processArray(userSubscribe)
+
+			val.then((arr) => {
+				res.status(201).json({data: arr})
+			})
+
+
+
+		} catch (e) {
+			console.log('error', e)
 		}
 	}
 }
