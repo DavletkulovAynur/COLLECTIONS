@@ -17,4 +17,6 @@ router.post('/load-avatar', authMiddleware, userControllers.loadAvatar)
 
 router.post('/subscribe-on-user', authMiddleware, userControllers.subscribeOnUser)
 
+router.post('/unsubscribe-on-user', authMiddleware, userControllers.unSubscribeUser)
+
 module.exports = router

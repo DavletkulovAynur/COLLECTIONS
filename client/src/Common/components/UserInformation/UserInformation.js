@@ -5,28 +5,25 @@ import PopupChangeUserInfo from '../PopupChangeUserInfo/PopupChangeUserInfo'
 
 import './UserInformation.scss'
 import {useDispatch} from 'react-redux'
-import {getSubscribeCollectionAction, subscribeOnUserAction} from '../../../Redux/actions/action'
+import {subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Redux/actions/action'
 
 export const UserInformation = ({   avatarUrl,
                                     userName,
-                                    subscriptions = 0,
+                                    subscribe,
+                                    mySubscriptions,
+                                    subscriptions = [],
                                     userId,
                                     guest = false,
                                     countPublication = '0'}) => {
-    const dispatch = useDispatch()
+
     const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
 
+    console.log(mySubscriptions)
     const changeStateAvatar = () => {
         setOpenChangeAvatar(true)
     }
 
-    const subscribeOnUser = () => {
-        dispatch(subscribeOnUserAction(userId))
-    }
 
-    const getSubscribeCollection = () => {
-        dispatch(getSubscribeCollectionAction(subscriptions))
-    }
 
     return (
         <div className='User-information'>
@@ -35,7 +32,7 @@ export const UserInformation = ({   avatarUrl,
                 <section className='right-block'>
                     <img src={avatarUrl} className='avatar'/>
                     {guest
-                        ? <button onClick={subscribeOnUser}>ПОДПИСКА</button>
+                        ? <SubscribeButton userId={userId} mySubscriptions={mySubscriptions}/>
                         : <MenuListComposition changeStateAvatar={changeStateAvatar}/>}
                 </section>
 
@@ -50,7 +47,6 @@ export const UserInformation = ({   avatarUrl,
                         <div className='item'>
                             <span>{subscriptions.length}</span>
                             <span>Подписчики</span>
-                            <button onClick={getSubscribeCollection}>GET_SUBSC</button>
                         </div>
                         <div className='item'>
                             <span>209</span>
@@ -68,5 +64,27 @@ export const UserInformation = ({   avatarUrl,
             <PopupChangeUserInfo/>
 
         </div>
+    )
+}
+
+function SubscribeButton({userId, mySubscriptions}) {
+    const dispatch = useDispatch()
+
+    const subscribeOnUser = () => {
+        dispatch(subscribeOnUserAction(userId))
+    }
+
+    const unSubscribeOnUser = () => {
+        dispatch(unSubscribeOnUserAction(userId))
+    }
+
+    return (
+        <>
+            {mySubscriptions.includes(userId)
+                ? <button onClick={unSubscribeOnUser}>ОТПИСКА</button>
+                : <button onClick={subscribeOnUser}>ПОДПИСКА</button>
+            }
+
+        </>
     )
 }

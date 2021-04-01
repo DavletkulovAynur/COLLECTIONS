@@ -10,9 +10,9 @@ import './PersonalArea.scss'
 
 const PersonalAreaTemplate = ({ avatarUrl,
                                 myCollection,
-                                  subscribe,
+                                subscribe,
                                 countPublication,
-                                  subscriptions,
+                                subscriptions,
                                 userName,
                                 bookmarkCollection}) => {
     const [tabValue, setTabValue] = useState(0);
@@ -27,7 +27,7 @@ const PersonalAreaTemplate = ({ avatarUrl,
     <div className='Personal-area'>
         <div className='user-info-tab-wrapper'>
             <section>
-                <UserInformation subscriptions={subscriptions} countPublication={countPublication} avatarUrl={avatarUrl} userName={userName}/>
+                <UserInformation subscribe={subscribe} subscriptions={subscriptions} countPublication={countPublication} avatarUrl={avatarUrl} userName={userName}/>
             </section>
 
             <section className='tab-wrapper'>

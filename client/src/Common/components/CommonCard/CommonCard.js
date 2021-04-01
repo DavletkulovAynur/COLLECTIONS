@@ -4,19 +4,19 @@ import './CommonCard.scss'
 
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
 import {API_URL} from '../../../config'
-import {useSelector} from "react-redux";
+import {useSelector} from 'react-redux'
 
 
 
 export function CommonCard({data}) {
     const {userId} = useSelector((state) => state.authReducer)
 
-    console.log('data', data)
-  const divStyle = (owner, mainImg) => {
-    return {
-      backgroundImage: `url(${API_URL}/${owner}/${mainImg})`,
-    }
-  };
+
+      const divStyle = (owner, mainImg) => {
+        return {
+          backgroundImage: `url(${API_URL}/${owner}/${mainImg})`,
+        }
+      };
 
   function mediaTemplate(owner, mainImg) {
     return (

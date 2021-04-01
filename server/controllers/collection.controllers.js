@@ -137,18 +137,12 @@ class CollectionControllers {
 		try {
 			//переделать
 			const {userSubscribe} = req.body
-			console.log(userSubscribe)
-			// let test = []
-			// userSubscribe.map(async (id) => {
-			// 	const user = await COLLECTION_MODEL.find({owner: id})
-			// 	test.push(user)
-			// })
 
 			async function processArray(array) {
 				let test = []
 				for(const id of array) {
 					const user = await COLLECTION_MODEL.find({owner: id})
-					test.push(user)
+					test.push(user[0])
 				}
 				return test
 			}
