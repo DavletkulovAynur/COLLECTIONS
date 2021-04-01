@@ -3,15 +3,14 @@ import {UserInformation} from "../../../Common/components/UserInformation/UserIn
 import {API_URL} from '../../../config'
 
 import './UserArea.scss'
-const UserAreaTemplate = ({user}) => {
+const UserAreaTemplate = ({user, mySubscriptions}) => {
     const {username, avatar, _id} = user
-    console.log(user)
     const avatarUrl = avatar ? `${API_URL + '/avatars/' + avatar}` : false
 
     return (
         <div className='User-area'>
             <section className='user-information'>
-                <UserInformation avatarUrl={avatarUrl} userId={_id}  userName={username} guest='true'/>
+                <UserInformation mySubscriptions={mySubscriptions} avatarUrl={avatarUrl} userId={_id}  userName={username} guest='true'/>
             </section>
         </div>
     );

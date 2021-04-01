@@ -27,7 +27,27 @@ export function* subscribeOnUser(data) {
             user,
             {Authorization: `Bearer ${localStorage.getItem('token')}`}
         ))
+
+    } catch (e) {
+        console.log('error', e)
+    }
+}
+
+export function* unSubscribeOnUser(data) {
+    try {
+        const user = {
+            subscribeUserId: data.payload
+        }
+
+        const payload = yield call(() => Fetcher(
+            `${API_URL}users/unsubscribe-on-user`,
+            'POST',
+            user,
+            {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        ))
+
         console.log(payload)
+
     } catch (e) {
         console.log('error', e)
     }
