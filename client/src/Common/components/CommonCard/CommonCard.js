@@ -1,10 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './CommonCard.scss'
-
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
 import {API_URL} from '../../../config'
 import {useSelector} from 'react-redux'
+import pixelFace from '../../assets/images/pixel-face.svg'
+
 
 
 
@@ -30,7 +31,8 @@ export function CommonCard({data}) {
   }
 
   function infoTemplate(_id, title, nameCollection, author, authorAvatar, owner) {
-      const avatarUrl = authorAvatar ? `${API_URL + '/avatars/' + authorAvatar}` : false
+      const avatarUrl = authorAvatar ? `${API_URL + 'avatars/' + authorAvatar}` : false
+
       let link
       if(userId === owner) {
           link = `personal-area`
@@ -40,34 +42,30 @@ export function CommonCard({data}) {
       return (
       <div className='info'>
         <div className='info-wrapper'>
-          <section className='user-emotion-wrapper'>
-            <div className='emotion'>
-              <span className='smile'></span>
-              <span className='text'>Эмоции</span>
+            <div className='info-name'>
+                <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
             </div>
-          </section>
 
           <Bookmark id={_id} />
         </div>
 
           <div className='test'>
-              <div className='info-name'>
-                  <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
-              </div>
-
-              <span className="info-publisher">{nameCollection}</span>
+              <Link to={link}>
+                  <div className='author'>
+                      {avatarUrl
+                            ? <img className='avatar' src={avatarUrl}/>
+                            : <img className='avatar' src={pixelFace}/>
+                      }
+                      <div className='name'>{author}</div>
+                  </div>
+              </Link>
+              <section className='user-emotion-wrapper'>
+                  <div className='emotion'>
+                      <span className='smile'></span>
+                      <span className='text'>Эмоции</span>
+                  </div>
+              </section>
           </div>
-
-
-      <div className='author'>
-         <Link to={link}>
-             <img className='avatar' src={avatarUrl}/>
-             {author}
-         </Link>
-
-
-      </div>
-
       </div>
     )
   }
@@ -83,12 +81,11 @@ export function CommonCard({data}) {
             mainImg,
             author,
             authorAvatar} = item
+
         return (
           <div key={_id} className='Common-card'>
-            <div>
               {mediaTemplate(owner, mainImg)}
               {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner)}
-            </div>
           </div>
         )
       })}
