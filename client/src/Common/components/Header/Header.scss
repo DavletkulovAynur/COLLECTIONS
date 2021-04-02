@@ -1,4 +1,9 @@
 .Header {
+
+  .MuiIconButton-colorSecondary {
+    color: #fff;
+  }
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,41 +27,48 @@
   .mini-icons-container {
     display: flex;
     align-items: center;
+    width: 150px;
+    justify-content: space-between;
   }
 
-  .add-collection-button-wrapper {
-    margin-right: 24px;
-    .button {
-      background-image: url("../../assets/images/icons/plus.svg");
-      width: 20px;
-      height: 20px;
-      background-size: contain;
-      background-repeat: no-repeat;
+  .user-avatar {
+    .user {
+      .avatar {
+        width: 44px;
+        height: 44px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .default-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(256,256,256,0.5);
+
+        img {
+          width: 30px;
+          height: 30px;
+          display: block;
+        }
+
+      }
     }
   }
-
-  .bell-wrapper {
-    cursor: pointer;
-    margin-right: 24px;
-    .bell {
-      background-image: url("../../assets/images/icons/bell.svg");
-      width: 20px;
-      height: 20px;
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-  }
-}
-
 
   @media (max-width: 720px) {
     .search-wrapper {
       display: none;
     }
-
-    .user-container {
-      display: none;
-    }
   }
+}
+
+
+
 
 

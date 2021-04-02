@@ -1,30 +1,38 @@
 @import "Common/assets/styles/colors";
 
 .Common-card {
-    background-color: #202020;
+    background-color: #313235;
     border-radius: 12px;
     box-shadow: 0 10px 20px 0 rgba(0,0,0,.07);
-    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
+
+  .test {
+    display: flex;
     justify-content: space-between;
+  }
 
   .author {
-    background: $grey;
+    background: #313235;
     width: 100%;
-    padding: 6px 12px;
     display: flex;
+    align-items: center;
 
     .avatar {
-      width: 40px;
-      height: 40px;
+      width: 24px;
+      height: 24px;
       object-fit: cover;
       border-radius: 50%;
+    }
+
+    .name {
+      margin-left: 12px;
     }
   }
 
     &__media {
+      flex-shrink: 0;
       width: 100%;
       overflow: hidden;
       border-top-left-radius: 12px;
@@ -33,12 +41,12 @@
       &-wrapper {
         position: relative;
         width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
+        height: 200px;
+        //padding-bottom: 56.25%;
         overflow: hidden;
 
         &-preview {
-          background-position: 50%;
+          background-position: center;
           background-size: cover;
           background-repeat: no-repeat;
           position: absolute;
@@ -54,13 +62,16 @@
     }
 
     .info {
-
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .info-wrapper {
-        padding: 12px;
+        padding: 24px 12px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: end;
       }
 
       .test {
@@ -73,6 +84,8 @@
         height: 24px;
         background-size: contain;
         cursor: pointer;
+        flex-shrink: 0;
+        margin-left: 12px;
       }
 
       .info-bookmark-active {
@@ -97,11 +110,10 @@
 
   .info-name {
     font-size: 20px;
-    line-height: 28px;
     font-weight: 700;
     text-transform: uppercase;
-    margin: 8px 0 16px;
     color: #888888;
+    word-wrap: break-word;
   }
 
   .user-emotion-wrapper {
@@ -113,7 +125,7 @@
   .emotion {
     display: flex;
     align-items: center;
-    background: #FF4040;
+    background: #f14a33;
     border-radius: 8px;
     padding: 4px 8px;
     cursor: pointer;

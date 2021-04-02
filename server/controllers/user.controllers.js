@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const USER_MODEL = require('../models/user')
+const COLLECTION_MODEL = require('../models/collection')
 const Uuid = require('uuid')
 
 class UserControllers {
@@ -88,6 +89,7 @@ class UserControllers {
 
 			try {
 				await  USER_MODEL.updateOne({_id: req.user.id}, {$set: {avatar: avatarName}}, {upsert: true})
+				await COLLECTION_MODEL.update({owner: req.user.id}, {$set: {authorAvatar: avatarName}}, {multi: true})
 				res.status(201).json({message: 'Avatar update', status: true})
 			} catch (e) {
 				console.log(e)
