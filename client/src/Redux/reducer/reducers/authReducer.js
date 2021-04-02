@@ -17,6 +17,7 @@ const initialState = {
   isAuthenticated: false,
   bookmark: [],
   subscriptions: [],
+    subscribers: [],
   ready: false,
   avatar: ''
 }
@@ -33,6 +34,7 @@ export const authReducer = (state = initialState, action) => {
                     userName: data.userName,
                     bookmark: data.bookmark,
                     subscriptions: data.subscriptions,
+                    subscribers: data.subscribers,
                     avatar: data.avatar,
                     isAuthenticated: true,
                     ready: true}
@@ -44,6 +46,7 @@ export const authReducer = (state = initialState, action) => {
                         userName: action.payload.data.userName,
                         bookmark: action.payload.data.bookmark,
                         subscriptions: action.payload.data.subscriptions,
+                        subscribers: action.payload.data.subscribers,
                         avatar: action.payload.data.avatar,
                         isAuthenticated: true,
                         ready: true}

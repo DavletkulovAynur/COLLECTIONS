@@ -10,7 +10,7 @@ const UserArea = () => {
     const router = useRouter()
     const {user} = useSelector((state) => state.userAreaPageReducer)
     const {subscribe} = useSelector((state) => state.subscribeReducer)
-    const {subscriptions} = useSelector((state) => state.authReducer)
+    const {subscriptions, subscribers} = useSelector((state) => state.authReducer)
 
     const userId = router.match.params.id
 
@@ -21,6 +21,8 @@ const UserArea = () => {
     useEffect(() => {
         dispatch(getSubscribeCollectionAction(subscriptions))
     }, [])
+
+    console.log('subscribers', subscribers)
 
     if(!user) {
         return (

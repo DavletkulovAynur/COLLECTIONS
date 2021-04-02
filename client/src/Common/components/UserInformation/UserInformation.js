@@ -10,6 +10,7 @@ import {subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Redux/act
 export const UserInformation = ({   avatarUrl,
                                     userName,
                                     subscribe,
+                                    subscribers = [],
                                     mySubscriptions,
                                     subscriptions = [],
                                     userId,
@@ -18,7 +19,7 @@ export const UserInformation = ({   avatarUrl,
 
     const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
 
-    console.log(mySubscriptions)
+    console.log('subscribers', subscribers)
     const changeStateAvatar = () => {
         setOpenChangeAvatar(true)
     }
@@ -45,11 +46,11 @@ export const UserInformation = ({   avatarUrl,
                             <span>публикаций</span>
                         </div>
                         <div className='item'>
-                            <span>{subscriptions.length}</span>
+                            <span>{subscribers.length}</span>
                             <span>Подписчики</span>
                         </div>
                         <div className='item'>
-                            <span>209</span>
+                            <span>{subscriptions.length}</span>
                             <div>Подписки</div>
                         </div>
                     </div>

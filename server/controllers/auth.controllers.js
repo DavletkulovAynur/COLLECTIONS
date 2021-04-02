@@ -79,6 +79,7 @@ class AuthControllers {
 	  	token,
 		  subscriptions: user.subscriptions,
         userId: user._id,
+		  subscribers: user.subscribers,
         userName: user.username,
         bookmark: user.bookmark,
         email: user.email,
@@ -99,6 +100,7 @@ class AuthControllers {
       return res.json({
 	  	token,
 		  subscriptions: user.subscriptions,
+		  subscribers: user.subscribers,
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,

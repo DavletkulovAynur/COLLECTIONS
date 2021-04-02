@@ -16,7 +16,6 @@ class UserControllers {
 	async getUser(req, res) {
 		try {
 			const {userId} = req.body
-			console.log('userId', userId)
 			const user = await USER_MODEL.find({_id: userId})
 			res.status(201).json({data: user})
 		} catch (e) {
@@ -28,6 +27,7 @@ class UserControllers {
 	async subscribeOnUser(req, res) {
 		try {
 			const {subscribeUserId} = req.body
+			await USER_MODEL.update({_id: subscribeUserId}, {$addToSet: {subscribers: req.user.id}})
 			await USER_MODEL.update({_id: req.user.id}, {$addToSet: {subscriptions: subscribeUserId}})
 			res.status(201).json({message: 'Успешно'})
 		} catch (e) {
@@ -38,6 +38,7 @@ class UserControllers {
 	async unSubscribeUser(req, res) {
 		try {
 			const {subscribeUserId} = req.body
+			await USER_MODEL.update({_id: subscribeUserId}, {$addToSet: {subscribers: req.user.id}})
 			await USER_MODEL.update({_id: req.user.id}, {$pull: {subscriptions: subscribeUserId}})
 			res.status(201).json({message: 'Успешно'})
 		} catch (e) {

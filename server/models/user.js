@@ -6,6 +6,7 @@ const schema = new Schema({
   username: {type: String},
   bookmark: {type: []},
   subscriptions: {type: []},
+  subscribers: {type: []},
   avatar: {type: String}
 })
 
