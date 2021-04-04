@@ -4,15 +4,13 @@ import Fetcher from '../../Common/utils/fetch'
 
 export function* login(user) {
 	try {
-		console.log('user:', user)
 		const payload = yield call(() => Fetcher('http://localhost:5000/auth/login',
 											'POST',
 											user.payload,))
 
 		yield put({type: LOGIN_AUTHENTICATION, payload})
-		yield put({type: '', payload})
 	} catch (e) {
-		console.log(e)
+		console.log('error', e)
 	}
 }
 

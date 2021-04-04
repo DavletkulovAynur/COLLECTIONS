@@ -1,3 +1,5 @@
+@import '../../../Common/assets/styles/colors';
+
 .Auth {
   width: 100%;
   .logo {
@@ -25,10 +27,9 @@
     color: #000;
     padding: 24px;
     border-radius: 6px;
-    background-color: #fff;
+    background-color: #343a40;
     max-width: 408px;
     margin: auto;
-    box-shadow: 10px 10px 5px 0px rgba(255,255,255,.1);
 
     .header {
       display: flex;
@@ -41,12 +42,13 @@
       .title {
         font-size: 18px;
         font-weight: bold;
+        color: $baseColor;
       }
     }
 
     .body {
-      input {
-        margin-bottom: 24px;
+      .input-wrapper {
+        margin-bottom: 16px;
       }
     }
 
@@ -55,6 +57,7 @@
       padding-top: 12px;
       font-size: 14px;
       margin-top: 16px;
+      color: $lightGrey;
 
       .link {
         font-weight: bold;

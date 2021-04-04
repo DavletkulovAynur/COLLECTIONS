@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 import {Login} from 'App/pages/Auth/components/Login'
 import {Registration} from 'App/pages/Auth/components/Registration'
@@ -23,8 +23,8 @@ export function Auth() {
 
       <div className='login-registration-wrapper'>
         {login
-          ? <Login changeStateLogin={changeStateLogin}/>
-          :  <Registration changeStateLogin={changeStateLogin}/>}
+          ?   <Login changeStateLogin={changeStateLogin}/>
+          :   <Registration changeStateLogin={changeStateLogin}/>}
       </div>
     </div>
   )
