@@ -30,6 +30,7 @@ export const appReducer = (state = initialState, action) => {
         return {...state, addBookmark: true}
     case BOOKMARK_ADD_REMOVE:
         return {...state, addBookmark: false}
+
     default:
       return state
   }

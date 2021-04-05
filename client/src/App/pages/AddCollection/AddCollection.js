@@ -5,6 +5,7 @@ import AddCollectionTemplate from './AddCollectionTemplate'
 import {useInput} from '../../../Common/utils/hooks/input.hook'
 import {useDispatch, useSelector} from 'react-redux'
 import {addCollectionAction, dispatchCollection} from '../../../Redux/actions/action'
+import {inputClear} from "../../../Common/utils/inputClear";
 
 function AddCollection(props) {
   const {errorTitle, errorFiles, mainImg} = useSelector((state) => state.addCollectionReducer)
@@ -50,12 +51,6 @@ function AddCollection(props) {
 
     dispatch(dispatchCollection({errorTitle: value, errorFiles: files}))
     return error
-  }
-
-  function inputClear(inputs) {
-    inputs.forEach((item) => {
-      item.clear()
-    })
   }
 
 
