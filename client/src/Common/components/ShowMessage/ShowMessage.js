@@ -1,12 +1,18 @@
 import MuiAlert from "@material-ui/lab/Alert";
 import React, {useEffect, useState} from "react";
 import Snackbar from "@material-ui/core/Snackbar";
+import {useDispatch} from "react-redux";
+import {removeShowMessageAction} from "../../../Redux/actions/action";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-export function ShowMessage({showMessage}) {
+export function ShowMessage({showMessage,
+                            text = 'This is a success message!',
+                            severity = 'success'}) {
+
+    const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
@@ -18,12 +24,14 @@ export function ShowMessage({showMessage}) {
             return;
         }
 
-        setOpen(false);
+        setOpen(false)
+        dispatch(removeShowMessageAction())
+
     };
     return (
         <Snackbar open={open} autoHideDuration={3000} onClose={close}>
-            <Alert onClose={close} severity="success">
-                This is a success message!
+            <Alert onClose={close} severity={severity}>
+                {text}
             </Alert>
         </Snackbar>
     )

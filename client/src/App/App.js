@@ -3,12 +3,14 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import {useRoutes} from 'App/routes'
 import './App.scss'
-import {checkToken, getAllCollection, getAllUsers, getMyCollection} from 'Redux/actions/action'
+import {checkToken, getAllCollection, getMyCollection} from 'Redux/actions/action'
+import {ShowMessage} from "../Common/components/ShowMessage/ShowMessage";
 
 
 function App() {
   const dispatch = useDispatch()
-  const {login, token, userId, ready, userName, avatar, isAuthenticated} = useSelector((state) => state.authReducer)
+  const {token, userId, ready, isAuthenticated} = useSelector((state) => state.authReducer)
+  const {showMessage, text, severity} = useSelector((state) => state.showMessageReducer)
 
   const routes = useRoutes(isAuthenticated)
 
@@ -35,6 +37,7 @@ function App() {
   return (
     <div className="App">
       {routes}
+      <ShowMessage showMessage={showMessage} text={text} severity={severity}/>
     </div>
   );
 }

@@ -25,7 +25,7 @@ import {
   COMMENT_UPDATE,
   GET_COLLECTION_VIEW,
   GET_USER,
-  SEARCH_COLLECTION, SUBSCRIBE_ON_USER, GET_SUBSCRIBE_COLLECTION, UNSUBSCRIBE_ON_USER,
+  SEARCH_COLLECTION, SUBSCRIBE_ON_USER, GET_SUBSCRIBE_COLLECTION, UNSUBSCRIBE_ON_USER, REMOVE_SHOW_MESSAGE,
 } from '../types'
 
 // APP
@@ -210,5 +210,13 @@ export function getSubscribeCollectionAction(payload) {
   return({
     type: GET_SUBSCRIBE_COLLECTION,
     payload
+  })
+}
+
+// Show_Message
+
+export function removeShowMessageAction() {
+  return({
+    type: REMOVE_SHOW_MESSAGE
   })
 }

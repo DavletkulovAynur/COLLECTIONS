@@ -7,6 +7,7 @@ import {personalPageReducer} from './reducers/personalPageReducer'
 import {collectionViewReducer} from './reducers/collectionViewReducer'
 import {userAreaPageReducer} from './reducers/userAreaPageReducer'
 import {subscribeReducer} from './reducers/subscribeReducer'
+import {showMessageReducer} from "./reducers/showMessageReducer";
 
 const reducer = combineReducers({
   appReducer,
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   personalPageReducer,
   collectionViewReducer,
   userAreaPageReducer,
-  subscribeReducer
+  subscribeReducer,
+  showMessageReducer
 })
 
 export default reducer
