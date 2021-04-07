@@ -60,7 +60,7 @@ export const Login = ({changeStateLogin}) => {
           <Input error={loginError} binding={login} label='Email'/>
         </div>
         <div className='input-wrapper'>
-          <Input error={passwordError} binding={passwordInput} label='Password'/>
+          <Input error={passwordError} binding={passwordInput} label='Password' password={true}/>
         </div>
         <Button
           disabled={disabledButton}

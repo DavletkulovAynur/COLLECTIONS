@@ -3,6 +3,7 @@ import {useInput} from 'Common/utils/hooks/input.hook'
 import Button from "Common/components/Button/Button";
 import {useDispatch} from "react-redux";
 import {registrationAction} from "../../../../Redux/actions/action";
+import Input from "../../../../Common/components/Input/Input";
 
 export const Registration = ({changeStateLogin}) => {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export const Registration = ({changeStateLogin}) => {
 
       <form className='body'>
         <input className='com-input-styles' placeholder='name' required {...username.bind}/>
-        <input className='com-input-styles' placeholder='Email' required {...email.bind}/>
+        {/*<Input error={loginError} binding={email} label='Email'/>*/}
         <input className='com-input-styles' placeholder='password' required {...password.bind}/>
         <Button name='Sign up' logoutHandler={handleAuth}></Button>
       </form>

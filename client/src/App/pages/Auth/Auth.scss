@@ -65,8 +65,11 @@
 
       .link {
         font-weight: bold;
-        text-decoration: underline;
         cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
