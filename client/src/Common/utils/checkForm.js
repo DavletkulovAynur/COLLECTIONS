@@ -1,3 +1,4 @@
+import {validateEmail} from './validateEmail'
 
 export function checkForm(data) {
   const entries = Object.entries(data);
@@ -8,7 +9,7 @@ export function checkForm(data) {
   entries.forEach(([key, value]) => {
     switch (key) {
       case 'email':
-        if(!value) {
+        if(!value || !validateEmail(value)) {
           errorInputs[key] = true
           stateError = true
         }
@@ -24,7 +25,4 @@ export function checkForm(data) {
   })
 
   return errorInputs
-
-
-
 }
