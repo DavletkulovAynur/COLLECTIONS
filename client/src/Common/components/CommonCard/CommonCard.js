@@ -15,7 +15,7 @@ export function CommonCard({data}) {
 
       const divStyle = (owner, mainImg) => {
         return {
-          backgroundImage: `url(${API_URL}/${owner}/${mainImg})`,
+          backgroundImage: `url(${API_URL}/${owner}/compressed/${mainImg})`,
         }
       };
 
@@ -59,6 +59,7 @@ export function CommonCard({data}) {
                       <div className='name'>{author}</div>
                   </div>
               </Link>
+
               <section className='user-emotion-wrapper'>
                   <div className='emotion'>
                       <span className='smile'></span>
