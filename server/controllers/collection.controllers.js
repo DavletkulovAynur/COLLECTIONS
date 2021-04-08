@@ -4,6 +4,12 @@ const path = require('path')
 const fs = require('fs')
 const Uuid = require('uuid')
 
+const imagemin = require('imagemin');
+const imageminJpegtran = require('imagemin-jpegtran');
+const imageminJpegRecompress = require('imagemin-jpeg-recompress');
+
+const imageminPngquant = require('imagemin-pngquant');
+
 class CollectionControllers {
 	async addCollection(req, res){
 		try {
@@ -11,14 +17,35 @@ class CollectionControllers {
 			const {title, publisher, description} = req.body
 			const user = await USER_MODEL.find({_id: req.user.id})
 
-
+			//
 			const type = file.name.split('.').pop()
 			const mainImg = Uuid.v4() + `.${type}`
+			//
 
-			let pathWay = path.join(__dirname, `../static/${req.user.id}/${mainImg}`)
-			file.mv(pathWay)
+			let originalImgPathWay = path.join(__dirname, `../static/${req.user.id}/original`)
+			let pathWay = path.join(__dirname, `../static/${req.user.id}/original/${mainImg}`)
+
+			if(!fs.existsSync(originalImgPathWay)) {
+				fs.mkdir(originalImgPathWay, () => {
+					file.mv(pathWay)
+				})
+			} else {
+				file.mv(pathWay)
+			}
+
+			await imagemin(
+				[`${path.join(__dirname, `../static/${req.user.id}/original/${mainImg}`)}`],
+				{
+				destination: `${path.join(__dirname, `../static/${req.user.id}/compressed`)}`,
+				plugins: [
+					imageminJpegRecompress({quality: 'low'}),
+					imageminPngquant({
+						quality: [0.1, 0.1]
+					})
+				]
+			});
+
 			const avatar = user[0].avatar ? user[0].avatar : ''
-
 			const collection = new COLLECTION_MODEL({
 				nameCollection: 'Нужно прописать',
 				title,
