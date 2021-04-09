@@ -1,25 +1,45 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {useInput} from 'Common/utils/hooks/input.hook'
-import Button from "Common/components/Button/Button";
-import {useDispatch} from "react-redux";
+
 import {registrationAction} from "../../../../Redux/actions/action";
-import Input from "../../../../Common/components/Input/Input";
+import Input from '../../../../Common/components/Input/Input'
+import {checkForm} from '../../../../Common/utils/checkForm'
+import {inputClear} from '../../../../Common/utils/inputClear'
+
+import Button from '@material-ui/core/Button'
+
 
 export const Registration = ({changeStateLogin}) => {
-    const dispatch = useDispatch()
-
-  const username = useInput('')
-  const email = useInput('')
-  const password = useInput('')
+  const dispatch = useDispatch()
+  const userNameInput = useInput('')
+  const emailInput = useInput('')
+  const passwordInput = useInput('')
+  const [loginError, setLoginError] = useState(false)
+  const [passwordError, setPasswordError] = useState(false)
+  const [userNameError, setUserNameError] = useState(false)
 
   const handleAuth = (e) => {
     const user = {
-      username: username.value,
-      email: email.value,
-      password: password.value
+      username: userNameInput.value,
+      email: emailInput.value,
+      password: passwordInput.value
     }
 
-    dispatch(registrationAction(user))
+    const objErrors = checkForm(user)
+    const {email, password, username} = objErrors
+    const errorСhecking = Object.keys(objErrors).length
+
+    setLoginError(email)
+    setPasswordError(password)
+    setUserNameError(username)
+
+      if(!errorСhecking) {
+          dispatch(registrationAction(user))
+          inputClear([userNameInput, emailInput, passwordInput])
+      }
+
+
     e.preventDefault()
   }
 
@@ -30,10 +50,22 @@ export const Registration = ({changeStateLogin}) => {
       </div>
 
       <form className='body'>
-        <input className='com-input-styles' placeholder='name' required {...username.bind}/>
-        {/*<Input error={loginError} binding={email} label='Email'/>*/}
-        <input className='com-input-styles' placeholder='password' required {...password.bind}/>
-        <Button name='Sign up' logoutHandler={handleAuth}></Button>
+        <div className='input-wrapper'>
+          <Input error={userNameError} binding={userNameInput} label='name'/>
+        </div>
+        <div className='input-wrapper'>
+          <Input error={loginError} binding={emailInput} label='Email'/>
+        </div>
+        <div className='input-wrapper'>
+          <Input error={passwordError} binding={passwordInput} label='password'/>
+        </div>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={handleAuth}>
+          Регистрация
+        </Button>
       </form>
 
       <div className='footer'>

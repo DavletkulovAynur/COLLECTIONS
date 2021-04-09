@@ -37,7 +37,7 @@ export default function(url, method, body = null, headers = {}, test = true) {
 
         if(!res.ok) {
           let data = await res.json(res);
-          reject({ status: res.status, statusText: res.statusText, error: data.error || '' });
+          reject({ status: res.status, statusText: res.statusText, error: data.error || '', message: data.message });
         } else {
 
           return (res)

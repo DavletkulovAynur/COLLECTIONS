@@ -28,6 +28,7 @@ export const authReducer = (state = initialState, action) => {
     switch (action.type) {
     case LOGIN_AUTHENTICATION:
       const {data} = action.payload
+      console.log('data', data)
       return {...state,
                     token: data.token,
                     userId: data.userId ,
