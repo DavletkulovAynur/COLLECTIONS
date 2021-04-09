@@ -30,6 +30,7 @@ export const authReducer = (state = initialState, action) => {
       const {data} = action.payload
       console.log('data', data)
       return {...state,
+                    active: data.active,
                     token: data.token,
                     userId: data.userId ,
                     userName: data.userName,
@@ -42,6 +43,7 @@ export const authReducer = (state = initialState, action) => {
 
 		case WRITE_REDUCER_TOKEN:
       return {...state,
+                      active: action.payload.data.active,
                       token: action.payload.data.token,
                       userId: action.payload.data.userId ,
                       userName: action.payload.data.userName,

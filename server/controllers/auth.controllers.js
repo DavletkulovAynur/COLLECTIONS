@@ -1,12 +1,15 @@
 const {validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
+const mailer = require('../nodemailer')
+
 
 const fs = require('fs')
 const path = require('path')
 
 const USER_MODEL = require('../models/user')
 const config = require('config')
+
 
 class AuthControllers {
 	async register(req, res){
@@ -38,6 +41,7 @@ class AuthControllers {
 
 		const test = {
 			token,
+			active: false,
 			subscriptions: user.subscriptions,
 			userId: user._id,
 			subscribers: user.subscribers,
@@ -46,7 +50,19 @@ class AuthControllers {
 			email: user.email,
 			avatar: user.avatar
 		}
-		console.log(user)
+		// Mailer
+		const message = {
+			to: email,
+			subject: 'test',
+			html: `
+			<h2>Поздравляем</h2>
+			ваш  email ${email}
+			<a href="http://localhost:5000/authentication/email?id=${user._id}">test</a>
+		`
+		}
+		mailer(message)
+
+		//
 		const filePath = path.join(__dirname, `../static/${user._id}`)
 
 		if (!fs.existsSync(filePath)) {
@@ -94,6 +110,7 @@ class AuthControllers {
       // проблема
       res.json({
 	  	token,
+				active: user.active,
 		  subscriptions: user.subscriptions,
         userId: user._id,
 		  subscribers: user.subscribers,
@@ -115,9 +132,10 @@ class AuthControllers {
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
 
       return res.json({
-	  	token,
-		  subscriptions: user.subscriptions,
-		  subscribers: user.subscribers,
+				token,
+				active: user.active,
+		  	subscriptions: user.subscriptions,
+		  	subscribers: user.subscribers,
         userId: user._id,
         userName: user.username,
         bookmark: user.bookmark,
