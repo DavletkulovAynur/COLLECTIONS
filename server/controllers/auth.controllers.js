@@ -30,6 +30,23 @@ class AuthControllers {
 		const user = new USER_MODEL({email, username, password: hashedPassword })
 
 		await user.save()
+		const token = jwt.sign(
+			{ 	id: user._id},
+									config.get('jwtSecret'),
+					{ expiresIn: '1h'}
+		)
+
+		const test = {
+			token,
+			subscriptions: user.subscriptions,
+			userId: user._id,
+			subscribers: user.subscribers,
+			userName: user.username,
+			bookmark: user.bookmark,
+			email: user.email,
+			avatar: user.avatar
+		}
+		console.log(user)
 		const filePath = path.join(__dirname, `../static/${user._id}`)
 
 		if (!fs.existsSync(filePath)) {
@@ -37,7 +54,7 @@ class AuthControllers {
 		}
 
 		// await fileService.createDir(user._id)
-		res.status(201).json({message: 'Пользователь создан'})
+		res.status(201).json(test)
 
 
 	} catch (e) {

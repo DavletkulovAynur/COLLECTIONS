@@ -26,7 +26,7 @@ const Input = ({error = '',
 
     return (
         <>
-            <TextField error={error}
+            <TextField error={!!error}
                        {...binding.bind}
                        required={requiredTest}
                        multiline={multiline}

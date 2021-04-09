@@ -11,14 +11,14 @@ export const Login = ({changeStateLogin}) => {
   const dispatch = useDispatch()
   const {checkRegistration} = useSelector(state =>  state.authReducer)
   const [disabledButton, setDisabledButton] = useState(false)
-  const login = useInput('')
+  const emailInput = useInput('')
   const passwordInput = useInput('')
   const [loginError, setLoginError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
 
   const handleLogin = (e) => {
     const user = {
-      email: login.value,
+      email: emailInput.value,
       password: passwordInput.value
     }
 
@@ -31,7 +31,7 @@ export const Login = ({changeStateLogin}) => {
 
     if(!errorСhecking) {
       dispatch(loginAction(user))
-      inputClear([login, passwordInput])
+      inputClear([emailInput, passwordInput])
     }
 
     e.preventDefault()
@@ -57,7 +57,7 @@ export const Login = ({changeStateLogin}) => {
 
       <form className='body'>
         <div className='input-wrapper'>
-          <Input error={loginError} binding={login} label='Email'/>
+          <Input error={loginError} binding={emailInput} label='Email'/>
         </div>
         <div className='input-wrapper'>
           <Input error={passwordError} binding={passwordInput} label='Password' password={true}/>

@@ -7,6 +7,7 @@ import {
 	CHECK_REGISTRATION_RETURN_FALSE, SHOW_MESSAGE, REMOVE_SHOW_MESSAGE
 } from '../types'
 import Fetcher from '../../Common/utils/fetch'
+import {API_URL} from "../../config";
 
 export function* login(user) {
 	try {
@@ -31,20 +32,21 @@ export function* login(user) {
 			const payload = yield call(() => Fetcher('http://localhost:5000/auth/auth', 'GET', '', {
 				Authorization:`Bearer ${localStorage.getItem('token')}`
 			}))
-
 			yield put({type: WRITE_REDUCER_TOKEN, payload})
-
 		} catch (e) {
 			yield put({type: LOGOUT})
 			console.log('Error auth loading', e)
 		}
 	}
 
-	export function* registration({user}) {
+	export function* registration(data) {
 		try {
-			const payload = yield call(() => Fetcher('http://localhost:5000/auth/register', 'POST', user))
-
+			const payload = yield call(() => Fetcher(`${API_URL}auth/register`, 'POST', data.payload))
+			console.log(payload)
+			yield put({type: LOGIN_AUTHENTICATION, payload})
 		} catch (e) {
+			const payload = {text: `${e.message}`, severity: 'error'}
+			yield put({type: SHOW_MESSAGE, payload})
 			console.log(e)
 		}
 	}
