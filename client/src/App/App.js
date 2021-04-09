@@ -9,7 +9,7 @@ import {ShowMessage} from "../Common/components/ShowMessage/ShowMessage";
 
 function App() {
   const dispatch = useDispatch()
-  const {token, userId, ready, isAuthenticated} = useSelector((state) => state.authReducer)
+  const {token, userId, ready, isAuthenticated, active} = useSelector((state) => state.authReducer)
   const {showMessage, text, severity} = useSelector((state) => state.showMessageReducer)
 
   const routes = useRoutes(isAuthenticated)
@@ -33,6 +33,15 @@ function App() {
   if(token) {
     localStorage.setItem('token', token)
   }
+
+  console.log('active', active)
+  // if(!active) {
+  //   return (
+  //     <div className='App'>
+  //         <h1>Подтвердите пожалуйста свой доступ</h1>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className="App">
