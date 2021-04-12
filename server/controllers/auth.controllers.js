@@ -8,8 +8,9 @@ const fs = require('fs')
 const path = require('path')
 
 const USER_MODEL = require('../models/user')
+const EMAIL_HASH_MODEL = require('../models/emailHash')
 const config = require('config')
-
+const randomBytes = require('randombytes')
 
 class AuthControllers {
 	async register(req, res){
@@ -30,7 +31,7 @@ class AuthControllers {
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 12)
-		const user = new USER_MODEL({email, username, password: hashedPassword })
+		const user = new USER_MODEL({email, username, password: hashedPassword,  active: false})
 
 		await user.save()
 		const token = jwt.sign(
@@ -41,7 +42,7 @@ class AuthControllers {
 
 		const test = {
 			token,
-			active: false,
+			active: user.active,
 			subscriptions: user.subscriptions,
 			userId: user._id,
 			subscribers: user.subscribers,
@@ -50,6 +51,9 @@ class AuthControllers {
 			email: user.email,
 			avatar: user.avatar
 		}
+
+
+		const randomEmailHash = randomBytes(16).toString('hex')
 		// Mailer
 		const message = {
 			to: email,
@@ -57,12 +61,19 @@ class AuthControllers {
 			html: `
 			<h2>Поздравляем</h2>
 			ваш  email ${email}
-			<a href="http://localhost:5000/authentication/email?id=${user._id}">test</a>
+			<a href="http://localhost:5000/authentication/email?id=${randomEmailHash}">test</a>
 		`
 		}
 		mailer(message)
-
 		//
+
+		const emailHash = new EMAIL_HASH_MODEL({
+			hash: randomEmailHash,
+			owner: user._id
+		})
+
+		await emailHash.save()
+
 		const filePath = path.join(__dirname, `../static/${user._id}`)
 
 		if (!fs.existsSync(filePath)) {
@@ -130,7 +141,7 @@ class AuthControllers {
 			const user = await USER_MODEL.findOne({_id: req.user.id})
 
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
-
+			console.log(user)
       return res.json({
 				token,
 				active: user.active,
