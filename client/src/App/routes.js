@@ -1,23 +1,27 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import AddArticle from "App/pages/AddCollection/AddCollection";
-import {Header} from "Common/components/Header/Header";
-import Nav from "Common/components/Nav/Nav";
-import {Auth} from "App/pages/Auth/Auth";
-import CollectionView from "App/pages/CollectionView/CollectionView";
+import AddArticle from 'App/pages/AddCollection/AddCollection'
+import {Header} from 'Common/components/Header/Header'
+import {Auth} from 'App/pages/Auth/Auth'
+import CollectionView from 'App/pages/CollectionView/CollectionView'
 import {PersonalArea} from 'App/pages/PersonalArea/PersonalArea'
 import CollectionsList from './pages/CollectionsList/CollectionsList'
-import UserArea from "./pages/UserArea/UserArea";
+import UserArea from './pages/UserArea/UserArea'
+import ConfirmEmailBlock from "../Common/components/ConfirmEmailBlock/ConfirmEmailBlock";
 
-export const useRoutes = isAuthenticated => {
+export const useRoutes = (isAuthenticated, active) => {
   if(isAuthenticated) {
+
+    if(!active) {
+      return (
+       <ConfirmEmailBlock/>
+      )
+    }
+
     return (
-      <>
+      <section className='content'>
         <Header/>
         <div className='page'>
-          {/*<div className='Nav-wrapper'>*/}
-          {/*  <Nav/>*/}
-          {/*</div>*/}
           <Switch>
             <Route exact path='/'>
               <CollectionsList/>
@@ -40,7 +44,7 @@ export const useRoutes = isAuthenticated => {
             <Redirect to="/"/>
           </Switch>
         </div>
-      </>
+      </section>
     )
   }
 

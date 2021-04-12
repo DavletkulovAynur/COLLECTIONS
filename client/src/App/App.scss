@@ -4,12 +4,15 @@
 
 .App {
   max-width: 1480px;
-  padding: 0 24px 24px;
   margin: 0 auto;
 
   .page {
     display: flex;
     justify-content: space-between;
+  }
+
+  .content {
+    padding: 0 24px 24px;
   }
 
   // переместить

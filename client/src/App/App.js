@@ -12,7 +12,7 @@ function App() {
   const {token, userId, ready, isAuthenticated, active} = useSelector((state) => state.authReducer)
   const {showMessage, text, severity} = useSelector((state) => state.showMessageReducer)
 
-  const routes = useRoutes(isAuthenticated)
+  const routes = useRoutes(isAuthenticated, active)
 
   useEffect(() => {
     dispatch(checkToken())
@@ -33,15 +33,6 @@ function App() {
   if(token) {
     localStorage.setItem('token', token)
   }
-
-  console.log('active', active)
-  // if(!active) {
-  //   return (
-  //     <div className='App'>
-  //         <h1>Подтвердите пожалуйста свой доступ</h1>
-  //     </div>
-  //   )
-  // }
 
   return (
     <div className="App">

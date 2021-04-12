@@ -141,7 +141,7 @@ class AuthControllers {
 			const user = await USER_MODEL.findOne({_id: req.user.id})
 
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
-			console.log(user)
+
       return res.json({
 				token,
 				active: user.active,
