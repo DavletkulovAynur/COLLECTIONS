@@ -4,11 +4,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import './PopupChangeAvatar.scss'
 import PopupChangeAvatarTemplate from './PopupChangeAvatarTemplate'
 import {openPopupChangeAvatar} from "../../../Redux/actions/action";
+import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
 
 
 
 
-export default function PopupChangeAvatar() {
+export default function EditingProfile() {
     let reader = new FileReader()
     const {avatar, userName} = useSelector((state) => state.authReducer)
     const {statePopup} = useSelector((state) => state.personalPageReducer)
@@ -50,10 +51,7 @@ export default function PopupChangeAvatar() {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
         })
 
-
-        console.log(response)
         if(response.ok) {
-            console.log('super')
             setLoading(false)
             setPreviewImg('')
             setShowMessage(true)
@@ -66,16 +64,20 @@ export default function PopupChangeAvatar() {
 
     }
 
+    const avatarUrl = DefineAvatarUrl()
+
     return (
        <PopupChangeAvatarTemplate fileUploadHandler={fileUploadHandler}
                                   handleClose={handleClose}
                                   deleteFile={deleteFile}
                                   sendAvatar={sendAvatar}
                                   loading={loading}
+                                  avatarUrl={avatarUrl}
                                   showMessage={showMessage}
                                   open={statePopup}
                                   fullWidth={fullWidth}
                                   maxWidth={maxWidth}
+                                  userName={userName}
                                   previewImg={previewImg}/>
     );
 }
