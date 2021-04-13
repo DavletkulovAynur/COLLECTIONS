@@ -45,9 +45,19 @@ export function* unSubscribeOnUser(data) {
             user,
             {Authorization: `Bearer ${localStorage.getItem('token')}`}
         ))
+    } catch (e) {
+        console.log('error', e)
+    }
+}
 
-        console.log(payload)
-
+export function* editUser(data) {
+    try {
+        const payload = yield call(() => Fetcher(
+          `${API_URL}users/edit-user`,
+          'POST',
+          data.payload,
+        {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        ))
     } catch (e) {
         console.log('error', e)
     }

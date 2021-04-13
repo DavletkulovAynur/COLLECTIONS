@@ -8,7 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import './PopupChangeAvatar.scss'
 import {Loading} from '../Loading/Loading'
 import Input from "../Input/Input";
-import {useInput} from "../../utils/hooks/input.hook";
 
 import { Container } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
@@ -17,7 +16,9 @@ import CloseIcon from '@material-ui/icons/Close'
 
 
 
+
 export default function PopupChangeAvatarTemplate({fileUploadHandler,
+  nameInput, aboutUserInput, placeInput, sendUserInformation,
                                                     avatarUrl,
                                                     userName,
                                                       handleClose,
@@ -30,9 +31,8 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
                                                       fullWidth,
                                                       previewImg}) {
 
-  const nameInput = useInput(userName)
-  const aboutUserInput = useInput('')
-  const placeInput = useInput('')
+
+
   const classes = useStyles();
 
   return (
@@ -100,7 +100,7 @@ export default function PopupChangeAvatarTemplate({fileUploadHandler,
                             <div className='Test2'>
                               <Input multiline={true} rows={4} binding={aboutUserInput} label='Расскажите немного о себе'/>
                             </div>
-                            <Button variant="contained" color="primary">
+                            <Button onClick={sendUserInformation} variant="contained" color="primary">
                               Сохранить
                             </Button>
                           </section>

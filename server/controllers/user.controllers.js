@@ -100,6 +100,16 @@ class UserControllers {
 			res.status(400).json({message: 'Error load Avatar'})
 		}
 	}
+
+	async editUser(req, res) {
+		try {
+			const {name, place, description} = req.body
+			await USER_MODEL.update({_id: req.user.id}, {username: name, place, description})
+
+		} catch (e) {
+			console.log('error', e)
+		}
+	}
 }
 
 module.exports = new UserControllers()
