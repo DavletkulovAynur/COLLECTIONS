@@ -3,8 +3,9 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import './PopupChangeAvatar.scss'
 import PopupChangeAvatarTemplate from './PopupChangeAvatarTemplate'
-import {openPopupChangeAvatar} from "../../../Redux/actions/action";
+import {editUserAction, openPopupChangeAvatar} from "../../../Redux/actions/action";
 import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
+import {useInput} from "../../utils/hooks/input.hook";
 
 
 
@@ -21,6 +22,10 @@ export default function EditingProfile() {
     const [loadAvatar, setLoadAvatar] = useState(null)
     const [showMessage, setShowMessage] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    const nameInput = useInput(userName)
+    const aboutUserInput = useInput('')
+    const placeInput = useInput('')
 
     const handleClose = () => {
         dispatch(openPopupChangeAvatar(false))
@@ -66,6 +71,10 @@ export default function EditingProfile() {
 
     const avatarUrl = DefineAvatarUrl()
 
+    function sendUserInformation() {
+        dispatch(editUserAction({place: placeInput.value, name: nameInput.value, description: aboutUserInput.value}))
+    }
+
     return (
        <PopupChangeAvatarTemplate fileUploadHandler={fileUploadHandler}
                                   handleClose={handleClose}
@@ -78,6 +87,12 @@ export default function EditingProfile() {
                                   fullWidth={fullWidth}
                                   maxWidth={maxWidth}
                                   userName={userName}
-                                  previewImg={previewImg}/>
+                                  previewImg={previewImg}
+                                  nameInput={nameInput}
+                                  aboutUserInput={aboutUserInput}
+                                  placeInput={placeInput}
+                                  sendUserInformation={sendUserInformation}
+
+       />
     );
 }

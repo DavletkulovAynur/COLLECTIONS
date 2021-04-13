@@ -19,4 +19,6 @@ router.post('/subscribe-on-user', authMiddleware, userControllers.subscribeOnUse
 
 router.post('/unsubscribe-on-user', authMiddleware, userControllers.unSubscribeUser)
 
+router.post('/edit-user', authMiddleware, userControllers.editUser)
+
 module.exports = router

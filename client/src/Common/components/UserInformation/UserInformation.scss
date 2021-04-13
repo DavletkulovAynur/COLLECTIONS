@@ -1,6 +1,4 @@
 .User-information {
-  //max-width: 720px;
-  //margin: auto;
   margin-bottom: 36px;
 
   .user {
@@ -19,6 +17,16 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+
+      .about-user {
+        p {
+          color: #e8e8e8;
+        }
+      }
+
+      .test {
+        color: #a23327;
+      }
     }
 
     .publication {

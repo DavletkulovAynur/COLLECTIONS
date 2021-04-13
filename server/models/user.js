@@ -8,7 +8,9 @@ const schema = new Schema({
   bookmark: {type: []},
   subscriptions: {type: []},
   subscribers: {type: []},
-  avatar: {type: String}
+  avatar: {type: String},
+  place: {type: String},
+  description: {type: String}
 })
 
 module.exports = model('Users', schema)

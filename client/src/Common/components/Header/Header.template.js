@@ -17,7 +17,11 @@ export function HeaderTemplate({avatarUrl, logOut}) {
 			<Link to='/'>
 				<div className='logo'></div>
 			</Link>
-
+			<Link to='/'>
+				<div className='main-link-button'>
+					Главная
+				</div>
+			</Link>
 
 			<div className='search-wrapper'>
 				<Search/>
