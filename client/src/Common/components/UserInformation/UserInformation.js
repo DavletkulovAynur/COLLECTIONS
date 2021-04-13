@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
-import MenuListComposition from '../MenuListComposition/MenuListComposition'
 import PopupChangeAvatar from '../PopupChangeAvatar/PopupChangeAvatar'
-import PopupChangeUserInfo from '../PopupChangeUserInfo/PopupChangeUserInfo'
+import { IconButton } from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit';
+
 
 import './UserInformation.scss'
 import {useDispatch} from 'react-redux'
-import {subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Redux/actions/action'
+import {openPopupChangeAvatar, subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Redux/actions/action'
 
 export const UserInformation = ({   avatarUrl,
                                     userName,
-                                    subscribe,
                                     subscribers = [],
                                     mySubscriptions,
                                     subscriptions = [],
@@ -17,13 +17,25 @@ export const UserInformation = ({   avatarUrl,
                                     guest = false,
                                     countPublication = '0'}) => {
 
-    const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
-
-    console.log('subscribers', subscribers)
-    const changeStateAvatar = () => {
+  const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
+  const dispatch = useDispatch()
+  const changeStateAvatar = () => {
         setOpenChangeAvatar(true)
     }
 
+  const editingProfile = () => {
+    dispatch(openPopupChangeAvatar(true))
+  }
+
+    const button = () => {
+      return (
+        <div className='editing-profile'>
+          <IconButton onClick={editingProfile} style={{background: '#fff'}}>
+            <EditIcon fontSize='small'/>
+          </IconButton>
+        </div>
+      )
+    }
 
 
     return (
@@ -34,7 +46,7 @@ export const UserInformation = ({   avatarUrl,
                     <img src={avatarUrl} className='avatar'/>
                     {guest
                         ? <SubscribeButton userId={userId} mySubscriptions={mySubscriptions}/>
-                        : <MenuListComposition changeStateAvatar={changeStateAvatar}/>}
+                        : button()}
                 </section>
 
                 <section className='left-block'>
@@ -58,11 +70,13 @@ export const UserInformation = ({   avatarUrl,
                     <div className='about-user'>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus debitis dolores eligendi esse ex, excepturi facilis harum incidunt molestias mollitia nostrum obcaecati, officia quas sequi suscipit temporibus tenetur, ullam?</p>
                     </div>
+                    <div>
+                      Moscow, Russia
+                    </div>
                 </section>
             </div>
 
             <PopupChangeAvatar openChangeAvatar={openChangeAvatar} changeStateAvatar={changeStateAvatar}/>
-            <PopupChangeUserInfo/>
 
         </div>
     )

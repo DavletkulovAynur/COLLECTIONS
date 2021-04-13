@@ -73,16 +73,16 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
     },
     multilineColor:{
-      color:'#fff',
+      color:'red',
       '&::focused': {
-        color: '#fff',
+        color: 'red',
       }
     },
     test: {
-        color: '#fff',
+        color: '#888888',
     },
     focused: {
-        color: '#ffffff',
+        color: '#888888',
     },
     input: {
       color: 'white',
