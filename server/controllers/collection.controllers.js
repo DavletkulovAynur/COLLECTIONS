@@ -5,7 +5,6 @@ const fs = require('fs')
 const Uuid = require('uuid')
 
 const imagemin = require('imagemin');
-const imageminJpegtran = require('imagemin-jpegtran');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 const imageminPngquant = require('imagemin-pngquant');
@@ -62,7 +61,6 @@ class CollectionControllers {
 			res.status(201).json({message: 'success', status: true})
 
 			} catch (e) {
-				console.log('error', e)
 			res.status(400).json(e)
 			}
 		}
@@ -70,9 +68,9 @@ class CollectionControllers {
 	async getAllCollection(req, res){
 		try {
 			const collection = await COLLECTION_MODEL.find()
-			res.status(201).json(collection)
+			res.status(201).json({resData: collection})
 		} catch (e) {
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -80,9 +78,9 @@ class CollectionControllers {
 		try {
 			const {collectionId} = req.body
 			const collection = await COLLECTION_MODEL.find({_id: collectionId})
-			res.status(201).json({collection})
+			res.status(201).json({resData: collection})
 		} catch (e){
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -90,40 +88,31 @@ class CollectionControllers {
 		try {
 		const {userId} = req.body
 			const collection = await COLLECTION_MODEL.find({owner: userId})
-			res.status(201).json(collection)
+			res.status(201).json({resData: collection})
 		} catch (e) {
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
 	async getBookmarkCollection(req, res) {
 		try {
-
 			const {data } = req.body
-
-			// Promise
 			new Promise((resolve, reject) => {
 				const allCollection = COLLECTION_MODEL.find()
 				resolve(allCollection)
 			}).then((allCollection) => {
 				const bookmarkSave = allCollection.filter((i) => data.includes(String(i._id)))
-				res.status(201).json(bookmarkSave)
+				res.status(201).json({resData: bookmarkSave})
 			}).catch((error) => {
 				console.log(error)
 			})
-
-
-
 		} catch (e) {
-			console.log(e)
-			// выводить ошибку
+			res.status(500).json(e)
 		}
 	}
 
 	async updateCollectionComment(req, res) {
 		const {description, id, title} = req.body
-
-
 		const user = await USER_MODEL.find({_id: req.user.id})
 
 		const commentObj = {
@@ -137,9 +126,9 @@ class CollectionControllers {
 
 		try {
 			await  COLLECTION_MODEL.update({_id: id}, {$push: {comments : commentObj}})
-			res.status(201).json({message: 'Collection update', status: true, commentObj})
+			res.status(201).json({message: 'Collection update', status: true, resData: commentObj})
 		} catch (e) {
-
+			res.status(500).json(e)
 		}
 	}
 
@@ -153,10 +142,10 @@ class CollectionControllers {
 				return !collection.title.toLowerCase().indexOf(value.toLowerCase())
 			})
 
-			res.status(201).json({message: 'Collection update', status: true, searchResult})
+			res.status(201).json({message: 'Collection update', status: true, resData: searchResult})
 
 		} catch (e) {
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -177,13 +166,13 @@ class CollectionControllers {
 			const val = processArray(userSubscribe)
 
 			val.then((arr) => {
-				res.status(201).json({data: arr})
+				res.status(201).json({resData: arr})
 			})
 
 
 
 		} catch (e) {
-			console.log('error', e)
+			res.status(500).json(e)
 		}
 	}
 }
