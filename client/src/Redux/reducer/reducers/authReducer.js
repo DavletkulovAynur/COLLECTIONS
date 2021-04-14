@@ -6,14 +6,10 @@ import {
   ADD_BOOKMARK_UPDATE_STATE, CHECK_REGISTRATION, CHECK_REGISTRATION_RETURN_FALSE
 } from '../../types'
 
-function noop() {}
-
 const initialState = {
   token: null,
   userId: null,
   userName: '',
-  login: noop,
-  logout: noop,
   isAuthenticated: false,
   bookmark: [],
   subscriptions: [],
@@ -28,7 +24,7 @@ export const authReducer = (state = initialState, action) => {
     switch (action.type) {
     case LOGIN_AUTHENTICATION:
       const {data} = action.payload
-      console.log('data', data)
+
       return {...state,
                     active: data.active,
                     token: data.token,

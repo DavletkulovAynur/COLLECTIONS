@@ -8,9 +8,9 @@ class UserControllers {
 	async getUsers(req, res) {
 		try {
 			const users = await USER_MODEL.find()
-			res.json(users)
+			res.json({resData: users})
 		} catch (e) {
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -18,10 +18,9 @@ class UserControllers {
 		try {
 			const {userId} = req.body
 			const user = await USER_MODEL.find({_id: userId})
-			res.status(201).json({data: user})
+			res.status(201).json({resData: user})
 		} catch (e) {
-			res.status(400)
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -32,7 +31,7 @@ class UserControllers {
 			await USER_MODEL.update({_id: req.user.id}, {$addToSet: {subscriptions: subscribeUserId}})
 			res.status(201).json({message: 'Успешно'})
 		} catch (e) {
-			console.log('error', e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -43,7 +42,7 @@ class UserControllers {
 			await USER_MODEL.update({_id: req.user.id}, {$pull: {subscriptions: subscribeUserId}})
 			res.status(201).json({message: 'Успешно'})
 		} catch (e) {
-			console.log('error', e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -53,17 +52,17 @@ class UserControllers {
 			await USER_MODEL.update({_id: req.user.id}, {$addToSet: {bookmark: bookmarkID}})
 			res.status(201).json({message: 'bookmark update'})
 		} catch (e) {
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
 	async deleteBookmark(req, res){
 		const {bookmarkID} = req.body
 		try {
-			const test = await USER_MODEL.update({_id: req.user.id}, {$pull: {bookmark: bookmarkID}})
+			await USER_MODEL.update({_id: req.user.id}, {$pull: {bookmark: bookmarkID}})
 			res.status(201).json({message: 'bookmark delete'})
 		} catch (e) {
-			console.log(e)
+			res.status(500).json(e)
 		}
 	}
 
@@ -96,7 +95,6 @@ class UserControllers {
 			}
 
 		} catch(e) {
-			console.log(e)
 			res.status(400).json({message: 'Error load Avatar'})
 		}
 	}
@@ -105,9 +103,8 @@ class UserControllers {
 		try {
 			const {username, place, description} = req.body
 			await USER_MODEL.update({_id: req.user.id}, {username, place, description})
-
 		} catch (e) {
-			console.log('error', e)
+			res.status(500).json(e)
 		}
 	}
 }
