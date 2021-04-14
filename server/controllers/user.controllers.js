@@ -103,8 +103,8 @@ class UserControllers {
 
 	async editUser(req, res) {
 		try {
-			const {name, place, description} = req.body
-			await USER_MODEL.update({_id: req.user.id}, {username: name, place, description})
+			const {username, place, description} = req.body
+			await USER_MODEL.update({_id: req.user.id}, {username, place, description})
 
 		} catch (e) {
 			console.log('error', e)

@@ -72,3 +72,6 @@ export const UNSUBSCRIBE_ON_USER = 'UNSUBSCRIBE_ON_USER'
 
 //Edit user
 export const EDIT_USER = 'EDIT_USER'
+export const EDIT_AVATAR = 'EDIT_AVATAR'
+export const LOAD_AVATAR = 'LOAD_AVATAR'
+export const LOAD_AVATAR_COMPLETE = 'LOAD_AVATAR_COMPLETE'

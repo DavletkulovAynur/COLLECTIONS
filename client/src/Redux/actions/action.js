@@ -25,7 +25,13 @@ import {
   COMMENT_UPDATE,
   GET_COLLECTION_VIEW,
   GET_USER,
-  SEARCH_COLLECTION, SUBSCRIBE_ON_USER, GET_SUBSCRIBE_COLLECTION, UNSUBSCRIBE_ON_USER, REMOVE_SHOW_MESSAGE, EDIT_USER,
+  SEARCH_COLLECTION,
+  SUBSCRIBE_ON_USER,
+  GET_SUBSCRIBE_COLLECTION,
+  UNSUBSCRIBE_ON_USER,
+  REMOVE_SHOW_MESSAGE,
+  EDIT_USER,
+  EDIT_AVATAR,
 } from '../types'
 
 // APP
@@ -225,6 +231,13 @@ export function removeShowMessageAction() {
 export function editUserAction(payload) {
   return({
     type: EDIT_USER,
+    payload
+  })
+}
+
+export function editAvatarAction(payload) {
+  return({
+    type: EDIT_AVATAR,
     payload
   })
 }
