@@ -16,14 +16,18 @@ export const collectionViewReducer = (state = initialState, action) => {
     switch (action.type) {
         case WRITE_DOWN_COLLECTION_VIEW:
             const {data} = action.payload
-            return {...state, collection: [...data.collection], comments: data.collection[0].comments}
+            return {...state, collection: data[0], comments: data[0].comments}
+            break
         case UPDATE_COLLECTION_VIEW:
-            const test = [...state.collection[0].comments, action.payload.data.commentObj]
+            const test = [...state.collection.comments, action.payload.data]
             return {...state, comments: test}
+            break
         case LOADING_COLLECTION_UPDATE:
             return {...state, loading: true}
+            break
         case LOADING_HIDDEN_COLLECTION_UPDATE:
             return {...state, loading: false}
+            break
         default:
             return {...state}
     }
