@@ -9,12 +9,16 @@ const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 const imageminPngquant = require('imagemin-pngquant');
 
+const timestamp = require('time-stamp');
+
 class CollectionControllers {
 	async addCollection(req, res){
 		try {
 			const file = req.files.file
-			const {title, publisher, description} = req.body
+			const {title, description} = req.body
 			const user = await USER_MODEL.find({_id: req.user.id})
+			// const date = Date.now()
+			// console.log('date', date)
 
 			//
 			const type = file.name.split('.').pop()
@@ -48,9 +52,9 @@ class CollectionControllers {
 			const collection = new COLLECTION_MODEL({
 				nameCollection: 'Нужно прописать',
 				title,
+				date: timestamp('DD/MM/YYYY'),
 				author: user[0].username,
 				authorAvatar: avatar,
-				publisher,
 				description,
 				mainImg,
 				owner: req.user.id

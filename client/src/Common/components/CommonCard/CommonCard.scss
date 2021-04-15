@@ -27,7 +27,13 @@
     }
 
     .name {
-      margin-left: 12px;
+      margin-left: 8px;
+      color: #888888;;
+      font-size: 11px;
+      width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
     }
   }
 
@@ -67,11 +73,24 @@
       flex-direction: column;
       justify-content: space-between;
 
+      .main-content {
+        padding: 4px 12px 24px;
+      }
       .info-wrapper {
-        padding: 24px 12px;
+        padding-top: 10px;
+        padding-bottom: 12px;
         display: flex;
         justify-content: space-between;
         align-items: end;
+      }
+
+      .short-title {
+        font-size: 14px;
+      }
+
+      .date {
+        font-size: 10px;
+        color: #888888;
       }
 
       .test {
@@ -124,28 +143,41 @@
   }
 
   .emotion {
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    background: #f14a33;
-    border-radius: 8px;
+    background: $hoverWhite;
     padding: 4px 8px;
     cursor: pointer;
 
     .smile {
-      background-image: url("../../../Common/assets/images/icons/smile/smile.svg");
-      width: 16px;
-      height: 16px;
+      background-image: url("../../../Common/assets/images/emoji/angry.svg");
+      width: 17px;
+      height: 17px;
       background-repeat: no-repeat;
       background-size: contain;
     }
 
     .text {
-      font-size: 12px;
-      color: $hoverWhite;
+      font-size: 10px;
+      color: #000;
       margin-left: 12px;
       text-transform: uppercase;
     }
   }
 
+}
+
+.Emoji {
+  position: relative;
+  .hidden-content {
+    //display: none;
+    height: 20px;
+    background: red;
+    width: 60px;
+    top: -20px;
+    position: absolute;
+    border-radius: 4px;
+  }
 }
 

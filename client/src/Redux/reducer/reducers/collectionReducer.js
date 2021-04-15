@@ -20,7 +20,6 @@ export const collectionReducer = (state = initialState, action) => {
     case WRITE_DOWN_BOOKMARK_COLLECTION:
       return {...state, bookmarkCollection: [...action.payload.data]}
     case WRITE_DOWN_SEARCH_COLLECTION:
-      console.log(action.payload.data.searchResult)
       return {...state, searchCollection: [...action.payload.data.searchResult]}
     default:
       return state

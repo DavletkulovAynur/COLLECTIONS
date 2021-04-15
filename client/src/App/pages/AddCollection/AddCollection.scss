@@ -1,8 +1,21 @@
 .Add-collection {
   width: 100%;
-  h1 {
-    text-align: center;
+
+  .inputs-wrapper {
+    display: flex;
+    align-items: center;
+
+    .input-img {
+      margin-right: 12px;
+    }
+
+    .inputs-text {
+      width: 100%;
+    }
   }
+  //h1 {
+  //  text-align: center;
+  //}
   .form {
     max-width: 720px;
     margin: auto;
@@ -10,6 +23,12 @@
 
   .wrapper-text-field {
     margin: 16px 0;
+  }
+
+  .button {
+    margin-top: 36px;
+    display: flex;
+    justify-content: flex-end;
   }
 
 }

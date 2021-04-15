@@ -12,7 +12,7 @@ import pixelFace from '../../assets/images/pixel-face.svg'
 export function CommonCard({data}) {
     const {userId} = useSelector((state) => state.authReducer)
 
-
+  console.log(data)
       const divStyle = (owner, mainImg) => {
         return {
           backgroundImage: `url(${API_URL}/${owner}/compressed/${mainImg})`,
@@ -30,9 +30,9 @@ export function CommonCard({data}) {
 
   }
 
-  function infoTemplate(_id, title, nameCollection, author, authorAvatar, owner) {
+  function infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date) {
       const avatarUrl = authorAvatar ? `${API_URL + 'avatars/' + authorAvatar}` : false
-
+    console.log('date', date);
       let link
       if(userId === owner) {
           link = `personal-area`
@@ -41,13 +41,21 @@ export function CommonCard({data}) {
       }
       return (
       <div className='info'>
-        <div className='info-wrapper'>
+        <div className='main-content'>
+          <section className='date'>
+            Опубликовано: {date}
+          </section>
+          <section className='info-wrapper'>
             <div className='info-name'>
-                <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
+              <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
             </div>
-
-          <Bookmark id={_id} />
+            <Bookmark id={_id} />
+          </section>
+          <section className='short-title'>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolorem laborum maxime similique?
+          </section>
         </div>
+
 
           <div className='test'>
               <Link to={link}>
@@ -60,12 +68,7 @@ export function CommonCard({data}) {
                   </div>
               </Link>
 
-              <section className='user-emotion-wrapper'>
-                  <div className='emotion'>
-                      <span className='smile'></span>
-                      <span className='text'>Эмоции</span>
-                  </div>
-              </section>
+              <Emoji/>
           </div>
       </div>
     )
@@ -76,6 +79,7 @@ export function CommonCard({data}) {
     {data.map((item) => {
       const {img,
             _id,
+            date,
             title,
             nameCollection,
             owner,
@@ -86,10 +90,26 @@ export function CommonCard({data}) {
         return (
           <div key={_id} className='Common-card'>
               {mediaTemplate(owner, mainImg)}
-              {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner)}
+              {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}
           </div>
         )
       })}
       </>
+  )
+}
+
+const Emoji = () => {
+  return (
+    <div className='Emoji'>
+      <section className='hidden-content'>
+
+      </section>
+      <section className='user-emotion-wrapper'>
+        <div className='emotion'>
+          <span className='smile'></span>
+          <span className='text'>Эмоции</span>
+        </div>
+      </section>
+    </div>
   )
 }
