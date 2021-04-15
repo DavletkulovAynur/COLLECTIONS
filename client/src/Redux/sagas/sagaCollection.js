@@ -71,7 +71,6 @@ import {API_URL} from "../../config";
 				subscribe,
 				{Authorization: `Bearer ${localStorage.getItem('token')}`}
 				))
-			console.log(payload)
 			yield put({type: WRITE_DOWN_SUBSCRIBE_COLLECTION, payload})
 		} catch (e) {
 			console.log('error', e)

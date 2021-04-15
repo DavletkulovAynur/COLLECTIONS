@@ -1,19 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import {CommentForm} from './CommentForm'
 import './styles/ArticleViewTemplate.scss'
 import {API_URL} from "../../../../config";
 // import {FeatureBgGradient} from "App/pages/CollectionView/Components/FeatureBgGradient";
 
-const images = [
-  'https://st.overclockers.ru/images/lab/2019/10/27/1/001_art_big.jpg',
-  'https://s1.1zoom.ru/big0/123/396284-blackangel.jpg',
-  'https://images2.alphacoders.com/795/795229.jpg',
-  'https://images2.alphacoders.com/601/thumb-1920-601148.jpg',
-  'https://images.alphacoders.com/909/thumb-1920-909823.jpg'
-]
-
-const tags = ['adventure', 'action', 'playstation', 'gods', 'unsharted', 'insomniac']
 
 export function CollectionViewTemplate({collection = [], comments, handleSubmit}) {
 
@@ -47,36 +37,6 @@ export function CollectionViewTemplate({collection = [], comments, handleSubmit}
       )
   }
 
-  const $tags = () => {
-    return (
-      <div className='tags'>
-        {tags.map((tag, index) => {
-          return (
-            <div key={index} className='tag'>{tag}</div>
-          )
-        })}
-      </div>
-      )
-  }
-
-  const $images = () => {
-    return (
-      <section className='secondary-content'>
-        <div className='images-screenshots'>
-          {images.map((img, index) => {
-            return (
-              <div key={index} className='images-screenshots__wrapper'>
-                <img className='img' src={img}/>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-    )
-  }
-
-
-
   return (
       <div className='Article-view-template'>
         <section className='main-content'>
@@ -89,11 +49,6 @@ export function CollectionViewTemplate({collection = [], comments, handleSubmit}
         </section>
       </div>
   )
-}
-
-CollectionViewTemplate.propTypes = {
-  game: PropTypes.object,
-  handleSubmit: PropTypes.func
 }
 
 function sortfunction(array) {

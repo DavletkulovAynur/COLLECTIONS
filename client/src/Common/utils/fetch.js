@@ -45,7 +45,6 @@ export default function(url, method, body = null, headers = {}, test = true) {
       })
       .then( async (res) => {
         let data = await res.json(res);
-        console.log('data', data)
         resolve({status: res.status, statusText: res.statusText, data: data.resData, message: data.message})
       })
       .catch(err => {

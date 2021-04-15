@@ -27,15 +27,16 @@ function CollectionView() {
     dispatch(commentUpdateAction(comment))
   }
 
-  if(!collection.length) {
+  if(!collection) {
     return (
       <h1>LOADING</h1>
     )
   }
 
+
   return(
     <div className='Collection-view'>
-      <CollectionViewTemplate comments={comments} collection={collection[0]} handleSubmit={handleSubmit}/>
+      <CollectionViewTemplate comments={comments} collection={collection} handleSubmit={handleSubmit}/>
     </div>
   )
 }
