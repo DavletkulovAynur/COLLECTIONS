@@ -2,6 +2,7 @@ const {Schema, model, Types} = require('mongoose')
 
 const schema = new Schema ({
   nameCollection: {type: String, required: true},
+  date: {type: String},
   title: {type: String, required: true},
   author: {type: String, required: true},
   authorAvatar: {type: String},

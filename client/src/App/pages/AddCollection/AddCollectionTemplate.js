@@ -8,34 +8,36 @@ import Input from "../../../Common/components/Input/Input";
 
   const AddCollectionTemplate = ({title,
                                  errorTitle,
-                                 publisher,
                                  description,
                                  handleSubmit}) => {
 
   return (
     <div className='Add-collection'>
-      <h1>ПУБЛИКАЦИЯ</h1>
+
       <div className='form'>
         <form>
-          <DragAndDrop/>
-          <div className='wrapper-text-field'>
-            <Input error={errorTitle} binding={title} label='title' requiredTest={true}/>
-          </div>
-          <div className='wrapper-text-field'>
-            <Input binding={publisher} label='publisher' requiredTest={false}/>
-          </div>
-          <div className='wrapper-text-field'>
-            <Input multiline={true} rows={4} binding={description} label='description' requiredTest={false}/>
-          </div>
+          <section className='inputs-text'>
+              <div className='wrapper-text-field'>
+                <Input error={errorTitle} binding={title} label='Добавьте название' requiredTest={true}/>
+              </div>
+              <div className='wrapper-text-field'>
+                <Input multiline={true} rows={4} binding={description} label='Добавьте описание' requiredTest={false}/>
+              </div>
+            </section>
+          <section className='input-img'>
+            <DragAndDrop/>
+          </section>
 
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<Icon>send</Icon>}
-            size="large"
-            onClick={() => handleSubmit()}>
-            ОТПРАВИТЬ
-          </Button>
+          <section className='button'>
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={<Icon>send</Icon>}
+              size="large"
+              onClick={() => handleSubmit()}>
+              ОТПРАВИТЬ
+            </Button>
+          </section>
         </form>
       </div>
     </div>

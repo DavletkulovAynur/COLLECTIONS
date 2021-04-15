@@ -14,7 +14,6 @@ function AddCollection(props) {
   const formData = new FormData()
 
   const title = useInput('')
-  const publisher = useInput('')
   const description = useInput('')
 
   const handleSubmit = (e) => {
@@ -24,13 +23,12 @@ function AddCollection(props) {
 
     formData.append('file', mainImg)
     formData.append('title', title.value)
-    formData.append('publisher', title.value)
     formData.append('description', title.value)
     formData.append('author', userName)
 
     dispatch(addCollectionAction(formData))
 
-    inputClear([title, publisher, description])
+    inputClear([title, description])
 
   }
 
@@ -59,7 +57,6 @@ function AddCollection(props) {
       title={title}
       errorTitle={errorTitle}
       errorFiles={errorFiles}
-      publisher={publisher}
       description={description}
       handleSubmit={handleSubmit}
     />
