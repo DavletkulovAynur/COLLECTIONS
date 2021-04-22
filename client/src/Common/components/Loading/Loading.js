@@ -13,9 +13,9 @@ export function Loading({colorLoading = '#fff'}) {
 
   return (
       <div className="lds-default">
-          {items.map(() => {
+          {items.map((item, index) => {
               return (
-                  <div style={styleTest}></div>
+                  <div key={index} style={styleTest}></div>
               )
           })}
 

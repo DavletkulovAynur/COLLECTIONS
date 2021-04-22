@@ -12,12 +12,11 @@ import pixelFace from '../../assets/images/pixel-face.svg'
 export function CommonCard({data}) {
     const {userId} = useSelector((state) => state.authReducer)
 
-  console.log(data)
-      const divStyle = (owner, mainImg) => {
-        return {
-          backgroundImage: `url(${API_URL}/${owner}/compressed/${mainImg})`,
-        }
-      };
+  const divStyle = (owner, mainImg) => {
+      return {
+        backgroundImage: `url(${API_URL}/${owner}/compressed/${mainImg})`,
+      }
+    };
 
   function mediaTemplate(owner, mainImg) {
     return (
@@ -32,7 +31,7 @@ export function CommonCard({data}) {
 
   function infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date) {
       const avatarUrl = authorAvatar ? `${API_URL + 'avatars/' + authorAvatar}` : false
-    console.log('date', date);
+
       let link
       if(userId === owner) {
           link = `personal-area`

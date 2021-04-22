@@ -38,11 +38,12 @@ export function HeaderTemplate({avatarUrl, logOut}) {
 
 				<section>
 					<Tooltip title="Выйти">
-						<IconButton color='inherit'>
-							<ExitToAppIcon fontSize='default' onClick={logOut} />
-						</IconButton>
+						<div onClick={logOut}>
+							<IconButton color='inherit'>
+								<ExitToAppIcon fontSize='default'/>
+							</IconButton>
+						</div>
 					</Tooltip>
-
 				</section>
 
 				<section className='user-avatar'>

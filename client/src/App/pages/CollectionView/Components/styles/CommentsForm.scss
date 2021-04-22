@@ -10,7 +10,7 @@
   &__header {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    //margin-bottom: 12px;
     .plus {
       display: block;
       background: url('../../../../../Common/assets/images/icons/plus.svg');
@@ -41,5 +41,9 @@
     .form__button {
       margin-top: 12px;
     }
+  }
+
+  .button-wrapper {
+    margin-top: 12px;
   }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import './AddCollection.scss'
-
 import AddCollectionTemplate from './AddCollectionTemplate'
 import {useInput} from '../../../Common/utils/hooks/input.hook'
 import {useDispatch, useSelector} from 'react-redux'
@@ -25,9 +24,7 @@ function AddCollection(props) {
     formData.append('title', title.value)
     formData.append('description', title.value)
     formData.append('author', userName)
-
     dispatch(addCollectionAction(formData))
-
     inputClear([title, description])
 
   }

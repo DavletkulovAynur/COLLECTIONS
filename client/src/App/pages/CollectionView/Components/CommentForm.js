@@ -1,11 +1,15 @@
-import React, {useContext, useRef} from 'react'
+import React, {useState} from 'react'
 import {useInput} from 'Common/utils/hooks/input.hook'
 import './styles/CommentsForm.scss'
 import {Loading} from "Common/components/Loading/Loading";
 import {useSelector} from "react-redux";
+import Input from "../../../../Common/components/Input/Input";
+import Icon from "@material-ui/core/Icon";
+import Button from "@material-ui/core/Button";
 
 export function CommentForm({handleSubmit}) {
-    const {loading} = useSelector((state) => state.collectionViewReducer)
+  const [formOpen, setFormOpen] = useState(false)
+  const {loading} = useSelector((state) => state.collectionViewReducer)
   const commentValue = useInput('')
   const commentTitle = useInput('')
 
@@ -16,18 +20,49 @@ export function CommentForm({handleSubmit}) {
     e.preventDefault()
   }
 
+  const formShow = () => {
+    setFormOpen(true)
+  }
+
+  const formClose = () => {
+    setFormOpen(false)
+  }
+
   return (
     <div className='Comment-form'>
-      <div className='Comment-form__header'>
+      <div onClick={formShow} className='Comment-form__header'>
         <span className='plus'></span>
-        <div className='title'>write a comment...</div>
+        <div className='title'>Напишите комментарий</div>
       </div>
-      <form className='Comment-form__form'  onSubmit={submitForm}>
-        <input className='form__title com-input-styles' {...commentTitle.bind} placeholder='title'></input>
-        <textarea className="form__message com-input-styles" placeholder="description"  {...commentValue.bind}/>
-        <input className='form__button' type='submit' value='ОТПРАВИТЬ'/>
-        {loading ? <Loading/> : null }
-      </form>
+      {formOpen
+        ? <form className='Comment-form__form'>
+            <div>
+              <Input binding={commentTitle} label='title'/>
+            </div>
+            <div>
+              <Input binding={commentValue} label='placeholder' rows='4' multiline='true'/>
+            </div>
+            <div className='button-wrapper'>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={() => formClose()}>
+                ОТМЕНА
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                endIcon={<Icon>send</Icon>}
+                size="large"
+                onClick={() => submitForm()}>
+                ОТПРАВИТЬ
+              </Button>
+            </div>
+            {/*{loading ? <Loading/> : null }*/}
+          </form>
+        : null}
+
     </div>
   )
 }

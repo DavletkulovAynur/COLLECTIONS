@@ -35,7 +35,6 @@ export function Bookmark({id}) {
 
   }
 
-  console.log(bookmark)
   return (
     <>
       <div

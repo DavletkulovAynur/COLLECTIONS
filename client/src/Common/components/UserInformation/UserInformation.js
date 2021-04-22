@@ -29,8 +29,8 @@ export const UserInformation = ({   avatarUrl,
 
     const button = () => {
       return (
-        <div className='editing-profile'>
-          <IconButton onClick={editingProfile} style={{background: '#fff'}}>
+        <div onClick={editingProfile} className='editing-profile'>
+          <IconButton style={{background: '#fff'}}>
             <EditIcon fontSize='small'/>
           </IconButton>
         </div>

@@ -1,5 +1,7 @@
 import {put, call} from 'redux-saga/effects'
 import {
+	SEARCH_COLLECTION_HIDE_LOADING,
+	SEARCH_COLLECTION_LOADING,
 	SUCCESSFULLY_SEND_COLLECTION,
 	WRITE_DOWN_ALL_COLLECTION,
 	WRITE_DOWN_COLLECTION, WRITE_DOWN_SEARCH_COLLECTION, WRITE_DOWN_SUBSCRIBE_COLLECTION
@@ -53,9 +55,10 @@ import {API_URL} from "../../config";
 
 	export function* searchCollection(data) {
 		try {
+			yield put({type: SEARCH_COLLECTION_LOADING})
 			const payload = yield call (() => Fetcher('http://localhost:5000/collection/search', 'POST', data.payload))
-
 			yield put({type: WRITE_DOWN_SEARCH_COLLECTION, payload})
+			yield put ({type: SEARCH_COLLECTION_HIDE_LOADING})
 		} catch (e) {
 			console.log('error', e)
 		}

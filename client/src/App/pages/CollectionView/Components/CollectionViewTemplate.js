@@ -2,7 +2,6 @@ import React from 'react'
 import {CommentForm} from './CommentForm'
 import './styles/ArticleViewTemplate.scss'
 import {API_URL} from "../../../../config";
-// import {FeatureBgGradient} from "App/pages/CollectionView/Components/FeatureBgGradient";
 
 
 export function CollectionViewTemplate({collection = [], comments, handleSubmit}) {
@@ -13,7 +12,6 @@ export function CollectionViewTemplate({collection = [], comments, handleSubmit}
       return (
         <section className='Comments'>
           <div className='comment-title'>Comments <sup>{sortComments.length}</sup></div>
-
           <div  className='comments'>
             {sortComments.map((comment, index) => {
               const avatarUrl = comment.authorAvatar ? `${API_URL + '/avatars/' + comment.authorAvatar}` : false
@@ -40,9 +38,7 @@ export function CollectionViewTemplate({collection = [], comments, handleSubmit}
   return (
       <div className='Article-view-template'>
         <section className='main-content'>
-          {/*<FeatureBgGradient certainCollection={certainCollection}/> на будущее*/}
           <h2 className='title-72'>{collection.name}</h2>
-          {/*{$tags()}*/}
           <div className='description'>{collection.description}</div>
           <CommentForm handleSubmit={handleSubmit}/>
           {$comments()}

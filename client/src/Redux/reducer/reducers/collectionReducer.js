@@ -1,4 +1,6 @@
 import {
+  SEARCH_COLLECTION_HIDE_LOADING,
+  SEARCH_COLLECTION_LOADING,
   WRITE_DOWN_ALL_COLLECTION,
   WRITE_DOWN_BOOKMARK_COLLECTION,
   WRITE_DOWN_COLLECTION, WRITE_DOWN_SEARCH_COLLECTION
@@ -8,7 +10,8 @@ const initialState = {
   myCollection: [],
   allCollection: [],
   bookmarkCollection: [],
-  searchCollection: []
+  searchCollection: [],
+  searchCollectionState: false,
 }
 
 export const collectionReducer = (state = initialState, action) => {
@@ -20,7 +23,11 @@ export const collectionReducer = (state = initialState, action) => {
     case WRITE_DOWN_BOOKMARK_COLLECTION:
       return {...state, bookmarkCollection: [...action.payload.data]}
     case WRITE_DOWN_SEARCH_COLLECTION:
-      return {...state, searchCollection: [...action.payload.data.searchResult]}
+      return {...state, searchCollection: [...action.payload.data]}
+    case SEARCH_COLLECTION_LOADING:
+      return {...state, searchCollectionState: true}
+    case SEARCH_COLLECTION_HIDE_LOADING:
+      return {...state, searchCollectionState: false}
     default:
       return state
   }
