@@ -37,12 +37,12 @@ export default function EditingProfileTemplate({fileUploadHandler,
   <div className='Edit-user-information'>
     <Dialog
         className='Edit-user-information-dialog'
-        fullScreen='true'
+        fullScreen={true}
         open={open}
         onClose={handleClose}
         aria-labelledby="max-width-dialog-title">
 
-        <Container maxWidth='sm' disableGutters='true'>
+        <Container maxWidth='sm' disableGutters={true}>
           <Header handleClose={handleClose}/>
           <DialogContent>
             <AvatarChange avatarUrl={avatarUrl} fileUploadHandler={fileUploadHandler} classes={classes}/>
@@ -75,9 +75,11 @@ const Header = ({handleClose}) => {
         Изменение профиля
       </DialogTitle>
       <DialogActions>
-        <IconButton style={{color: '#fff', padding: 0}} onClick={handleClose}>
-          <CloseIcon/>
-        </IconButton>
+        <div onClick={handleClose}>
+          <IconButton style={{color: '#fff', padding: 0}}>
+            <CloseIcon/>
+          </IconButton>
+        </div>
       </DialogActions>
     </div>
   )
