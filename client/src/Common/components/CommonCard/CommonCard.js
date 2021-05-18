@@ -5,6 +5,7 @@ import {Bookmark} from 'Common/components/Bookmark/Bookmark'
 import {API_URL} from '../../../config'
 import {useSelector} from 'react-redux'
 import pixelFace from '../../assets/images/pixel-face.svg'
+import {clickBody} from "../../utils/clickBody";
 
 
 
@@ -102,8 +103,12 @@ const Emoji = () => {
     const openContent = () => {
         setOpen(!open)
     }
+
+    const test = clickBody()
+
+  console.log(test)
     return (
-    <div className='Emoji'>
+    <div className='Emoji' data-emoji-wrapper>
       {open
         ? <div>
               <div className='emoji-container'>
