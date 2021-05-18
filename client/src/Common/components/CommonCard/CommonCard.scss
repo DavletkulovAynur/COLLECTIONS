@@ -170,14 +170,118 @@
 
 .Emoji {
   position: relative;
+  .emoji-arrow {
+    left: 36px;
+    visibility: visible;
+    bottom: 22px;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    &:before,
+    &:after {
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    &:before {
+      border-width: 8px;
+      top: 0;
+      margin-left: -2px;
+      border-top-color: rgba(0, 0, 0, 0.08);
+    }
+    &:after {
+      top: 1px;
+      border-width: 6px;
+      z-index: 1000;
+      border-top-color: #e2e2e2;
+    }
+  }
   .hidden-content {
-    //display: none;
-    height: 20px;
-    background: red;
-    width: 60px;
-    top: -20px;
+    display: flex;
+    justify-content: space-between;
+    top: -62px;
+    right: -75px;
     position: absolute;
     border-radius: 4px;
+    background-color: #e2e2e2;
+    color: #bfbfbf;
+    z-index: 10;
+    .emotions-popup-item {
+      text-align: center;
+      position: relative;
+      min-width: 50px;
+      cursor: pointer;
+      padding: 8px 0;
+      transition: all .3s ease-out;
+      &:hover {
+        background-color: #B0B0B0;
+        .emotions-popup-title {
+          opacity: 1;
+        }
+      }
+      .emotions-popup-icon {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 5px;
+      }
+      .emotions-popup-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        line-height: 16px;
+        border-radius: 10px;
+        padding: 0 4px;
+        top: -12px;
+        background-color: #171c20;
+        color: #bfbfbf;
+        transition: all .3s ease-out;
+        opacity: 0;
+      }
+      .emotions-popup-counter {
+        font-size: 10px;
+        line-height: 15px;
+        color: #171c20;
+        background-color: #B0B0B0;
+        border-radius: 3px;
+        width: 35px;
+        height: 15px;
+        margin: 0 auto;
+      }
+    }
+    .grinning,
+    .laughing,
+    .love,
+    .sad,
+    .angry {
+      width: 17px;
+      height: 17px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .grinning {
+      background-image: url("../../../Common/assets/images/emoji/grinning.svg");
+    }
+    .laughing {
+      background-image: url("../../../Common/assets/images/emoji/laughing.svg");
+    }
+    .love {
+      background-image: url("../../../Common/assets/images/emoji/in-love.svg");
+    }
+    .sad {
+      background-image: url("../../../Common/assets/images/emoji/sad.svg");
+    }
+    .angry {
+      background-image: url("../../../Common/assets/images/emoji/angry.svg");
+    }
+  }
+  @media (max-width: 960px) {
+    .hidden-content {
+      right: 0;
+    }
   }
 }
 
