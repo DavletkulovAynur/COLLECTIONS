@@ -8,6 +8,7 @@ import {PersonalArea} from 'App/pages/PersonalArea/PersonalArea'
 import CollectionsList from './pages/CollectionsList/CollectionsList'
 import UserArea from './pages/UserArea/UserArea'
 import ConfirmEmailBlock from "../Common/components/ConfirmEmailBlock/ConfirmEmailBlock";
+import {FooterMobile} from "../Common/components/FooterMobile/FooterMobile";
 
 export const useRoutes = (isAuthenticated, active) => {
   if(isAuthenticated) {
@@ -19,32 +20,35 @@ export const useRoutes = (isAuthenticated, active) => {
     }
 
     return (
-      <section className='content'>
-        <Header/>
-        <div className='page'>
-          <Switch>
-            <Route exact path='/'>
-              <CollectionsList/>
-            </Route>
-            <Route exact path='/article-view/:id'>
-              <CollectionView/>
-            </Route>
-            <Route exact path='/add'>
-              <AddArticle/>
-            </Route>
-            <Route exact path='/my-collection'>
-              <CollectionsList/>
-            </Route>
-            <Route exact path='/personal-area'>
-              <PersonalArea/>
-            </Route>
-            <Route exact path='/user-area/:id'>
+      <>
+        <section className='content'>
+          <Header/>
+          <div className='page'>
+            <Switch>
+              <Route exact path='/'>
+                <CollectionsList/>
+              </Route>
+              <Route exact path='/article-view/:id'>
+                <CollectionView/>
+              </Route>
+              <Route exact path='/add'>
+                <AddArticle/>
+              </Route>
+              <Route exact path='/my-collection'>
+                <CollectionsList/>
+              </Route>
+              <Route exact path='/personal-area'>
+                <PersonalArea/>
+              </Route>
+              <Route exact path='/user-area/:id'>
                 <UserArea/>
-            </Route>
-            <Redirect to="/"/>
-          </Switch>
-        </div>
-      </section>
+              </Route>
+              <Redirect to="/"/>
+            </Switch>
+          </div>
+        </section>
+        <FooterMobile/>
+      </>
     )
   }
 

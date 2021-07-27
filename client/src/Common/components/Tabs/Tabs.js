@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
-import Paper from "@material-ui/core/Paper";
-import Tab from "@material-ui/core/Tab";
-import {makeStyles} from "@material-ui/core/styles";
-import {Tabs} from "@material-ui/core";
+import React, {useState} from 'react'
+import Paper from "@material-ui/core/Paper"
+import Tab from "@material-ui/core/Tab"
+import {makeStyles} from "@material-ui/core/styles"
+import {Tabs} from "@material-ui/core"
+
+import './Tabs.scss'
 
 const useStyles = makeStyles({
     root: {
