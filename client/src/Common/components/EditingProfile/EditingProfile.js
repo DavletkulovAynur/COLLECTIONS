@@ -6,6 +6,7 @@ import {editAvatarAction, editUserAction, openPopupChangeAvatar} from '../../../
 import {DefineAvatarUrl} from '../../utils/DefineAvatarUrl'
 import {useInput} from '../../utils/hooks/input.hook'
 import {checkForm} from '../../utils/checkForm'
+import {inputClear} from '../../utils/inputClear'
 
 export default function EditingProfile() {
   const dispatch = useDispatch()
@@ -66,6 +67,7 @@ export default function EditingProfile() {
     setNameInputError(username)
 
     if(!errorСhecking) {
+      inputClear([nameInput, aboutUserInput, placeInput])
       dispatch(editUserAction(userInformation))
     }
   }
