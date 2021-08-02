@@ -1,6 +1,7 @@
 @import '../Common/assets/styles/grid';
 @import '../Common/assets/styles/title';
 @import '../Common/assets/styles/input';
+@import '../Common/assets/styles/vars';
 
 .App {
   max-width: 1480px;
@@ -20,5 +21,11 @@
     width: 100%;
     margin-top: 5%;
     margin-bottom: 5%;
+  }
+
+  @media (max-width: $mobile) {
+    .content {
+      padding: 0 6px 6px;
+    }
   }
 }

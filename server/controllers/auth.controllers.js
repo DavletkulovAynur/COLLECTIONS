@@ -45,7 +45,9 @@ class AuthControllers {
 				userName: user.username,
 				bookmark: user.bookmark,
 				email: user.email,
-				avatar: user.avatar
+				avatar: user.avatar,
+				description: user.description,
+				place: user.place
 			}
 
 			emailService(email, user)
@@ -102,7 +104,9 @@ class AuthControllers {
 				userName: user.username,
 				bookmark: user.bookmark,
 				email: user.email,
-				avatar: user.avatar
+				avatar: user.avatar,
+				description: user.description,
+				place: user.place
 			}
       res.json({
 	  		resData: resUser, message: 'Успешно вошли в систему'
@@ -128,7 +132,9 @@ class AuthControllers {
 				userName: user.username,
 				bookmark: user.bookmark,
 				email: user.email,
-				avatar: user.avatar
+				avatar: user.avatar,
+				description: user.description,
+				place: user.place
 			}
 
       return res.json({

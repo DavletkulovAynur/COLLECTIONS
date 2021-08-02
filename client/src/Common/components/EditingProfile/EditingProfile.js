@@ -8,18 +8,20 @@ import {useInput} from '../../utils/hooks/input.hook'
 import {checkForm} from '../../utils/checkForm'
 import {inputClear} from '../../utils/inputClear'
 
+// Как загружать
 export default function EditingProfile() {
   const dispatch = useDispatch()
   let reader = new FileReader()
-  const {avatar, userName} = useSelector((state) => state.authReducer)
+  const {avatar, userName, description, place} = useSelector((state) => state.authReducer)
   const {statePopup, loading} = useSelector((state) => state.personalPageReducer)
 
   const [previewImg, setPreviewImg] = useState()
   const [loadAvatar, setLoadAvatar] = useState(null)
+
   // Inputs
   const nameInput = useInput(userName)
-  const aboutUserInput = useInput('')
-  const placeInput = useInput('')
+  const aboutUserInput = useInput(description)
+  const placeInput = useInput(place)
   const [nameInputError, setNameInputError] = useState(false)
 
   const handleClose = () => {

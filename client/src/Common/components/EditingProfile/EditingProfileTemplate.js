@@ -124,7 +124,7 @@ const UserInformation = ({nameInput, placeInput, aboutUserInput, nameInputError,
         <Input binding={placeInput} label='Расположение'/>
       </div>
       <div className='Test2'>
-        <Input multiline={true} rows={4} binding={aboutUserInput} label='Расскажите немного о себе'/>
+        <Input multiline={true}  rows={4} binding={aboutUserInput} label='Расскажите немного о себе'/>
       </div>
       <Button onClick={sendUserInformation} variant="contained" color="primary">
         Сохранить
