@@ -13,15 +13,17 @@ export function DragAndDrop() {
   const [previewImg, setPreviewImg] = useState('')
 
 
+
   useEffect(() => {
     deleteFile()
   }, [sendCollectionStatus])
 
-
-
   const initialFile = (files) => {
     const arrFiles = [...files]
     const mainImg = arrFiles[0]
+    if(!mainImg) {
+      return
+    }
 
     reader.readAsDataURL(mainImg)
 

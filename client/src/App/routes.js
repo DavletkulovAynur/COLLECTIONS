@@ -9,6 +9,7 @@ import CollectionsList from './pages/CollectionsList/CollectionsList'
 import UserArea from './pages/UserArea/UserArea'
 import ConfirmEmailBlock from "../Common/components/ConfirmEmailBlock/ConfirmEmailBlock";
 import {FooterMobile} from "../Common/components/FooterMobile/FooterMobile";
+import {SearchPageMobile} from "../Common/components/SearchPageMobile/SearchPageMobile";
 
 export const useRoutes = (isAuthenticated, active) => {
   if(isAuthenticated) {
@@ -42,6 +43,9 @@ export const useRoutes = (isAuthenticated, active) => {
               </Route>
               <Route exact path='/user-area/:id'>
                 <UserArea/>
+              </Route>
+              <Route exact path='/search-mobile'>
+                <SearchPageMobile/>
               </Route>
               <Redirect to="/"/>
             </Switch>

@@ -1,3 +1,5 @@
+@import '../../assets/styles/vars.scss';
+
 .User-information {
   margin-bottom: 36px;
 
@@ -24,7 +26,7 @@
         }
       }
 
-      .test {
+      .from-user {
         color: #a23327;
       }
     }
@@ -64,5 +66,47 @@
     }
   }
 
+  @media (max-width: $mobile) {
+    .user {
+      .about-user {
+        display: none;
+      }
+
+      .from-user {
+       display: none;
+      }
+
+      .user-name {
+        font-size: 10px;
+        margin-bottom: 6px;
+        text-align: center;
+      }
+
+      .left-block {
+        margin-left: 12px;
+      }
+
+      .publication {
+        justify-content: space-evenly;
+        .item {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+    }
+
+    .MuiIconButton-root {
+      padding: 2px;
+
+      .MuiSvgIcon-root {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
 
 }

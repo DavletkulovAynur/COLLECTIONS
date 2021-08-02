@@ -1,3 +1,5 @@
+@import '../../assets/styles/vars.scss';
+
 .Header {
 
   .MuiIconButton-colorSecondary {
@@ -73,8 +75,20 @@
     }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: $mobile) {
     .search-wrapper {
+      display: none;
+    }
+
+    .user-avatar {
+      display: none;
+    }
+
+    .add-collection-button-wrapper {
+      display: none;
+    }
+
+    .main-link-button {
       display: none;
     }
   }

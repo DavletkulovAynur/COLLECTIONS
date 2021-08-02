@@ -16,7 +16,9 @@ const initialState = {
   subscribers: [],
   ready: false,
   avatar: '',
-  checkRegistration: false
+  checkRegistration: false,
+  description: '',
+  place: ''
 }
 
 // исправить вложенность
@@ -35,7 +37,10 @@ export const authReducer = (state = initialState, action) => {
                     subscribers: data.subscribers,
                     avatar: data.avatar,
                     isAuthenticated: true,
-                    ready: true}
+                    ready: true,
+                    description: data.description,
+                    place: data.place
+      }
 
 		case WRITE_REDUCER_TOKEN:
       return {...state,
@@ -48,7 +53,10 @@ export const authReducer = (state = initialState, action) => {
                       subscribers: action.payload.data.subscribers,
                       avatar: action.payload.data.avatar,
                       isAuthenticated: true,
-                      ready: true}
+                      ready: true,
+                      description: action.payload.data.description,
+                      place: action.payload.data.place
+      }
 
     case DELETE_BOOKMARK_UPDATE_STATE:
       return {...state, bookmark: [...action.payload]}

@@ -4,6 +4,11 @@ import Tab from "@material-ui/core/Tab"
 import {makeStyles} from "@material-ui/core/styles"
 import {Tabs} from "@material-ui/core"
 
+import PhoneIcon from '@material-ui/icons/Phone';
+import CollectionsIcon from '@material-ui/icons/Collections';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
 import './Tabs.scss'
 
 const useStyles = makeStyles({
@@ -29,10 +34,11 @@ const TabsComponent = ({changeTabs, tabValue}) => {
                 indicatorColor="primary"
                 textColor="primary"
                 centered
+                variant="fullWidth"
             >
-                <Tab label="My Collection" />
-                <Tab label="My save" />
-                <Tab label='subscribe'/>
+                <Tab icon={<CollectionsIcon />}/>
+                <Tab icon={<BookmarksIcon />} />
+                <Tab icon={<PeopleAltIcon />}/>
             </Tabs>
         </Paper>
     );
