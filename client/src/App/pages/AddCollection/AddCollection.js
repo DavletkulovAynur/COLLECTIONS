@@ -34,6 +34,8 @@ function AddCollection(props) {
     let files = false
     let value = false
 
+    console.log('mainImg', mainImg)
+
     if(!mainImg) {
       files = true
       error = false

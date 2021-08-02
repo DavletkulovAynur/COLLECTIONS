@@ -11,7 +11,7 @@ export const addCollectionReducer = (state = initialState, action) => {
     switch (action.type) {
         case DISPATCH_COLLECTION:
             const {errorTitle, errorFiles} = action.payload
-            return {errorTitle, errorFiles}
+            return {...state, errorTitle, errorFiles}
             break
         case LOAD_IMG_DRAG_AND_DROP:
             const {mainImg} = action.payload

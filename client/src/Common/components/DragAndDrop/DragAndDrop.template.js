@@ -67,7 +67,7 @@ const PreviewMainImg = ({previewImg, deleteFile}) => {
     return (
         <>
             {previewImg
-                ?   <section className='preview-img-wrapper'>
+                ?   <section className='add-preview-img-wrapper'>
                         <img src={previewImg} className='preview-img'/>
                         <CloseIcon className='delete-preview-img' onClick={deleteFile}/>
                     </section>
