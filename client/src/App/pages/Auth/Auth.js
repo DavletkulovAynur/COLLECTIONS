@@ -15,13 +15,11 @@ export function Auth() {
 
   return (
     <div className='Auth'>
-
-      <div className='logo'>
-        <div className='img'></div>
-        <span className='text'>COLLECTION</span>
+      <div className='Auth_name-project'>
+        COLLECTION
       </div>
 
-      <div className='login-registration-wrapper'>
+      <div className='Auth_forms'>
         {login
           ?   <Login changeStateLogin={changeStateLogin}/>
           :   <Registration changeStateLogin={changeStateLogin}/>}

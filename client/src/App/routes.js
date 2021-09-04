@@ -57,15 +57,13 @@ export const useRoutes = (isAuthenticated, active) => {
   }
 
   return (
-      <div className='page'>
-        <div className='Auth-page-wrapper'>
+      <>
           <Switch>
             <Route exact path='/login'>
               <Auth/>
             </Route>
             <Redirect to="/login"/>
           </Switch>
-        </div>
-      </div>
+      </>
   )
 }

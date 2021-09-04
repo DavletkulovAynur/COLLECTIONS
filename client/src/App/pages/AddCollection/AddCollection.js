@@ -50,7 +50,7 @@ function AddCollection(props) {
     return error
   }
 
-
+// test
   return (
     <AddCollectionTemplate
       title={title}

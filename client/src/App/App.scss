@@ -6,21 +6,10 @@
 .App {
   max-width: 1480px;
   margin: 0 auto;
-
-  .page {
-    display: flex;
-    justify-content: space-between;
-  }
+  height: 100%;
 
   .content {
     padding: 0 24px 24px;
-  }
-
-  // переместить
-  .Auth-page-wrapper {
-    width: 100%;
-    margin-top: 5%;
-    margin-bottom: 5%;
   }
 
   @media (max-width: $mobile) {

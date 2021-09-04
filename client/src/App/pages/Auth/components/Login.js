@@ -50,16 +50,12 @@ export const Login = ({changeStateLogin}) => {
 
 
   return (
-    <div className='login'>
-      <div className='header'>
-        <div className='title'>Войти</div>
-      </div>
-
-      <form className='body'>
-        <div className='input-wrapper'>
+    <div className='Auth_login'>
+      <form>
+        <div className='Auth_input'>
           <Input error={loginError} binding={emailInput} label='Email'/>
         </div>
-        <div className='input-wrapper'>
+        <div className='Auth_input'>
           <Input error={passwordError} binding={passwordInput} label='Password' password={true}/>
         </div>
         <Button
@@ -72,7 +68,7 @@ export const Login = ({changeStateLogin}) => {
         </Button>
       </form>
 
-      <div className='footer'>
+      <div className='Auth_footer'>
         Can't log in? <span className='link' onClick={() => changeStateLogin()}> Sign up for an account</span>
       </div>
     </div>
