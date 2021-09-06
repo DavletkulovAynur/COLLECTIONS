@@ -7,7 +7,6 @@ import Input from '../../../../Common/components/Input/Input'
 import {checkForm} from '../../../../Common/utils/checkForm'
 import {inputClear} from '../../../../Common/utils/inputClear'
 
-import Button from '@material-ui/core/Button'
 
 
 export const Registration = ({changeStateLogin}) => {
@@ -44,28 +43,24 @@ export const Registration = ({changeStateLogin}) => {
   }
 
   return (
-    <div>
+    <div className='Auth_registration'>
       <div className='header'>
-        <div className='title'>Sign up for your account</div>
+        <div className='title'>Регистрация</div>
       </div>
 
-      <form className='body'>
-        <div className='input-wrapper'>
+      <form>
+        <div className='Auth_input'>
           <Input error={userNameError} binding={userNameInput} label='name'/>
         </div>
-        <div className='input-wrapper'>
+        <div className='Auth_input'>
           <Input error={loginError} binding={emailInput} label='Email'/>
         </div>
-        <div className='input-wrapper'>
+        <div className='Auth_input'>
           <Input error={passwordError} binding={passwordInput} label='password'/>
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={handleAuth}>
-          Регистрация
-        </Button>
+        <button onClick={handleAuth}>
+          Войти
+        </button>
       </form>
 
       <div className='footer'>

@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 import {useInput} from 'Common/utils/hooks/input.hook'
 import {useDispatch, useSelector} from 'react-redux'
 import {loginAction} from '../../../../Redux/actions/action'
-import Input from "../../../../Common/components/Input/Input";
-import Button from '@material-ui/core/Button';
-import {checkForm} from "../../../../Common/utils/checkForm";
-import {inputClear} from "../../../../Common/utils/inputClear";
+import Input from '../../../../Common/components/Input/Input'
+
+import {checkForm} from '../../../../Common/utils/checkForm'
+import {inputClear} from '../../../../Common/utils/inputClear'
 
 export const Login = ({changeStateLogin}) => {
   const dispatch = useDispatch()
@@ -21,7 +21,6 @@ export const Login = ({changeStateLogin}) => {
       email: emailInput.value,
       password: passwordInput.value
     }
-
     const objErrors = checkForm(user)
     const {email, password} = objErrors
     const errorСhecking = Object.keys(objErrors).length;
@@ -58,14 +57,9 @@ export const Login = ({changeStateLogin}) => {
         <div className='Auth_input'>
           <Input error={passwordError} binding={passwordInput} label='Password' password={true}/>
         </div>
-        <Button
-          disabled={disabledButton}
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={handleLogin}>
+        <button disabled={disabledButton}  onClick={handleLogin}>
           Войти
-        </Button>
+        </button>
       </form>
 
       <div className='Auth_footer'>
