@@ -21,7 +21,6 @@ export const Login = ({changeStateLogin}) => {
       email: emailInput.value,
       password: passwordInput.value
     }
-
     const objErrors = checkForm(user)
     const {email, password} = objErrors
     const errorСhecking = Object.keys(objErrors).length;
@@ -58,6 +57,8 @@ export const Login = ({changeStateLogin}) => {
         <div className='Auth_input'>
           <Input error={passwordError} binding={passwordInput} label='Password' password={true}/>
         </div>
+
+
         <Button
           disabled={disabledButton}
           variant="contained"
