@@ -14,7 +14,7 @@ export function Auth() {
       }
 
   return (
-    <div className='Auth'>
+    <div className='Auth-root Auth'>
       <div className='Auth_name-project'>
         COLLECTION
       </div>

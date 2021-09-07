@@ -1,15 +1,16 @@
 @import '../../../Common/assets/styles/colors';
 
 .Auth {
-  position: relative;
-  top: 50%;
-  transform: translateY(-60%);
-  width: 100%;
-  margin: 0 auto;
-  max-width: 420px;
-  padding: 24px;
 
-
+  &-root {
+    position: relative;
+    top: 50%;
+    transform: translateY(-60%);
+    width: 100%;
+    margin: 0 auto;
+    max-width: 420px;
+    padding: 24px;
+  }
 
   &_name-project {
     display: flex;

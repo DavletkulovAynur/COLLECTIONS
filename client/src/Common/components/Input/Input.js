@@ -21,15 +21,15 @@ const Input = ({error = '',
 
     console.log(error)
 
-    const errorStyle = error ? 'Input-root__error' : ''
+    const errorStyle = error ? 'Input__error' : ''
 
     return (
-        <div className={`Input-root ${errorStyle}`}>
-          <div className={`input-group`}>
-              <input {...binding.bind} className='input-group_input' type="text" required/>
-              <span className="input-group_highlight"></span>
-              <span className="input-group_bar"></span>
-              <label>{label}</label>
+        <div className={`Input ${errorStyle}`}>
+          <div className={`Input_box`}>
+              <input {...binding.bind} className='Input_input' type="text" required/>
+              <span className="Input_highlight"></span>
+              <span className="Input_bar"></span>
+              <label className='Input_label'>{label}</label>
           </div>
         </div>
     );
