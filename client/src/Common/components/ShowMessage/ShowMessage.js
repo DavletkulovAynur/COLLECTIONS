@@ -4,9 +4,11 @@ import Snackbar from "@material-ui/core/Snackbar";
 import {useDispatch} from "react-redux";
 import {removeShowMessageAction} from "../../../Redux/actions/action";
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+// function Alert(props) {
+//     return <MuiAlert elevation={6} variant="filled" {...props} />;
+// }
+
+import './ShowMessage.scss'
 
 export function ShowMessage({showMessage,
                             text = 'This is a success message!',
@@ -29,10 +31,15 @@ export function ShowMessage({showMessage,
 
     };
     return (
-        <Snackbar open={open} autoHideDuration={3000} onClose={close}>
-            <Alert onClose={close} severity={severity}>
-                {text}
-            </Alert>
-        </Snackbar>
+      <div className='Show-message_root Show-message'>
+          <i className="Show-message_icons">email</i>
+          <div className="Show-message_text"></div>
+          <button className="Show-message__action">Got it</button>
+      </div>
+        // <Snackbar open={open} autoHideDuration={3000} onClose={close}>
+        //     <Alert onClose={close} severity={severity}>
+        //         {text}
+        //     </Alert>
+        // </Snackbar>
     )
 }

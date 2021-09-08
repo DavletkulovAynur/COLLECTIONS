@@ -39,15 +39,14 @@ export function* login(user) {
 		}
 	}
 
+	// error
 	export function* registration(data) {
 		try {
 			const payload = yield call(() => Fetcher(`${API_URL}auth/register`, 'POST', data.payload))
-			console.log(payload)
 			yield put({type: LOGIN_AUTHENTICATION, payload})
 		} catch (e) {
 			const payload = {text: `${e.message}`, severity: 'error'}
 			yield put({type: SHOW_MESSAGE, payload})
-			console.log(e)
 		}
 	}
 
