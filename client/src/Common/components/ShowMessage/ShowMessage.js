@@ -1,14 +1,10 @@
-import MuiAlert from "@material-ui/lab/Alert";
-import React, {useEffect, useState} from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import {useDispatch} from "react-redux";
-import {removeShowMessageAction} from "../../../Redux/actions/action";
-
-// function Alert(props) {
-//     return <MuiAlert elevation={6} variant="filled" {...props} />;
-// }
+import React, {useEffect, useState} from 'react'
+import {useDispatch} from 'react-redux'
+import {removeShowMessageAction} from '../../../Redux/actions/action'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './ShowMessage.scss'
+
 
 export function ShowMessage({showMessage,
                             text = 'This is a success message!',
@@ -19,27 +15,30 @@ export function ShowMessage({showMessage,
 
     useEffect(() => {
         setOpen(showMessage)
+        test()
     }, [showMessage])
 
     const close = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
+      setOpen(false)
+      // dispatch(removeShowMessageAction())
+    }
 
+    const test = () => {
+      setTimeout(() => {
         setOpen(false)
-        dispatch(removeShowMessageAction())
+      }, 3000)
+    }
 
-    };
     return (
-      <div className='Show-message_root Show-message'>
-          <i className="Show-message_icons">email</i>
-          <div className="Show-message_text"></div>
-          <button className="Show-message__action">Got it</button>
-      </div>
-        // <Snackbar open={open} autoHideDuration={3000} onClose={close}>
-        //     <Alert onClose={close} severity={severity}>
-        //         {text}
-        //     </Alert>
-        // </Snackbar>
+      <>
+        {open
+          ? <div className={`Show-message_root Show-message Show-message_${severity}`}>
+              <div className="Show-message_text">{text}</div>
+              <button onClick={close} className='Show-message__action'>
+                <FontAwesomeIcon icon="times" style={{ color: '#fff' }}/>
+              </button>
+            </div>
+          : null }
+      </>
     )
 }
