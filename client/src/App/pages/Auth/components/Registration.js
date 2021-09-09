@@ -11,54 +11,47 @@ import {inputClear} from '../../../../Common/utils/inputClear'
 
 export const Registration = ({changeStateLogin}) => {
   const dispatch = useDispatch()
-  const userNameInput = useInput('')
-  const emailInput = useInput('')
-  const passwordInput = useInput('')
-  const [loginError, setLoginError] = useState(false)
-  const [passwordError, setPasswordError] = useState(false)
-  const [userNameError, setUserNameError] = useState(false)
 
-  const handleAuth = (e) => {
+  const handleRegistration = (event, userName, email, password) => {
     const user = {
-      username: userNameInput.value,
-      email: emailInput.value,
-      password: passwordInput.value
+      username: userName.value,
+      email: email.value,
+      password: password.value
     }
 
-    const objErrors = checkForm(user)
-    const {email, password, username} = objErrors
-    const errorСhecking = Object.keys(objErrors).length
+    checkForm(user)
+    registrationUser(user)
+    inputClear([userName, email, password])
+    event.preventDefault()
+  }
 
-    setLoginError(email)
-    setPasswordError(password)
-    setUserNameError(username)
-
-      if(!errorСhecking) {
-          dispatch(registrationAction(user))
-          inputClear([userNameInput, emailInput, passwordInput])
-      }
-
-
-    e.preventDefault()
+  const registrationUser = (user) => {
+    dispatch(registrationAction(user))
   }
 
   return (
-    <div className='Auth_registration'>
-      <div className='header'>
-        <div className='title'>Регистрация</div>
-      </div>
+    <RegistrationTemplate handleRegistration={handleRegistration} changeStateLogin={changeStateLogin}/>
+  )
+}
 
+const RegistrationTemplate = ({handleRegistration, changeStateLogin}) => {
+  const userName = useInput('')
+  const email = useInput('')
+  const password = useInput('')
+
+  return (
+    <div className='Auth_registration'>
       <form>
         <div className='Auth_input'>
-          <Input error={userNameError} binding={userNameInput} label='name'/>
+          <Input binding={userName} label='name'/>
         </div>
         <div className='Auth_input'>
-          <Input error={loginError} binding={emailInput} label='Email'/>
+          <Input binding={email} label='Email'/>
         </div>
         <div className='Auth_input'>
-          <Input error={passwordError} binding={passwordInput} label='password'/>
+          <Input binding={password} label='password'/>
         </div>
-        <button onClick={handleAuth}>
+        <button onClick={(event) => handleRegistration(event, userName, email, password)}>
           Войти
         </button>
       </form>

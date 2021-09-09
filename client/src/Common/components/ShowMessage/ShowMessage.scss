@@ -1,0 +1,20 @@
+.Show-message {
+  &_root {
+    position: fixed;
+    display: flex;
+    max-width: 540px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 13px 0 0 24px;
+    background-color: rgba(46, 204, 113, .95);
+
+
+
+  }
+}

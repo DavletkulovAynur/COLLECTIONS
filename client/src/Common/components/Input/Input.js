@@ -15,24 +15,22 @@ const Input = ({error = '',
     setShowPassword(!showPassword)
   };
 
-    const inputClear = () => {
+  // const inputClear = () => {
+  //
+  // }
 
-    }
+  const errorStyle = error ? 'Input__error' : ''
 
-    console.log(error)
-
-    const errorStyle = error ? 'Input__error' : ''
-
-    return (
-        <div className={`Input ${errorStyle}`}>
-          <div className={`Input_box`}>
-              <input {...binding.bind} className='Input_input' type="text" required/>
-              <span className="Input_highlight"></span>
-              <span className="Input_bar"></span>
-              <label className='Input_label'>{label}</label>
-          </div>
+  return (
+      <div className={`Input ${errorStyle}`}>
+        <div className={`Input_box`}>
+            <input {...binding.bind} className='Input_input' type="text" required/>
+            <span className="Input_highlight"></span>
+            <span className="Input_bar"></span>
+            <label className='Input_label'>{label}</label>
         </div>
-    );
+      </div>
+  );
 }
 
 export default Input
