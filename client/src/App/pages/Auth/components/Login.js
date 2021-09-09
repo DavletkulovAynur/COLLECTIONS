@@ -8,33 +8,41 @@ import {inputClear} from '../../../../Common/utils/inputClear'
 
 export const Login = ({changeStateLogin}) => {
   const dispatch = useDispatch()
+  const [inputErrors, SetInputErrors] = useState(null)
   // для чего не понятно
   const {checkRegistration} = useSelector(state =>  state.authReducer)
 
-  const handleLogin = (emailInput, passwordInput) => {
+  const handleLogin = (event, emailInput, passwordInput) => {
+    event.preventDefault()
     const user = {
       email: emailInput.value,
       password: passwordInput.value
     }
-    // проверить на правильнось
-    checkForm(user)
-    sendingUser(user)
-    inputClear([emailInput, passwordInput])
+    const thereAreMistakesInInputs = validationInputs(user)
+
+    if(!thereAreMistakesInInputs) {
+      sendingUser(user)
+      inputClear([emailInput, passwordInput])
+    }
+  }
+
+  const validationInputs = (user) => {
+    const listInputsHaveError = checkForm(user)
+    if(listInputsHaveError.length) {
+      informInputsAboutError(listInputsHaveError)
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const informInputsAboutError = () => {
+
   }
 
   const sendingUser = (user) => {
     dispatch(loginAction(user))
   }
-
-  // useEffect(() => {
-  //   if(checkRegistration) {
-  //     setDisabledButton(true)
-  //   } else {
-  //     setDisabledButton(false)
-  //   }
-  // }, [checkRegistration])
-
-
 
   return (
     <LoginTemplate changeStateLogin={changeStateLogin} handleLogin={handleLogin}/>
@@ -53,7 +61,7 @@ const LoginTemplate = ({changeStateLogin, handleLogin}) => {
         <div className='Auth_input'>
           <Input binding={passwordInput} label='Password' password={true}/>
         </div>
-        <button onClick={() => handleLogin(emailInput, passwordInput)}>
+        <button onClick={(event) => handleLogin(event, emailInput, passwordInput)}>
           Войти
         </button>
       </form>
