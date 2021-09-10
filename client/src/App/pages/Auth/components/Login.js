@@ -8,7 +8,7 @@ import {inputClear} from '../../../../Common/utils/inputClear'
 
 export const Login = ({changeStateLogin}) => {
   const dispatch = useDispatch()
-  const [inputErrors, SetInputErrors] = useState(null)
+  const [inputErrors, SetInputErrors] = useState({})
   // для чего не понятно
   const {checkRegistration} = useSelector(state =>  state.authReducer)
 
@@ -28,7 +28,7 @@ export const Login = ({changeStateLogin}) => {
 
   const validationInputs = (user) => {
     const listInputsHaveError = checkForm(user)
-    if(listInputsHaveError.length) {
+    if(Object.keys(listInputsHaveError).length != 0) {
       informInputsAboutError(listInputsHaveError)
       return true
     } else {
@@ -36,8 +36,8 @@ export const Login = ({changeStateLogin}) => {
     }
   }
 
-  const informInputsAboutError = () => {
-
+  const informInputsAboutError = (listInputsHaveError) => {
+    SetInputErrors(listInputsHaveError)
   }
 
   const sendingUser = (user) => {
@@ -45,21 +45,40 @@ export const Login = ({changeStateLogin}) => {
   }
 
   return (
-    <LoginTemplate changeStateLogin={changeStateLogin} handleLogin={handleLogin}/>
+    <LoginTemplate changeStateLogin={changeStateLogin} handleLogin={handleLogin} inputErrors={inputErrors}/>
   )
 }
 
-const LoginTemplate = ({changeStateLogin, handleLogin}) => {
+const LoginTemplate = ({changeStateLogin, handleLogin, inputErrors}) => {
   const emailInput = useInput('')
   const passwordInput = useInput('')
+  const [emailInputError, SetEmailInputError] = useState(false)
+  const [passwordInputError, SetPasswordInputError] = useState(false)
+
+
+  useEffect(() => {
+    errorDistributor(inputErrors)
+  }, [inputErrors])
+
+  const errorDistributor = (inputErrors) => {
+    for(let value of Object.keys(inputErrors)) {
+      if(value == 'emailError') {
+        SetEmailInputError(true)
+      }
+      if(value == 'passwordError') {
+        SetPasswordInputError(true)
+      }
+    }
+  }
+
   return (
     <div className='Auth_login'>
       <form>
         <div className='Auth_input'>
-          <Input binding={emailInput} label='Email'/>
+          <Input error={emailInputError} binding={emailInput} label='Email'/>
         </div>
         <div className='Auth_input'>
-          <Input binding={passwordInput} label='Password' password={true}/>
+          <Input type='password' error={passwordInputError} binding={passwordInput} label='Password' password={true}/>
         </div>
         <button onClick={(event) => handleLogin(event, emailInput, passwordInput)}>
           Войти
