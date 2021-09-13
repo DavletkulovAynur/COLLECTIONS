@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {useInput} from 'Common/utils/hooks/input.hook'
 import {useDispatch, useSelector} from 'react-redux'
 import {loginAction} from '../../../../Redux/actions/action'
-import Input from '../../../../Common/components/Input/Input'
 import {checkForm} from '../../../../Common/utils/checkForm'
 import {inputClear} from '../../../../Common/utils/inputClear'
+import LoginTemplate from "./LoginTemplate";
 
 export const Login = ({changeStateLogin}) => {
   const dispatch = useDispatch()
@@ -49,45 +48,4 @@ export const Login = ({changeStateLogin}) => {
   )
 }
 
-const LoginTemplate = ({changeStateLogin, handleLogin, inputErrors}) => {
-  const emailInput = useInput('')
-  const passwordInput = useInput('')
-  const [emailInputError, SetEmailInputError] = useState(false)
-  const [passwordInputError, SetPasswordInputError] = useState(false)
 
-
-  useEffect(() => {
-    errorDistributor(inputErrors)
-  }, [inputErrors])
-
-  const errorDistributor = (inputErrors) => {
-    for(let value of Object.keys(inputErrors)) {
-      if(value == 'emailError') {
-        SetEmailInputError(true)
-      }
-      if(value == 'passwordError') {
-        SetPasswordInputError(true)
-      }
-    }
-  }
-
-  return (
-    <div className='Auth_login'>
-      <form>
-        <div className='Auth_input'>
-          <Input error={emailInputError} binding={emailInput} label='Email'/>
-        </div>
-        <div className='Auth_input'>
-          <Input type='password' error={passwordInputError} binding={passwordInput} label='Password' password={true}/>
-        </div>
-        <button onClick={(event) => handleLogin(event, emailInput, passwordInput)}>
-          Войти
-        </button>
-      </form>
-
-      <div className='Auth_footer'>
-        Can't log in? <span className='link' onClick={() => changeStateLogin()}> Sign up for an account</span>
-      </div>
-    </div>
-  )
-}

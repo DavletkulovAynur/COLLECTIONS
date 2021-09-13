@@ -41,23 +41,26 @@ const RegistrationTemplate = ({handleRegistration, changeStateLogin}) => {
 
   return (
     <div className='Auth_registration'>
+      <h2 className='Auth_title'>
+        Новый аккаунт
+      </h2>
       <form>
         <div className='Auth_input'>
-          <Input binding={userName} label='name'/>
+          <Input placeholder='Имя пользователя'  binding={userName} label='name'/>
         </div>
         <div className='Auth_input'>
-          <Input binding={email} label='Email'/>
+          <Input placeholder='Эл. почта' binding={email} label='Email'/>
         </div>
         <div className='Auth_input'>
-          <Input binding={password} label='password'/>
+          <Input placeholder='Пароль' binding={password} label='password'/>
         </div>
-        <button onClick={(event) => handleRegistration(event, userName, email, password)}>
-          Войти
+        <button className='Button Button-root' onClick={(event) => handleRegistration(event, userName, email, password)}>
+          Создать
         </button>
       </form>
 
-      <div className='footer'>
-        Already have an account? <span className='link' onClick={() => changeStateLogin()}>Log In</span>
+      <div className='Auth_footer'>
+        У вас уже есть аккаунт?  <span className='link' onClick={() => changeStateLogin()}>Войти</span>
       </div>
     </div>
   )

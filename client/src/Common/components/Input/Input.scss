@@ -6,24 +6,33 @@
   }
 
   &_input {
-    font-size:14px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
     padding:10px 10px 10px 5px;
     display:block;
     width: 100%;
     border:none;
-    border-bottom:1px solid #757575;
+    border-bottom: solid 1px #e1e1e1;
 
     &:focus {
       outline:none;
     }
 
-    &:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px white inset; }
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px white inset;
+    }
 
+    // Font styles
+    &:-webkit-autofill::first-line {
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+    }
 
   }
 
   &_input__error {
-    color: red;
-
+    border-bottom: 2px solid red;
   }
 }
