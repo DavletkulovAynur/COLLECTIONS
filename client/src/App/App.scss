@@ -2,6 +2,7 @@
 @import '../Common/assets/styles/title';
 @import '../Common/assets/styles/input';
 @import '../Common/assets/styles/vars';
+@import '../Common/assets/styles/button';
 
 .App {
   max-width: 1480px;
@@ -20,6 +21,6 @@
 }
 
 
-.test {
-
+:global(.test) {
+  color: red;
 }

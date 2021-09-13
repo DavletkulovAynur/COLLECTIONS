@@ -18,6 +18,11 @@
     margin-bottom: 24px;
   }
 
+  &_title {
+    text-align: center;
+    font-size: 32px;
+  }
+
   &_input {
     margin-bottom: 24px;
   }
@@ -39,12 +44,6 @@
     }
   }
 
-  &_forms {
-
-    .MuiButton-root {
-      width: 100%;
-    }
-  }
 }
 
 
