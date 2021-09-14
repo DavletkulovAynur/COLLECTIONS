@@ -1,8 +1,4 @@
 import React from 'react'
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-
-
 import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 import Input from "../../../Common/components/Input/Input";
 
@@ -13,33 +9,22 @@ import Input from "../../../Common/components/Input/Input";
 
   return (
     <div className='Add-collection'>
-
-      <div className='form'>
-        <form>
-          <section className='inputs-text'>
-              <div className='wrapper-text-field'>
-                <Input error={errorTitle} binding={title} label='Добавьте название' requiredTest={true}/>
-              </div>
-              <div className='wrapper-text-field'>
-                <Input multiline={true} rows={4} binding={description} label='Добавьте описание' requiredTest={false}/>
-              </div>
+      <form className='Add-collection_form'>
+          <div className='Add-collection_form-inputs'>
+            <section className='Add-collection_drag-drop-box'>
+              <DragAndDrop/>
             </section>
-          <section className='input-img'>
-            <DragAndDrop/>
-          </section>
+            <section className='Add-collection_inputs entrance'>
+              <div className='entrance_title'>
+                <Input binding={title} placeholder='Добавьте название'/>
+              </div>
+              <Input binding={description} placeholder='Добавьте описание'/>
 
-          <section className='button'>
-            <Button
-              variant="contained"
-              color="primary"
-              endIcon={<Icon>send</Icon>}
-              size="large"
-              onClick={() => handleSubmit()}>
-              ОТПРАВИТЬ
-            </Button>
-          </section>
+              <button className='Button Button-root Add-collection_button'>Сохранить</button>
+            </section>
+          </div>
+
         </form>
-      </div>
     </div>
   );
 };

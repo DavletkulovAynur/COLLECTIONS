@@ -4,7 +4,7 @@ import {
 	LOGIN_AUTHENTICATION,
 	LOGOUT,
 	CHECK_REGISTRATION,
-	CHECK_REGISTRATION_RETURN_FALSE, SHOW_MESSAGE, REMOVE_SHOW_MESSAGE
+	CHECK_REGISTRATION_RETURN_FALSE, SHOW_MESSAGE,
 } from '../types'
 import Fetcher from '../../Common/utils/fetch'
 import {API_URL} from "../../config";
@@ -20,10 +20,9 @@ export function* login(user) {
 
 		yield put({type: CHECK_REGISTRATION_RETURN_FALSE})
 	} catch (e) {
-		const payload = {text: `ошибка ${e.statusText}`, severity: 'error'}
+		const payload = {text: `${e.message}`, severity: 'error'}
 		yield put({type: SHOW_MESSAGE, payload})
 		yield put({type: CHECK_REGISTRATION_RETURN_FALSE})
-		console.log('error', e)
 	}
 }
 
@@ -35,7 +34,7 @@ export function* login(user) {
 			yield put({type: WRITE_REDUCER_TOKEN, payload})
 		} catch (e) {
 			yield put({type: LOGOUT})
-			console.log('Error auth loading', e)
+			// console.log('Error auth loading', e)
 		}
 	}
 

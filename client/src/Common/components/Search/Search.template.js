@@ -5,14 +5,14 @@ import {API_URL} from '../../../config'
 export function SearchTemplate({search, searchResult, viewResultSearch, searchCollectionState}) {
 	return (
 		<div className='Search'>
-			<input type="text" className="search-input" placeholder="Search" {...search.bind}/>
-			{search.value.length
-			?  	<div className='show-result'>
-						<SearchResultElements searchCollectionState={searchCollectionState}
-																	searchResult={searchResult}
-																	viewResultSearch={viewResultSearch}
+			<input type="text" className="Search_input" placeholder="Search" {...search.bind}/>
+					{search.value.length
+					?  	<div className='Search_result-box'>
+									<SearchResultElements searchCollectionState={searchCollectionState}
+																				searchResult={searchResult}
+																				viewResultSearch={viewResultSearch}
 																	/>
-					</div>
+							</div>
 			: 	null }
 		</div>
 	)

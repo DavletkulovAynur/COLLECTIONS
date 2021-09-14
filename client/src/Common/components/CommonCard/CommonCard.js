@@ -43,34 +43,34 @@ export function CommonCard({data}) {
       return (
       <div className='info'>
         <div className='main-content'>
-          <section className='date'>
-            Опубликовано: {date}
-          </section>
+          {/*<section className='date'>*/}
+          {/*  Опубликовано: {date}*/}
+          {/*</section>*/}
           <section className='info-wrapper'>
             <div className='info-name'>
               <Link to={`/article-view/${_id}`} className='title'>{title}</Link>
             </div>
             <Bookmark id={_id} />
           </section>
-          <section className='short-title'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolorem laborum maxime similique?
-          </section>
+          {/*<section className='short-title'>*/}
+          {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolorem laborum maxime similique?*/}
+          {/*</section>*/}
         </div>
 
 
-          <div className='test'>
-              <Link to={link}>
-                  <div className='author'>
-                      {avatarUrl
-                            ? <img className='avatar' src={avatarUrl}/>
-                            : <img className='avatar' src={pixelFace}/>
-                      }
-                      <div className='name'>{author}</div>
-                  </div>
-              </Link>
+          {/*<div className='test'>*/}
+          {/*    <Link to={link}>*/}
+          {/*        <div className='author'>*/}
+          {/*            {avatarUrl*/}
+          {/*                  ? <img className='avatar' src={avatarUrl}/>*/}
+          {/*                  : <img className='avatar' src={pixelFace}/>*/}
+          {/*            }*/}
+          {/*            <div className='name'>{author}</div>*/}
+          {/*        </div>*/}
+          {/*    </Link>*/}
 
-              <Emoji/>
-          </div>
+          {/*    <Emoji/>*/}
+          {/*</div>*/}
       </div>
     )
   }

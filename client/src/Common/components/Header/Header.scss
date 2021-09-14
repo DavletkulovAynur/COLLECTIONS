@@ -2,16 +2,14 @@
 
 .Header {
 
-  .MuiIconButton-colorSecondary {
-    color: #fff;
-  }
-
   .main-link-button {
     color: #fff;
     font-weight: bold;
-    font-size: 16px;
-    padding: 12px;
-    border-radius: 12px;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: #000;
+    text-transform: uppercase;
 
     &:hover {
       background: #383838;
@@ -25,11 +23,7 @@
   position: relative;
 
   .logo {
-    width: 44px;
-    height: 44px;
-    background-image: url("../../assets/images/icons/love.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
+    color: #000;
   }
 
 

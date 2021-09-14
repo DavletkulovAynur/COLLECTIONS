@@ -24,7 +24,6 @@ export const useRoutes = (isAuthenticated, active) => {
       <>
         <section className='content'>
           <Header/>
-          <div className='page'>
             <Switch>
               <Route exact path='/'>
                 <CollectionsList/>
@@ -49,7 +48,6 @@ export const useRoutes = (isAuthenticated, active) => {
               </Route>
               <Redirect to="/"/>
             </Switch>
-          </div>
         </section>
         <FooterMobile/>
       </>

@@ -1,33 +1,34 @@
 .Add-collection {
   width: 100%;
 
-  .inputs-wrapper {
-    display: flex;
-    align-items: center;
-
-    .input-img {
-      margin-right: 12px;
-    }
-
-    .inputs-text {
-      width: 100%;
-    }
-  }
-  //h1 {
-  //  text-align: center;
-  //}
-  .form {
-    max-width: 720px;
+  &_form {
+    max-width: 840px;
     margin: auto;
   }
 
-  .wrapper-text-field {
-    margin: 16px 0;
-  }
-
-  .button {
+  &_button {
     display: flex;
     justify-content: flex-end;
+    margin-top: 100px;
   }
 
+  &_form-inputs {
+    display: flex;
+  }
+
+  .entrance_title {
+    .Input {
+      &_input {
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &_drag-drop-box {}
+
+  &_inputs {
+    margin-left: 24px;
+    width: 60%;
+  }
 }

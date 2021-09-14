@@ -9,6 +9,7 @@ const Input = ({error = '',
                type = 'text'}) => {
 
   const [showPassword, setShowPassword] =useState(false)
+  const [eyeView, setEyeView] = useState(false)
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
@@ -19,18 +20,25 @@ const Input = ({error = '',
   const inputIcon = () => {
     if(type === 'password') {
       return (
-        <div>
-          <FontAwesomeIcon icon="eye"/>
+        <div onClick={() => setEyeView(!eyeView) } className='Input_icon'>
+          <FontAwesomeIcon  icon={['fas', `${eyeView ? 'eye-slash' : 'eye'}`]} />
         </div>
       )
     }
 
   }
 
+  const checkShowPassword = () => {
+    return eyeView ? 'password': 'text'
+  }
+
   return (
       <div className={`Input`}>
-        <div className={`Input_box`}>
-            <input placeholder={placeholder} {...binding.bind} className={`Input_input Input_input__${errorStyle}`}  type={type}/>
+        <div className={`Input_box Input_box__${errorStyle}`}>
+            <input placeholder={placeholder}
+                   {...binding.bind}
+                   className='Input_input'
+                   type={type !== 'password' ? type : checkShowPassword()}/>
             {inputIcon()}
         </div>
       </div>

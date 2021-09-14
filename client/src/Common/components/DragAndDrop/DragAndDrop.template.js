@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import CloseIcon from "@material-ui/icons/Close";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const DragAndDropTemplate = ({errorFiles, previewImg, deleteFile, initialFile}) => {
     return (
-        <div className='Drag-and-Drop-wrapper'>
+        <div className='Drag-Drop Drag-Drop_root'>
             <DropArea errorFiles={errorFiles} previewImg={previewImg} initialFile={initialFile}/>
             <PreviewMainImg previewImg={previewImg} deleteFile={deleteFile}/>
         </div>
@@ -37,12 +38,13 @@ const DropArea = ({errorFiles, previewImg, initialFile}) => {
     }
 
     return (
-        <section id="drop-area-js" className={`Drop-and-drop-file 
-                                                    ${errorFiles ? 'Drag-and-drop-error' : ''}
-                                                    ${drag ? 'drag-drop-active' : ''}`}>
-            <div className="cloud">
-                <div className="icon"></div>
-                <i className="text">
+        <section id="drop-area-js"
+                  className={`Drag-Drop_file 
+                  ${errorFiles ? 'Drag-Drop__error' : ''}
+                  ${drag ? 'Drag-Drop__active' : ''}`}>
+            <div className="Drag-Drop_cloud cloud">
+                <FontAwesomeIcon icon='arrow-alt-circle-up' color='#000'/>
+                <i className="cloud_text">
                     {previewImg
                         ? 'Вы добавили фотографию, кликните или перетащите, чтобы изменить'
                         : 'Кликните или перетащите, чтобы загрузить фотографию'
@@ -55,7 +57,7 @@ const DropArea = ({errorFiles, previewImg, initialFile}) => {
                     onDragLeave={(e) => dragLeaveHandler(e)}
                     onDragOver={(e) => dragStartHandler(e)}
                     onDrop={(e) => dropHandler(e)}
-                    className={`button`}
+                    className={`Drag-Drop_label`}
                     htmlFor="fileElem">
 
             </label>

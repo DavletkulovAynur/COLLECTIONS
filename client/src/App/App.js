@@ -8,9 +8,9 @@ import {ShowMessage} from "../Common/components/ShowMessage/ShowMessage";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee, faTimes, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faCheckSquare, faCoffee, faTimes, faEye)
+library.add(fab, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt)
 
 
 function App() {
