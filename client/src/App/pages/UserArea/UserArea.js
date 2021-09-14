@@ -22,8 +22,6 @@ const UserArea = () => {
         dispatch(getSubscribeCollectionAction(subscriptions))
     }, [])
 
-    console.log('subscribers', subscribers)
-
     if(!user) {
         return (
             <div>

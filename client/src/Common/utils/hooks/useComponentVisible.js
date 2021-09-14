@@ -21,7 +21,6 @@ export function useComponentVisible(initialIsVisible, userDetails) {
 			setIsComponentVisible(true);
 		}
 		if(ref.current && !ref.current.contains(e.target)) {
-			console.log('hell')
 			setIsComponentVisible(false);
 		}
 	};

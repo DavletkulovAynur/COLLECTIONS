@@ -1,7 +1,7 @@
 @import "Common/assets/styles/colors";
 
 .Common-card {
-    background-color: #313235;
+    //background-color: #313235;
     border-radius: 12px;
     position: relative;
     display: flex;
@@ -28,7 +28,7 @@
 
     .name {
       margin-left: 8px;
-      color: #888888;;
+      color: #000;
       font-size: 11px;
       //width: 150px;
       overflow: hidden;
@@ -41,8 +41,8 @@
       flex-shrink: 0;
       width: 100%;
       overflow: hidden;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+      //border-top-left-radius: 12px;
+      //border-top-right-radius: 12px;
 
       &-wrapper {
         position: relative;
@@ -71,7 +71,7 @@
       justify-content: space-between;
 
       .main-content {
-        padding: 4px 12px 24px;
+        padding: 6px 0;
       }
       .info-wrapper {
         padding-top: 10px;
@@ -128,9 +128,13 @@
     font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #888888;
+    color: #000;
     word-wrap: break-word;
     word-break: break-all;
+
+    .title {
+      color: #000;
+    }
   }
 
   .user-emotion-wrapper {

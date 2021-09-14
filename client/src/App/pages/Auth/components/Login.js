@@ -8,8 +8,10 @@ import LoginTemplate from "./LoginTemplate";
 export const Login = ({changeStateLogin}) => {
   const dispatch = useDispatch()
   const [inputErrors, SetInputErrors] = useState({})
-  // для чего не понятно
-  const {checkRegistration} = useSelector(state =>  state.authReducer)
+
+  const sendingUser = (user) => {
+    dispatch(loginAction(user))
+  }
 
   const handleLogin = (event, emailInput, passwordInput) => {
     event.preventDefault()
@@ -21,26 +23,18 @@ export const Login = ({changeStateLogin}) => {
 
     if(!thereAreMistakesInInputs) {
       sendingUser(user)
-      inputClear([emailInput, passwordInput])
+      // inputClear([emailInput, passwordInput])
     }
   }
 
   const validationInputs = (user) => {
     const listInputsHaveError = checkForm(user)
     if(Object.keys(listInputsHaveError).length != 0) {
-      informInputsAboutError(listInputsHaveError)
+      SetInputErrors(listInputsHaveError)
       return true
     } else {
       return false
     }
-  }
-
-  const informInputsAboutError = (listInputsHaveError) => {
-    SetInputErrors(listInputsHaveError)
-  }
-
-  const sendingUser = (user) => {
-    dispatch(loginAction(user))
   }
 
   return (

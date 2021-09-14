@@ -11,30 +11,33 @@ export function ShowMessage({showMessage,
                             severity = 'success'}) {
 
     const dispatch = useDispatch()
-    const [open, setOpen] = useState(false);
+    const [visible, setVisible] = useState(false);
 
+    let timerID
+
+
+    // ERROR (таймер работает неправильно)
     useEffect(() => {
-        setOpen(showMessage)
-        test()
+      setVisible(showMessage)
+      if(showMessage) {
+        timerID = setTimeout(() => {
+          removeMessage()
+        }, 3000)
+      }
     }, [showMessage])
 
-    const close = (event, reason) => {
-      setOpen(false)
-      // dispatch(removeShowMessageAction())
-    }
-
-    const test = () => {
-      setTimeout(() => {
-        setOpen(false)
-      }, 3000)
+    const removeMessage = () => {
+      clearTimeout(timerID);
+      setVisible(false)
+      dispatch(removeShowMessageAction())
     }
 
     return (
       <>
-        {open
+        {visible
           ? <div className={`Show-message_root Show-message Show-message_${severity}`}>
               <div className="Show-message_text">{text}</div>
-              <button onClick={close} className='Show-message__action'>
+              <button onClick={removeMessage} className='Show-message__action'>
                 <FontAwesomeIcon icon="times" style={{ color: '#fff' }}/>
               </button>
             </div>

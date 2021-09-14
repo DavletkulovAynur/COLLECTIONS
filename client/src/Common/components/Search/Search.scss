@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
 
-  .search-input {
+  &_input {
     width: 100%;
     transition: color .3s, background-color .3s, opacity .3s, width .05s linear;
     border-radius: 24px;
@@ -13,12 +13,13 @@
     background: url(../../assets/images/icons/loupe.svg) no-repeat scroll 16px;
     color: hsla(0, 0%, 100%, .6);
     background-size: 14px;
-    background-color: hsla(0, 0%, 100%, .16);
-    border: none;
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;;
     outline: none;
   }
 
-  .show-result {
+  &_result-box {
     position: absolute;
     z-index: 2;
     width: 100%;

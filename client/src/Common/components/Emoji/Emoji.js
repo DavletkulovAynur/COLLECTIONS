@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {clickBody} from '../../utils/clickBody'
 import './Emoji.scss'
 
 export function Emoji() {
@@ -7,8 +6,6 @@ export function Emoji() {
   const openContent = () => {
     setOpen(!open)
   }
-
-  const test = clickBody()
 
   return (
     <div className='Emoji' data-emoji-wrapper>

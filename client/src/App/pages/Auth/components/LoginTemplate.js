@@ -31,10 +31,10 @@ const LoginTemplate = ({changeStateLogin, handleLogin, inputErrors}) => {
       </h2>
       <form>
         <div className='Auth_input'>
-          <Input placeholder='Эл. почта' error={emailInputError} binding={emailInput} label='Email'/>
+          <Input placeholder='Эл. почта' type='email' error={emailInputError} binding={emailInput} label='Email'/>
         </div>
         <div className='Auth_input'>
-          <Input placeholder='Пароль' type='password' error={passwordInputError} binding={passwordInput} label='Password' password={true}/>
+          <Input placeholder='Пароль' type='password' error={passwordInputError} binding={passwordInput} label='Password'/>
         </div>
         <button className='Button-root Button' onClick={(event) => handleLogin(event, emailInput, passwordInput)}>
           Войти
