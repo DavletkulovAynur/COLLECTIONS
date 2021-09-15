@@ -1,148 +1,198 @@
-@import "Common/assets/styles/colors";
+//@import "Common/assets/styles/colors";
+//
+//.Common-card {
+//    //background-color: #313235;
+//    border-radius: 12px;
+//    position: relative;
+//    display: flex;
+//    flex-direction: column;
+//
+//  //problem
+//  .test {
+//    display: flex;
+//    justify-content: space-between;
+//  }
+//
+//  .author {
+//    background: #313235;
+//    width: 100%;
+//    display: flex;
+//    align-items: center;
+//
+//    .avatar {
+//      width: 24px;
+//      height: 24px;
+//      object-fit: cover;
+//      border-radius: 50%;
+//    }
+//
+//    .name {
+//      margin-left: 8px;
+//      color: #000;
+//      font-size: 11px;
+//      //width: 150px;
+//      overflow: hidden;
+//      text-overflow: ellipsis;
+//
+//    }
+//  }
+//
+//    &__media {
+//      flex-shrink: 0;
+//      width: 100%;
+//      overflow: hidden;
+//      //border-top-left-radius: 12px;
+//      //border-top-right-radius: 12px;
+//
+//      &-wrapper {
+//        position: relative;
+//        width: 100%;
+//        padding-bottom: 56.25%;
+//        overflow: hidden;
+//
+//        &-preview {
+//          background-position: center;
+//          background-size: cover;
+//          background-repeat: no-repeat;
+//          position: absolute;
+//          width: 100%;
+//          height: 100%;
+//          top: 0;
+//          left: 0;
+//          z-index: 1;
+//        }
+//      }
+//    }
+//
+//  .info {
+//      height: 100%;
+//      display: flex;
+//      flex-direction: column;
+//      justify-content: space-between;
+//
+//      .main-content {
+//        padding: 6px 0;
+//      }
+//      .info-wrapper {
+//        padding-top: 10px;
+//        padding-bottom: 12px;
+//        display: flex;
+//        justify-content: space-between;
+//        align-items: end;
+//      }
+//
+//      .short-title {
+//        font-size: 14px;
+//      }
+//
+//      .date {
+//        font-size: 10px;
+//        color: #888888;
+//      }
+//
+//      .test {
+//        padding: 12px;
+//      }
+//
+//      .info-bookmark {
+//        background: url("../../assets/images/icons/bookmark.svg") no-repeat;
+//        width: 24px;
+//        height: 24px;
+//        background-size: contain;
+//        cursor: pointer;
+//        flex-shrink: 0;
+//        margin-left: 12px;
+//      }
+//
+//      .info-bookmark-active {
+//        background: url("../../assets/images/icons/bookmark_active.svg") no-repeat;
+//        width: 24px;
+//        height: 24px;
+//        background-size: contain;
+//        cursor: pointer;
+//      }
+//
+//      .info-publisher {
+//        text-transform: lowercase;
+//        color: #888888;
+//        background-color: #343a40;
+//        font-weight: 500;
+//        font-size: 12px;
+//        padding: 2px 6px;
+//        border-radius: 2px;
+//      }
+//
+//    }
+//
+//  .info-name {
+//    font-size: 20px;
+//    font-weight: 700;
+//    text-transform: uppercase;
+//    color: #000;
+//    word-wrap: break-word;
+//    word-break: break-all;
+//
+//    .title {
+//      color: #000;
+//    }
+//  }
+//
+//  .user-emotion-wrapper {
+//    display: flex;
+//    justify-content: flex-end;
+//    align-items: center;
+//  }
+//}
+//
+//
+//
 
-.Common-card {
-    //background-color: #313235;
-    border-radius: 12px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+:root {
+  --card_width: 250px;
+  --row_increment: 10px;
+  --card_border_radius: 16px;
+  --card_small: 26;
+  --card_medium: 33;
+  --card_large: 45;
+}
 
-  //problem
-  .test {
-    display: flex;
-    justify-content: space-between;
-  }
+.pin_container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 
-  .author {
-    background: #313235;
-    width: 100%;
-    display: flex;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--card_width));
+  grid-auto-rows: var(--row_increment);
+  justify-content: center;
 
-    .avatar {
-      width: 24px;
-      height: 24px;
-      object-fit: cover;
-      border-radius: 50%;
-    }
+  //background-color: black;
+}
 
-    .name {
-      margin-left: 8px;
-      color: #000;
-      font-size: 11px;
-      //width: 150px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+.card {
+  padding: 0;
+  margin: 15px 10px;
+  border-radius: var(--card_border_radius);
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
 
-    }
-  }
-
-    &__media {
-      flex-shrink: 0;
-      width: 100%;
-      overflow: hidden;
-      //border-top-left-radius: 12px;
-      //border-top-right-radius: 12px;
-
-      &-wrapper {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%;
-        overflow: hidden;
-
-        &-preview {
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: 1;
-        }
-      }
-    }
-
-  .info {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      .main-content {
-        padding: 6px 0;
-      }
-      .info-wrapper {
-        padding-top: 10px;
-        padding-bottom: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-      }
-
-      .short-title {
-        font-size: 14px;
-      }
-
-      .date {
-        font-size: 10px;
-        color: #888888;
-      }
-
-      .test {
-        padding: 12px;
-      }
-
-      .info-bookmark {
-        background: url("../../assets/images/icons/bookmark.svg") no-repeat;
-        width: 24px;
-        height: 24px;
-        background-size: contain;
-        cursor: pointer;
-        flex-shrink: 0;
-        margin-left: 12px;
-      }
-
-      .info-bookmark-active {
-        background: url("../../assets/images/icons/bookmark_active.svg") no-repeat;
-        width: 24px;
-        height: 24px;
-        background-size: contain;
-        cursor: pointer;
-      }
-
-      .info-publisher {
-        text-transform: lowercase;
-        color: #888888;
-        background-color: #343a40;
-        font-weight: 500;
-        font-size: 12px;
-        padding: 2px 6px;
-        border-radius: 2px;
-      }
-
-    }
-
-  .info-name {
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #000;
-    word-wrap: break-word;
-    word-break: break-all;
-
-    .title {
-      color: #000;
-    }
-  }
-
-  .user-emotion-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  &:hover {
+    opacity: .8;
   }
 }
 
+.card_small {
+  grid-row-end: span var(--card_small);
+}
 
+.card_medium {
+  grid-row-end: span var(--card_medium);
+}
 
+.card_large {
+  grid-row-end: span var(--card_large);
+}

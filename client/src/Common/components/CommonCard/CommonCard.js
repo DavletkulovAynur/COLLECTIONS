@@ -75,26 +75,39 @@ export function CommonCard({data}) {
     )
   }
 
+  const test = () => {
+    const classNames = ['small', 'medium', 'large']
+    return classNames[Math.floor(Math.random()*classNames.length)]
+  }
+
   return (
     <>
-    {data.map((item) => {
-      const {img,
-            _id,
-            date,
-            title,
-            nameCollection,
-            owner,
-            mainImg,
-            author,
-            authorAvatar} = item
-
-        return (
-          <div key={_id} className='Common-card'>
-              {mediaTemplate(owner, mainImg)}
-              {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}
+      <div className="pin_container">
+        {data.map((item) => {
+              const {img,
+                _id,
+                date,
+                title,
+                nameCollection,
+                owner,
+                mainImg,
+                author,
+                authorAvatar} = item
+                return (
+                  <div key={_id} className={`card card_${test()}`} style={divStyle(owner, mainImg)}></div>
+                )
+            })}
           </div>
-        )
-      })}
-      </>
+    </>
   )
 }
+
+
+
+// <div key={_id} className='Common-card'>
+//     {mediaTemplate(owner, mainImg)}
+//     {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}
+// </div>
+
+{/*<div className="card card_medium"></div>*/}
+{/*<div className="card card_large"></div>*/}
