@@ -70,9 +70,6 @@ export const UserInformation = ({   avatarUrl,
                     <div className='about-user'>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus debitis dolores eligendi esse ex, excepturi facilis harum incidunt molestias mollitia nostrum obcaecati, officia quas sequi suscipit temporibus tenetur, ullam?</p>
                     </div>
-                    <div className='from-user'>
-                      Moscow, Russia
-                    </div>
                 </section>
             </div>
 
