@@ -58,19 +58,7 @@ export function CommonCard({data}) {
         </div>
 
 
-          {/*<div className='test'>*/}
-          {/*    <Link to={link}>*/}
-          {/*        <div className='author'>*/}
-          {/*            {avatarUrl*/}
-          {/*                  ? <img className='avatar' src={avatarUrl}/>*/}
-          {/*                  : <img className='avatar' src={pixelFace}/>*/}
-          {/*            }*/}
-          {/*            <div className='name'>{author}</div>*/}
-          {/*        </div>*/}
-          {/*    </Link>*/}
 
-          {/*    <Emoji/>*/}
-          {/*</div>*/}
       </div>
     )
   }
@@ -80,9 +68,11 @@ export function CommonCard({data}) {
     return classNames[Math.floor(Math.random()*classNames.length)]
   }
 
+
+
   return (
     <>
-      <div className="pin_container">
+      <div className="Pin Pin_container">
         {data.map((item) => {
               const {img,
                 _id,
@@ -94,7 +84,16 @@ export function CommonCard({data}) {
                 author,
                 authorAvatar} = item
                 return (
-                  <div key={_id} className={`card card_${test()}`} style={divStyle(owner, mainImg)}></div>
+                    <div key={_id} className={`Pin_card Pin_card__${test()}`} style={divStyle(owner, mainImg)}>
+                      <Link  to={`/article-view/${_id}`} className='Pin_shadow'>
+                        <div className='Pin_about'>
+
+                          <div>
+                            <h4>{title}</h4>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
                 )
             })}
           </div>
@@ -108,6 +107,3 @@ export function CommonCard({data}) {
 //     {mediaTemplate(owner, mainImg)}
 //     {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}
 // </div>
-
-{/*<div className="card card_medium"></div>*/}
-{/*<div className="card card_large"></div>*/}
