@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useRouter} from 'Common/utils/hooks/useRouter.hook'
 
-import {CollectionViewTemplate} from './Components/CollectionViewTemplate'
-import './CollectionView.scss'
-import {commentUpdateAction, getCollectionViewAction} from "../../../Redux/actions/action";
+import {CollectionViewTemplate} from './CollectionViewTemplate'
+
+import {commentUpdateAction, getCollectionViewAction} from '../../../Redux/actions/action'
 
 
 function CollectionView() {
@@ -17,13 +17,12 @@ function CollectionView() {
     dispatch(getCollectionViewAction({collectionId}))
   }, [])
 
-  const handleSubmit = (commentValue, commentTitle) => {
+  const sendComment = (commentValue, commentTitle) => {
     const comment = {
       description: commentValue,
       title: commentTitle,
       id: collectionId,
     }
-
     dispatch(commentUpdateAction(comment))
   }
 
@@ -36,7 +35,7 @@ function CollectionView() {
 
   return(
     <div className='Collection-view'>
-      <CollectionViewTemplate comments={comments} collection={collection} handleSubmit={handleSubmit}/>
+      <CollectionViewTemplate comments={comments} collection={collection} sendComment={sendComment}/>
     </div>
   )
 }
