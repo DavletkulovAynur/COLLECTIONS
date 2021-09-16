@@ -1,0 +1,66 @@
+.Comments-box {
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    margin: 12px 0;
+  }
+
+  &__title-sup {
+    font-size: 14px;
+    letter-spacing: normal;
+  }
+
+  &__content-area {
+    width: 100%;
+    border-radius: 2px;
+  }
+
+  &__Comment {
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  &__Comment:last-child {
+    border-bottom: none;
+  }
+}
+
+.Comment {
+  padding: 12px 25px 12px 12px;
+  display: flex;
+  align-items: flex-start;
+
+  &__avatar-box {
+    margin-right: 12px;
+  }
+
+  &__avatar-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__title {
+    color: #000;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    max-width: 75ch;
+  }
+
+  &__author {
+    margin-right: 10px;
+    font-size: 10px;
+    color: #888888;
+  }
+
+  &__description {
+    font-size: 13px;
+  }
+
+  &__date {
+    font-size: 10px;
+    color: #888888;
+  }
+}
