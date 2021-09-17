@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import UserAreaTemplate from "./UserAreaTemplate";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "../../../Common/utils/hooks/useRouter.hook";
-import {getSubscribeCollectionAction, getUserAction} from "../../../Redux/actions/action";
+import {getSubscribeCollectionAction, getUserAction} from "../../../Store/actions/action";
 
 
 const UserArea = () => {

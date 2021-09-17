@@ -5,10 +5,10 @@ import {
 	SUCCESSFULLY_SEND_COLLECTION,
 	WRITE_DOWN_ALL_COLLECTION,
 	WRITE_DOWN_COLLECTION, WRITE_DOWN_SEARCH_COLLECTION, WRITE_DOWN_SUBSCRIBE_COLLECTION
-} from '../types'
-import {appError, appHideLoading} from '../actions/action'
-import Fetcher from '../../Common/utils/fetch'
-import {API_URL} from "../../config";
+} from '../../types'
+import {appError, appHideLoading} from '../../actions/action'
+import Fetcher from '../../../Common/utils/fetch'
+import {API_URL} from '../../../config'
 
 	export function* getAllCollection() {
 		try {

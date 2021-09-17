@@ -6,7 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import './UserInformation.scss'
 import {useDispatch} from 'react-redux'
-import {openPopupChangeAvatar, subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Redux/actions/action'
+import {openPopupChangeAvatar, subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Store/actions/action'
 
 export const UserInformation = ({   avatarUrl,
                                     userName,

@@ -1,10 +1,10 @@
-import {call, put} from "redux-saga/effects";
-import Fetcher from "../../Common/utils/fetch";
+import {call, put} from 'redux-saga/effects'
+import Fetcher from '../../../Common/utils/fetch'
 import {
     ADD_BOOKMARK_UPDATE_STATE, BOOKMARK_ADD_REMOVE, BOOKMARK_ADD_SHOW_MESSAGE,
     DELETE_BOOKMARK_UPDATE_STATE,
     WRITE_DOWN_BOOKMARK_COLLECTION
-} from "../types";
+} from '../../types'
 
     export function* addBookmark(data) {
         try {

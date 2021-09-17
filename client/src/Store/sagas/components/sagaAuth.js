@@ -5,9 +5,9 @@ import {
 	LOGOUT,
 	CHECK_REGISTRATION,
 	CHECK_REGISTRATION_RETURN_FALSE, SHOW_MESSAGE,
-} from '../types'
-import Fetcher from '../../Common/utils/fetch'
-import {API_URL} from "../../config";
+} from '../../types'
+import Fetcher from '../../../Common/utils/fetch'
+import {API_URL} from '../../../config'
 
 export function* login(user) {
 	try {
@@ -34,7 +34,6 @@ export function* login(user) {
 			yield put({type: WRITE_REDUCER_TOKEN, payload})
 		} catch (e) {
 			yield put({type: LOGOUT})
-			// console.log('Error auth loading', e)
 		}
 	}
 

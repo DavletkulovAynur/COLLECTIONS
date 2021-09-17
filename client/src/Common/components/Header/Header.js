@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom'
 import {HeaderTemplate} from './Header.template'
 import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
 import {useDispatch} from "react-redux";
-import {logoutAction} from "../../../Redux/actions/action";
+import {logoutAction} from "../../../Store/actions/action";
 
 export function Header() {
   const dispatch = useDispatch()

@@ -1,4 +1,4 @@
-import {COMMENT_UPDATE} from "../../types";
+import {COMMENT_REMOVE, COMMENT_UPDATE} from '../../types'
 
 function addCommentAction(payload) {
   return({
@@ -9,9 +9,9 @@ function addCommentAction(payload) {
 
 function removeCommentAction(payload) {
   return({
-    type: COMMENT_UPDATE,
+    type: COMMENT_REMOVE,
     payload
   })
 }
 
-export {addCommentAction}
+export {addCommentAction, removeCommentAction}

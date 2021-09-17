@@ -1,7 +1,7 @@
-import Fetcher from '../../Common/utils/fetch'
-import {API_URL} from '../../config'
+import Fetcher from '../../../Common/utils/fetch'
+import {API_URL} from '../../../config'
 import {put, call} from 'redux-saga/effects'
-import {LOAD_AVATAR, LOAD_AVATAR_COMPLETE, SHOW_MESSAGE, WRITE_DOWN_GET_USER} from "../types";
+import {LOAD_AVATAR, LOAD_AVATAR_COMPLETE, SHOW_MESSAGE, WRITE_DOWN_GET_USER} from '../../types'
 
 export function* getUser(data) {
   try {

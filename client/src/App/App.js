@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import {useRoutes} from 'App/routes'
 import './App.scss'
-import {checkToken, getAllCollection, getMyCollection} from 'Redux/actions/action'
+import {checkToken, getAllCollection, getMyCollection} from '../Store/actions/action'
 import {ShowMessage} from "../Common/components/ShowMessage/ShowMessage";
 
 import { library } from '@fortawesome/fontawesome-svg-core'

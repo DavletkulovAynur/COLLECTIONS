@@ -4,7 +4,7 @@ import {
   WRITE_DOWN_ALL_COLLECTION,
   WRITE_DOWN_BOOKMARK_COLLECTION,
   WRITE_DOWN_COLLECTION, WRITE_DOWN_SEARCH_COLLECTION
-} from "Redux/types";
+} from "../../types";
 
 const initialState = {
   myCollection: [],

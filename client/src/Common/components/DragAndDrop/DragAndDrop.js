@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './DragAndDrop.scss'
 import DragAndDropTemplate from "./DragAndDrop.template";
 import {useDispatch, useSelector} from "react-redux";
-import {loadImgDragAndDrop} from "../../../Redux/actions/action";
+import {loadImgDragAndDrop} from "../../../Store/actions/action";
 
 export function DragAndDrop() {
   let reader = new FileReader()

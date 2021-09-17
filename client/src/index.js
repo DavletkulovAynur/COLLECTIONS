@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
-import store from './Redux/store'
+import store from './Store/store'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Context from "./Common/utils/context";
 
-import 'materialize-css'
+// import 'materialize-css'
 
 
 import './index.scss';
