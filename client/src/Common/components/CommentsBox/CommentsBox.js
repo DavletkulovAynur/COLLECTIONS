@@ -11,7 +11,6 @@ const CommentsBox = ({comments}) => {
 
   return (
     <section className='Comments-box'>
-      <div className='Comments-box__title'>Comments<sup className='Comments-box__title-sup'>{sortComments.length}</sup></div>
       <div  className='Comments-box__content-area'>
         {sortComments.map((comment, index) => {
           const avatarUrl = comment.authorAvatar ? `${API_URL + '/avatars/' + comment.authorAvatar}` : false

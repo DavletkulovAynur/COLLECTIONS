@@ -1,72 +1,27 @@
-.Collection-view {
-  margin: 12px 0 36px 0;
-  width: 100%;
-  max-width: 1024px;
-  margin: 0 auto;
+.Article-view {
+  &-root {
+    margin: 12px 0 36px 0;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
 }
 
-.Article-view-template {
-  display: flex;
-  justify-content: space-between;
+.Article-content {
 
+}
 
-
-  .main-content {
-    width: 100%;
+.Comments-wrapper {
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    margin: 12px 0;
   }
 
-  .secondary-content {
-    width: 35%;
-  }
-
-
-
-  .description {
-    text-align: justify;
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .tags {
-    display: flex;
-    margin: 36px 0 24px 0;
-    .tag {
-      text-transform: lowercase;
-      color: #fff;
-      background-color: #343a40;
-      font-weight: 500;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 2px;
-      margin-right: 12px;
-    }
-  }
-
-  .images-screenshots {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: .5vw;
-
-    &__wrapper {
-      position: relative;
-      //width: 184px;
-      height: 102px;
-      border-radius: 6px;
-      background: hsla(0,0%,100%,.05);
-      cursor: pointer;
-      overflow: hidden;
-      .img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
-        -o-object-fit: cover;
-        object-fit: cover;
-      }
-    }
+  &__title-sup {
+    font-size: 14px;
+    letter-spacing: normal;
   }
 }
 

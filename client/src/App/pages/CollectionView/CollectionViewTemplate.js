@@ -8,10 +8,14 @@ import InitCommentForm from "../../../Common/components/InitCommentForm/InitComm
 export function CollectionViewTemplate({collection = [], comments, sendComment}) {
 
   return (
-      <div className='Article-view-template'>
-        <section className='main-content'>
+      <div className='Article-view-root Article-view'>
+        <section className='Article-view__Article-content Article-content'>
           <h2 className='title-72'>{collection.name}</h2>
           <div className='description'>{collection.description}</div>
+        </section>
+
+        <section className='Comments-wrapper'>
+          <h2 className='Comment-box__title'>Комментарии<sup>{comments.length}</sup></h2>
           <InitCommentForm sendComment={sendComment}/>
           <CommentsBox comments={comments}/>
         </section>
