@@ -26,19 +26,24 @@ const InitCommentForm = ({sendComment}) => {
   }
 
   return (
-    <div className='Comment-create-form-box'>
-      <div onClick={formShow} className='Comment-create-form-box__header'>
-        <FontAwesomeIcon icon="plus" style={{ color: '#fff' }}/>
-        <div className='Comment-create-form-box__header-title'>Напишите комментарий</div>
-      </div>
+    <div className={`Comment-create-form-box Comment-create-form-box_bg-${formOpen ? 'white' : 'dark'}`}>
+      {
+        !formOpen
+        ? <div onClick={formShow} className='Comment-create-form-box__header Comment-create-header'>
+            <FontAwesomeIcon icon="plus" style={{ color: '#fff' }}/>
+            <div className='Comment-create-form-box__header-title'>Напишите комментарий</div>
+          </div>
+        : null
+      }
+
       {formOpen
         ? <form className='Comment-create-form-box__form Comment-create-form'>
-          <div>
-            <Input binding={commentTitle} label='title'/>
-          </div>
-          <div>
-            <Input binding={commentValue} label='placeholder' rows='4' multiline='true'/>
-          </div>
+            <div>
+              <Input binding={commentTitle} label='title' placeholder='Заголовок'/>
+            </div>
+            <div>
+              <Input binding={commentValue} label='placeholder' rows='4' multiline='true'/>
+            </div>
           <div className='Comment-create-form__button-box'>
             <button className='Button Button-root' onClick={() => formClose()}>
               ОТМЕНА

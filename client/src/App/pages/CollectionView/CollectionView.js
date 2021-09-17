@@ -4,7 +4,7 @@ import {useRouter} from 'Common/utils/hooks/useRouter.hook'
 
 import {CollectionViewTemplate} from './CollectionViewTemplate'
 
-import {commentUpdateAction, getCollectionViewAction} from '../../../Redux/actions/action'
+import {addCommentAction, getCollectionViewAction} from '../../../Redux/actions/action'
 
 
 function CollectionView() {
@@ -23,7 +23,7 @@ function CollectionView() {
       title: commentTitle,
       id: collectionId,
     }
-    dispatch(commentUpdateAction(comment))
+    dispatch(addCommentAction(comment))
   }
 
   if(!collection) {
@@ -34,9 +34,7 @@ function CollectionView() {
 
 
   return(
-    <div className='Collection-view'>
       <CollectionViewTemplate comments={comments} collection={collection} sendComment={sendComment}/>
-    </div>
   )
 }
 

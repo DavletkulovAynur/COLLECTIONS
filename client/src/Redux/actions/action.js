@@ -22,7 +22,6 @@ import {
   DELETE_BOOKMARK,
   ADD_BOOKMARK,
   BOOKMARK_ADD_REMOVE,
-  COMMENT_UPDATE,
   GET_COLLECTION_VIEW,
   GET_USER,
   SEARCH_COLLECTION,
@@ -33,6 +32,18 @@ import {
   EDIT_USER,
   EDIT_AVATAR,
 } from '../types'
+
+import {addCommentAction} from './actions/commentActions'
+
+
+export function getCollectionViewAction(payload) {
+  return({
+    type: GET_COLLECTION_VIEW,
+    payload
+  })
+}
+
+export {addCommentAction}
 
 // APP
 export function appLoading() {
@@ -163,21 +174,6 @@ export function addBookmarkAction(payload) {
 export function addBookmarkRemoveEventShowMessage() {
   return({
     type: BOOKMARK_ADD_REMOVE
-  })
-}
-
-//Collection View
-export function commentUpdateAction(payload) {
-  return({
-    type: COMMENT_UPDATE,
-    payload
-  })
-}
-
-export function getCollectionViewAction(payload) {
-  return({
-    type: GET_COLLECTION_VIEW,
-    payload
   })
 }
 
