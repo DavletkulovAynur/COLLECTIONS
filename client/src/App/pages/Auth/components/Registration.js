@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 
-import {registrationAction} from "../../../../Redux/actions/action";
+import {registrationAction} from "../../../../Store/actions/action";
 
 import {checkForm} from '../../../../Common/utils/checkForm'
 import {inputClear} from '../../../../Common/utils/inputClear'

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import './EditingProfile.scss'
 import EditingProfileTemplate from './EditingProfileTemplate'
-import {editAvatarAction, editUserAction, openPopupChangeAvatar} from '../../../Redux/actions/action'
+import {editAvatarAction, editUserAction, openPopupChangeAvatar} from '../../../Store/actions/action'
 import {DefineAvatarUrl} from '../../utils/DefineAvatarUrl'
 import {useInput} from '../../utils/hooks/input.hook'
 import {checkForm} from '../../utils/checkForm'

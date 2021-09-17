@@ -1,7 +1,7 @@
 import {takeEvery} from 'redux-saga/effects'
 import {
   ADD_BOOKMARK,
-  ADD_COLLECTION, COMMENT_UPDATE, DELETE_BOOKMARK, EDIT_AVATAR, EDIT_USER,
+  ADD_COLLECTION, COMMENT_REMOVE, COMMENT_UPDATE, DELETE_BOOKMARK, EDIT_AVATAR, EDIT_USER,
   GET_ALL_COLLECTION,
   GET_BOOKMARK_COLLECTION, GET_COLLECTION_VIEW,
   GET_MY_COLLECTION, GET_SUBSCRIBE_COLLECTION, GET_USER, REGISTRATION,
@@ -14,11 +14,12 @@ import {
   getOwnerUserCollection,
   getSubscribeCollection,
   searchCollection
-} from './sagaCollection'
-import {auth, login, registration} from './sagaAuth'
-import {addBookmark, deleteBookmark, getBookmarkCollection} from './sagaBookmark'
-import {commentUpdate, getCollectionView} from './sagaCollectionView'
-import {editAvatar, editUser, getUser, subscribeOnUser, unSubscribeOnUser} from './sagaUserArea'
+} from './components/sagaCollection'
+import {auth, login, registration} from './components/sagaAuth'
+import {addBookmark, deleteBookmark, getBookmarkCollection} from './components/sagaBookmark'
+import {getCollectionView} from './components/sagaCollectionView'
+import {editAvatar, editUser, getUser, subscribeOnUser, unSubscribeOnUser} from './components/sagaUserArea'
+import {addComment, removeComment} from './components/commentSaga'
 
 
 export function* sagaWatcher() {
@@ -31,7 +32,6 @@ export function* sagaWatcher() {
   yield takeEvery(GET_BOOKMARK_COLLECTION, getBookmarkCollection)
   yield takeEvery(DELETE_BOOKMARK, deleteBookmark)
   yield takeEvery(ADD_BOOKMARK, addBookmark)
-  yield takeEvery(COMMENT_UPDATE, commentUpdate)
   yield takeEvery(GET_COLLECTION_VIEW, getCollectionView)
   yield takeEvery(GET_USER, getUser)
   yield takeEvery(SEARCH_COLLECTION, searchCollection)
@@ -40,6 +40,8 @@ export function* sagaWatcher() {
   yield takeEvery(UNSUBSCRIBE_ON_USER, unSubscribeOnUser)
   yield takeEvery(EDIT_USER, editUser)
   yield takeEvery(EDIT_AVATAR, editAvatar)
+  yield takeEvery(COMMENT_UPDATE, addComment)
+  yield takeEvery(COMMENT_REMOVE, removeComment)
 }
 
 

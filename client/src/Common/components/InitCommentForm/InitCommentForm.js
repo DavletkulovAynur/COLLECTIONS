@@ -10,11 +10,11 @@ const InitCommentForm = ({sendComment}) => {
   const commentValue = useInput('')
   const commentTitle = useInput('')
 
-  const submitForm = (e) => {
+  const submitForm = (event) => {
     sendComment(commentValue.value, commentTitle.value)
     commentValue.clear()
     commentTitle.clear()
-    e.preventDefault()
+    event.preventDefault()
   }
 
   const formShow = () => {
@@ -48,7 +48,7 @@ const InitCommentForm = ({sendComment}) => {
             <button className='Button Button-root' onClick={() => formClose()}>
               ОТМЕНА
             </button>
-            <button className='Button Button-root' onClick={() => submitForm()}>
+            <button className='Button Button-root' onClick={(event) => submitForm(event)}>
               ОТПРАВИТЬ
             </button>
           </div>

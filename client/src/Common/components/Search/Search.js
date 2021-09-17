@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {SearchTemplate} from './Search.template'
 import {useDispatch, useSelector} from 'react-redux'
-import {searchCollectionAction} from '../../../Redux/actions/action'
+import {searchCollectionAction} from '../../../Store/actions/action'
 import './Search.scss'
 import {useInput} from "../../utils/hooks/input.hook";
 import {inputClear} from "../../utils/inputClear";

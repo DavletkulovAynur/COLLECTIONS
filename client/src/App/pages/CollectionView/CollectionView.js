@@ -4,13 +4,14 @@ import {useRouter} from 'Common/utils/hooks/useRouter.hook'
 
 import {CollectionViewTemplate} from './CollectionViewTemplate'
 
-import {addCommentAction, getCollectionViewAction} from '../../../Redux/actions/action'
+import {addCommentAction, getCollectionViewAction, removeCommentAction} from '../../../Store/actions/action'
 
 
 function CollectionView() {
   const dispatch = useDispatch()
   const router = useRouter()
   const {collection, comments} = useSelector(state => state.collectionViewReducer)
+  const {userId} = useSelector(state => state.authReducer)
   const collectionId = router.match.params.id
 
   useEffect(() => {
@@ -23,7 +24,15 @@ function CollectionView() {
       title: commentTitle,
       id: collectionId,
     }
+
     dispatch(addCommentAction(comment))
+  }
+
+  const removeComments = () => {
+    const comment = {
+      id: collectionId,
+    }
+    dispatch(removeCommentAction(comment))
   }
 
   if(!collection) {
@@ -34,7 +43,7 @@ function CollectionView() {
 
 
   return(
-      <CollectionViewTemplate comments={comments} collection={collection} sendComment={sendComment}/>
+      <CollectionViewTemplate removeComments={removeComments} userId={userId} comments={comments} collection={collection} sendComment={sendComment}/>
   )
 }
 

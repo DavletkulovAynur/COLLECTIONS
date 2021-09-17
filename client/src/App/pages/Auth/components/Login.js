@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {loginAction} from '../../../../Redux/actions/action'
+import {loginAction} from '../../../../Store/actions/action'
 import {checkForm} from '../../../../Common/utils/checkForm'
 import {inputClear} from '../../../../Common/utils/inputClear'
 import LoginTemplate from "./LoginTemplate";

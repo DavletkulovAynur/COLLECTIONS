@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {removeShowMessageAction} from '../../../Redux/actions/action'
+import {removeShowMessageAction} from '../../../Store/actions/action'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './ShowMessage.scss'

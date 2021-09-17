@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import PersonalAreaTemplate from './personalArea.template'
 import {useDispatch, useSelector} from 'react-redux'
-import {getBookmarkCollectionAction, getSubscribeCollectionAction} from '../../../Redux/actions/action'
+import {getBookmarkCollectionAction, getSubscribeCollectionAction} from '../../../Store/actions/action'
 import {API_URL} from '../../../config'
 
 export function PersonalArea() {

@@ -33,7 +33,7 @@ import {
   EDIT_AVATAR,
 } from '../types'
 
-import {addCommentAction} from './actions/commentActions'
+import {addCommentAction, removeCommentAction} from './components/commentActions'
 
 
 export function getCollectionViewAction(payload) {
@@ -43,7 +43,7 @@ export function getCollectionViewAction(payload) {
   })
 }
 
-export {addCommentAction}
+export {addCommentAction, removeCommentAction}
 
 // APP
 export function appLoading() {

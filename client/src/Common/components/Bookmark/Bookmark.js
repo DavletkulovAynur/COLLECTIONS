@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import {useDispatch, useSelector} from 'react-redux'
-import {addBookmarkAction, addBookmarkRemoveEventShowMessage, bookmarkDeleteAction} from '../../../Redux/actions/action'
+import {addBookmarkAction, addBookmarkRemoveEventShowMessage, bookmarkDeleteAction} from '../../../Store/actions/action'
 import {ShowMessage} from '../ShowMessage/ShowMessage'
 
 export function Bookmark({id}) {
