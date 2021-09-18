@@ -2,17 +2,14 @@ import React, {useEffect, useState} from 'react'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {addBookmarkAction, addBookmarkRemoveEventShowMessage, bookmarkDeleteAction} from '../../../Store/actions/action'
-import {ShowMessage} from '../ShowMessage/ShowMessage'
 
 export function Bookmark({id}) {
-  const [stateMessage, setStateMessage] = useState(false)
   const {bookmark} = useSelector((state) => state.authReducer)
   const {addBookmark} = useSelector((state) => state.appReducer)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if(addBookmark) {
-      setStateMessage(true)
       dispatch(addBookmarkRemoveEventShowMessage())
     }
   }, [addBookmark])
@@ -36,17 +33,11 @@ export function Bookmark({id}) {
   }
 
   return (
-    <>
-      <button>
-
-      </button>
       <div
         id={id}
         onClick={saveMyCollection}
-        className={`info-bookmark ${bookmark.includes(id) ? 'info-bookmark-active' : ''}`}>
+        className={`Button Button-root Button_red Bookmark ${bookmark.includes(id) ? 'info-bookmark-active' : ''}`}>
+        сохранить
       </div>
-      <ShowMessage showMessage={stateMessage}/>
-    </>
-
   )
 }

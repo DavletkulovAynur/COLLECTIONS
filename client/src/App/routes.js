@@ -34,9 +34,6 @@ export const useRoutes = (isAuthenticated, active) => {
               <Route exact path='/add'>
                 <AddArticle/>
               </Route>
-              <Route exact path='/my-collection'>
-                <CollectionsList/>
-              </Route>
               <Route exact path='/personal-area'>
                 <PersonalArea/>
               </Route>
