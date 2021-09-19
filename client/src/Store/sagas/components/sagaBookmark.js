@@ -17,9 +17,9 @@ import {
                 return  [...data.payload.allBookmarkArray, data.payload.bookmarkID]
             })
 
-            yield put({type: ADD_BOOKMARK_UPDATE_STATE, payload})
-
-            yield put({type: BOOKMARK_ADD_SHOW_MESSAGE})
+            // yield put({type: ADD_BOOKMARK_UPDATE_STATE, payload})
+            //
+            // yield put({type: BOOKMARK_ADD_SHOW_MESSAGE})
         } catch(e) {
             console.log(e)
         }

@@ -19,7 +19,20 @@
     background: #000;
   }
 
-  &_red {
+  &_bookmark {
+    border: none;
+    border-radius: 20px;
     background: #e60023;
+    color: #fff;
+    font-size: 14px;
+
+    &:hover {
+
+    }
+  }
+
+  &_bookmark-save {
+    background: #000;
+    color: #fff;
   }
 }
