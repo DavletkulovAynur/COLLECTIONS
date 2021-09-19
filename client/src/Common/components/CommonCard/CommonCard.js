@@ -30,8 +30,12 @@ export function CommonCard({data}) {
       <>
         <Bookmark id={_id} />
         <div>
-          <span>{title}</span>
-          <span>{date}</span>
+          <div className='Pin__about-title'>{title}</div>
+          {/*<span>{date}</span>*/}
+          <div className='Pin__about-author'>
+            <img className='Pin__about-author-avatar' src={avatarUrl}/>
+            <span className='Pin__about-author-name'>{author}</span>
+          </div>
         </div>
       </>
     )
@@ -58,12 +62,12 @@ export function CommonCard({data}) {
                 author,
                 authorAvatar} = item
                 return (
-                    <Link to={`/article-view/${_id}`} key={_id} className={`Pin_card Pin_card__${test()}`} style={divStyle(owner, mainImg)}>
-                      <div className='Pin_shadow'></div>
-                      <div className='Pin_about'>
+                  <Link to={`/article-view/${_id}`} key={_id} className={`Pin_card Pin_card__${test()}`} style={divStyle(owner, mainImg)}>
+                      <div className='Pin__shadow'></div>
+                      <div className='Pin__about'>
                         {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}
                       </div>
-                    </Link>
+                  </Link>
                 )
             })}
           </div>

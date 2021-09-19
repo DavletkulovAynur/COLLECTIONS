@@ -19,9 +19,6 @@ import {
   PERSONAL_PAGE_AVATAR_POPUP,
   LOGOUT,
   REGISTRATION,
-  DELETE_BOOKMARK,
-  ADD_BOOKMARK,
-  BOOKMARK_ADD_REMOVE,
   GET_COLLECTION_VIEW,
   GET_USER,
   SEARCH_COLLECTION,
@@ -34,7 +31,14 @@ import {
 } from '../types'
 
 import {addCommentAction, removeCommentAction} from './components/commentActions'
+import {bookmarkDeleteAction, addBookmarkAction, addBookmarkRemoveEventShowMessage} from "./components/bookmarkActions";
 
+export {addCommentAction,
+        removeCommentAction,
+        bookmarkDeleteAction,
+        addBookmarkAction,
+        addBookmarkRemoveEventShowMessage,
+      }
 
 export function getCollectionViewAction(payload) {
   return({
@@ -43,7 +47,7 @@ export function getCollectionViewAction(payload) {
   })
 }
 
-export {addCommentAction, removeCommentAction}
+
 
 // APP
 export function appLoading() {
@@ -153,27 +157,6 @@ export function openPopupChangeAvatar(payload) {
   return({
     type: PERSONAL_PAGE_AVATAR_POPUP,
     payload
-  })
-}
-
-//BOOKMARK
-export function bookmarkDeleteAction(payload) {
-  return({
-    type: DELETE_BOOKMARK,
-    payload
-  })
-}
-
-export function addBookmarkAction(payload) {
-  return({
-    type: ADD_BOOKMARK,
-    payload
-  })
-}
-
-export function addBookmarkRemoveEventShowMessage() {
-  return({
-    type: BOOKMARK_ADD_REMOVE
   })
 }
 
