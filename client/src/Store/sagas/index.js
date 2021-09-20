@@ -13,13 +13,15 @@ import {
   getAllCollection,
   getOwnerUserCollection,
   getSubscribeCollection,
-  searchCollection
 } from './components/sagaCollection'
 import {auth, login, registration} from './components/sagaAuth'
-import {addBookmark, deleteBookmark, getBookmarkCollection} from './components/sagaBookmark'
+
 import {getCollectionView} from './components/sagaCollectionView'
 import {editAvatar, editUser, getUser, subscribeOnUser, unSubscribeOnUser} from './components/sagaUserArea'
 import {addComment, removeComment} from './components/commentSaga'
+
+import {searchCollection} from './components/sagaSearch'
+import {addBookmark, deleteBookmark, getBookmarkCollection} from './components/sagaBookmark'
 
 
 export function* sagaWatcher() {
@@ -31,7 +33,6 @@ export function* sagaWatcher() {
   yield takeEvery(ADD_COLLECTION, addCollection)
   yield takeEvery(GET_BOOKMARK_COLLECTION, getBookmarkCollection)
   yield takeEvery(DELETE_BOOKMARK, deleteBookmark)
-  yield takeEvery(ADD_BOOKMARK, addBookmark)
   yield takeEvery(GET_COLLECTION_VIEW, getCollectionView)
   yield takeEvery(GET_USER, getUser)
   yield takeEvery(SEARCH_COLLECTION, searchCollection)
@@ -42,6 +43,7 @@ export function* sagaWatcher() {
   yield takeEvery(EDIT_AVATAR, editAvatar)
   yield takeEvery(COMMENT_UPDATE, addComment)
   yield takeEvery(COMMENT_REMOVE, removeComment)
+  yield takeEvery(ADD_BOOKMARK, addBookmark)
 }
 
 

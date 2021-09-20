@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import {useDispatch, useSelector} from 'react-redux'
-import {addBookmarkAction, addBookmarkRemoveEventShowMessage, bookmarkDeleteAction} from '../../../Store/actions/action'
+import {addBookmarkAction, bookmarkDeleteAction} from '../../../Store/actions/action'
 
 import './Bookmark.scss'
 
@@ -34,10 +34,11 @@ export function Bookmark({id}) {
 
   function sendIdBookmark(bookmarkInfo) {
     if(bookmark.includes(bookmarkInfo.bookmarkID)) {
-      console.log('super')
       dispatch(bookmarkDeleteAction(bookmarkInfo))
+      console.log('1')
     } else {
       dispatch(addBookmarkAction(bookmarkInfo))
+      console.log('2')
     }
   }
 

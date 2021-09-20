@@ -31,13 +31,12 @@ import {
 } from '../types'
 
 import {addCommentAction, removeCommentAction} from './components/commentActions'
-import {bookmarkDeleteAction, addBookmarkAction, addBookmarkRemoveEventShowMessage} from "./components/bookmarkActions";
+import {bookmarkDeleteAction, addBookmarkAction} from "./components/bookmarkActions";
 
 export {addCommentAction,
         removeCommentAction,
         bookmarkDeleteAction,
         addBookmarkAction,
-        addBookmarkRemoveEventShowMessage,
       }
 
 export function getCollectionViewAction(payload) {
