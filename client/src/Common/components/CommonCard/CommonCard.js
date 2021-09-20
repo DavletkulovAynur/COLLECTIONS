@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import './CommonCard.scss'
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
@@ -41,12 +41,9 @@ export function CommonCard({data}) {
     )
   }
 
-  const test = () => {
-    const classNames = ['small', 'medium', 'large']
-    return classNames[Math.floor(Math.random()*classNames.length)]
-  }
+  useEffect(() => {
 
-
+  }, [])
 
   return (
     <>
@@ -60,9 +57,10 @@ export function CommonCard({data}) {
                 owner,
                 mainImg,
                 author,
+                classTest,
                 authorAvatar} = item
                 return (
-                  <Link to={`/article-view/${_id}`} key={_id} className={`Pin_card Pin_card__${test()}`} style={divStyle(owner, mainImg)}>
+                  <Link to={`/article-view/${_id}`} key={_id} className={`Pin_card Pin_card__${classTest}`} style={divStyle(owner, mainImg)}>
                       <div className='Pin__shadow'></div>
                       <div className='Pin__about'>
                         {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}

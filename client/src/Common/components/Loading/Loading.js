@@ -1,7 +1,7 @@
 import React from 'react'
 import './Loading.scss'
 
-export function Loading({colorLoading = '#fff'}) {
+export function Loading({colorLoading = '#000'}) {
     const styleTest = {
         background: colorLoading
     }

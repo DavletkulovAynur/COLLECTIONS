@@ -1,4 +1,4 @@
-import {ADD_BOOKMARK, BOOKMARK_ADD_REMOVE, DELETE_BOOKMARK} from "../../types";
+import {ADD_BOOKMARK, DELETE_BOOKMARK} from "../../types";
 
 
 function bookmarkDeleteAction(payload) {
@@ -15,10 +15,10 @@ function addBookmarkAction(payload) {
   })
 }
 
-function addBookmarkRemoveEventShowMessage() {
-  return({
-    type: BOOKMARK_ADD_REMOVE
-  })
-}
+// function addBookmarkRemoveEventShowMessage() {
+//   return({
+//     type: BOOKMARK_ADD_REMOVE
+//   })
+// }
 
-export {bookmarkDeleteAction, addBookmarkAction, addBookmarkRemoveEventShowMessage}
+export {bookmarkDeleteAction, addBookmarkAction}

@@ -3,8 +3,7 @@ import {
   APP_ALERT_SHOW,
   APP_ERROR,
   APP_HIDE_LOADING,
-  APP_LOADING, BOOKMARK_ADD_REMOVE,
-  BOOKMARK_ADD_SHOW_MESSAGE
+  APP_LOADING,
 } from '../../types'
 
 const initialState = {
@@ -15,6 +14,7 @@ const initialState = {
 }
 
 export const appReducer = (state = initialState, action) => {
+
   switch (action.type) {
     case APP_LOADING:
       return {...state, loading: true}
@@ -26,11 +26,6 @@ export const appReducer = (state = initialState, action) => {
       return {...state, alert: false}
     case APP_ERROR:
       return {...state, error: true}
-    case BOOKMARK_ADD_SHOW_MESSAGE:
-        return {...state, addBookmark: true}
-    case BOOKMARK_ADD_REMOVE:
-        return {...state, addBookmark: false}
-
     default:
       return state
   }

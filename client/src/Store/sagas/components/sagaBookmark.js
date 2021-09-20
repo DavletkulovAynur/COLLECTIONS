@@ -1,8 +1,8 @@
 import {call, put} from 'redux-saga/effects'
 import Fetcher from '../../../Common/utils/fetch'
 import {
-    ADD_BOOKMARK_UPDATE_STATE, BOOKMARK_ADD_REMOVE, BOOKMARK_ADD_SHOW_MESSAGE,
-    DELETE_BOOKMARK_UPDATE_STATE,
+    ADD_BOOKMARK_UPDATE_STATE,
+    DELETE_BOOKMARK_UPDATE_STATE, SHOW_MESSAGE,
     WRITE_DOWN_BOOKMARK_COLLECTION
 } from '../../types'
 
@@ -13,13 +13,16 @@ import {
                         data.payload,
                 {Authorization: `Bearer ${localStorage.getItem('token')}`}))
 
-            const payload = yield call(() => {
-                return  [...data.payload.allBookmarkArray, data.payload.bookmarkID]
-            })
+            // const payload = yield call(() => {
+            //     return  [...data.payload.allBookmarkArray, data.payload.bookmarkID]
+            // })
 
             // yield put({type: ADD_BOOKMARK_UPDATE_STATE, payload})
-            //
-            // yield put({type: BOOKMARK_ADD_SHOW_MESSAGE})
+            const payload = {
+               text: 'Вы успешно добавили',
+            }
+            yield put({type: SHOW_MESSAGE, payload})
+            console.log('addBookmark')
         } catch(e) {
             console.log(e)
         }
@@ -37,6 +40,7 @@ import {
             })
 
             yield put({type: DELETE_BOOKMARK_UPDATE_STATE, payload})
+            console.log('deleteBookmark')
 
         } catch (e) {
             console.log(e)
