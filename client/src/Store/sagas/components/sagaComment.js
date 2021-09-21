@@ -1,5 +1,11 @@
-import {call, put} from 'redux-saga/effects'
-import {LOADING_COLLECTION_UPDATE, LOADING_HIDDEN_COLLECTION_UPDATE, UPDATE_COLLECTION_VIEW} from '../../types'
+import {call, put, takeEvery} from 'redux-saga/effects'
+import {
+  COMMENT_REMOVE,
+  COMMENT_UPDATE,
+  LOADING_COLLECTION_UPDATE,
+  LOADING_HIDDEN_COLLECTION_UPDATE,
+  UPDATE_COLLECTION_VIEW
+} from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
 
@@ -31,4 +37,9 @@ export function* removeComment(data) {
   } catch (e) {
     console.log(e)
   }
+}
+
+export function* commentWatcher() {
+  yield takeEvery(COMMENT_UPDATE, addComment)
+  yield takeEvery(COMMENT_REMOVE, removeComment)
 }
