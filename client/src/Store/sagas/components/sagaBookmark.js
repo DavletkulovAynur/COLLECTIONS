@@ -1,17 +1,13 @@
-import {call, put} from 'redux-saga/effects'
+import {call, put, takeEvery} from 'redux-saga/effects'
 import Fetcher from '../../../Common/utils/fetch'
 import {
-    ADD_BOOKMARK_UPDATE_STATE,
-    DELETE_BOOKMARK_UPDATE_STATE, SHOW_MESSAGE,
-    WRITE_DOWN_BOOKMARK_COLLECTION
+  ADD_BOOKMARK,
+  ADD_BOOKMARK_UPDATE_STATE, DELETE_BOOKMARK,
+  DELETE_BOOKMARK_UPDATE_STATE, GET_BOOKMARK_COLLECTION, SHOW_MESSAGE,
+  WRITE_DOWN_BOOKMARK_COLLECTION
 } from '../../types'
 
-// call - для чего, какую функцию выпоняет
-// put - это dispatch
-// yield - операток (инструкции)
-//
-
-export function* addBookmark(data) {
+function* addBookmark(data) {
     try {
        yield call (() => Fetcher('http://localhost:5000/users/save-bookmark',
             'PUT',
@@ -34,7 +30,7 @@ export function* addBookmark(data) {
     }
 }
 
-export function* deleteBookmark(data) {
+function* deleteBookmark(data) {
     try {
         yield call(() => Fetcher('http://localhost:5000/users/delete-bookmark',
             'PUT',
@@ -53,7 +49,7 @@ export function* deleteBookmark(data) {
     }
 }
 
-export function* getBookmarkCollection(formData) {
+function* getBookmarkCollection(formData) {
     try {
         //исправить
         const test = {
@@ -70,4 +66,10 @@ export function* getBookmarkCollection(formData) {
     } catch (e) {
         console.log(e)
     }
+}
+
+export function* bookmarkWatcher() {
+  yield takeEvery(GET_BOOKMARK_COLLECTION, getBookmarkCollection)
+  yield takeEvery(ADD_BOOKMARK, addBookmark)
+  yield takeEvery(DELETE_BOOKMARK, deleteBookmark)
 }

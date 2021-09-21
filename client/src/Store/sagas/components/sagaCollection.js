@@ -1,8 +1,8 @@
 import {put, call} from 'redux-saga/effects'
 import {
-	SUCCESSFULLY_SEND_COLLECTION,
 	WRITE_DOWN_ALL_COLLECTION,
-	WRITE_DOWN_COLLECTION, WRITE_DOWN_SUBSCRIBE_COLLECTION
+	WRITE_DOWN_COLLECTION,
+	WRITE_DOWN_SUBSCRIBE_COLLECTION,
 } from '../../types'
 import {appError, appHideLoading} from '../../actions/action'
 import Fetcher from '../../../Common/utils/fetch'
@@ -33,36 +33,19 @@ import {API_URL} from '../../../config'
 		}
 	}
 
-
-	export function* addCollection(formData) {
-	  try {
-	  	console.log('formData.payload', formData.payload)
-	  	const payload = yield call (() => Fetcher(`${API_URL}collection/add`,
-			'POST',
-			formData.payload,
-			{
-				Authorization: `Bearer ${localStorage.getItem('token')}`,
-			},
-			false
-			))
-	  	yield put({type: SUCCESSFULLY_SEND_COLLECTION, payload})
-	  } catch (e) {
-		console.log(e)
-	  }
-	}
-
-	export function* getSubscribeCollection(data) {
-		try {
-			const subscribe = {
-				userSubscribe: data.payload
-			}
-			const payload = yield call(() => Fetcher(`${API_URL}collection//get-subscribe-collection`,
-				'POST',
-				subscribe,
-				{Authorization: `Bearer ${localStorage.getItem('token')}`}
-				))
-			yield put({type: WRITE_DOWN_SUBSCRIBE_COLLECTION, payload})
-		} catch (e) {
-			console.log('error', e)
+export function* getSubscribeCollection(data) {
+	try {
+		const subscribe = {
+			userSubscribe: data.payload
 		}
+		const payload = yield call(() => Fetcher(`${API_URL}collection//get-subscribe-collection`,
+			'POST',
+			subscribe,
+			{Authorization: `Bearer ${localStorage.getItem('token')}`}
+		))
+		yield put({type: WRITE_DOWN_SUBSCRIBE_COLLECTION, payload})
+	} catch (e) {
+		console.log('error', e)
 	}
+}
+
