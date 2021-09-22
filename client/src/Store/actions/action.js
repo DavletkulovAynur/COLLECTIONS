@@ -16,7 +16,6 @@ import {
   DISPATCH_COLLECTION,
   LOAD_IMG_DRAG_AND_DROP,
   GET_BOOKMARK_COLLECTION,
-  PERSONAL_PAGE_AVATAR_POPUP,
   LOGOUT,
   REGISTRATION,
   GET_COLLECTION_VIEW,
@@ -147,14 +146,6 @@ export function logoutAction() {
 export function registrationAction(payload) {
   return({
     type: REGISTRATION,
-    payload
-  })
-}
-
-//PERSONAL_PAGE
-export function openPopupChangeAvatar(payload) {
-  return({
-    type: PERSONAL_PAGE_AVATAR_POPUP,
     payload
   })
 }

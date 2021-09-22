@@ -10,6 +10,7 @@ import UserArea from './pages/UserArea/UserArea'
 import ConfirmEmailBlock from "../Common/components/ConfirmEmailBlock/ConfirmEmailBlock";
 import {FooterMobile} from "../Common/components/FooterMobile/FooterMobile";
 import {SearchPageMobile} from "../Common/components/SearchPageMobile/SearchPageMobile";
+import EditUserPage from "./pages/EditUserPage/EditUserPage";
 
 export const useRoutes = (isAuthenticated, active) => {
   if(isAuthenticated) {
@@ -36,6 +37,9 @@ export const useRoutes = (isAuthenticated, active) => {
               </Route>
               <Route exact path='/personal-area'>
                 <PersonalArea/>
+              </Route>
+              <Route exact path='/personal-area/edit-user'>
+                <EditUserPage/>
               </Route>
               <Route exact path='/user-area/:id'>
                 <UserArea/>

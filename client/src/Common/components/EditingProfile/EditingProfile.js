@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import './EditingProfile.scss'
 import EditingProfileTemplate from './EditingProfileTemplate'
-import {editAvatarAction, editUserAction, openPopupChangeAvatar} from '../../../Store/actions/action'
+import {editAvatarAction, editUserAction} from '../../../Store/actions/action'
 import {DefineAvatarUrl} from '../../utils/DefineAvatarUrl'
 import {useInput} from '../../utils/hooks/input.hook'
 import {checkForm} from '../../utils/checkForm'
@@ -23,10 +23,6 @@ export default function EditingProfile() {
   const aboutUserInput = useInput(description)
   const placeInput = useInput(place)
   const [nameInputError, setNameInputError] = useState(false)
-
-  const handleClose = () => {
-    dispatch(openPopupChangeAvatar(false))
-  };
 
   const fileUploadHandler = async (event) => {
     const files = [...event.target.files]
@@ -76,7 +72,6 @@ export default function EditingProfile() {
 
   return (
     <EditingProfileTemplate fileUploadHandler={fileUploadHandler}
-                             handleClose={handleClose}
                              deleteFile={deleteFile}
                              sendAvatar={sendAvatar}
                              sendUserInformation={sendUserInformation}

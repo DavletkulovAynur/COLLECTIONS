@@ -9,7 +9,6 @@ import Input from '../Input/Input'
 
 
 export default function EditingProfileTemplate({fileUploadHandler,
-                                                    handleClose,
                                                     deleteFile,
                                                     sendAvatar,
                                                     sendUserInformation,
@@ -31,7 +30,7 @@ export default function EditingProfileTemplate({fileUploadHandler,
         >
 
         <div>
-          <Header handleClose={handleClose}/>
+          <Header/>
           <div>
             <AvatarChange avatarUrl={avatarUrl} fileUploadHandler={fileUploadHandler}/>
 

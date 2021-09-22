@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 import PopupChangeAvatar from '../EditingProfile/EditingProfile'
-import { IconButton } from '@material-ui/core'
-import EditIcon from '@material-ui/icons/Edit';
-
 
 import './UserInformation.scss'
 import {useDispatch} from 'react-redux'
 import {openPopupChangeAvatar, subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Store/actions/action'
+import {Link} from "react-router-dom";
 
 export const UserInformation = ({   avatarUrl,
                                     userName,
@@ -18,22 +16,16 @@ export const UserInformation = ({   avatarUrl,
                                     countPublication = '0'}) => {
 
   const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
-  const dispatch = useDispatch()
-  const changeStateAvatar = () => {
-        setOpenChangeAvatar(true)
-    }
 
-  const editingProfile = () => {
-    dispatch(openPopupChangeAvatar(true))
+  const changeStateAvatar = () => {
+    setOpenChangeAvatar(true)
   }
 
     const button = () => {
       return (
-        <div onClick={editingProfile} className='editing-profile'>
-          <IconButton style={{background: '#fff'}}>
-            <EditIcon fontSize='small'/>
-          </IconButton>
-        </div>
+          <Link to='/personal-area/edit-user'>
+            <button>редактировать профиль</button>
+          </Link>
       )
     }
 
