@@ -13,7 +13,7 @@ export default function EditingProfile() {
   const dispatch = useDispatch()
   let reader = new FileReader()
   const {avatar, userName, description, place} = useSelector((state) => state.authReducer)
-  const {statePopup, loading} = useSelector((state) => state.personalPageReducer)
+  const {loading} = useSelector((state) => state.personalPageReducer)
 
   const [previewImg, setPreviewImg] = useState()
   const [loadAvatar, setLoadAvatar] = useState(null)
@@ -77,7 +77,6 @@ export default function EditingProfile() {
                              sendUserInformation={sendUserInformation}
                              loading={loading}
                              avatarUrl={avatarUrl}
-                             open={statePopup}
                              nameInputError={nameInputError}
                              previewImg={previewImg}
                              nameInput={nameInput}

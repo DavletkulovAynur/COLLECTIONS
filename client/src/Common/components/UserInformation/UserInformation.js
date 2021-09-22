@@ -3,7 +3,7 @@ import PopupChangeAvatar from '../EditingProfile/EditingProfile'
 
 import './UserInformation.scss'
 import {useDispatch} from 'react-redux'
-import {openPopupChangeAvatar, subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Store/actions/action'
+import {subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Store/actions/action'
 import {Link} from "react-router-dom";
 
 export const UserInformation = ({   avatarUrl,
