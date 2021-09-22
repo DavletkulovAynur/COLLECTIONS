@@ -9,20 +9,18 @@ function CollectionsList() {
 	const {allCollection} = useSelector(state => state.collectionReducer)
 	const loading = useSelector(state => state.appReducer.loading)
 	const error = useSelector(state => state.appReducer.error)
-	const [test, setTest] = useState([])
 
-
-	const className = () => {
-		const classNames = ['small', 'medium', 'large']
-		return classNames[Math.floor(Math.random()*classNames.length)]
-	}
-
-	useEffect(() => {
-		const test1 = allCollection.map((item) => {
-			return {...item, classTest: className()}
-		})
-		setTest(test1)
-	}, [allCollection])
+	// const className = () => {
+	// 	const classNames = ['small', 'medium', 'large']
+	// 	return classNames[Math.floor(Math.random()*classNames.length)]
+	// }
+	//
+	// useEffect(() => {
+	// 	const test1 = allCollection.map((item) => {
+	// 		return {...item, classTest: className()}
+	// 	})
+	// 	setTest(test1)
+	// }, [allCollection])
 
 
 	if(error) {
@@ -50,7 +48,7 @@ function CollectionsList() {
 	return (
 		<div className='Collections-list'>
 			<div className='Article Article-root Com-main-grid'>
-				<CommonCard data={test}/>
+				<CommonCard data={allCollection}/>
 			</div>
 		</div>
 	);

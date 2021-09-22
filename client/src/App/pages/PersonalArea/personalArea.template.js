@@ -37,7 +37,8 @@ const PersonalAreaTemplate = ({ avatarUrl,
   return (
     <div className='Personal-area'>
         <div className='user-info-tab-wrapper'>
-            <section>
+
+            <section className=''>
                 <UserInformation subscribe={subscribe} subscriptions={subscriptions} countPublication={countPublication} avatarUrl={avatarUrl} userName={userName}/>
             </section>
 

@@ -17,9 +17,9 @@ const initialState = {
 export const collectionReducer = (state = initialState, action) => {
   switch (action.type) {
     case WRITE_DOWN_COLLECTION:
-      return {...state, myCollection: [...action.payload.data]}
+      return {...state, myCollection: [...action.payload]}
     case WRITE_DOWN_ALL_COLLECTION:
-      return  {...state, allCollection: [...action.payload.data]}
+      return  {...state, allCollection: [...action.payload]}
     case WRITE_DOWN_BOOKMARK_COLLECTION:
       return {...state, bookmarkCollection: [...action.payload.data]}
     case WRITE_DOWN_SEARCH_COLLECTION:

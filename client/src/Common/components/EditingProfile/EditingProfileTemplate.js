@@ -1,17 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogTitle from '@material-ui/core/DialogTitle'
 import './EditingProfile.scss'
 import {Loading} from '../Loading/Loading'
 import Input from '../Input/Input'
 
-import { Container } from '@material-ui/core'
-import { IconButton } from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close'
 
 
 
@@ -31,21 +22,18 @@ export default function EditingProfileTemplate({fileUploadHandler,
                                                     placeInput,
                                                     nameInputError,}) {
 
-  const classes = useStyles();
+
 
   return (
-  <div className='Edit-user-information'>
-    <Dialog
+  <div className='Popup-edit-user-info'>
+    <div
         className='Edit-user-information-dialog'
-        fullScreen={true}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="max-width-dialog-title">
+        >
 
-        <Container maxWidth='sm' disableGutters={true}>
+        <div>
           <Header handleClose={handleClose}/>
-          <DialogContent>
-            <AvatarChange avatarUrl={avatarUrl} fileUploadHandler={fileUploadHandler} classes={classes}/>
+          <div>
+            <AvatarChange avatarUrl={avatarUrl} fileUploadHandler={fileUploadHandler}/>
 
             {loading
             ? <Loading colorLoading={'#000'}/>
@@ -61,9 +49,9 @@ export default function EditingProfileTemplate({fileUploadHandler,
                 }
               </div>
             }
-          </DialogContent>
-        </Container>
-      </Dialog>
+          </div>
+        </div>
+      </div>
   </div>
     );
 }
@@ -71,16 +59,14 @@ export default function EditingProfileTemplate({fileUploadHandler,
 const Header = ({handleClose}) => {
   return (
     <div className='header'>
-      <DialogTitle  id="max-width-dialog-title">
+      <div >
         Изменение профиля
-      </DialogTitle>
-      <DialogActions>
+      </div>
+      <div>
         <div onClick={handleClose}>
-          <IconButton style={{color: '#fff', padding: 0}}>
-            <CloseIcon/>
-          </IconButton>
+          <button>close</button>
         </div>
-      </DialogActions>
+      </div>
     </div>
   )
 }
@@ -96,18 +82,15 @@ const AvatarChange = ({fileUploadHandler, avatarUrl, classes}) => {
         <div>
           <input
             accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
             type="file"
             onChange={(event) => fileUploadHandler(event)}
           />
           <label htmlFor="contained-button-file">
-            <Button style={{color: '#fff'}} component="span">
+            <button>
               Изменить
-            </Button>
+            </button>
           </label>
-          <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+          <input accept="image/*" type="file" />
         </div>
       </div>
     </div>
@@ -126,9 +109,9 @@ const UserInformation = ({nameInput, placeInput, aboutUserInput, nameInputError,
       <div className='Test2'>
         <Input multiline={true}  rows={4} binding={aboutUserInput} label='Расскажите немного о себе'/>
       </div>
-      <Button onClick={sendUserInformation} variant="contained" color="primary">
+      <button onClick={sendUserInformation}>
         Сохранить
-      </Button>
+      </button>
     </section>
   )
 }
@@ -138,36 +121,9 @@ const PreviewImg = ({previewImg, deleteFile, sendAvatar}) => {
     <div className='preview-img-wrapper'>
       <img src={previewImg} className='preview-img'/>
       <div className='preview-buttons'>
-        <Button style={{marginRight: '8px'}} onClick={deleteFile} color="secondary">Отмена</Button>
-        <Button style={{color: '#fff'}} onClick={sendAvatar} color="primary">Загрузить</Button>
+        <button onClick={deleteFile}>Отмена</button>
+        <button onClick={sendAvatar}>Загрузить</button>
       </div>
     </div>
   )
 }
-
-
-
-const useStyles = makeStyles((theme) => ({
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        margin: 'auto',
-        width: 'fit-content',
-    },
-    formControl: {
-        marginTop: theme.spacing(2),
-        minWidth: 120,
-    },
-    formControlLabel: {
-        marginTop: theme.spacing(1),
-    },
-    root: {
-        margin: 'auto',
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-    input: {
-        display: 'none',
-    },
-}));

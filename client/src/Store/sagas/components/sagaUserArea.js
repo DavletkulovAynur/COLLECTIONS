@@ -1,22 +1,11 @@
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
-import {put, call, takeEvery} from 'redux-saga/effects'
-import {WRITE_DOWN_GET_USER} from '../../types'
+import {call, takeEvery} from 'redux-saga/effects'
+import {SUBSCRIBE_ON_USER, UNSUBSCRIBE_ON_USER} from '../../types'
 
-export function* getUser(data) {
-  try {
-    const user = {
-      userId: data.payload
-    }
-    const payload = yield call(() => Fetcher(`${API_URL}users/get-user`, 'POST', user))
 
-    yield put({type: WRITE_DOWN_GET_USER, payload})
-  } catch (e) {
-    console.log('error', e)
-  }
-}
 
-export function* subscribeOnUser(data) {
+function* subscribeOnUserWorker(data) {
   try {
     const user = {
       subscribeUserId: data.payload
@@ -33,7 +22,7 @@ export function* subscribeOnUser(data) {
   }
 }
 
-export function* unSubscribeOnUser(data) {
+function* unSubscribeOnUserWorker(data) {
   try {
     const user = {
       subscribeUserId: data.payload
@@ -48,6 +37,11 @@ export function* unSubscribeOnUser(data) {
   } catch (e) {
     console.log('error', e)
   }
+}
+
+export function* subscribeWatcher() {
+  yield takeEvery(SUBSCRIBE_ON_USER, subscribeOnUserWorker)
+  yield takeEvery(UNSUBSCRIBE_ON_USER, unSubscribeOnUserWorker)
 }
 
 
