@@ -18,7 +18,7 @@ export function PersonalArea() {
 	}, [bookmark])
 
 	useEffect(() => {
-		dispatch(getSubscribeCollectionAction(subscriptions))
+		// dispatch(getSubscribeCollectionAction(subscriptions))
 	}, [])
 
 	return (

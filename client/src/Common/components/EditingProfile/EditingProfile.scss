@@ -1,9 +1,8 @@
-.Edit-user-information-dialog {
-  .MuiDialogTitle-root {
-    color: #FFFFFF;
-    padding: 0;
-  }
+.Popup-edit-user-info {
+  display: none;
+}
 
+.Edit-user-information-dialog {
   .header {
     padding: 12px 24px;
     padding-right: 16px;
@@ -70,27 +69,4 @@
   position: absolute;
   bottom: 0;
   right: 0;
-
-  //.MuiIconButton-root {
-  //  background: #fff;
-  //}
-
-  .MuiIcon-root {
-    background-color: #fff;
-  }
 }
-
-
-.Test2 {
-  margin-bottom: 24px;
-}
-
-///
-.MuiDialog-paper {
-  background: #343a40;
-}
-
-.MuiPaper-root {
-  background-color: #343a40 !important;
-}
-
