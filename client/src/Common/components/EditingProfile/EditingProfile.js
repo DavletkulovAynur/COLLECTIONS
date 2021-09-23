@@ -2,52 +2,44 @@ import React, {useState} from 'react';
 import {useSelector} from 'react-redux'
 import './EditingProfile.scss'
 import EditingProfileTemplate from './EditingProfileTemplate'
-import {editAvatarAction, editUserAction} from '../../../Store/actions/action'
+import {checkForm} from "../../utils/checkForm";
 
-import {useInput} from '../../utils/hooks/input.hook'
-import {checkForm} from '../../utils/checkForm'
-import {inputClear} from '../../utils/inputClear'
-
-// Как загружать
-export default function EditingProfile() {
+export default function EditingProfile({sendNewInfoProfile}) {
   const {userName, description, place} = useSelector((state) => state.authReducer)
   const {loading} = useSelector((state) => state.personalPageReducer)
 
-
-  const [nameInputError, setNameInputError] = useState(false)
-
+  const [inputErrors, SetInputErrors] = useState({})
 
 
 
 
-  const sendUserInformation = () => {
-    // const userInformation = {
-    //   place: placeInput.value,
-    //   username: nameInput.value,
-    //   description: aboutUserInput.value
-    // }
-    //
-    // const objErrors = checkForm(userInformation)
-    //
-    // const {username} = objErrors
-    // const errorСhecking = Object.keys(objErrors).length;
-    //
-    // setNameInputError(username)
-    //
-    // if(!errorСhecking) {
-    //   inputClear([nameInput, aboutUserInput, placeInput])
-    //   dispatch(editUserAction(userInformation))
-    // }
+  const sendUserInformation = (placeInput, nameInput,aboutUserInput ) => {
+    const userInformation = {
+      place: placeInput.value,
+      username: nameInput.value,
+      description: aboutUserInput.value
+    }
+
+    const thereAreMistakesInInputs = validationInputs(userInformation)
+
+    if(!thereAreMistakesInInputs) {
+      sendNewInfoProfile(userInformation)
+    }
+
+  }
+
+  const validationInputs = (user) => {
+    const listInputsHaveError = checkForm(user)
+    if(Object.keys(listInputsHaveError).length != 0) {
+      SetInputErrors(listInputsHaveError)
+      return true
+    }
+    return false
   }
 
   return (
-    <EditingProfileTemplate
-
-                             sendUserInformation={sendUserInformation}
-                             loading={loading}
-
-                             nameInputError={nameInputError}
-
+    <EditingProfileTemplate sendUserInformation={sendUserInformation}
+                            loading={loading}
                             userName={userName}
                             description={description}
                             place={place}

@@ -9,18 +9,12 @@ import {useInput} from "../../utils/hooks/input.hook";
 
 
 
-export default function EditingProfileTemplate({fileUploadHandler,
-                                                    deleteFile,
-                                                 changeUserAvatar,
-                                                    sendUserInformation,
-                                                    loading,
-                                                    previewImg,
-                                                    avatarUrl,
-                                                 userName, description, place,
-                                                    nameInputError,}) {
-
-
-
+export default function EditingProfileTemplate({  sendUserInformation,
+                                                  userName,
+                                                  description,
+                                                  place,
+                                               })
+{
   const nameInput = useInput(userName)
   const aboutUserInput = useInput(description)
   const placeInput = useInput(place)
@@ -28,7 +22,6 @@ export default function EditingProfileTemplate({fileUploadHandler,
   return (
   <div className=''>
     <UserInformation
-                  nameInputError={nameInputError}
                   nameInput={nameInput}
                   aboutUserInput={aboutUserInput}
                   placeInput={placeInput}
@@ -40,11 +33,11 @@ export default function EditingProfileTemplate({fileUploadHandler,
 }
 
 
-const UserInformation = ({nameInput, placeInput, aboutUserInput, nameInputError, sendUserInformation}) => {
+const UserInformation = ({nameInput, placeInput, aboutUserInput, sendUserInformation}) => {
   return (
     <section>
       <div className='Test2'>
-        <Input error={nameInputError} binding={nameInput} label='Имя пользователя'/>
+        <Input binding={nameInput} label='Имя пользователя'/>
       </div>
       <div className='Test2'>
         <Input binding={placeInput} label='Расположение'/>
@@ -52,7 +45,7 @@ const UserInformation = ({nameInput, placeInput, aboutUserInput, nameInputError,
       <div className='Test2'>
         <Input multiline={true}  rows={4} binding={aboutUserInput} label='Расскажите немного о себе'/>
       </div>
-      <button onClick={sendUserInformation}>
+      <button onClick={() => sendUserInformation(nameInput, aboutUserInput, placeInput)}>
         Сохранить
       </button>
     </section>
