@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import PopupChangeAvatar from '../EditingProfile/EditingProfile'
+import React from 'react'
+
 
 import './UserInformation.scss'
 import {useDispatch} from 'react-redux'
@@ -15,13 +15,8 @@ export const UserInformation = ({   avatarUrl,
                                     guest = false,
                                     countPublication = '0'}) => {
 
-  const [openChangeAvatar, setOpenChangeAvatar] = useState(false)
 
-  const changeStateAvatar = () => {
-    setOpenChangeAvatar(true)
-  }
-
-    const button = () => {
+  const button = () => {
       return (
           <Link to='/personal-area/edit-user'>
             <button>редактировать профиль</button>
@@ -64,9 +59,6 @@ export const UserInformation = ({   avatarUrl,
                     </div>
                 </section>
             </div>
-
-            <PopupChangeAvatar openChangeAvatar={openChangeAvatar} changeStateAvatar={changeStateAvatar}/>
-
         </div>
     )
 }

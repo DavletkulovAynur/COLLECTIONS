@@ -2,6 +2,7 @@ import React from 'react'
 import './EditingProfile.scss'
 import {Loading} from '../Loading/Loading'
 import Input from '../Input/Input'
+import {useInput} from "../../utils/hooks/input.hook";
 
 
 
@@ -10,60 +11,34 @@ import Input from '../Input/Input'
 
 export default function EditingProfileTemplate({fileUploadHandler,
                                                     deleteFile,
-                                                    sendAvatar,
+                                                 changeUserAvatar,
                                                     sendUserInformation,
                                                     loading,
                                                     previewImg,
                                                     avatarUrl,
-                                                    nameInput,
-                                                    aboutUserInput,
-                                                    placeInput,
+                                                 userName, description, place,
                                                     nameInputError,}) {
 
 
 
+  const nameInput = useInput(userName)
+  const aboutUserInput = useInput(description)
+  const placeInput = useInput(place)
+
   return (
   <div className=''>
-        <AvatarChange avatarUrl={avatarUrl} fileUploadHandler={fileUploadHandler}/>
-
-        {loading
-        ? <Loading colorLoading={'#000'}/>
-        : <div>
-            {!previewImg
-              ? <UserInformation
+    <UserInformation
                   nameInputError={nameInputError}
                   nameInput={nameInput}
                   aboutUserInput={aboutUserInput}
                   placeInput={placeInput}
                   sendUserInformation={sendUserInformation}/>
-              : <PreviewImg previewImg={previewImg} deleteFile={deleteFile} sendAvatar={sendAvatar}/>
-            }
-          </div>
-        }
+
+
   </div>
     );
 }
 
-const AvatarChange = ({fileUploadHandler, avatarUrl, classes}) => {
-  return (
-    <div className='Avatar-edit'>
-      <div className='Avatar-edit__title'>
-        Фотография
-      </div>
-      <div className='Avatar-edit__content'>
-        <img className='Avatar-edit__photo' src={avatarUrl}/>
-        <div>
-          <input
-            accept="image/*"
-            type="file"
-            onChange={(event) => fileUploadHandler(event)}
-          />
-          <button>Изменить фото профиля</button>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const UserInformation = ({nameInput, placeInput, aboutUserInput, nameInputError, sendUserInformation}) => {
   return (
@@ -84,14 +59,4 @@ const UserInformation = ({nameInput, placeInput, aboutUserInput, nameInputError,
   )
 }
 
-const PreviewImg = ({previewImg, deleteFile, sendAvatar}) => {
-  return (
-    <div className='preview-img-wrapper'>
-      <img src={previewImg} className='preview-img'/>
-      <div className='preview-buttons'>
-        <button onClick={deleteFile}>Отмена</button>
-        <button onClick={sendAvatar}>Загрузить</button>
-      </div>
-    </div>
-  )
-}
+
