@@ -9,9 +9,12 @@ export function useInput(initialValue) {
 
   const clear = () => setValue('')
 
+  const changeInitialState = (a = '') => setValue(a)
+
   return {
     bind: {value, onChange},
     value,
-    clear
+    clear,
+    changeInitialState
   }
 }

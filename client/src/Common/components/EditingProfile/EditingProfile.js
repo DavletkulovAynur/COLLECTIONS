@@ -6,17 +6,17 @@ import {checkForm} from "../../utils/checkForm";
 
 export default function EditingProfile({sendNewInfoProfile}) {
   const {userName, description, place} = useSelector((state) => state.authReducer)
-  const {loading} = useSelector((state) => state.personalPageReducer)
+  const {profileLoading} = useSelector((state) => state.userEditReducer)
 
   const [inputErrors, SetInputErrors] = useState({})
 
 
 
 
-  const sendUserInformation = (placeInput, nameInput,aboutUserInput ) => {
+  const sendUserInformation = (nameInput, placeInput,aboutUserInput ) => {
     const userInformation = {
-      place: placeInput.value,
       username: nameInput.value,
+      place: placeInput.value,
       description: aboutUserInput.value
     }
 
@@ -25,7 +25,6 @@ export default function EditingProfile({sendNewInfoProfile}) {
     if(!thereAreMistakesInInputs) {
       sendNewInfoProfile(userInformation)
     }
-
   }
 
   const validationInputs = (user) => {
@@ -39,10 +38,10 @@ export default function EditingProfile({sendNewInfoProfile}) {
 
   return (
     <EditingProfileTemplate sendUserInformation={sendUserInformation}
-                            loading={loading}
                             userName={userName}
                             description={description}
                             place={place}
+                            profileLoading={profileLoading}
 
     />
   );

@@ -16,8 +16,9 @@ export function ShowMessage({showMessage,
     let timerID
 
 
-    // ERROR (таймер работает неправильно)
+    // TODO -  ERROR (таймер работает неправильно)
     useEffect(() => {
+      console.log('test')
       setVisible(showMessage)
       if(showMessage) {
         timerID = setTimeout(() => {
@@ -31,6 +32,8 @@ export function ShowMessage({showMessage,
       setVisible(false)
       dispatch(removeShowMessageAction())
     }
+
+
 
     return (
       <>

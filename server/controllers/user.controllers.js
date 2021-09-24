@@ -103,6 +103,7 @@ class UserControllers {
 		try {
 			const {username, place, description} = req.body
 			await USER_MODEL.update({_id: req.user.id}, {username, place, description})
+			res.status(201).json({message: 'User info update', status: true})
 		} catch (e) {
 			res.status(500).json(e)
 		}

@@ -23,7 +23,6 @@ const initialState = {
 
 // исправить вложенность
 export const authReducer = (state = initialState, action) => {
-    console.log('test authReducer')
     switch (action.type) {
     case LOGIN_AUTHENTICATION:
       const {data} = action.payload

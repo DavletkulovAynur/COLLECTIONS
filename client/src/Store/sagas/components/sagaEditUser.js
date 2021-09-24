@@ -1,17 +1,29 @@
 import {call, put, takeEvery} from "redux-saga/effects";
 import Fetcher from "../../../Common/utils/fetch";
 import {API_URL} from "../../../config";
-import {EDIT_AVATAR, EDIT_USER, LOAD_AVATAR, LOAD_AVATAR_COMPLETE, SHOW_MESSAGE} from "../../types";
+import {
+  EDIT_AVATAR,
+  EDIT_PROFILE_LOADING, EDIT_PROFILE_LOADING_COMPLETE,
+  EDIT_USER,
+  LOAD_AVATAR,
+  LOAD_AVATAR_COMPLETE,
+  SHOW_MESSAGE
+} from "../../types";
 
 function* userInfoEditWorker(data) {
   try {
-    const payload = yield call(() => Fetcher(
+    yield put({type: EDIT_PROFILE_LOADING})
+    yield call(() => Fetcher(
       `${API_URL}users/edit-user`,
       'POST',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}
     ))
+    yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
+    const payload = {text: `успешно`, severity: 'success'}
+    yield put({type: SHOW_MESSAGE, payload})
   } catch (e) {
+    yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
     console.log('error', e)
   }
 }
