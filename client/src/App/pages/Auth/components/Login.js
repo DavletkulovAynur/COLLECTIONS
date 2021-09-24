@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {loginAction} from '../../../../Store/actions/action'
 import {checkForm} from '../../../../Common/utils/checkForm'
-import {inputClear} from '../../../../Common/utils/inputClear'
 import LoginTemplate from "./LoginTemplate";
 
 export const Login = ({changeStateLogin}) => {
@@ -23,7 +22,6 @@ export const Login = ({changeStateLogin}) => {
 
     if(!thereAreMistakesInInputs) {
       sendingUser(user)
-      // inputClear([emailInput, passwordInput])
     }
   }
 

@@ -19,6 +19,11 @@
     background: #000;
   }
 
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+
   &_bookmark {
     border: none;
     border-radius: 20px;
@@ -26,13 +31,21 @@
     color: #fff;
     font-size: 14px;
 
-    &:hover {
-
-    }
+    &:hover {}
   }
 
   &_bookmark-save {
     background: #000;
     color: #fff;
+  }
+
+  &_cancel {
+    border: 1px solid #e60023;
+    color: #e60023;
+
+    &:hover {
+      color: #fff;
+      background: #e60023;
+    }
   }
 }

@@ -21,6 +21,11 @@ export function checkForm(data) {
           errorInputs[key+'Error'] = true
         }
         break
+      case 'place':
+        if(!value) {
+          errorInputs[key+'Error'] = true
+        }
+        break
       default:
     }
   })

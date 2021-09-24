@@ -3,7 +3,7 @@ import {appReducer} from './components/appReducer'
 import {collectionReducer} from './components/collectionReducer'
 import {authReducer} from './components/authReducer'
 import {addCollectionReducer} from './components/addCollectionReducer'
-import {personalPageReducer} from './components/personalPageReducer'
+import {userEditReducer} from './components/userEditReducer'
 import {collectionViewReducer} from './components/collectionViewReducer'
 import {userAreaPageReducer} from './components/userAreaPageReducer'
 import {subscribeReducer} from './components/subscribeReducer'
@@ -14,7 +14,7 @@ const reducer = combineReducers({
   collectionReducer,
   authReducer,
   addCollectionReducer,
-  personalPageReducer,
+  userEditReducer,
   collectionViewReducer,
   userAreaPageReducer,
   subscribeReducer,

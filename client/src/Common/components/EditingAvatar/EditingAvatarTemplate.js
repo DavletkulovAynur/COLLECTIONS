@@ -51,7 +51,7 @@ const AvatarChange = ({fileUploadHandler, avatarUrl}) => {
       <div className='Avatar-edit__content'>
         <img className='Avatar-edit__photo' src={avatarUrl}/>
         <section className="Avatar-edit__input-wrapper">
-          <input id="input__file" class="Avatar-edit__input-file"
+          <input id="input__file" className="Avatar-edit__input-file"
             accept="image/*"
             type="file"
             onChange={(event) => fileUploadHandler(event)}
