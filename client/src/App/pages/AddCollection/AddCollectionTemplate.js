@@ -9,19 +9,20 @@ const title = useInput('')
 const description = useInput('')
 
 return (
-  <div className='Add-collection'>
-    <form className='Add-collection__form'>
-      <section className='Add-collection__drag-drop-box'>
-        <DragAndDrop loadImg={loadImg}/>
-      </section>
-      <section className='Add-collection__inputs'>
-        <Input binding={title} placeholder='Добавьте название'/>
-        <Input binding={description} placeholder='Добавьте описание'/>
-        <button onClick={(event) => handleSubmit(event, title, description)}
-                className='Button Button-root Add-collection__button'>Сохранить
-        </button>
-      </section>
-    </form>
+  <div className='Add-collection Add-collection-root'>
+      <h1 className='Add-collection__title'>Создание пина</h1>
+      <form className='Add-collection__form'>
+        <section className='Add-collection__drag-drop-box'>
+          <DragAndDrop loadImg={loadImg}/>
+        </section>
+        <section className='Add-collection__inputs'>
+          <Input binding={title} placeholder='Добавьте название'/>
+          <Input binding={description} placeholder='Добавьте описание'/>
+          <button onClick={(event) => handleSubmit(event, title, description)}
+                  className='Button Button-root Add-collection__button'>Сохранить
+          </button>
+        </section>
+      </form>
   </div>
 );
 };

@@ -1,12 +1,15 @@
 .Add-collection {
-  width: 100%;
-  height: calc(100% - 92px);
-  display: flex;
-  align-items: center;
-
-  &__form {
+  &-root {
+    width: 100%;
     max-width: 840px;
     margin: auto;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+  }
+
+  &__form {
     display: flex;
   }
 
@@ -14,10 +17,12 @@
     margin-top: 300px;
   }
 
-  &__drag-drop-box {}
+  &__drag-drop-box {
+    width: 50%;
+  }
 
   &__inputs {
     margin-left: 24px;
-    width: 60%;
+    width: 50%;
   }
 }
