@@ -1,32 +1,29 @@
 import React from 'react'
 import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 import Input from "../../../Common/components/Input/Input";
+import {useInput} from "../../../Common/utils/hooks/input.hook";
 
-  const AddCollectionTemplate = ({title,
-                                 errorTitle,
-                                 description,
-                                 handleSubmit}) => {
+const AddCollectionTemplate = ({handleSubmit, loadImg}) => {
 
-  return (
-    <div className='Add-collection'>
-      <form className='Add-collection_form'>
-          <div className='Add-collection_form-inputs'>
-            <section className='Add-collection_drag-drop-box'>
-              <DragAndDrop/>
-            </section>
-            <section className='Add-collection_inputs entrance'>
-              <div className='entrance_title'>
-                <Input binding={title} placeholder='Добавьте название'/>
-              </div>
-              <Input binding={description} placeholder='Добавьте описание'/>
+const title = useInput('')
+const description = useInput('')
 
-              <button className='Button Button-root Add-collection_button'>Сохранить</button>
-            </section>
-          </div>
-
-        </form>
-    </div>
-  );
+return (
+  <div className='Add-collection'>
+    <form className='Add-collection__form'>
+      <section className='Add-collection__drag-drop-box'>
+        <DragAndDrop loadImg={loadImg}/>
+      </section>
+      <section className='Add-collection__inputs'>
+        <Input binding={title} placeholder='Добавьте название'/>
+        <Input binding={description} placeholder='Добавьте описание'/>
+        <button onClick={(event) => handleSubmit(event, title, description)}
+                className='Button Button-root Add-collection__button'>Сохранить
+        </button>
+      </section>
+    </form>
+  </div>
+);
 };
 
 

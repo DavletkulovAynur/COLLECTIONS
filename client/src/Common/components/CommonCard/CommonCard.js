@@ -28,15 +28,20 @@ export function CommonCard({data}) {
       }
       return (
       <>
-        <Bookmark id={_id} />
-        <div>
-          <div className='Pin__about-title'>{title}</div>
-          {/*<span>{date}</span>*/}
-          <div className='Pin__about-author'>
+        <section className='Pin__about-inside'>
+          <Bookmark id={_id} />
+          <div>
+            <div className='Pin__about-title'>{title}</div>
+            <span>{date}</span>
+          </div>
+        </section>
+
+        <Link to={link}>
+          <section className='Pin__about-author'>
             <img className='Pin__about-author-avatar' src={avatarUrl}/>
             <span className='Pin__about-author-name'>{author}</span>
-          </div>
-        </div>
+          </section>
+        </Link>
       </>
     )
   }

@@ -23,12 +23,16 @@
   }
 
   &__about {
-    display: none;
     padding: 12px;
     height: 100%;
     position: relative;
-    justify-content: space-between;
-    flex-direction: column;
+
+    &-inside {
+      display: none;
+      height: 100%;
+      justify-content: space-between;
+      flex-direction: column;
+    }
 
     &-title {
       font-weight: bold;
@@ -41,6 +45,9 @@
     }
 
     &-author {
+      position: absolute;
+      bottom: -28px;
+      color: #000;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -69,22 +76,23 @@
   }
 
   &_card {
-    overflow: hidden;
+    //overflow: hidden;
     position: relative;
     padding: 0;
-    margin: 15px 10px;
+    margin: 24px 5px;
     border-radius: var(--card_border_radius);
     background-position: center;
     background-size: cover;
     cursor: pointer;
 
     &:hover {
-      .Pin__about {
+      .Pin__about-inside {
         display: flex;
       }
 
       .Pin__shadow {
         background: rgba(0, 0, 0, .3);
+        border-radius: var(--card_border_radius);
       }
     }
 
