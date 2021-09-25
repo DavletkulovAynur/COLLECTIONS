@@ -6,11 +6,8 @@ import {useSelector} from "react-redux";
 
 export function DragAndDrop({loadImg}) {
   let reader = new FileReader()
-
   const {errorFiles, sendCollectionStatus} = useSelector((state) => state.addCollectionReducer)
   const [previewImg, setPreviewImg] = useState('')
-
-
 
   useEffect(() => {
     deleteFile()
