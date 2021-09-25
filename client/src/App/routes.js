@@ -5,17 +5,18 @@ import {Header} from 'Common/components/Header/Header'
 import {Auth} from 'App/pages/Auth/Auth'
 import CollectionView from 'App/pages/CollectionView/CollectionView'
 import {PersonalArea} from 'App/pages/PersonalArea/PersonalArea'
-import CollectionsList from './pages/CollectionsList/CollectionsList'
+
 import UserArea from './pages/UserArea/UserArea'
 import ConfirmEmailBlock from "../Common/components/ConfirmEmailBlock/ConfirmEmailBlock";
 import {FooterMobile} from "../Common/components/FooterMobile/FooterMobile";
 import {SearchPageMobile} from "../Common/components/SearchPageMobile/SearchPageMobile";
 import EditUserPage from "./pages/EditUserPage/EditUserPage";
+import MainPage from "./pages/MainPage/MainPage";
 
 const routes = [
   {
     path: '/',
-    component: CollectionsList,
+    component: MainPage,
     exact: true,
   },
   {
