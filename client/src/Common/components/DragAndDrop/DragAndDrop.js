@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import './DragAndDrop.scss'
 import DragAndDropTemplate from "./DragAndDrop.template";
-import {useDispatch, useSelector} from "react-redux";
-import {loadImgDragAndDrop} from "../../../Store/actions/action";
+import {useSelector} from "react-redux";
 
-export function DragAndDrop() {
+
+export function DragAndDrop({loadImg}) {
   let reader = new FileReader()
-  const dispatch = useDispatch()
+
   const {errorFiles, sendCollectionStatus} = useSelector((state) => state.addCollectionReducer)
-
-
   const [previewImg, setPreviewImg] = useState('')
 
 
@@ -29,12 +27,11 @@ export function DragAndDrop() {
 
     reader.onload = function () {
       setPreviewImg(reader.result)
-      dispatch(loadImgDragAndDrop({mainImg}))
+      loadImg(mainImg)
     }
   }
 
   const deleteFile = () => {
-    dispatch(loadImgDragAndDrop({mainImg: null}))
     setPreviewImg('')
   }
 
