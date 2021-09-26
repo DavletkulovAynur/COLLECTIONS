@@ -1,15 +1,21 @@
 import {put, call, takeEvery} from 'redux-saga/effects'
 import {
-	GET_ALL_COLLECTION, GET_COLLECTION_VIEW, GET_MY_COLLECTION, GET_SUBSCRIBE_COLLECTION, GET_USER,
+	GET_ALL_COLLECTION,
+	GET_COLLECTION_VIEW,
+	GET_MY_COLLECTION,
+	GET_SUBSCRIBE_COLLECTION,
+	GET_USER,
 	WRITE_DOWN_ALL_COLLECTION,
-	WRITE_DOWN_COLLECTION, WRITE_DOWN_COLLECTION_VIEW, WRITE_DOWN_GET_USER,
+	WRITE_DOWN_COLLECTION,
+	WRITE_DOWN_COLLECTION_VIEW,
+	WRITE_DOWN_GET_USER,
 	WRITE_DOWN_SUBSCRIBE_COLLECTION,
 } from '../../types'
-import {appError, appHideLoading} from '../../actions/action'
+
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
 
-// перенести (передеелать)
+// TODO перенести (передеелать)
 function addMarkupClassToCards(dataArr) {
 	const className = () => {
 		const classNames = ['small', 'medium', 'large']
@@ -25,12 +31,11 @@ function* getAllCollection() {
 	try {
 		const allCollection = yield call(() => Fetcher('http://localhost:5000/collection/get-all', 'GET'))
 		const payload = addMarkupClassToCards(allCollection.data)
-
 		yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload })
-		yield put(appHideLoading())
 	} catch (e) {
+		// yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload })
 		console.log('error', e)
-		yield put(appError())
+
 	}
 }
 
@@ -42,10 +47,9 @@ function* getOwnerUserCollection(data) {
 		const userCollection = yield call(() => Fetcher('http://localhost:5000/collection/get', 'POST', user))
 		const payload = addMarkupClassToCards(userCollection.data)
 		yield put({type: WRITE_DOWN_COLLECTION, payload})
-		yield put(appHideLoading())
 	} catch (e) {
 		console.log(e)
-		yield put(appError())
+
 	}
 }
 

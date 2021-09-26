@@ -14,15 +14,31 @@
   }
 
   &__button {
-    margin-top: 300px;
+    display: flex;
+    justify-content: flex-end;
+    .Button {
+      width: 160px;
+    }
   }
 
   &__drag-drop-box {
     width: 50%;
+    height: 50vh;
   }
 
   &__inputs {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     margin-left: 24px;
     width: 50%;
+  }
+
+  &__input-name-collection {
+    margin-bottom: 36px;
+    .Input_input {
+      font-size: 32px;
+      font-weight: bold;
+    }
   }
 }

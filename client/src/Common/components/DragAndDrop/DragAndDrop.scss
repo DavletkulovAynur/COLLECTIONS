@@ -1,9 +1,13 @@
 .Drag-Drop {
   &-root {
+   height: 100%;
+  }
+
+  &__before-loading-img-block {
     background-color: rgb(239, 239, 239);
     padding: 12px;
-    height: 100%;
     border-radius: 4px;
+    height: 100%;
   }
 
   &__file {
@@ -53,13 +57,39 @@
   }
 
   &__preview {
-
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    max-height: 50vh;
   }
 
   &__preview-img {
+    display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+
+  &__preview-delete-icon {
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+      background: #eeeeee;
+
+      .fa-trash-alt {
+        color: #e60023;
+      }
+    }
   }
 }
 

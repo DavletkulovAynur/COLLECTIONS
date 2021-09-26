@@ -16,11 +16,17 @@ return (
           <DragAndDrop loadImg={loadImg}/>
         </section>
         <section className='Add-collection__inputs'>
-          <Input binding={title} placeholder='Добавьте название'/>
-          <Input binding={description} placeholder='Добавьте описание'/>
-          <button onClick={(event) => handleSubmit(event, title, description)}
-                  className='Button Button-root Add-collection__button'>Сохранить
-          </button>
+          <div>
+            <div className='Add-collection__input-name-collection'>
+              <Input binding={title} placeholder='Добавьте название'/>
+            </div>
+            <Input binding={description} placeholder='Добавьте описание'/>
+          </div>
+          <div className='Add-collection__button'>
+            <button onClick={(event) => handleSubmit(event, title, description)}
+                    className='Button Button-root'>Сохранить
+            </button>
+          </div>
         </section>
       </form>
   </div>

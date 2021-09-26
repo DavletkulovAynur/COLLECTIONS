@@ -11,8 +11,10 @@ const UserArea = () => {
     const {user} = useSelector((state) => state.userAreaPageReducer)
     const {subscribe} = useSelector((state) => state.subscribeReducer)
     const {subscriptions, subscribers} = useSelector((state) => state.authReducer)
+    const {allCollection} = useSelector(state => state.collectionReducer)
 
     const userId = router.match.params.id
+    const userCollection = allCollection.filter(item => item.owner === userId)
 
     useEffect(() => {
         dispatch(getUserAction(userId))
@@ -29,9 +31,10 @@ const UserArea = () => {
             </div>
         )
     }
+
     return (
         <>
-            <UserAreaTemplate mySubscriptions={subscriptions} user={user}/>
+            <UserAreaTemplate userCollection={userCollection} mySubscriptions={subscriptions} user={user}/>
         </>
     );
 };

@@ -3,7 +3,8 @@ import {UserInformation} from "../../../Common/components/UserInformation/UserIn
 import {API_URL} from '../../../config'
 
 import './UserArea.scss'
-const UserAreaTemplate = ({user, mySubscriptions}) => {
+import CollectionsList from "../../../Common/components/CollectionsList/CollectionsList";
+const UserAreaTemplate = ({user, mySubscriptions, userCollection}) => {
     const {username, avatar, _id, subscribers} = user
     const avatarUrl = avatar ? `${API_URL + '/avatars/' + avatar}` : false
 
@@ -17,6 +18,9 @@ const UserAreaTemplate = ({user, mySubscriptions}) => {
                     userId={_id}
                     userName={username}
                     guest='true'/>
+            </section>
+            <section>
+              <CollectionsList data={userCollection}/>
             </section>
         </div>
     );

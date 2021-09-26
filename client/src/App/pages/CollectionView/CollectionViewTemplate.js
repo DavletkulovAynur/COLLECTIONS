@@ -3,15 +3,31 @@ import './CollectionView.scss'
 
 import CommentsBox from "../../../Common/components/CommentsBox/CommentsBox";
 import InitCommentForm from "../../../Common/components/InitCommentForm/InitCommentForm";
+import {API_URL} from "../../../config";
 
 
-export function CollectionViewTemplate({collection = [], comments, sendComment, userId, removeComments}) {
+export function CollectionViewTemplate({collection = [],
+                                         sendComment,
+                                         userId,
+                                         removeComments,}) {
+
+  const {comments = [], title, mainImg, owner, description, author, authorAvatar, date} = collection
+
+  const divStyle = () => {
+    return {
+      backgroundImage: `url(${API_URL}/${owner}/compressed/${mainImg})`,
+    }
+  };
 
   return (
       <div className='Article-view-root Article-view'>
         <section className='Article-view__Article-content Article-content'>
-          <h2 className='title-72'>{collection.name}</h2>
-          <div className='description'>{collection.description}</div>
+          <h1>{title}</h1>
+          <div>
+            {author}, {date}
+          </div>
+          {mainImg && <div className='test' style={divStyle()}></div>}
+          <div className='description'>{description}</div>
         </section>
 
         <section className='Comments-wrapper'>

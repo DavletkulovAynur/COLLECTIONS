@@ -19,9 +19,10 @@ import {  faCheckSquare,
   faBookmark,
   faArchive,
   faStream,
+  faTrashAlt,
   faUserFriends } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends)
+library.add(fab, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends, faTrashAlt,)
 
 
 function App() {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {addBookmarkAction, bookmarkDeleteAction} from '../../../Store/actions/action'
@@ -7,16 +7,7 @@ import './Bookmark.scss'
 
 export function Bookmark({id}) {
   const {bookmark} = useSelector((state) => state.authReducer)
-  const {addBookmark} = useSelector((state) => state.appReducer)
   const dispatch = useDispatch()
-
-
-  // не понятно для чего
-  // useEffect(() => {
-  //   if(addBookmark) {
-  //     dispatch(addBookmarkRemoveEventShowMessage())
-  //   }
-  // }, [addBookmark])
 
   const saveInMyCollection = async (event) => {
     event.preventDefault()

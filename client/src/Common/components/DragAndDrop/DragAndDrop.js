@@ -28,6 +28,7 @@ export function DragAndDrop({loadImg}) {
     }
   }
 
+  // TODO
   const deleteFile = () => {
     setPreviewImg('')
   }
