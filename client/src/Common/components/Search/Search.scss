@@ -3,6 +3,7 @@
   position: relative;
 
   &_input {
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     transition: color .3s, background-color .3s, opacity .3s, width .05s linear;
     border-radius: 24px;
@@ -15,8 +16,12 @@
     background-size: 14px;
     background-color: transparent;
     color: #000;
-    border: 1px solid #000;;
+    border: 1px solid #000;
     outline: none;
+  }
+
+  &_input::placeholder {
+    color: #000;
   }
 
   &_result-box {

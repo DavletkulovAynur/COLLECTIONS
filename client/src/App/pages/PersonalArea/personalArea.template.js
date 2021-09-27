@@ -1,19 +1,17 @@
 import React, {useState} from 'react';
 
-import {CommonCard} from '../../../Common/components/CommonCard/CommonCard'
 import {UserInformation} from '../../../Common/components/UserInformation/UserInformation'
 
 import './PersonalArea.scss'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import CollectionsList from "../../../Common/components/CollectionsList/CollectionsList";
 
 
 
-const PersonalAreaTemplate = ({ avatarUrl,
+const PersonalAreaTemplate = ({ user,
                                 myCollection,
                                 subscribe,
                                 countPublication,
-                                subscriptions,
-                                userName,
                                 bookmarkCollection}) => {
   const [tabValue, setTabValue] = useState('my-collection');
 
@@ -34,35 +32,29 @@ const PersonalAreaTemplate = ({ avatarUrl,
     }
   }
 
+  console.log(bookmarkCollection)
+
   return (
     <div className='Personal-area'>
-        <div className='user-info-tab-wrapper'>
-
-            <section className=''>
-                <UserInformation subscribe={subscribe} subscriptions={subscriptions} countPublication={countPublication} avatarUrl={avatarUrl} userName={userName}/>
-            </section>
-
-            <section onClick={test} className='Personal-area_tab-box tab'>
-              <div data-tab='my-collection' className={`tab_item ${tabValue == 'my-collection' ? 'tab__active' : ''}`}>
-                <FontAwesomeIcon icon='stream' color='#888888' size="lg"/>
-              </div>
-              <div data-tab='archive'  className={`tab_item ${tabValue == 'archive' ? 'tab__active' : ''}`}>
-                <FontAwesomeIcon icon={['fas', 'archive']} color='#888888' size="lg"/>
-              </div>
-              <div data-tab='subscribe-collection' className={`tab_item ${tabValue == 'subscribe-collection' ? 'tab__active' : ''}`}>
-                <FontAwesomeIcon icon='user-friends' color='#888888' size="lg"/>
-              </div>
-            </section>
-        </div>
-
-
-        <section className='Collections-list'>
-            <div className='Com-main-grid'>
-                {tabValue == 'my-collection' ? <CommonCard data={myCollection}/> : null}
-                {tabValue == 'archive' ? <CommonCard data={bookmarkCollection}/> : null}
-                {tabValue == 'subscribe-collection' ? <CommonCard data={subscribe}/> : null}
-            </div>
+      <div className='user-info-tab-wrapper'>
+        <section className=''>
+          <UserInformation user={user} subscribe={subscribe}  countPublication={countPublication}/>
         </section>
+        <section onClick={test} className='Personal-area__tab-box tab'>
+          <div data-tab='my-collection' className={`tab__item ${tabValue == 'my-collection' ? 'tab_active' : ''}`}>
+            <FontAwesomeIcon icon='stream' color='#888888' size="lg"/>
+          </div>
+          <div data-tab='archive'  className={`tab__item ${tabValue == 'archive' ? 'tab_active' : ''}`}>
+            <FontAwesomeIcon icon={['fas', 'archive']} color='#888888' size="lg"/>
+          </div>
+          <div data-tab='subscribe-collection' className={`tab__item ${tabValue == 'subscribe-collection' ? 'tab_active' : ''}`}>
+            <FontAwesomeIcon icon='user-friends' color='#888888' size="lg"/>
+          </div>
+        </section>
+      </div>
+      {tabValue == 'my-collection' ? <CollectionsList data={myCollection}/> : null}
+      {tabValue == 'archive' ? <CollectionsList data={bookmarkCollection}/> : null}
+      {tabValue == 'subscribe-collection' ? <CollectionsList data={subscribe}/> : null}
     </div>
   );
 };

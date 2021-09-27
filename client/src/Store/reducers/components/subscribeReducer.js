@@ -4,6 +4,7 @@ const initialState = {
     subscribe: []
 }
 
+// TODO ERROR
 export const subscribeReducer = (state = initialState, action) => {
     // data переделать
     switch (action.type) {

@@ -1,7 +1,7 @@
 .Personal-area {
   width: 100%;
 
-  &_tab-box {
+  &__tab-box {
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -9,16 +9,14 @@
   }
 
   .tab {
-    &_item {
+    &__item {
       width: 100%;
       text-align: center;
       cursor: pointer;
       padding: 8px;
     }
 
-    &__active {
-      border-bottom: 1px solid #000;
-
+    &_active {
       .fa-lg {
         color: #000;
       }

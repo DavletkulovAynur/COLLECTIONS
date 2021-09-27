@@ -8,54 +8,49 @@ import {
 
 const initialState = {
   token: null,
-  userId: null,
-  userName: '',
   isAuthenticated: false,
+  ready: false,
+  checkRegistration: false,
   bookmark: [],
   subscriptions: [],
-  subscribers: [],
-  ready: false,
-  avatar: '',
-  checkRegistration: false,
-  description: '',
-  place: ''
+  user: {
+    subscribers: [],
+    userId: null,
+    userName: '',
+    description: '',
+    place: '',
+    avatar: '',
+  }
 }
 
-// исправить вложенность
+// TODO исправить вложенность
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
     case LOGIN_AUTHENTICATION:
       const {data} = action.payload
 
-      return {...state,
-                    active: data.active,
-                    token: data.token,
-                    userId: data.userId ,
-                    userName: data.userName,
-                    bookmark: data.bookmark,
-                    subscriptions: data.subscriptions,
-                    subscribers: data.subscribers,
-                    avatar: data.avatar,
-                    isAuthenticated: true,
-                    ready: true,
-                    description: data.description,
-                    place: data.place
+      return {...state, active: data.active, token: data.token, isAuthenticated: true, ready: true, bookmark: data.bookmark, subscriptions: data.subscriptions,
+                    user: {
+                      userId: data.userId ,
+                      userName: data.userName,
+                      subscribers: data.subscribers,
+                      avatar: data.avatar,
+                      description: data.description,
+                      place: data.place
+                    },
+
       }
 
 		case WRITE_REDUCER_TOKEN:
-      return {...state,
-                      active: action.payload.data.active,
-                      token: action.payload.data.token,
-                      userId: action.payload.data.userId ,
-                      userName: action.payload.data.userName,
-                      bookmark: action.payload.data.bookmark,
-                      subscriptions: action.payload.data.subscriptions,
-                      subscribers: action.payload.data.subscribers,
-                      avatar: action.payload.data.avatar,
-                      isAuthenticated: true,
-                      ready: true,
-                      description: action.payload.data.description,
-                      place: action.payload.data.place
+      return {...state, active: action.payload.data.active, token: action.payload.data.token, bookmark: action.payload.data.bookmark, isAuthenticated: true, ready: true, subscriptions: action.payload.data.subscriptions,
+                      user: {
+                        userId: action.payload.data.userId ,
+                        userName: action.payload.data.userName,
+                        subscribers: action.payload.data.subscribers,
+                        avatar: action.payload.data.avatar,
+                        description: action.payload.data.description,
+                        place: action.payload.data.place
+                      },
       }
 
     case DELETE_BOOKMARK_UPDATE_STATE:
@@ -68,8 +63,7 @@ export const authReducer = (state = initialState, action) => {
       return {...state, checkRegistration: true}
     case CHECK_REGISTRATION_RETURN_FALSE:
       return {...state, checkRegistration: false}
-
-		default:
+      default:
 			return {...state}
 	}
 }

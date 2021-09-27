@@ -6,6 +6,7 @@ const path = require('path')
 const USER_MODEL = require('../models/user')
 const config = require('config')
 const emailService = require('../services/emailService')
+const adapter = require('../services/userDataAdapter')
 
 class AuthControllers {
 	async register(req, res) {
@@ -36,18 +37,10 @@ class AuthControllers {
 						{ expiresIn: '1h'}
 			)
 
+			const userAdapter = adapter(user)
+
 			const resUser = {
-				token,
-				active: user.active,
-				subscriptions: user.subscriptions,
-				userId: user._id,
-				subscribers: user.subscribers,
-				userName: user.username,
-				bookmark: user.bookmark,
-				email: user.email,
-				avatar: user.avatar,
-				description: user.description,
-				place: user.place
+				token, ...userAdapter
 			}
 
 			emailService(email, user)
@@ -95,19 +88,13 @@ class AuthControllers {
 					config.get('jwtSecret'),
 					{ expiresIn: '1h'}
 			)
+
+			const userAdapter = adapter(user)
+
       const resUser = {
-				token,
-				active: user.active,
-				subscriptions: user.subscriptions,
-				userId: user._id,
-				subscribers: user.subscribers,
-				userName: user.username,
-				bookmark: user.bookmark,
-				email: user.email,
-				avatar: user.avatar,
-				description: user.description,
-				place: user.place
+				token, ...userAdapter
 			}
+
       res.json({
 	  		resData: resUser, message: 'Успешно вошли в систему'
       })
@@ -123,18 +110,10 @@ class AuthControllers {
 
 			const token = jwt.sign({id: user._id}, config.get("jwtSecret"), {expiresIn: "1h"})
 
+			const userAdapter = adapter(user)
+
 			const resUser = {
-				token,
-				active: user.active,
-				subscriptions: user.subscriptions,
-				subscribers: user.subscribers,
-				userId: user._id,
-				userName: user.username,
-				bookmark: user.bookmark,
-				email: user.email,
-				avatar: user.avatar,
-				description: user.description,
-				place: user.place
+				token, userAdapter
 			}
 
       return res.json({
