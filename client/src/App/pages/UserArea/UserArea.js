@@ -2,15 +2,20 @@ import React, {useEffect} from 'react';
 import UserAreaTemplate from "./UserAreaTemplate";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "../../../Common/utils/hooks/useRouter.hook";
-import {getSubscribeCollectionAction, getUserAction} from "../../../Store/actions/action";
+import {
+    getSubscribeCollectionAction,
+    getUserAction,
+    subscribeOnUserAction,
+    unSubscribeOnUserAction
+} from "../../../Store/actions/action";
 
 
 const UserArea = () => {
     const dispatch = useDispatch()
     const router = useRouter()
     const {user} = useSelector((state) => state.userAreaPageReducer)
-    const {subscribe} = useSelector((state) => state.subscribeReducer)
-    const {subscriptions, subscribers} = useSelector((state) => state.authReducer)
+
+    const {subscriptions} = useSelector((state) => state.authReducer)
     const {allCollection} = useSelector(state => state.collectionReducer)
 
     const userId = router.match.params.id
@@ -24,6 +29,14 @@ const UserArea = () => {
         dispatch(getSubscribeCollectionAction(subscriptions))
     }, [])
 
+    const subscribeOnUser = () => {
+        dispatch(subscribeOnUserAction(userId))
+    }
+
+    const unSubscribeOnUser = () => {
+        dispatch(unSubscribeOnUserAction(userId))
+    }
+
     if(!user) {
         return (
             <div>
@@ -34,7 +47,11 @@ const UserArea = () => {
 
     return (
         <>
-            <UserAreaTemplate userCollection={userCollection} mySubscriptions={subscriptions} user={user}/>
+            <UserAreaTemplate subscribeOnUser={subscribeOnUser}
+                              unSubscribeOnUser={unSubscribeOnUser}
+                              userCollection={userCollection}
+                              mySubscriptions={subscriptions}
+                              user={user}/>
         </>
     );
 };

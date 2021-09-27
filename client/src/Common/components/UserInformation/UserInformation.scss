@@ -3,51 +3,60 @@
 .User-information {
   margin-bottom: 36px;
 
-  .user {
+  &__box {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+  }
 
-    .user-name {
-      font-size: 16px;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
+  &__buttons-active {
+    position: relative;
+  }
 
-    .left-block {
-      margin-left: 36px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
+  &__pencil-edit {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #000;
+  }
 
-      .about-user {
-        p {
-          color: #e8e8e8;
-        }
-      }
+  &__user-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
 
-      .from-user {
-        color: #a23327;
-      }
-    }
+  &__box-left-block {
+    margin-left: 36px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
-    .publication {
-      display: flex;
-      width: 100%;
-      max-width: 420px;
-      justify-content: space-between;
+  &__description {}
 
-      .item {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+  &__publication-subscribe {
+    display: flex;
+    width: 100%;
+    max-width: 420px;
+    justify-content: space-between;
+  }
+
+  &__publication-subscribe-item {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
 
-  .avatar {
+  &__avatar {
     display: block;
     width: 160px;
     height: 160px;
@@ -97,15 +106,6 @@
     .avatar {
       width: 60px;
       height: 60px;
-    }
-
-    .MuiIconButton-root {
-      padding: 2px;
-
-      .MuiSvgIcon-root {
-        width: 16px;
-        height: 16px;
-      }
     }
   }
 

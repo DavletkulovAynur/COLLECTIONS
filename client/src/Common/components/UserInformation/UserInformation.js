@@ -1,86 +1,73 @@
 import React from 'react'
-
-
 import './UserInformation.scss'
-import {useDispatch} from 'react-redux'
-import {subscribeOnUserAction, unSubscribeOnUserAction} from '../../../Store/actions/action'
 import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {API_URL} from "../../../config";
 
-export const UserInformation = ({   avatarUrl,
-                                    userName,
-                                    subscribers = [],
+export const UserInformation = ({   unSubscribeOnUser,
+                                    subscribeOnUser,
+                                    user,
                                     mySubscriptions,
                                     subscriptions = [],
-                                    userId,
                                     guest = false,
                                     countPublication = '0'}) => {
 
 
-  const button = () => {
-      return (
-          <Link to='/personal-area/edit-user'>
-            <button>редактировать профиль</button>
-          </Link>
-      )
-    }
+  const {userName, avatar, userId, subscribers} = user
+  const avatarUrl = avatar ? `${API_URL + '/avatars/' + avatar}` : false
+  const userEditPencil= () => {
+    return (
+      <Link className='User-information__pencil-edit' to='/personal-area/edit-user'>
+        <FontAwesomeIcon icon='pencil-alt' color='#fff'/>
+      </Link>
+    )
+  }
+
+  const subscribeButton = () => {
+    return (
+      <>
+        {mySubscriptions.includes(userId)
+          ? <button onClick={unSubscribeOnUser}>ОТПИСКА</button>
+          : <button onClick={subscribeOnUser}>ПОДПИСКА</button>
+        }
+      </>
+    )
+  }
 
 
     return (
         <div className='User-information'>
 
-            <div className='user'>
-                <section className='right-block'>
-                    <img src={avatarUrl} className='avatar'/>
+            <div className='User-information__box'>
+                <section className='User-information__buttons-active'>
+                    <img src={avatarUrl} className='User-information__avatar'/>
                     {guest
-                        ? <SubscribeButton userId={userId} mySubscriptions={mySubscriptions}/>
-                        : button()}
+                        ? subscribeButton()
+                        : userEditPencil()}
                 </section>
 
-                <section className='left-block'>
-                    <div className='user-name'>{userName}</div>
+                <section className='User-information__box-left-block'>
+                    <div className='User-information__user-name'>{userName}</div>
 
-                    <div className='publication'>
-                        <div className='item'>
+                    <div className='User-information__publication-subscribe'>
+                        <div className='User-information__publication-subscribe-item'>
                             <span>{countPublication}</span>
                             <span>публикаций</span>
                         </div>
-                        <div className='item'>
+                        <div className='User-information__publication-subscribe-item'>
                             <span>{subscribers.length}</span>
                             <span>Подписчики</span>
                         </div>
-                        <div className='item'>
+                        <div className='User-information__publication-subscribe-item'>
                             <span>{subscriptions.length}</span>
                             <div>Подписки</div>
                         </div>
                     </div>
-
-                    <div className='about-user'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus debitis dolores eligendi esse ex, excepturi facilis harum incidunt molestias mollitia nostrum obcaecati, officia quas sequi suscipit temporibus tenetur, ullam?</p>
-                    </div>
+                    <p className='User-information__description'>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus debitis dolores eligendi esse ex, excepturi facilis harum incidunt molestias mollitia nostrum obcaecati, officia quas sequi suscipit temporibus tenetur, ullam?
+                    </p>
                 </section>
             </div>
         </div>
-    )
-}
-
-function SubscribeButton({userId, mySubscriptions}) {
-    const dispatch = useDispatch()
-
-    const subscribeOnUser = () => {
-        dispatch(subscribeOnUserAction(userId))
-    }
-
-    const unSubscribeOnUser = () => {
-        dispatch(unSubscribeOnUserAction(userId))
-    }
-
-    return (
-        <>
-            {mySubscriptions.includes(userId)
-                ? <button onClick={unSubscribeOnUser}>ОТПИСКА</button>
-                : <button onClick={subscribeOnUser}>ПОДПИСКА</button>
-            }
-
-        </>
     )
 }

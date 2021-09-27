@@ -9,15 +9,20 @@ export function HeaderTemplate({avatarUrl, logOut}) {
 	return (
 		<div className='Header'>
 			<Link to='/'>
-				<div className='logo'>
-					Collection
+				<div className='Header__logo Logo'>
+					<div className='Logo__icon'>
+						<div className='test'></div>
+					</div>
+					<div className='Logo__text'>
+						Collection
+					</div>
 				</div>
 			</Link>
-			<Link to='/'>
-				<div className='main-link-button'>
-					Главная
-				</div>
-			</Link>
+			{/*<Link to='/'>*/}
+			{/*	<div className='main-link-button'>*/}
+			{/*		Главная*/}
+			{/*	</div>*/}
+			{/*</Link>*/}
 
 			<div className='search-wrapper'>
 				<Search/>

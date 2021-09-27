@@ -7,7 +7,7 @@ const initialState = {
 export const userAreaPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case WRITE_DOWN_GET_USER:
-            return {...state, user: action.payload.data[0]}
+            return {...state, user: action.payload.data}
         default:
             return {...state}
     }

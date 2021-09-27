@@ -3,6 +3,7 @@ const fs = require('fs')
 const USER_MODEL = require('../models/user')
 const COLLECTION_MODEL = require('../models/collection')
 const Uuid = require('uuid')
+const adapter = require("../services/userDataAdapter");
 
 class UserControllers {
 	async getUsers(req, res) {
@@ -18,7 +19,9 @@ class UserControllers {
 		try {
 			const {userId} = req.body
 			const user = await USER_MODEL.find({_id: userId})
-			res.status(201).json({resData: user})
+			const userAdapter = adapter(user[0])
+
+			res.status(201).json({resData: userAdapter})
 		} catch (e) {
 			res.status(500).json(e)
 		}
