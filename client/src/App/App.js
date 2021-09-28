@@ -28,10 +28,13 @@ library.add(fab, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAlt
 
 function App() {
   const dispatch = useDispatch()
-  const {token, userId, ready, isAuthenticated, active} = useSelector((state) => state.authReducer)
+  const {token, user, ready, isAuthenticated, active} = useSelector((state) => state.authReducer)
   const {showMessage, text, severity} = useSelector((state) => state.showMessageReducer)
 
+  const {userId} = user
   const routes = useRoutes(isAuthenticated, active)
+
+  console.log('active', active)
 
   useEffect(() => {
     dispatch(checkToken())

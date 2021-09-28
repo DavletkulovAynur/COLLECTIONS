@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
 
-  &_input {
+  &__input {
     font-family: 'Roboto', sans-serif;
     width: 100%;
     transition: color .3s, background-color .3s, opacity .3s, width .05s linear;
@@ -10,18 +10,20 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 1.3;
-    padding: 12px 36px;
+    padding: 12px 40px;
     background: url(../../assets/images/icons/loupe.svg) no-repeat scroll 16px;
     color: hsla(0, 0%, 100%, .6);
-    background-size: 14px;
-    background-color: transparent;
-    color: #000;
-    border: 1px solid #000;
+    background-size: 16px;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    background-color: #202020;
     outline: none;
   }
 
   &_input::placeholder {
-    color: #000;
+    color: #888888;
+    text-transform: uppercase;
   }
 
   &_result-box {
@@ -54,5 +56,12 @@
         font-weight: bold;
       }
     }
+  }
+
+  &__nothing-found-text {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
   }
 }

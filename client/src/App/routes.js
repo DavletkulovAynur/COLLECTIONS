@@ -7,11 +7,12 @@ import CollectionView from 'App/pages/CollectionView/CollectionView'
 import {PersonalArea} from 'App/pages/PersonalArea/PersonalArea'
 
 import UserArea from './pages/UserArea/UserArea'
-import ConfirmEmailBlock from "../Common/components/ConfirmEmailBlock/ConfirmEmailBlock";
+
 import {FooterMobile} from "../Common/components/FooterMobile/FooterMobile";
 import {SearchPageMobile} from "../Common/components/SearchPageMobile/SearchPageMobile";
 import EditUserPage from "./pages/EditUserPage/EditUserPage";
 import MainPage from "./pages/MainPage/MainPage";
+import ConfirmEmailPage from "./pages/ConfirmEmailPage/ConfirmEmailPage";
 
 const routes = [
   {
@@ -56,7 +57,9 @@ export const useRoutes = (isAuthenticated, active) => {
 
     if(!active) {
       return (
-       <ConfirmEmailBlock/>
+        <>
+          <ConfirmEmailPage/>
+        </>
       )
     }
 

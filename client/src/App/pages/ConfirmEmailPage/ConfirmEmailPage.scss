@@ -1,0 +1,22 @@
+.Confirm-email {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__content {
+    max-width: 600px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    padding: 24px;
+  }
+
+  &__content-text {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 500;
+  }
+}

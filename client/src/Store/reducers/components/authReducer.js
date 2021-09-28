@@ -7,6 +7,7 @@ import {
 } from '../../types'
 
 const initialState = {
+  active: false,
   token: null,
   isAuthenticated: false,
   ready: false,
@@ -27,32 +28,9 @@ const initialState = {
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
     case LOGIN_AUTHENTICATION:
-      const {data} = action.payload
-
-      return {...state, active: data.active, token: data.token, isAuthenticated: true, ready: true, bookmark: data.bookmark, subscriptions: data.subscriptions,
-                    user: {
-                      userId: data.userId ,
-                      userName: data.userName,
-                      subscribers: data.subscribers,
-                      avatar: data.avatar,
-                      description: data.description,
-                      place: data.place
-                    },
-
-      }
-
-		case WRITE_REDUCER_TOKEN:
-      return {...state, active: action.payload.data.active, token: action.payload.data.token, bookmark: action.payload.data.bookmark, isAuthenticated: true, ready: true, subscriptions: action.payload.data.subscriptions,
-                      user: {
-                        userId: action.payload.data.userId ,
-                        userName: action.payload.data.userName,
-                        subscribers: action.payload.data.subscribers,
-                        avatar: action.payload.data.avatar,
-                        description: action.payload.data.description,
-                        place: action.payload.data.place
-                      },
-      }
-
+      return authenticationInformationUser(action.payload.data, state)
+    case WRITE_REDUCER_TOKEN:
+      return authenticationInformationUser(action.payload.data, state)
     case DELETE_BOOKMARK_UPDATE_STATE:
       return {...state, bookmark: [...action.payload]}
     case ADD_BOOKMARK_UPDATE_STATE:
@@ -63,7 +41,28 @@ export const authReducer = (state = initialState, action) => {
       return {...state, checkRegistration: true}
     case CHECK_REGISTRATION_RETURN_FALSE:
       return {...state, checkRegistration: false}
-      default:
+    default:
 			return {...state}
 	}
+}
+
+function authenticationInformationUser(data, state) {
+  const {active, token, bookmark, subscriptions, userId, userName, subscribers, avatar, description, place} = data
+
+  return {...state,
+          isAuthenticated: true,
+          ready: true,
+          active,
+          token,
+          bookmark,
+          subscriptions,
+          user: {
+            userId,
+            userName,
+            subscribers,
+            avatar,
+            description,
+            place
+          },
+  }
 }
