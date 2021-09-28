@@ -1,11 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {API_URL} from '../../../config'
+import {Loading} from "../Loading/Loading";
 
 export function SearchTemplate({search, searchResult, viewResultSearch, searchCollectionState}) {
 	return (
 		<div className='Search'>
-			<input type="text" className="Search_input" placeholder="Search" {...search.bind}/>
+			<input type="text" className="Search__input" placeholder="Search" {...search.bind}/>
 					{search.value.length
 					?  	<div className='Search_result-box'>
 									<SearchResultElements searchCollectionState={searchCollectionState}
@@ -22,7 +23,7 @@ function SearchResultElements({searchResult, searchCollectionState, viewResultSe
 
 	if(searchCollectionState) {
 		return (
-			<div>Loading</div>
+			<Loading colorLoading='#fff'/>
 		)
 	}
 
@@ -48,9 +49,7 @@ function SearchResultElements({searchResult, searchCollectionState, viewResultSe
 		})
 	} else {
 		return (
-			<div>
-				<h1>ничего не найдено</h1>
-			</div>
+			<h1 className='Search__nothing-found-text'>ничего не найдено</h1>
 		)
 	}
 }

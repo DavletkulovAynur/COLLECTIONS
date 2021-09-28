@@ -113,7 +113,7 @@ class AuthControllers {
 			const userAdapter = adapter(user)
 
 			const resUser = {
-				token, userAdapter
+				token, ...userAdapter
 			}
 
       return res.json({
