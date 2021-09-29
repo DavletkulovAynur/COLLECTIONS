@@ -3,7 +3,7 @@ import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 import Input from "../../../Common/components/Input/Input";
 import {useInput} from "../../../Common/utils/hooks/input.hook";
 
-const AddCollectionTemplate = ({handleSubmit, loadImg}) => {
+const AddCollectionTemplate = ({handleSubmit, loadImg, load}) => {
 
 const title = useInput('')
 const description = useInput('')
@@ -23,7 +23,7 @@ return (
             <Input binding={description} placeholder='Добавьте описание'/>
           </div>
           <div className='Add-collection__button'>
-            <button onClick={(event) => handleSubmit(event, title, description)}
+            <button disabled={load} onClick={(event) => handleSubmit(event, title, description)}
                     className='Button Button-root'>Сохранить
             </button>
           </div>

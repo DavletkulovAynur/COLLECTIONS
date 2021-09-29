@@ -7,7 +7,6 @@ import {
 
   SAGA_AUTH_TOKEN,
   SAGA_LOGIN,
-  DISPATCH_COLLECTION,
   LOAD_IMG_DRAG_AND_DROP,
   GET_BOOKMARK_COLLECTION,
   LOGOUT,
@@ -66,13 +65,6 @@ export function getBookmarkCollectionAction(payload){
 export function addCollectionAction(payload) {
   return({
     type: ADD_COLLECTION,
-    payload
-  })
-}
-
-export function dispatchCollection(payload) {
-  return({
-    type: DISPATCH_COLLECTION,
     payload
   })
 }
