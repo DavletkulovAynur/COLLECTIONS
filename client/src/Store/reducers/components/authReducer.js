@@ -24,7 +24,6 @@ const initialState = {
   }
 }
 
-// TODO исправить вложенность
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
     case LOGIN_AUTHENTICATION:

@@ -4,7 +4,7 @@ import './UserArea.scss'
 import CollectionsList from '../../../Common/components/CollectionsList/CollectionsList'
 import {UserInformation} from '../../../Common/components/UserInformation/UserInformation'
 
-const UserAreaTemplate = ({user, mySubscriptions, userCollection, unSubscribeOnUser, subscribeOnUser}) => {
+function UserAreaTemplate ({user, mySubscriptions, userCollection, unSubscribeOnUser, subscribeOnUser}) {
 
   return (
       <div className='User-area'>
