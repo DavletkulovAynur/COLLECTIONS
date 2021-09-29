@@ -3,6 +3,7 @@ import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
 import Input from "../../../Common/components/Input/Input";
 import {useInput} from "../../../Common/utils/hooks/input.hook";
 
+
 const AddCollectionTemplate = ({handleSubmit, loadImg, load, deleteImg, inputErrors}) => {
   const title = useInput('')
   const description = useInput('')
