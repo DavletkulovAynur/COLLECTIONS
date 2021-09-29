@@ -18,7 +18,7 @@ const CommentsBox = ({comments, userId, removeComments}) => {
           return (
             <section key={index}  className='Comments-box__Comment Comment'>
               <div className='Comment__avatar-box'>
-                <img className='Comment__avatar-image' src={avatarUrl}/>
+                <img className='Comment__avatar-image' src={avatarUrl} alt='avatar'/>
               </div>
               <div>
                 <div className='Comment__title'>{title}</div>

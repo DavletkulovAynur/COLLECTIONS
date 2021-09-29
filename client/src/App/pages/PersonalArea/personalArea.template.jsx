@@ -32,31 +32,54 @@ const PersonalAreaTemplate = ({ user,
     }
   }
 
-  console.log(bookmarkCollection)
-
   return (
     <div className='Personal-area'>
       <div className='user-info-tab-wrapper'>
         <section className=''>
           <UserInformation user={user} subscribe={subscribe}  countPublication={countPublication}/>
         </section>
-        <section onClick={test} className='Personal-area__tab-box tab'>
-          <div data-tab='my-collection' className={`tab__item ${tabValue == 'my-collection' ? 'tab_active' : ''}`}>
-            <FontAwesomeIcon icon='stream' color='#888888' size="lg"/>
-          </div>
-          <div data-tab='archive'  className={`tab__item ${tabValue == 'archive' ? 'tab_active' : ''}`}>
-            <FontAwesomeIcon icon={['fas', 'archive']} color='#888888' size="lg"/>
-          </div>
-          <div data-tab='subscribe-collection' className={`tab__item ${tabValue == 'subscribe-collection' ? 'tab_active' : ''}`}>
-            <FontAwesomeIcon icon='user-friends' color='#888888' size="lg"/>
-          </div>
-        </section>
+        {tabBoxTemplate()}
       </div>
-      {tabValue == 'my-collection' ? <CollectionsList data={myCollection}/> : null}
-      {tabValue == 'archive' ? <CollectionsList data={bookmarkCollection}/> : null}
-      {tabValue == 'subscribe-collection' ? <CollectionsList data={subscribe}/> : null}
+      {tabValue === 'my-collection' ? <CollectionsList data={myCollection}/> : null}
+      {tabValue === 'archive' ? <CollectionsList data={bookmarkCollection}/> : null}
+      {tabValue === 'subscribe-collection' ? <CollectionsList data={subscribe}/> : null}
     </div>
   );
+
+  function tabBoxTemplate() {
+    const buttons = [
+      {
+        icon: 'stream',
+        value: 'my-collection',
+        description: 'Мои коллекции'
+      },
+      {
+        icon: 'archive',
+        value: 'archive',
+        description: 'Мои сохранения'
+      },
+      {
+        icon: 'user-friends',
+        value: 'subscribe-collection',
+        description: 'Коллекции друзей'
+      }
+    ]
+    return (
+      <section onClick={test} className='Personal-area__tab-box tab'>
+        {buttons.map((button, index) => {
+          const {icon, value, description} = button
+          return (
+            <div key={index} data-tab={`${value}`} className={`tab__element-wrapper ${tabValue === value ? 'tab_active' : ''}`}>
+              <div className='tab__item'>
+                <FontAwesomeIcon icon={`${icon}`} color='#888888'/>
+              </div>
+              <h4 className='tab__description'>{description}</h4>
+            </div>
+          )
+        })}
+      </section>
+    )
+  }
 };
 
 export default PersonalAreaTemplate;

@@ -10,16 +10,12 @@ export const userEditReducer = (state = initialState, action) => {
   switch (action.type) {
     case EDIT_PROFILE_LOADING:
       return {...state, profileLoading: true}
-      break
     case EDIT_PROFILE_LOADING_COMPLETE:
       return {...state, profileLoading: false}
-      break
     case LOAD_AVATAR:
       return {...state, loading: true}
-      break
     case LOAD_AVATAR_COMPLETE:
       return {...state, loading: false}
-      break
     default:
       return {...state}
   }

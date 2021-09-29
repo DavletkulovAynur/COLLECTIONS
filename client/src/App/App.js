@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {useRoutes} from 'App/routes'
@@ -33,8 +33,6 @@ function App() {
 
   const {userId} = user
   const routes = useRoutes(isAuthenticated, active)
-
-  console.log('active', active)
 
   useEffect(() => {
     dispatch(checkToken())

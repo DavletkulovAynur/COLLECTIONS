@@ -11,7 +11,7 @@ export function CollectionViewTemplate({collection = [],
                                          userId,
                                          removeComments,}) {
 
-  const {comments = [], title, mainImg, owner, description, author, authorAvatar, date} = collection
+  const {comments = [], title, mainImg, owner, description, author, date} = collection
 
   const divStyle = () => {
     return {

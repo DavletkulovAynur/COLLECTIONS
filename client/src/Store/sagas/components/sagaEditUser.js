@@ -38,7 +38,6 @@ function* userAvatarEditWorker(data) {
       {Authorization: `Bearer ${localStorage.getItem('token')}`},
       false
     ))
-    console.log(payload)
     yield put({type: LOAD_AVATAR_COMPLETE})
     // yield put({type: SHOW_MESSAGE})
   } catch (e) {

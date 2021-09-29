@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import './CommonCard.scss'
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
@@ -55,7 +55,7 @@ export function CommonCard({data}) {
     <>
       <div className="Pin Pin_container">
         {data.map((item) => {
-              const {img,
+              const {
                 _id,
                 date,
                 title,

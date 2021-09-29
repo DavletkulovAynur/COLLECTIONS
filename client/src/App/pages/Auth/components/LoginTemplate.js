@@ -15,10 +15,10 @@ const LoginTemplate = ({changeStateLogin, handleLogin, inputErrors}) => {
 
   const errorDistributor = (inputErrors) => {
     for(let value of Object.keys(inputErrors)) {
-      if(value == 'emailError') {
+      if(value === 'emailError') {
         SetEmailInputError(true)
       }
-      if(value == 'passwordError') {
+      if(value === 'passwordError') {
         SetPasswordInputError(true)
       }
     }

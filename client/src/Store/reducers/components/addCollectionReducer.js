@@ -14,7 +14,6 @@ const initialState = {
 }
 
 export const addCollectionReducer = (state = initialState, action) => {
-    console.log(action.payload)
     switch (action.type) {
         case SEND_COLLECTION_IMG_ERROR:
             return {...state, errorFiles: action.payload}

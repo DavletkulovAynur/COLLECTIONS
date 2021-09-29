@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop';
-import Input from "../../../Common/components/Input/Input";
-import {useInput} from "../../../Common/utils/hooks/input.hook";
+import Input from '../../../Common/components/Input/Input'
+import {useInput} from '../../../Common/utils/hooks/input.hook'
+import {ButtonLoading} from '../../../Common/components/ButtonLoading/ButtonLoading'
 
 
 const AddCollectionTemplate = ({handleSubmit, loadImg, load, deleteImg, inputErrors}) => {
@@ -17,7 +18,7 @@ const AddCollectionTemplate = ({handleSubmit, loadImg, load, deleteImg, inputErr
   // TODO вынести функцию
   const errorDistributor = (inputErrors) => {
     for(let value of Object.keys(inputErrors)) {
-      if(value == 'titleError') {
+      if(value === 'titleError') {
         setTitleInputError(true)
       }
     }
@@ -39,7 +40,8 @@ return (
           </div>
           <div className='Add-collection__button'>
             <button disabled={load} onClick={(event) => handleSubmit(event, title, description)}
-                    className='Button Button-root'>Сохранить
+                    className='Button Button-root'>
+                    {!load ? 'Сохранить' : <ButtonLoading/>}
             </button>
           </div>
         </section>

@@ -24,7 +24,6 @@ function* addBookmark(data) {
            text: 'Вы успешно добавили',
         }
         yield put({type: SHOW_MESSAGE, payload: testShowMessage})
-        console.log('addBookmark')
     } catch(e) {
         console.log(e)
     }
@@ -42,8 +41,6 @@ function* deleteBookmark(data) {
         })
 
         yield put({type: DELETE_BOOKMARK_UPDATE_STATE, payload})
-        console.log('deleteBookmark')
-
     } catch (e) {
         console.log(e)
     }

@@ -30,8 +30,6 @@ export function* removeComment(data) {
       'PUT',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}))
-
-    console.log(payload)
     // yield put({type: UPDATE_COLLECTION_VIEW, payload})
     // yield put({type: LOADING_HIDDEN_COLLECTION_UPDATE})
   } catch (e) {

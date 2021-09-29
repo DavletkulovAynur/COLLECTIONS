@@ -29,7 +29,7 @@ export default function EditingProfile({sendNewInfoProfile}) {
 
   const validationInputs = (user) => {
     const listInputsHaveError = checkForm(user)
-    if(Object.keys(listInputsHaveError).length != 0) {
+    if(Object.keys(listInputsHaveError).length !== 0) {
       SetInputErrors(listInputsHaveError)
       return true
     }
@@ -42,6 +42,7 @@ export default function EditingProfile({sendNewInfoProfile}) {
                             description={description}
                             place={place}
                             profileLoading={profileLoading}
+                            inputErrors={inputErrors}
 
     />
   );

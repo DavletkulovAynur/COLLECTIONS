@@ -10,7 +10,8 @@ function* subscribeOnUserWorker(data) {
     const user = {
       subscribeUserId: data.payload
     }
-    const payload = yield call(() => Fetcher(
+
+    yield call(() => Fetcher(
       `${API_URL}users/subscribe-on-user`,
       'POST',
       user,
@@ -28,12 +29,13 @@ function* unSubscribeOnUserWorker(data) {
       subscribeUserId: data.payload
     }
 
-    const payload = yield call(() => Fetcher(
+    yield call(() => Fetcher(
       `${API_URL}users/unsubscribe-on-user`,
       'POST',
       user,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}
     ))
+
   } catch (e) {
     console.log('error', e)
   }
