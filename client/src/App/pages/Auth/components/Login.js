@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {loginAction} from '../../../../Store/actions/action'
-import {checkForm} from '../../../../Common/utils/checkForm'
+import {validationInputs} from '../../../../Common/utils/checkForm'
 import LoginTemplate from "./LoginTemplate";
 
 export const Login = ({changeStateLogin}) => {
@@ -19,19 +19,10 @@ export const Login = ({changeStateLogin}) => {
       password: passwordInput.value
     }
     const thereAreMistakesInInputs = validationInputs(user)
-
-    if(!thereAreMistakesInInputs) {
+    SetInputErrors(thereAreMistakesInInputs)
+    // TODO придумать сокращение
+    if(Object.keys(thereAreMistakesInInputs).length == 0) {
       sendingUser(user)
-    }
-  }
-
-  const validationInputs = (user) => {
-    const listInputsHaveError = checkForm(user)
-    if(Object.keys(listInputsHaveError).length != 0) {
-      SetInputErrors(listInputsHaveError)
-      return true
-    } else {
-      return false
     }
   }
 
