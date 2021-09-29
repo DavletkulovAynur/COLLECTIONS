@@ -10,6 +10,13 @@
     height: 100%;
   }
 
+  &__moment-loading-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
   &__file {
     display: flex;
     align-items: center;

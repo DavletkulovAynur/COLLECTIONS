@@ -1,26 +1,37 @@
-import {DISPATCH_COLLECTION, LOAD_IMG_DRAG_AND_DROP, SUCCESSFULLY_SEND_COLLECTION} from "../../types";
+import {
+    LOAD_IMG_DRAG_AND_DROP,
+    SEND_COLLECTION_IMG_ERROR, SEND_COLLECTION_IMG_ERROR_DELETE,
+
+    SEND_COLLECTION_LOAD, SEND_COLLECTION_PREVIEW_IMG,
+    SUCCESSFULLY_SEND_COLLECTION
+} from "../../types";
 
 const initialState = {
-    errorTitle: false,
     errorFiles: false,
     mainImg: null,
-    sendCollectionStatus: false
+    load: false,
+    previewImg: null
 }
 
 export const addCollectionReducer = (state = initialState, action) => {
+    console.log(action.payload)
     switch (action.type) {
-        case DISPATCH_COLLECTION:
-            const {errorTitle, errorFiles} = action.payload
-            return {...state, errorTitle, errorFiles}
-            break
+        case SEND_COLLECTION_IMG_ERROR:
+            return {...state, errorFiles: action.payload}
         case LOAD_IMG_DRAG_AND_DROP:
             const {mainImg} = action.payload
             return {...state, mainImg, errorFiles: false}
-            break
+        case SEND_COLLECTION_LOAD:
+            return {...state, load: true}
         case SUCCESSFULLY_SEND_COLLECTION:
-           const {status} = action.payload
-            return {...state, sendCollectionStatus: status, mainImg: null}
+            return {...state, mainImg: null, previewImg: null, load: false, errorFiles: false}
+        case SEND_COLLECTION_PREVIEW_IMG:
+
+            return {...state, previewImg: action.payload }
         default:
             return state
     }
 }
+
+export const sendCollectionImgErrorAction = (payload) => ({type: SEND_COLLECTION_IMG_ERROR, payload})
+export const sendCollectionPreviewImg = (payload) => ({type: SEND_COLLECTION_PREVIEW_IMG, payload})
