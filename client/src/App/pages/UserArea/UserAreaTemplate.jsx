@@ -4,14 +4,15 @@ import './UserArea.scss'
 import CollectionsList from '../../../Common/components/CollectionsList/CollectionsList'
 import {UserInformation} from '../../../Common/components/UserInformation/UserInformation'
 
-function UserAreaTemplate ({user, mySubscriptions, userCollection, unSubscribeOnUser, subscribeOnUser}) {
+function UserAreaTemplate ({user, userCollection, unSubscribeOnUser, subscribeOnUser}) {
 
   return (
       <div className='User-area'>
           <section className='user-information'>
               <UserInformation
                   user={user}
-                  mySubscriptions={mySubscriptions}
+                  unSubscribeOnUser={unSubscribeOnUser}
+                  subscribeOnUser={subscribeOnUser}
                   guest='true'/>
           </section>
           <section>

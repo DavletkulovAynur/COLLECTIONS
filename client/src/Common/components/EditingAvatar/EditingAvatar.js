@@ -8,7 +8,7 @@ export default function EditingAvatar({sendAvatar}) {
   let reader = new FileReader()
   const {avatar} = useSelector((state) => state.authReducer)
 
-  const [previewImg, setPreviewImg] = useState()
+  const [previewImg, setPreviewImg] = useState(null)
   const [openPopupPreview, setOpenPopupPreview] = useState(false)
   const [loadAvatar, setLoadAvatar] = useState(null)
 
@@ -26,7 +26,7 @@ export default function EditingAvatar({sendAvatar}) {
   }
 
   const deleteFile = () => {
-    setPreviewImg('')
+    setPreviewImg(null)
     setOpenPopupPreview(false)
   }
 
@@ -37,7 +37,7 @@ export default function EditingAvatar({sendAvatar}) {
     formData.append('avatar', avatar)
     formData.append('file', loadAvatar)
     // sendAvatar(formData)
-    setPreviewImg('')
+    setPreviewImg(null)
   }
 
   return (
