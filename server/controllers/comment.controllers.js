@@ -37,7 +37,6 @@ class CommentControllers {
     // сразу не обновляем (подумать)
     try {
       const collection = await COLLECTION_MODEL.find({_id: id})
-      console.log(collection[0].comments)
 
       // res.status(201).json({message: 'Collection update', status: true, resData: commentObj})
     } catch (e) {

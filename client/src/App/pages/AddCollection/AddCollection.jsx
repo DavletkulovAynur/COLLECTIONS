@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './AddCollection.scss'
 import AddCollectionTemplate from './AddCollectionTemplate'
 
@@ -23,13 +23,13 @@ function AddCollection() {
     // TODO разбить функцию
     event.preventDefault()
     const thereAreMistakesInInputs = validationInputs({title: title.value})
-    console.log(thereAreMistakesInInputs)
+
     SetInputErrors(thereAreMistakesInInputs)
     if(!fileImg) {
       dispatch(sendCollectionImgErrorAction(true))
       return
     }
-    if(Object.keys(thereAreMistakesInInputs).length != 0) {
+    if(Object.keys(thereAreMistakesInInputs).length !== 0) {
       return
     }
 

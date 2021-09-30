@@ -5,15 +5,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const Input = ({error = '',
                binding,
                 placeholder,
-               label,
                type = 'text'}) => {
 
-  const [showPassword, setShowPassword] =useState(false)
   const [eyeView, setEyeView] = useState(false)
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword)
-  };
 
   const errorStyle = error ? 'error' : ''
 

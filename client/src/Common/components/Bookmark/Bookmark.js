@@ -26,10 +26,8 @@ export function Bookmark({id}) {
   function sendIdBookmark(bookmarkInfo) {
     if(bookmark.includes(bookmarkInfo.bookmarkID)) {
       dispatch(bookmarkDeleteAction(bookmarkInfo))
-      console.log('1')
     } else {
       dispatch(addBookmarkAction(bookmarkInfo))
-      console.log('2')
     }
   }
 
