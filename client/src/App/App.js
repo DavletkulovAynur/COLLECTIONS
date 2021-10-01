@@ -28,10 +28,10 @@ library.add(fab, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAlt
 
 function App() {
   const dispatch = useDispatch()
-  const {token, user, ready, isAuthenticated, active} = useSelector((state) => state.authReducer)
+  const {token, owner, ready, isAuthenticated, active} = useSelector((state) => state.authReducer)
   const {showMessage, text, severity} = useSelector((state) => state.showMessageReducer)
 
-  const {userId} = user
+  const {userId} = owner
   const routes = useRoutes(isAuthenticated, active)
 
   useEffect(() => {

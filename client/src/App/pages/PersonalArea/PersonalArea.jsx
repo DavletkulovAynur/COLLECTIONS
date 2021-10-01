@@ -1,16 +1,19 @@
-import React, {useEffect} from 'react'
-import PersonalAreaTemplate from './personalArea.template'
+import React, {useEffect, useState} from 'react'
+
 import {useDispatch, useSelector} from 'react-redux'
 import {getBookmarkCollectionAction, getSubscribeCollectionAction} from '../../../Store/actions/action'
+import {UserInformation} from "../../../Common/components/UserInformation/UserInformation";
+import {TabTemplates} from "./templates/Tab.templates";
+import {CollectionListTemplate} from "./templates/CollectionList.template";
+import './PersonalArea.scss'
 
 
 export function PersonalArea() {
-	const {user, bookmark} = useSelector((state) => state.authReducer)
-	const {myCollection, bookmarkCollection} = useSelector(state => state.collectionReducer)
-	const {subscribe} = useSelector((state) => state.subscribeReducer)
 	const dispatch = useDispatch()
+	const {owner, bookmark} = useSelector((state) => state.authReducer)
+	const {numberUserPublications} = useSelector((state) => state.collectionReducer)
+	const [tabValue, setTabValue] = useState('my-collection');
 
-	const countPublication = myCollection.length
 
 
 	useEffect(() => {
@@ -21,15 +24,18 @@ export function PersonalArea() {
 		// dispatch(getSubscribeCollectionAction(subscriptions))
 	}, [])
 
+	function changeTabValue(typeValue) {
+		setTabValue(typeValue)
+	}
+
+
 	return (
-		<>
-			<PersonalAreaTemplate
-				user={user}
-				subscribe={subscribe}
-				countPublication={countPublication}
-				myCollection={myCollection}
-				bookmarkCollection={bookmarkCollection}
-			/>
-		</>
+		<div className='Personal-area Personal-area-root'>
+			<section className='Personal-area__info-and-tab-box'>
+				<UserInformation numberUserPublications={numberUserPublications} user={owner}/>
+				<TabTemplates changeTabValue={changeTabValue} tabValue={tabValue}/>
+			</section>
+			<CollectionListTemplate user={owner} tabValue={tabValue}/>
+		</div>
 	)
 }

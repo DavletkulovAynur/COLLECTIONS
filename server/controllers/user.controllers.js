@@ -27,6 +27,19 @@ class UserControllers {
 		}
 	}
 
+	async getUserCollection(req, res) {
+		try {
+			const {userId} = req.body
+			const allCollection = await COLLECTION_MODEL.find()
+
+			const userCollection = allCollection.filter(item => item.owner == userId)
+
+			res.status(201).json({resData: userCollection})
+		} catch (e) {
+			res.status(500).json(e)
+		}
+	}
+
 	async subscribeOnUser(req, res) {
 		try {
 			const {subscribeUserId} = req.body

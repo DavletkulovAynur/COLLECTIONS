@@ -4,12 +4,12 @@ import {
 	GET_COLLECTION_VIEW,
 	GET_MY_COLLECTION,
 	GET_SUBSCRIBE_COLLECTION,
-	GET_USER,
+	GET_USER, GET_USER_COLLECTION,
 	WRITE_DOWN_ALL_COLLECTION,
 	WRITE_DOWN_COLLECTION,
 	WRITE_DOWN_COLLECTION_VIEW,
 	WRITE_DOWN_GET_USER,
-	WRITE_DOWN_SUBSCRIBE_COLLECTION,
+	WRITE_DOWN_SUBSCRIBE_COLLECTION, WRITE_DOWN_USER_COLLECTION,
 } from '../../types'
 
 import Fetcher from '../../../Common/utils/fetch'
@@ -81,24 +81,10 @@ function* getCollectionView(data) {
 	}
 }
 
-function* getUser(data) {
-	try {
-		const user = {
-			userId: data.payload
-		}
-		const payload = yield call(() => Fetcher(`${API_URL}users/get-user`, 'POST', user))
-
-		yield put({type: WRITE_DOWN_GET_USER, payload})
-	} catch (e) {
-		console.log('error', e)
-	}
-}
-
 export function* getCollectionDataWatcher() {
 	yield takeEvery(GET_ALL_COLLECTION, getAllCollection)
 	yield takeEvery(GET_MY_COLLECTION, getOwnerUserCollection)
 	yield takeEvery(GET_COLLECTION_VIEW, getCollectionView)
-	yield takeEvery(GET_USER, getUser)
 	yield takeEvery(GET_SUBSCRIBE_COLLECTION, getSubscribeCollection)
 }
 

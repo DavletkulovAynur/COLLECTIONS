@@ -19,7 +19,7 @@ import {
   UNSUBSCRIBE_ON_USER,
   REMOVE_SHOW_MESSAGE,
   EDIT_USER,
-  EDIT_AVATAR,
+  EDIT_AVATAR, GET_USER_COLLECTION,
 } from '../types'
 
 import {addCommentAction, removeCommentAction} from './components/commentActions'
@@ -56,6 +56,13 @@ export function getMyCollection(payload) {
 export function getBookmarkCollectionAction(payload){
   return({
     type: GET_BOOKMARK_COLLECTION,
+    payload
+  })
+}
+
+export function getUserCollectionAction(payload) {
+  return({
+    type: GET_USER_COLLECTION,
     payload
   })
 }

@@ -13,7 +13,7 @@ export const UserInformation = ({   unSubscribeOnUser,
                                     subscribeOnUser,
                                     user,
                                     guest = false,
-                                    countPublication = '0'}) => {
+                                    numberUserPublications = '0'}) => {
 
 
   const {userName, avatar, userId, subscribers, subscriptions} = user
@@ -31,7 +31,7 @@ export const UserInformation = ({   unSubscribeOnUser,
 
           <section className='User-information__about'>
             <UserNameTemplate userName={userName}/>
-            <SubscribeTemplate countPublication={countPublication} subscribers={subscribers} subscriptions={subscriptions}/>
+            <SubscribeTemplate numberUserPublications={numberUserPublications} subscribers={subscribers} subscriptions={subscriptions}/>
             <DescriptionTemplate/>
           </section>
       </div>

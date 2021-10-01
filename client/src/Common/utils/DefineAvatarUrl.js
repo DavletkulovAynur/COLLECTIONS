@@ -3,7 +3,7 @@ import {API_URL} from '../../config'
 
 
 export function DefineAvatarUrl() {
-    const {user} = useSelector((state) => state.authReducer)
-    const {avatar} = user
+    const {owner} = useSelector((state) => state.authReducer)
+    const {avatar} = owner
     return avatar ? `${API_URL + '/avatars/' + avatar}` : false
 }
