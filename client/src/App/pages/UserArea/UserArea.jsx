@@ -8,6 +8,7 @@ import {
     subscribeOnUserAction,
     unSubscribeOnUserAction
 } from "../../../Store/actions/action";
+import {Loading} from "../../../Common/components/Loading/Loading";
 
 
 const UserArea = () => {
@@ -15,18 +16,15 @@ const UserArea = () => {
     const router = useRouter()
     const {user} = useSelector((state) => state.userAreaPageReducer)
 
-    const {subscriptions} = useSelector((state) => state.authReducer)
-    const {allCollection} = useSelector(state => state.collectionReducer)
 
+    const {allCollection} = useSelector(state => state.collectionReducer)
     const userId = router.match.params.id
+
+    // TODO переделать фильтрацию на сервер
     const userCollection = allCollection.filter(item => item.owner === userId)
 
     useEffect(() => {
         dispatch(getUserAction(userId))
-    }, [])
-
-    useEffect(() => {
-        dispatch(getSubscribeCollectionAction(subscriptions))
     }, [])
 
     const subscribeOnUser = () => {
@@ -40,7 +38,7 @@ const UserArea = () => {
     if(!user) {
         return (
             <div>
-                LOADER
+                <Loading/>
             </div>
         )
     }
@@ -50,7 +48,6 @@ const UserArea = () => {
             <UserAreaTemplate subscribeOnUser={subscribeOnUser}
                               unSubscribeOnUser={unSubscribeOnUser}
                               userCollection={userCollection}
-                              mySubscriptions={subscriptions}
                               user={user}/>
         </>
     );

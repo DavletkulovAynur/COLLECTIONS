@@ -13,7 +13,6 @@ const initialState = {
   ready: false,
   checkRegistration: false,
   bookmark: [],
-  subscriptions: [],
   user: {
     subscribers: [],
     userId: null,
@@ -21,6 +20,7 @@ const initialState = {
     description: '',
     place: '',
     avatar: '',
+    subscriptions: [],
   }
 }
 
@@ -54,8 +54,8 @@ function authenticationInformationUser(data, state) {
           active,
           token,
           bookmark,
-          subscriptions,
           user: {
+            subscriptions,
             userId,
             userName,
             subscribers,

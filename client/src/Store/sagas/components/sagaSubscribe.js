@@ -29,6 +29,7 @@ function* unSubscribeOnUserWorker(data) {
       subscribeUserId: data.payload
     }
 
+    console.log(user)
     yield call(() => Fetcher(
       `${API_URL}users/unsubscribe-on-user`,
       'POST',

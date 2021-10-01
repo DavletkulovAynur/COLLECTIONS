@@ -7,7 +7,7 @@ import {bookmarkWatcher} from './components/sagaBookmark'
 import {addNewCollectionWatcher} from './components/sagaAddNewCollection'
 import {getCollectionDataWatcher} from './components/sagaGetCollectionData'
 import {searchCollectionWatcher} from './components/sagaSearch'
-import {subscribeWatcher} from './components/sagaUserArea'
+import {subscribeWatcher} from './components/sagaSubscribe'
 
 
 export function* rootSaga() {
