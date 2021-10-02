@@ -1,5 +1,12 @@
 .Personal-area {
-  width: 100%;
+  &-root {
+    width: 100%;
+  }
+
+  &__info-and-tab-box {
+    max-width: 760px;
+    margin: auto;
+  }
 
   &__tab-box {
     display: flex;
@@ -53,15 +60,6 @@
       .tab__description {
         font-weight: 400;
       }
-    }
-  }
-
-  .user-info-tab-wrapper {
-    max-width: 760px;
-    margin: auto;
-
-    .tab-wrapper {
-      margin-bottom: 24px;
     }
   }
 }

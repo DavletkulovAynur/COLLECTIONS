@@ -12,12 +12,13 @@ const initialState = {
   bookmarkCollection: [],
   searchCollection: [],
   searchCollectionState: false,
+  numberUserPublications: 0
 }
 
 export const collectionReducer = (state = initialState, action) => {
   switch (action.type) {
     case WRITE_DOWN_COLLECTION:
-      return {...state, myCollection: [...action.payload]}
+      return {...state, myCollection: [...action.payload], numberUserPublications: action.payload.length}
     case WRITE_DOWN_ALL_COLLECTION:
       return  {...state, allCollection: [...action.payload]}
     case WRITE_DOWN_BOOKMARK_COLLECTION:

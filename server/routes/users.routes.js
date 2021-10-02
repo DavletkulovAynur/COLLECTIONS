@@ -9,6 +9,8 @@ router.get('/get', userControllers.getUsers)
 
 router.post('/get-user', userControllers.getUser)
 
+router.post('/get-user-collection', userControllers.getUserCollection)
+
 router.put('/save-bookmark', authMiddleware, userControllers.saveBookmark)
 
 router.put('/delete-bookmark', authMiddleware, userControllers.deleteBookmark)

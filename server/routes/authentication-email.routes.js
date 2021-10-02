@@ -6,6 +6,7 @@ AUTHENTICATION_EMAIL_CONTROLLERS = require('../controllers/authentication-email.
 
 const router = new Router()
 
-router.get('/email', authMiddleware, AUTHENTICATION_EMAIL_CONTROLLERS.authenticationEmail)
+router.get('/email', AUTHENTICATION_EMAIL_CONTROLLERS.authenticationEmail)
+
 
 module.exports = router

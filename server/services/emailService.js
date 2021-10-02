@@ -1,20 +1,29 @@
 const EMAIL_HASH_MODEL = require('../models/emailHash')
 const mailer = require('../nodemailer')
 const randomBytes = require('randombytes')
+const fs = require('fs');
+const path = require("path");
 
 
 async function emailService(email, user) {
   const randomEmailHash = randomBytes(16).toString('hex')
-  const message = {
-    to: email,
-    subject: 'test',
-    html: `
-			<h2>Поздравляем</h2>
-			ваш  email ${email}
-			<a href="http://localhost:5000/authentication/email?id=${randomEmailHash}">test</a>
-		`
-  }
-  mailer(message)
+
+  const test = path.join(__dirname, `./auxiliaryElements/email.html`)
+
+  fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
+    let htmlFile = data;
+    htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:5000/authentication/email?id=${randomEmailHash}`)
+
+    console.log(htmlFile)
+    const message = {
+      to: email,
+      subject: 'test',
+      html: htmlFile,
+    }
+
+    mailer(message)
+  })
+
 
   const emailHash = new EMAIL_HASH_MODEL({
     hash: randomEmailHash,

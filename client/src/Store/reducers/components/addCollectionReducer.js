@@ -25,7 +25,6 @@ export const addCollectionReducer = (state = initialState, action) => {
         case SUCCESSFULLY_SEND_COLLECTION:
             return {...state, mainImg: null, previewImg: null, load: false, errorFiles: false}
         case SEND_COLLECTION_PREVIEW_IMG:
-
             return {...state, previewImg: action.payload }
         default:
             return state

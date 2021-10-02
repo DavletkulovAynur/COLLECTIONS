@@ -13,7 +13,7 @@ const initialState = {
   ready: false,
   checkRegistration: false,
   bookmark: [],
-  user: {
+  owner: {
     subscribers: [],
     userId: null,
     userName: '',
@@ -54,7 +54,7 @@ function authenticationInformationUser(data, state) {
           active,
           token,
           bookmark,
-          user: {
+          owner: {
             subscriptions,
             userId,
             userName,

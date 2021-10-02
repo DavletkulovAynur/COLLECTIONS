@@ -4,7 +4,7 @@ import './UserArea.scss'
 import CollectionsList from '../../../Common/components/CollectionsList/CollectionsList'
 import {UserInformation} from '../../../Common/components/UserInformation/UserInformation'
 
-function UserAreaTemplate ({user, userCollection, unSubscribeOnUser, subscribeOnUser}) {
+function UserAreaTemplate ({user, userCollection, unSubscribeOnUser, subscribeOnUser, countUserCollection}) {
 
   return (
       <div className='User-area'>
@@ -13,6 +13,7 @@ function UserAreaTemplate ({user, userCollection, unSubscribeOnUser, subscribeOn
                   user={user}
                   unSubscribeOnUser={unSubscribeOnUser}
                   subscribeOnUser={subscribeOnUser}
+                  numberUserPublications={countUserCollection}
                   guest='true'/>
           </section>
           <section>

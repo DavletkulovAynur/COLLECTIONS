@@ -1,13 +1,17 @@
-import {WRITE_DOWN_GET_USER} from "../../types";
+import {WRITE_DOWN_GET_USER, WRITE_DOWN_USER_COLLECTION} from "../../types";
 
 const initialState = {
-    user: null
+    user: null,
+    userCollection: [],
+    countUserCollection: 0
 }
 
 export const userAreaPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case WRITE_DOWN_GET_USER:
             return {...state, user: action.payload.data}
+        case WRITE_DOWN_USER_COLLECTION:
+            return {...state, userCollection: action.payload.data, countUserCollection: action.payload.data.length}
         default:
             return {...state}
     }
