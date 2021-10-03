@@ -2,18 +2,18 @@ import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useRouter} from 'Common/utils/hooks/useRouter.hook'
 
-import {CollectionViewTemplate} from './CollectionViewTemplate'
 import {addCommentAction, getCollectionViewAction, removeCommentAction} from '../../../Store/actions/action'
+
+import {CollectionViewTemplate} from "./CollectionViewTemplate";
 
 
 
 function CollectionView() {
   const dispatch = useDispatch()
   const router = useRouter()
-  const {collection} = useSelector(state => state.collectionViewReducer)
+  const {collection = [], loading} = useSelector(state => state.collectionViewReducer)
   const {userId} = useSelector(state => state.authReducer)
   const collectionId = router.match.params.id
-
 
 
 
@@ -49,6 +49,7 @@ function CollectionView() {
       <CollectionViewTemplate removeComments={removeComments}
                               userId={userId}
                               collection={collection}
+                              loading={loading}
                               sendComment={sendComment}/>
   )
 }
