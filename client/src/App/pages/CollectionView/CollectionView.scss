@@ -5,6 +5,58 @@
     max-width: 680px;
     margin: 0 auto;
   }
+
+  &__title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  &__author-date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+  }
+
+  &__author-avatar {
+    object-fit: cover;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+
+  &__author-name {
+    margin-left: 8px;
+    //font-weight: 300;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: rgba(26, 137, 23, 1);
+
+  }
+
+  &__date {
+    margin-left: 12px;
+    color: rgba(117, 117, 117, 1);
+  }
+
+  &__img-wrapper {
+    height: 400px;
+    width: 100%;
+    position: relative;
+  }
+
+  &__img {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+  }
 }
 
 .Article-content {
@@ -25,12 +77,6 @@
   }
 }
 
-.test {
-  height: 400px;
-  width: 600px;
-  background-size: cover;
-  background-position: center;
-}
 
 
 

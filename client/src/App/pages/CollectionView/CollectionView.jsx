@@ -11,8 +11,8 @@ import {CollectionViewTemplate} from "./CollectionViewTemplate";
 function CollectionView() {
   const dispatch = useDispatch()
   const router = useRouter()
-  const {collection = [], loading} = useSelector(state => state.collectionViewReducer)
-  const {userId} = useSelector(state => state.authReducer)
+  const {collection = [], comments} = useSelector(state => state.collectionViewReducer)
+
   const collectionId = router.match.params.id
 
 
@@ -31,10 +31,12 @@ function CollectionView() {
     dispatch(addCommentAction(comment))
   }
 
-  const removeComments = () => {
+  const removeComment = (commentId) => {
     const comment = {
-      id: collectionId,
+      collectionId,
+      commentId: commentId
     }
+
     dispatch(removeCommentAction(comment))
   }
 
@@ -46,10 +48,9 @@ function CollectionView() {
 
 
   return(
-      <CollectionViewTemplate removeComments={removeComments}
-                              userId={userId}
+      <CollectionViewTemplate removeComment={removeComment}
+                              comments={comments}
                               collection={collection}
-                              loading={loading}
                               sendComment={sendComment}/>
   )
 }

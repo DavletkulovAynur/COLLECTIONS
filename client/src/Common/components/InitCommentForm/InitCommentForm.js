@@ -4,9 +4,11 @@ import {useInput} from "../../utils/hooks/input.hook";
 import './InitCommentForm.scss'
 import {InitCommentFormPreview} from "./templates/InitCommentFormPreview";
 import {InitCommentFormBox} from "./templates/InitCommentFormBox";
+import {useSelector} from "react-redux";
 
 
-const InitCommentForm = ({sendComment, loading}) => {
+const InitCommentForm = ({sendComment}) => {
+  const {commentLoading} = useSelector(state => state.collectionViewReducer)
   const [formOpen, setFormOpen] = useState(false)
   const commentValue = useInput('')
   const commentTitle = useInput('')
@@ -27,12 +29,12 @@ const InitCommentForm = ({sendComment, loading}) => {
   }
 
   return (
-    <div className={`Comment-create-form-box Comment-create-form-box_bg-${formOpen ? 'white' : 'dark'}`}>
+    <div className='Comment-create-form-box'>
       {
         !formOpen
         ? <InitCommentFormPreview formShow={formShow}/>
         : <InitCommentFormBox
-            loading={loading}
+            commentLoading={commentLoading}
             commentTitle={commentTitle}
             commentValue={commentValue}
             formClose={formClose}

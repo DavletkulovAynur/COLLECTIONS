@@ -10,8 +10,8 @@ export function CollectionViewImg({mainImg, owner}) {
   };
 
   return (
-    <div>
-      {mainImg && <div className='test' style={divStyle()}></div>}
+    <div className='Article-view__img-wrapper'>
+      {mainImg && <div className='Article-view__img' style={divStyle()}></div>}
     </div>
   )
 }
