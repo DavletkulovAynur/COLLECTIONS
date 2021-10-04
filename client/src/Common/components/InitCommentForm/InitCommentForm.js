@@ -1,11 +1,12 @@
-import Input from "../Input/Input";
+
 import React, {useState} from "react";
 import {useInput} from "../../utils/hooks/input.hook";
 import './InitCommentForm.scss'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {InitCommentFormPreview} from "./templates/InitCommentFormPreview";
+import {InitCommentFormBox} from "./templates/InitCommentFormBox";
 
 
-const InitCommentForm = ({sendComment}) => {
+const InitCommentForm = ({sendComment, loading}) => {
   const [formOpen, setFormOpen] = useState(false)
   const commentValue = useInput('')
   const commentTitle = useInput('')
@@ -29,33 +30,14 @@ const InitCommentForm = ({sendComment}) => {
     <div className={`Comment-create-form-box Comment-create-form-box_bg-${formOpen ? 'white' : 'dark'}`}>
       {
         !formOpen
-        ? <div onClick={formShow} className='Comment-create-form-box__header Comment-create-header'>
-            <FontAwesomeIcon icon="plus" style={{ color: '#fff' }}/>
-            <div className='Comment-create-form-box__header-title'>Напишите комментарий</div>
-          </div>
-        : null
+        ? <InitCommentFormPreview formShow={formShow}/>
+        : <InitCommentFormBox
+            loading={loading}
+            commentTitle={commentTitle}
+            commentValue={commentValue}
+            formClose={formClose}
+            submitForm={submitForm}/>
       }
-
-      {formOpen
-        ? <form className='Comment-create-form-box__form Comment-create-form'>
-            <div>
-              <Input binding={commentTitle} label='title' placeholder='Заголовок'/>
-            </div>
-            <div>
-              <Input binding={commentValue} label='placeholder' rows='4' multiline='true'/>
-            </div>
-          <div className='Comment-create-form__button-box'>
-            <button className='Button Button-root' onClick={() => formClose()}>
-              ОТМЕНА
-            </button>
-            <button className='Button Button-root' onClick={(event) => submitForm(event)}>
-              ОТПРАВИТЬ
-            </button>
-          </div>
-          {/*{loading ? <Loading/> : null }*/}
-        </form>
-        : null}
-
     </div>
   )
 }

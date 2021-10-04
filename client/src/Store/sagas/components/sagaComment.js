@@ -3,7 +3,7 @@ import {
   COMMENT_REMOVE,
   COMMENT_UPDATE,
   LOADING_COLLECTION_UPDATE,
-  LOADING_HIDDEN_COLLECTION_UPDATE,
+  LOADING_HIDDEN_COLLECTION_UPDATE, SHOW_MESSAGE,
   UPDATE_COLLECTION_VIEW
 } from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
@@ -16,6 +16,8 @@ export function* addComment(data) {
       'PUT',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}))
+    const messageText = {text: `успешно`, severity: 'success'}
+    yield put({type: SHOW_MESSAGE, payload: messageText })
     yield put({type: UPDATE_COLLECTION_VIEW, payload})
     yield put({type: LOADING_HIDDEN_COLLECTION_UPDATE})
   } catch (e) {
