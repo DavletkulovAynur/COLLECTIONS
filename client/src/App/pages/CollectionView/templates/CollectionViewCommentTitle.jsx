@@ -3,9 +3,9 @@ import React from "react";
 export function CollectionViewCommentTitle({comments}) {
 
   return (
-    <h2 className='Comment-box__title'>
+    <div className='Comments-wrapper__title'>
       Комментарии
       <sup>{comments.length}</sup>
-    </h2>
+    </div>
   )
 }

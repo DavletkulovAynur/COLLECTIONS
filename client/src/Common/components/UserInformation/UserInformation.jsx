@@ -8,6 +8,7 @@ import {PencilTemplate} from "./templates/Pencil.template";
 import {UserNameTemplate} from "./templates/UserName.template";
 import {AvatarTemplate} from "./templates/Avatar.template";
 import {SubscribeButtonsTemplate} from "./templates/SubscribeButtons.template";
+import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
 
 export const UserInformation = ({   unSubscribeOnUser,
                                     subscribeOnUser,
@@ -17,7 +18,7 @@ export const UserInformation = ({   unSubscribeOnUser,
 
 
   const {userName, avatar, userId, subscribers, subscriptions} = user
-  const avatarUrl = avatar ? `${API_URL + '/avatars/' + avatar}` : false
+  const avatarUrl = DefineAvatarUrl(avatar)
 
 
   return (

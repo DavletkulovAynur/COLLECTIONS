@@ -24,8 +24,11 @@ export const collectionViewReducer = (state = initialState, action) => {
             const {data} = action.payload
             return {...state, collection: data[0], comments: data[0].comments, mainImg: data[0].mainImg, owner: data[0].owner, title: data[0].title}
         case UPDATE_COLLECTION_COMMENT:
-            const comments = [...state.collection.comments, action.payload.data]
+            const comments = [...state.comments, action.payload.data]
             return {...state, comments}
+        case DELETE_COLLECTION_COMMENT:
+            // TODO, сделать удаление только одного комментария
+            return {...state, comments: action.payload.data}
         case SEND_COMMENT_LOADING:
             return {...state, commentLoading: action.payload}
         case REMOVE_COMMENT_LOADING:
@@ -40,5 +43,6 @@ export const collectionViewReducer = (state = initialState, action) => {
 }
 
 export const UPDATE_COLLECTION_COMMENT = 'UPDATE_COLLECTION_COMMENT'
+export const DELETE_COLLECTION_COMMENT = 'DELETE_COLLECTION_COMMENT'
 export const SEND_COMMENT_LOADING = 'SEND_COMMENT_LOADING'
 export const REMOVE_COMMENT_LOADING = 'REMOVE_COMMENT_LOADING'

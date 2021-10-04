@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Loading} from "../Loading/Loading";
+import {DeleteButton} from "../DeleteButton/DeleteButton";
 
 const DragAndDropTemplate = ({errorFiles, previewImg, deleteFile, initialFile, fileUploadMoment}) => {
   const [drag, setDrag] = useState(false)
@@ -31,8 +32,8 @@ const DragAndDropTemplate = ({errorFiles, previewImg, deleteFile, initialFile, f
     return (
       <section className='Drag-Drop__preview'>
         <img src={previewImg} className='Drag-Drop__preview-img'/>
-        <div onClick={deleteFile} className='Drag-Drop__preview-delete-icon'>
-          <FontAwesomeIcon icon='trash-alt' color='#000'/>
+        <div className='Drag-Drop__preview-delete-icon'>
+          <DeleteButton eventFunction={deleteFile}/>
         </div>
       </section>
     )

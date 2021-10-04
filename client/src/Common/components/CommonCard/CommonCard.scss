@@ -35,13 +35,14 @@
     }
 
     &-title {
+      font-family: 'Black Han Sans', sans-serif;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
       text-transform: uppercase;
       color: #fff;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
     }
 
     &-author {

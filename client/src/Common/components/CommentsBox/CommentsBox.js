@@ -1,8 +1,10 @@
-import {API_URL} from '../../../config'
 import React from 'react'
 import './CommentsBox.scss'
 import timeConverter from '../../utils/timeConverter'
 import {useSelector} from "react-redux";
+import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
+
+import {DeleteButton} from "../DeleteButton/DeleteButton";
 
 
 const CommentsBox = ({removeComment}) => {
@@ -12,8 +14,8 @@ const CommentsBox = ({removeComment}) => {
   let sortComments =  sortfunction(comments)
   const {userId} = owner
 
-  function defineIdComments(event) {
-    removeComment(event.target.dataset.id)
+  function defineIdComments(id) {
+    removeComment(id)
   }
 
   return (
@@ -21,21 +23,23 @@ const CommentsBox = ({removeComment}) => {
       <div  className='Comments-box__content-area'>
         {sortComments.map((comment, index) => {
           const {time, title, authorName, description, authorAvatar, authorId, idComment} = comment
-          const avatarUrl = authorAvatar ? `${API_URL + '/avatars/' + authorAvatar}` : false
+          const avatarUrl = DefineAvatarUrl(authorAvatar)
           const datePublication = timeConverter(time)
           return (
             <section key={index}  className='Comments-box__Comment Comment'>
-              <div className='Comment__avatar-box'>
-                <img className='Comment__avatar-image' src={avatarUrl} alt='avatar'/>
-              </div>
-              <div>
-                <div className='Comment__title'>{title}</div>
-                <span className='Comment__author'>{authorName}</span>
-                <span className='Comment__description'>{description}</span>
-                <div className='Comment__date'>{datePublication}</div>
+              <div className='Comment__wrapper'>
+                <div className='Comment__avatar-box'>
+                  <img className='Comment__avatar-image' src={avatarUrl} alt='avatar'/>
+                </div>
+                <div>
+                  <div className='Comment__title'>{title}</div>
+                  <span className='Comment__author'>{authorName}</span>
+                  <span className='Comment__description'>{description}</span>
+                  <div className='Comment__date'>{datePublication}</div>
+                </div>
               </div>
               {authorId === userId
-                ? <button data-id={idComment} onClick={(event) => defineIdComments(event)}>Удалить</button>
+                ? <DeleteButton eventFunction={defineIdComments} idElement={idComment}/>
                 : null
               }
             </section>
