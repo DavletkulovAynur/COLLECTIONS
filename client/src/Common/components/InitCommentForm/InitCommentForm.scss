@@ -15,29 +15,33 @@
     font-weight: 500;
     margin-left: 12px;
   }
-
-  //&_bg-white {
-  //  background: #fff;
-  //}
-  //
-  //&_bg-dark {
-  //  background: #000;
-  //}
 }
 
 
 .Comment-create-header {
   display: flex;
   align-items: center;
-  //color: #000;
   background: #000;
   cursor: pointer;
 }
 
 .Comment-create-form {
   background: #fff;
-  &__button-box {
+  &__inputs {
+    margin-bottom: 24px;
+  }
+
+  &__input {
+    margin-bottom: 12px;
+  }
+
+  &__buttons {
+    max-width: 300px;
     margin-top: 12px;
     display: flex;
+  }
+
+  &__button {
+    margin-right: 8px;
   }
 }

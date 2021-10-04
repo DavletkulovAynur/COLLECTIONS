@@ -10,30 +10,37 @@ import {CollectionViewDate} from "./templates/CollectionViewDate";
 import {CollectionViewImg} from "./templates/CollectionViewImg";
 import {CollectionViewCommentTitle} from "./templates/CollectionViewCommentTitle";
 import {CollectionViewDescription} from "./templates/CollectionViewDescription";
+import {DefineAvatarUrl} from "../../../Common/utils/DefineAvatarUrl";
 
 
 export function CollectionViewTemplate({collection = [],
                                          sendComment,
-                                         userId,
-                                         removeComments,
-                                          loading}) {
+                                         comments,
+                                         removeComment,}) {
 
-  const {comments = [], title, mainImg, owner, description, author, date} = collection
+  const {title, mainImg, owner, description, author, date, authorAvatar} = collection
+
+  const avatarUrl = DefineAvatarUrl(authorAvatar)
+
 
   return (
     <div className='Article-view-root Article-view'>
       <section className='Article-view__Article-content Article-content'>
         <CollectionViewTitle title={title}/>
-        <CollectionViewAuthor author={author}/>
-        <CollectionViewDate date={date}/>
+        <div className='Article-view__author-date'>
+          <CollectionViewAuthor avatarUrl={avatarUrl} author={author}/>
+          <CollectionViewDate date={date}/>
+        </div>
+        {/*TODO переделать */}
         <CollectionViewImg mainImg={mainImg} owner={owner}/>
+
         <CollectionViewDescription description={description}/>
       </section>
 
       <section className='Comments-wrapper'>
         <CollectionViewCommentTitle comments={comments}/>
-        <InitCommentForm loading={loading} sendComment={sendComment}/>
-        <CommentsBox userId={userId} comments={comments} removeComments={removeComments}/>
+        <InitCommentForm sendComment={sendComment}/>
+        <CommentsBox removeComment={removeComment}/>
       </section>
     </div>
   )

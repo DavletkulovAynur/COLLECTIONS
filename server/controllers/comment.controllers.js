@@ -29,14 +29,16 @@ class CommentControllers {
     }
   }
 
-  async removeComment(req, res) {
-    const {id} = req.body
-    const user = await USER_MODEL.find({_id: req.user.id})
 
-    // получаем ID commit, удаляем, возвращаем обновленный массив
-    // сразу не обновляем (подумать)
+  // TODO доделать
+  async removeComment(req, res) {
     try {
-      const collection = await COLLECTION_MODEL.find({_id: id})
+      const {collectionId, commentId} = req.body
+      const collection = await COLLECTION_MODEL.find({_id: collectionId})
+      console.log(collection)
+      console.log(commentId)
+      // const test = collection.comments.filter((item) => item.idComment != commentId)
+      // console.log(test)
 
       // res.status(201).json({message: 'Collection update', status: true, resData: commentObj})
     } catch (e) {
