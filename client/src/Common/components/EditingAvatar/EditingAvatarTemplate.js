@@ -3,8 +3,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-export default function EditingAvatarTemplate({
-                                                avatarUrl,
+export default function EditingAvatarTemplate({ avatarUrl,
                                                 fileUploadHandler,
                                                 previewImg,
                                                 deleteFile,

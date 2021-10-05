@@ -1,14 +1,16 @@
 .Button {
   &-root {
+    color: #fff;
+    background: #e60023;
     font-family: 'Roboto', sans-serif;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #141414;
+
     border-radius: 4px;
-    background-color: transparent;
-    border: .5px solid #888888;
+
+    border: none;
     transition: all .3s;
     cursor: pointer;
     padding: 12px 48px;
@@ -17,9 +19,7 @@
   }
 
   &:hover {
-    color: #fff;
-    background: #383838;
-    border: 1px solid #383838;
+    background: darkred;
   }
 
   &:disabled {
@@ -43,12 +43,16 @@
   }
 
   &_cancel {
-    border: 1px solid #e60023;
-    color: #e60023;
+    background: #141414;
+    color: #fff;
 
     &:hover {
-      color: #fff;
-      background: #e60023;
+      background: #383838;
     }
   }
+
+  //&__active-action {
+  //  color: #fff;
+  //  background: #e60023;
+  //}
 }

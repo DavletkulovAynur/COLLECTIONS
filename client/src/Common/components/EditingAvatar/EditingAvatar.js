@@ -6,7 +6,8 @@ import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
 
 export default function EditingAvatar({sendAvatar}) {
   let reader = new FileReader()
-  const {avatar} = useSelector((state) => state.authReducer)
+  const {owner} = useSelector((state) => state.authReducer)
+  const {avatar} = owner
 
   const [previewImg, setPreviewImg] = useState(null)
   const [openPopupPreview, setOpenPopupPreview] = useState(false)
@@ -30,7 +31,7 @@ export default function EditingAvatar({sendAvatar}) {
     setOpenPopupPreview(false)
   }
 
-  const avatarUrl = DefineAvatarUrl()
+  const avatarUrl = DefineAvatarUrl(avatar)
 
   const changeUserAvatar = async () => {
     const formData = new FormData()

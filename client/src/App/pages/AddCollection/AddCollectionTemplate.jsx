@@ -4,8 +4,10 @@ import Input from '../../../Common/components/Input/Input'
 import {useInput} from '../../../Common/utils/hooks/input.hook'
 import {ButtonLoading} from '../../../Common/components/ButtonLoading/ButtonLoading'
 
+import StylePin from "./templates/StylePin";
 
-const AddCollectionTemplate = ({handleSubmit, loadImg, load, deleteImg, inputErrors}) => {
+
+const AddCollectionTemplate = ({handleSubmit, loadImg, load, deleteImg, inputErrors, changeStyleSelect}) => {
   const title = useInput('')
   const description = useInput('')
   const [titleInputError, setTitleInputError] = useState(false)
@@ -36,7 +38,10 @@ return (
             <div className='Add-collection__input-name-collection'>
               <Input binding={title} error={titleInputError} placeholder='Добавьте название'/>
             </div>
-            <Input binding={description} placeholder='Добавьте описание'/>
+            <div>
+              <Input binding={description} placeholder='Добавьте описание'/>
+            </div>
+            <StylePin changeStyleSelect={changeStyleSelect}/>
           </div>
           <div className='Add-collection__button'>
             <button disabled={load} onClick={(event) => handleSubmit(event, title, description)}

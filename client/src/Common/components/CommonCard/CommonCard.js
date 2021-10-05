@@ -33,6 +33,7 @@ export function CommonCard({data}) {
 
 
   const UserLink = ({authorAvatar, owner, author}) => {
+
     const avatarUrl = DefineAvatarUrl(authorAvatar)
 
     let link
@@ -63,10 +64,11 @@ export function CommonCard({data}) {
                 owner,
                 mainImg,
                 author,
+                stylePin,
                 classTest,
                 authorAvatar} = item
                 return (
-                  <div key={_id} className={`Pin_card Pin_card__${classTest}`} style={divStyle(owner, mainImg)}>
+                  <div key={_id} className={`Pin_card Pin_card__${stylePin}`} style={divStyle(owner, mainImg)}>
                       <div className='Pin__shadow'></div>
                       <div className='Pin__about'>
                         <Link to={`/article-view/${_id}`}>

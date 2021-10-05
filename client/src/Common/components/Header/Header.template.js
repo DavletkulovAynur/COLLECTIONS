@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Search} from '../Search/Search'
-import pixelFace from '../../assets/images/pixel-face.svg'
+
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -44,12 +44,7 @@ export function HeaderTemplate({avatarUrl, logOut}) {
 				<section className='user-avatar'>
 					<Link to='/personal-area'>
 						<div className={`user`}>
-							{avatarUrl
-								? <img className='avatar' src={avatarUrl}/>
-								: <div className='default-avatar'>
-									<img src={pixelFace}/>
-								</div>
-							}
+							<img className='avatar' src={avatarUrl}/>
 						</div>
 					</Link>
 				</section>
