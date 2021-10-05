@@ -2,6 +2,7 @@ import React from 'react'
 import './CollectionsList.scss'
 import {Loading} from '../../../Common/components/Loading/Loading'
 import {CommonCard} from '../../../Common/components/CommonCard/CommonCard'
+import empty from '../../assets/images/icons/empty.svg'
 
 
 function CollectionsList({data = []}) {
@@ -26,7 +27,11 @@ function CollectionsList({data = []}) {
 		return (
 			<div className='Collections-list'>
 				<div className='loader'>
-					<Loading/>
+					{/*<Loading/>*/}
+					<div className='test-wrapper'>
+						<img className='test' src={empty}/>
+					</div>
+
 				</div>
 			</div>
 		)

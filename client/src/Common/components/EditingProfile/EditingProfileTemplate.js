@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './EditingProfile.scss'
 import Input from '../Input/Input'
 import {useInput} from "../../utils/hooks/input.hook";
 
 
 
-
+// TODO - ERROR profileLoading - false
+// setDisabledButton(!profileLoading)
 
 
 export default function EditingProfileTemplate({  sendUserInformation,
@@ -18,39 +19,66 @@ export default function EditingProfileTemplate({  sendUserInformation,
   const nameInput = useInput(userName)
   const aboutUserInput = useInput(description)
   const placeInput = useInput(place)
+  const [disabledButton, setDisabledButton]= useState(true)
+
+  useEffect(() => {
+    if(userName !== nameInput.value || description !== aboutUserInput.value) {
+      setDisabledButton(false)
+    } else {
+      setDisabledButton(true)
+    }
+
+  }, [nameInput, aboutUserInput, profileLoading])
 
   const returnInitialState = () => {
     nameInput.changeInitialState(userName)
     aboutUserInput.changeInitialState(description)
     placeInput.changeInitialState(place)
+    setDisabledButton(true)
+  }
+
+  const inputs = [
+    {
+      text: 'Имя пользователя',
+      binding: nameInput,
+      placeholder: 'Имя пользователя'
+    },
+    {
+      text: 'О себе',
+      binding: aboutUserInput,
+      placeholder: 'Расскажите немного о себе'
+    },
+    // {
+    //   text: 'Откуда',
+    //   binding: placeInput,
+    //   placeInput: 'Откуда'
+    // },
+  ]
+
+  function handleClick() {
+    sendUserInformation(nameInput, placeInput, aboutUserInput)
   }
 
   return (
     <section className='Editing-profile'>
-      <div className='Editing-profile__input-box'>
-        <span className='Editing-profile__input-designation'>Имя пользователя</span>
-        <div className='Editing-profile__input'>
-          <Input placeholder='Имя пользователя' binding={nameInput} label='Имя пользователя'/>
-        </div>
-      </div>
-      <div className='Editing-profile__input-box'>
-        <span className='Editing-profile__input-designation'>Откуда</span>
-        <div className='Editing-profile__input'>
-          <Input placeholder='Откуда' binding={placeInput}/>
-        </div>
-      </div>
-      <div className='Editing-profile__input-box'>
-        <span className='Editing-profile__input-designation'>О себе</span>
-        <div className='Editing-profile__input'>
-          <Input placeholder='Расскажите немного о себе' binding={aboutUserInput}/>
-        </div>
-      </div>
+
+      {inputs.map((item, index) => {
+        const {text, binding, placeholder} = item
+        return (
+          <div key={index} className='Editing-profile__input-box'>
+            <span className='Editing-profile__input-designation'>{text}</span>
+            <div className='Editing-profile__input'>
+              <Input placeholder={placeholder} binding={binding}/>
+            </div>
+          </div>
+        )
+      })}
 
       <div className='Editing-profile__buttons'>
-        <button className='Editing-profile__button Button Button-root Button_cancel' onClick={() => returnInitialState()}>
-          Отмена
+        <button disabled={disabledButton} className='Editing-profile__button Button Button-root Button_cancel' onClick={() => returnInitialState()}>
+          Сбросить
         </button>
-        <button disabled={profileLoading} className='Editing-profile__button Button Button-root' onClick={() => sendUserInformation(nameInput, placeInput, aboutUserInput)}>
+        <button disabled={disabledButton} className='Editing-profile__button Button Button-root' onClick={handleClick}>
           Готово
         </button>
       </div>

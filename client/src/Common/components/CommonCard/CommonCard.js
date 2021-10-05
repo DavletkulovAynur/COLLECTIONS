@@ -65,7 +65,6 @@ export function CommonCard({data}) {
                 mainImg,
                 author,
                 stylePin,
-                classTest,
                 authorAvatar} = item
                 return (
                   <div key={_id} className={`Pin_card Pin_card__${stylePin}`} style={divStyle(owner, mainImg)}>

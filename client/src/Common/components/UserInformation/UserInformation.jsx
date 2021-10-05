@@ -17,7 +17,7 @@ export const UserInformation = ({   unSubscribeOnUser,
                                     numberUserPublications = '0'}) => {
 
 
-  const {userName, avatar, userId, subscribers, subscriptions} = user
+  const {userName, description, avatar, userId, subscribers, subscriptions} = user
   const avatarUrl = DefineAvatarUrl(avatar)
 
 
@@ -27,13 +27,17 @@ export const UserInformation = ({   unSubscribeOnUser,
             <AvatarTemplate avatarUrl={avatarUrl}/>
             {guest
               ? <SubscribeButtonsTemplate subscriptions={subscriptions} userId={userId} subscribeOnUser={subscribeOnUser} unSubscribeOnUser={unSubscribeOnUser}/>
-              : <PencilTemplate/>}
+              : <PencilTemplate/>
+            }
           </section>
 
           <section className='User-information__about'>
             <UserNameTemplate userName={userName}/>
             <SubscribeTemplate numberUserPublications={numberUserPublications} subscribers={subscribers} subscriptions={subscriptions}/>
-            <DescriptionTemplate/>
+            {description
+              ? <DescriptionTemplate description={description}/>
+              : null
+            }
           </section>
       </div>
     )

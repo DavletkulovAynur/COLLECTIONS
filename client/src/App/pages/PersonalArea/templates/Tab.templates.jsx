@@ -44,9 +44,9 @@ export function TabTemplates({tabValue, changeTabValue}) {
         return (
           <div key={index} data-tab={`${value}`} className={`tab__element-wrapper ${tabValue === value ? 'tab_active' : ''}`}>
             <div className='tab__item'>
-              <FontAwesomeIcon icon={`${icon}`} color='#888888'/>
+              <FontAwesomeIcon icon={`${icon}`} color='#000'/>
             </div>
-            <h4 className='tab__description'>{description}</h4>
+            {/*<h4 className='tab__description'>{description}</h4>*/}
           </div>
         )
       })}
