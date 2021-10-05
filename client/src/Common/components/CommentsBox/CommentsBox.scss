@@ -16,7 +16,14 @@
 .Comment {
   padding: 12px 25px 12px 12px;
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
+
+
+  &__wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
 
   &__avatar-box {
     margin-right: 12px;
@@ -50,5 +57,15 @@
   &__date {
     font-size: 10px;
     color: #888888;
+  }
+
+  &__delete-button {
+    //display: none;
+  }
+
+  &:hover {
+    .Comment__delete-button {
+      display: block;
+    }
   }
 }

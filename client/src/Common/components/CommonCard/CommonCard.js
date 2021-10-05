@@ -4,6 +4,7 @@ import './CommonCard.scss'
 import {Bookmark} from 'Common/components/Bookmark/Bookmark'
 import {API_URL} from '../../../config'
 import {useSelector} from 'react-redux'
+import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
 
 
 
@@ -24,7 +25,6 @@ export function CommonCard({data}) {
           <Bookmark id={_id} />
           <div>
             <div className='Pin__about-title'>{title}</div>
-            <span>{date}</span>
           </div>
         </section>
       </>
@@ -33,7 +33,7 @@ export function CommonCard({data}) {
 
 
   const UserLink = ({authorAvatar, owner, author}) => {
-    const avatarUrl = authorAvatar ? `${API_URL + 'avatars/' + authorAvatar}` : false
+    const avatarUrl = DefineAvatarUrl(authorAvatar)
 
     let link
     if(userId === owner) {

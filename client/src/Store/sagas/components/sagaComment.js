@@ -8,7 +8,11 @@ import {
 } from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
-import {SEND_COMMENT_LOADING, UPDATE_COLLECTION_COMMENT} from '../../reducers/components/collectionViewReducer'
+import {
+  DELETE_COLLECTION_COMMENT,
+  SEND_COMMENT_LOADING,
+  UPDATE_COLLECTION_COMMENT
+} from '../../reducers/components/collectionViewReducer'
 
 export function* addComment(data) {
   try {
@@ -28,14 +32,16 @@ export function* addComment(data) {
 
 export function* removeComment(data) {
   try {
-    console.log('test', data)
+
     // yield put({type: LOADING_COLLECTION_UPDATE})
     const payload =  yield call(() => Fetcher(`${API_URL}comment/remove`,
       'PUT',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}))
 
-    yield put({type: UPDATE_COLLECTION_COMMENT, payload})
+    const messageText = {text: `Комментарий удален`, severity: 'success'}
+    yield put({type: SHOW_MESSAGE, payload: messageText })
+    yield put({type: DELETE_COLLECTION_COMMENT, payload})
     // yield put({type: LOADING_HIDDEN_COLLECTION_UPDATE})
   } catch (e) {
     console.log(e)

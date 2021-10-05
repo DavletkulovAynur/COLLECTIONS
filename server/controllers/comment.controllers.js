@@ -22,7 +22,7 @@ class CommentControllers {
 
 
     try {
-      await  COLLECTION_MODEL.update({_id: id}, {$push: {comments : commentObj}})
+      await  COLLECTION_MODEL.updateMany({_id: id}, {$push: {comments : commentObj}})
       res.status(201).json({message: 'Collection update', status: true, resData: commentObj})
     } catch (e) {
       res.status(500).json(e)
@@ -34,14 +34,15 @@ class CommentControllers {
   async removeComment(req, res) {
     try {
       const {collectionId, commentId} = req.body
-      const collection = await COLLECTION_MODEL.find({_id: collectionId})
-      console.log(collection)
-      console.log(commentId)
-      // const test = collection.comments.filter((item) => item.idComment != commentId)
-      // console.log(test)
+      const allCollection = await COLLECTION_MODEL.find({_id: collectionId})
 
-      // res.status(201).json({message: 'Collection update', status: true, resData: commentObj})
+      const updateCommentsArr = allCollection[0].comments.filter((item) => item.idComment != commentId)
+
+      await  COLLECTION_MODEL.updateMany({_id: collectionId}, {comments : updateCommentsArr})
+
+      res.status(201).json({message: 'Collection update', status: true, resData: updateCommentsArr})
     } catch (e) {
+      console.log(e)
       res.status(500).json(e)
     }
   }

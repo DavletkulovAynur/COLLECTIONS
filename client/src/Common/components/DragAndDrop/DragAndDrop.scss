@@ -78,25 +78,9 @@
   }
 
   &__preview-delete-icon {
-    background: #fff;
     position: absolute;
     top: 50%;
     left: 1%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-
-    &:hover {
-      cursor: pointer;
-      background: #eeeeee;
-
-      .fa-trash-alt {
-        color: #e60023;
-      }
-    }
   }
 }
 

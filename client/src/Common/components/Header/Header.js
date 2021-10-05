@@ -3,13 +3,15 @@ import './Header.scss'
 import {useHistory} from 'react-router-dom'
 import {HeaderTemplate} from './Header.template'
 import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logoutAction} from "../../../Store/actions/action";
 
 export function Header() {
+  const {owner} = useSelector((state) => state.authReducer)
+  const {avatar} = owner
   const dispatch = useDispatch()
   const history = useHistory()
-  const avatarUrl = DefineAvatarUrl()
+  const avatarUrl = DefineAvatarUrl(avatar)
 
   const logOut = () => {
     dispatch(logoutAction())
