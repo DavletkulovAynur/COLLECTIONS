@@ -5,7 +5,8 @@ import EditingProfileTemplate from './EditingProfileTemplate'
 import {checkForm} from "../../utils/checkForm";
 
 export default function EditingProfile({sendNewInfoProfile}) {
-  const {userName, description, place} = useSelector((state) => state.authReducer)
+  const {owner} = useSelector((state) => state.authReducer)
+  const {userName, description, place} = owner
   const {profileLoading} = useSelector((state) => state.userEditReducer)
 
   const [inputErrors, SetInputErrors] = useState({})

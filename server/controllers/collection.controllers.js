@@ -15,7 +15,7 @@ class CollectionControllers {
 	async addCollection(req, res){
 		try {
 			const file = req.files.file
-			const {title, description} = req.body
+			const {title, description, stylePin} = req.body
 			const user = await USER_MODEL.find({_id: req.user.id})
 			// const date = Date.now()
 			// console.log('date', date)
@@ -57,6 +57,7 @@ class CollectionControllers {
 				authorAvatar: avatar,
 				description,
 				mainImg,
+				stylePin,
 				owner: req.user.id
 			})
 

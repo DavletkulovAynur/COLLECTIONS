@@ -18,6 +18,7 @@ function AddCollection() {
   const [inputErrors, SetInputErrors] = useState({})
   const dispatch = useDispatch()
   const formData = new FormData()
+  const [stylePin, setStylePin]= useState('middle')
 
   const handleSubmit = (event, title, description) => {
     // TODO разбить функцию
@@ -38,6 +39,7 @@ function AddCollection() {
     formData.append('file', fileImg)
     formData.append('title', title.value)
     formData.append('description', description.value)
+    formData.append('stylePin', stylePin)
 
     // TODO Можно автора не отправлять
     formData.append('author', userName)
@@ -57,8 +59,13 @@ function AddCollection() {
     setFileImg(file)
   }
 
+  function changeStyleSelect(type) {
+    setStylePin(type)
+  }
+
   return (
     <AddCollectionTemplate
+      changeStyleSelect={changeStyleSelect}
       load={load}
       handleSubmit={handleSubmit}
       loadImg={loadImg}

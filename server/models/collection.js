@@ -10,6 +10,7 @@ const schema = new Schema ({
   publisher: {type: String},
   description: {type: String},
   comments: {type: Array},
+  stylePin: {type: String},
   owner: {type: Types.ObjectId, ref: 'Users'}
 })
 
