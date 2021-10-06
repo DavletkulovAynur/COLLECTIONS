@@ -20,10 +20,6 @@ export function PersonalArea() {
 		dispatch(getBookmarkCollectionAction(bookmark))
 	}, [bookmark])
 
-	useEffect(() => {
-		// dispatch(getSubscribeCollectionAction(subscriptions))
-	}, [])
-
 	function changeTabValue(typeValue) {
 		setTabValue(typeValue)
 	}

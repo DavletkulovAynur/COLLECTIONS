@@ -15,22 +15,12 @@ import {
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
 
-// TODO перенести (передеелать)
-function addMarkupClassToCards(dataArr) {
-	const className = () => {
-		const classNames = ['small', 'medium', 'large']
-		return classNames[Math.floor(Math.random()*classNames.length)]
-	}
 
-	return dataArr.map((item) => {
-		return {...item, classTest: className()}
-	})
-}
 
 function* getAllCollection() {
 	try {
 		const allCollection = yield call(() => Fetcher('http://localhost:5000/collection/get-all', 'GET'))
-		const payload = addMarkupClassToCards(allCollection.data)
+		const payload = allCollection.data
 		yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload })
 	} catch (e) {
 		// yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload })
@@ -45,7 +35,7 @@ function* getOwnerUserCollection(data) {
 			userId: data.payload
 		}
 		const userCollection = yield call(() => Fetcher('http://localhost:5000/collection/get', 'POST', user))
-		const payload = addMarkupClassToCards(userCollection.data)
+		const payload = userCollection.data
 		yield put({type: WRITE_DOWN_COLLECTION, payload})
 	} catch (e) {
 		console.log(e)
