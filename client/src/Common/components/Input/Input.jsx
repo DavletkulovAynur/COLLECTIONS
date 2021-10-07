@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Input.scss'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -9,7 +9,14 @@ const Input = ({error = '',
 
   const [eyeView, setEyeView] = useState(false)
 
-  const errorStyle = error ? 'error' : ''
+ let errorStyle = error ? 'error' : ''
+
+  // useEffect(() => {
+  //   console.log('errore', error)
+  //   errorStyle = error ? 'error' : ''
+  // }, [error])
+
+  console.log('errore', error)
 
   const inputIcon = () => {
     if(type === 'password') {

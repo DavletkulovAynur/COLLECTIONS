@@ -17,8 +17,6 @@ class CollectionControllers {
 			const file = req.files.file
 			const {title, description, stylePin} = req.body
 			const user = await USER_MODEL.find({_id: req.user.id})
-			// const date = Date.now()
-			// console.log('date', date)
 
 			//
 			const type = file.name.split('.').pop()

@@ -1,6 +1,6 @@
 import React from 'react'
 import './UserInformation.scss'
-import {API_URL} from "../../../config";
+
 
 import {SubscribeTemplate} from "./templates/Subscribe.template";
 import {DescriptionTemplate} from "./templates/Description.template";
@@ -9,6 +9,7 @@ import {UserNameTemplate} from "./templates/UserName.template";
 import {AvatarTemplate} from "./templates/Avatar.template";
 import {SubscribeButtonsTemplate} from "./templates/SubscribeButtons.template";
 import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
+import {useSelector} from "react-redux";
 
 export const UserInformation = ({   unSubscribeOnUser,
                                     subscribeOnUser,
@@ -17,16 +18,24 @@ export const UserInformation = ({   unSubscribeOnUser,
                                     numberUserPublications = '0'}) => {
 
 
-  const {userName, description, avatar, userId, subscribers, subscriptions} = user
+  const {userName, description, avatar, subscribers, subscriptions} = user
   const avatarUrl = DefineAvatarUrl(avatar)
 
+  // TODO Owner страницы
+  const {owner} = useSelector((state) => state.authReducer)
+  const {userId} = owner
 
   return (
       <div className='User-information User-information-root'>
           <section className='User-information__avatar-buttons-action'>
             <AvatarTemplate avatarUrl={avatarUrl}/>
             {guest
-              ? <SubscribeButtonsTemplate subscriptions={subscriptions} userId={userId} subscribeOnUser={subscribeOnUser} unSubscribeOnUser={unSubscribeOnUser}/>
+              ? <SubscribeButtonsTemplate
+                subscribers={subscribers}
+                subscriptions={subscriptions}
+                userId={userId}
+                subscribeOnUser={subscribeOnUser}
+                unSubscribeOnUser={unSubscribeOnUser}/>
               : <PencilTemplate/>
             }
           </section>

@@ -1,18 +1,23 @@
-import React, {useState} from "react";
+import React, {useState} from 'react'
 import './AddCollection.scss'
-import AddCollectionTemplate from './AddCollectionTemplate'
+
 
 import {useDispatch, useSelector} from 'react-redux'
 import {
   sendCollectionImgErrorAction,
   sendCollectionPreviewImg
-} from "../../../Store/reducers/components/addCollectionReducer";
-import {addCollectionAction} from "../../../Store/actions/action";
-import {validationInputs} from "../../../Common/utils/checkForm";
+} from '../../../Store/reducers/components/addCollectionReducer'
+import {addCollectionAction} from '../../../Store/actions/action'
+import {validationInputs} from '../../../Common/utils/checkForm'
+import {useInput} from '../../../Common/utils/hooks/input.hook'
+//Templates
+import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop'
+import {AddCollectionInputs} from './templates/AddCollectionInputs'
+import StylePin from './templates/StylePin'
+import {AddCollectionButton} from './templates/AddCollectionButton'
 
 
 function AddCollection() {
-  const {userName} = useSelector((state) => state.authReducer)
   const {load} = useSelector((state) => state.addCollectionReducer)
   const [fileImg, setFileImg] = useState(null)
   const [inputErrors, SetInputErrors] = useState({})
@@ -20,31 +25,47 @@ function AddCollection() {
   const formData = new FormData()
   const [stylePin, setStylePin]= useState('middle')
 
-  const handleSubmit = (event, title, description) => {
-    // TODO разбить функцию
-    event.preventDefault()
-    const thereAreMistakesInInputs = validationInputs({title: title.value})
+  //
+  const title = useInput('')
+  const description = useInput('')
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const error = errorChecking()
+
+    if(!error) {
+      return
+    }
+    AppendInFormData()
+    sendCollection()
+  }
+
+  // TODO плохое решение возвращать false и true
+  function errorChecking() {
+    const thereAreMistakesInInputs = validationInputs({title: title.value})
     SetInputErrors(thereAreMistakesInInputs)
     if(!fileImg) {
       dispatch(sendCollectionImgErrorAction(true))
-      return
+      return false
     }
     if(Object.keys(thereAreMistakesInInputs).length !== 0) {
-      return
+      return false
     }
+    return true
+  }
 
-    // принимает объект
-
+  function AppendInFormData(){
     formData.append('file', fileImg)
     formData.append('title', title.value)
     formData.append('description', description.value)
     formData.append('stylePin', stylePin)
+  }
 
-    // TODO Можно автора не отправлять
-    formData.append('author', userName)
+  function sendCollection() {
     dispatch(addCollectionAction(formData))
-
+    SetInputErrors({})
+    title.clear()
+    description.clear()
   }
 
   const deleteImg = () => {
@@ -64,14 +85,21 @@ function AddCollection() {
   }
 
   return (
-    <AddCollectionTemplate
-      changeStyleSelect={changeStyleSelect}
-      load={load}
-      handleSubmit={handleSubmit}
-      loadImg={loadImg}
-      deleteImg={deleteImg}
-      inputErrors={inputErrors}
-    />
+    <div className='Add-collection Add-collection-root'>
+      <h1 className='Add-collection__title'>Создание пина</h1>
+      <form className='Add-collection__form'>
+        <section className='Add-collection__drag-drop-box'>
+          <DragAndDrop loadImg={loadImg} deleteImg={deleteImg}/>
+        </section>
+        <section className='Add-collection__inputs'>
+          <div>
+            <AddCollectionInputs inputErrors={inputErrors} description={description} title={title}/>
+            <StylePin changeStyleSelect={changeStyleSelect}/>
+          </div>
+          <AddCollectionButton load={load} handleSubmit={handleSubmit}/>
+        </section>
+      </form>
+    </div>
   )
 }
 

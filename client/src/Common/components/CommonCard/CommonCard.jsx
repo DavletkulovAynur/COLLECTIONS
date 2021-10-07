@@ -10,7 +10,8 @@ import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
 
 
 export function CommonCard({data}) {
-    const {userId} = useSelector((state) => state.authReducer)
+    const {owner} = useSelector((state) => state.authReducer)
+  const {userId} = owner
 
   const divStyle = (owner, mainImg) => {
       return {
