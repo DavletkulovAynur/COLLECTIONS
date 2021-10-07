@@ -20,8 +20,8 @@ function* userInfoEditWorker(data) {
       {Authorization: `Bearer ${localStorage.getItem('token')}`}
     ))
     yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
-    const payload = {text: `успешно`, severity: 'success'}
-    yield put({type: SHOW_MESSAGE, payload})
+    const showText = {text: `успешно`}
+    yield put({type: SHOW_MESSAGE, payload: showText})
   } catch (e) {
     yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
     console.log('error', e)
@@ -39,7 +39,8 @@ function* userAvatarEditWorker(data) {
       false
     ))
     yield put({type: LOAD_AVATAR_COMPLETE})
-    // yield put({type: SHOW_MESSAGE})
+    const showText = {text: `успешно`}
+    yield put({type: SHOW_MESSAGE, payload: showText})
   } catch (e) {
     const payload = {text: `ошибка ${e.statusText}`, severity: 'error'}
     yield put({type: SHOW_MESSAGE, payload})

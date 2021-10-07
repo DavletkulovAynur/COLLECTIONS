@@ -7,6 +7,7 @@ import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
 export default function EditingAvatar({sendAvatar}) {
   let reader = new FileReader()
   const {owner} = useSelector((state) => state.authReducer)
+  const {loading} = useSelector((state) => state.userEditReducer)
   const {avatar} = owner
 
   const [previewImg, setPreviewImg] = useState(null)
@@ -37,12 +38,14 @@ export default function EditingAvatar({sendAvatar}) {
     const formData = new FormData()
     formData.append('avatar', avatar)
     formData.append('file', loadAvatar)
-    // sendAvatar(formData)
+    sendAvatar(formData)
     setPreviewImg(null)
+    setOpenPopupPreview(false)
   }
 
   return (
     <EditingAvatarTemplate
+      loader={loading}
       fileUploadHandler={fileUploadHandler}
       previewImg={previewImg}
       changeUserAvatar={changeUserAvatar}

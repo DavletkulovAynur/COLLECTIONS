@@ -28,7 +28,7 @@ export function PersonalArea() {
 	return (
 		<div className='Personal-area Personal-area-root'>
 			<section className='Personal-area__info-and-tab-box'>
-				<UserInformation numberUserPublications={numberUserPublications} user={owner}/>
+				<UserInformation numberUserPublications={numberUserPublications} user={owner} guest={false}/>
 				<TabTemplates changeTabValue={changeTabValue} tabValue={tabValue}/>
 			</section>
 			<CollectionListTemplate user={owner} tabValue={tabValue}/>

@@ -9,12 +9,13 @@ export default function EditingAvatarTemplate({ avatarUrl,
                                                 deleteFile,
                                                 changeUserAvatar,
                                                 openPopupPreview,
+                                                loader,
                                               })
 
 {
   return (
     <div className='Avatar-edit'>
-      <AvatarChange avatarUrl={avatarUrl} fileUploadHandler={fileUploadHandler}/>
+      <AvatarChange avatarUrl={avatarUrl} fileUploadHandler={fileUploadHandler} loader={loader}/>
       <PreviewImgPopup openPopupPreview={openPopupPreview} previewImg={previewImg} deleteFile={deleteFile} changeUserAvatar={changeUserAvatar}/>
     </div>
   )
@@ -30,7 +31,7 @@ const PreviewImgPopup = ({openPopupPreview, previewImg, deleteFile, changeUserAv
       <div className="Avatar-edit__modal">
         <div className='Avatar-edit__modal-header'>
           <div className="Avatar-edit__modal-header-title">Изменить аватар</div>
-          <div className='Avatar-edit__modal-header-close'>
+          <div onClick={deleteFile} className='Avatar-edit__modal-header-close'>
             <FontAwesomeIcon icon='times' color='#000'/>
           </div>
         </div>
@@ -47,7 +48,8 @@ const PreviewImgPopup = ({openPopupPreview, previewImg, deleteFile, changeUserAv
   )
 }
 
-const AvatarChange = ({fileUploadHandler, avatarUrl}) => {
+const AvatarChange = ({fileUploadHandler, avatarUrl, loader}) => {
+  console.log('loader', loader)
   return (
     <div className='Avatar-edit__box'>
       <div className='Avatar-edit__content'>
@@ -59,7 +61,12 @@ const AvatarChange = ({fileUploadHandler, avatarUrl}) => {
             onChange={(event) => fileUploadHandler(event)}
           />
           <label htmlFor="input__file">
-            <span className="Avatar-edit__input-button-text">Загрузить новую фотографию</span>
+            <span className="Avatar-edit__input-button-text">
+              {loader
+                ? 'LOADER'
+                : 'Загрузить новую фотографию'
+              }
+              </span>
           </label>
         </section>
       </div>

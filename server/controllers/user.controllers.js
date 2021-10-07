@@ -54,7 +54,7 @@ class UserControllers {
 	async unSubscribeUser(req, res) {
 		try {
 			const {subscribeUserId} = req.body
-			await USER_MODEL.update({_id: subscribeUserId}, {$addToSet: {subscribers: req.user.id}})
+			await USER_MODEL.update({_id: subscribeUserId}, {$pull: {subscribers: req.user.id}})
 			await USER_MODEL.update({_id: req.user.id}, {$pull: {subscriptions: subscribeUserId}})
 			res.status(201).json({message: 'Успешно'})
 		} catch (e) {
@@ -118,7 +118,9 @@ class UserControllers {
 	async editUser(req, res) {
 		try {
 			const {username, place, description} = req.body
-			await USER_MODEL.update({_id: req.user.id}, {username, place, description})
+			await USER_MODEL.updateMany({_id: req.user.id}, {username, place, description})
+			await COLLECTION_MODEL.updateMany({owner: req.user.id}, {author: username})
+
 			res.status(201).json({message: 'User info update', status: true})
 		} catch (e) {
 			res.status(500).json(e)
