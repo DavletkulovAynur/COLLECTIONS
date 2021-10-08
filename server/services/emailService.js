@@ -5,32 +5,49 @@ const fs = require('fs');
 const path = require("path");
 
 
-async function emailService(email, user) {
-  const randomEmailHash = randomBytes(16).toString('hex')
-
+async function emailService(email, user, hash = null) {
   const test = path.join(__dirname, `./auxiliaryElements/email.html`)
 
-  fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
-    let htmlFile = data;
-    htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:5000/authentication/email?id=${randomEmailHash}`)
+  if(hash) {
+    fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
+      let htmlFile = data;
+      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:5000/authentication/email?id=${hash}`)
 
-    console.log(htmlFile)
-    const message = {
-      to: email,
-      subject: 'test',
-      html: htmlFile,
-    }
+      const message = {
+        to: email,
+        subject: 'test',
+        html: htmlFile,
+      }
 
-    mailer(message)
-  })
+      mailer(message)
+    })
+  } else {
+    const randomEmailHash = randomBytes(16).toString('hex')
+    fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
+      let htmlFile = data;
+      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:5000/authentication/email?id=${randomEmailHash}`)
+
+      const message = {
+        to: email,
+        subject: 'test',
+        html: htmlFile,
+      }
+
+      mailer(message)
+    })
 
 
-  const emailHash = new EMAIL_HASH_MODEL({
-    hash: randomEmailHash,
-    owner: user._id
-  })
+    const emailHash = new EMAIL_HASH_MODEL({
+      hash: randomEmailHash,
+      owner: user._id,
+      email: email,
 
-  await emailHash.save()
+    })
+
+    await emailHash.save()
+  }
+
+
 }
 
 module.exports = emailService

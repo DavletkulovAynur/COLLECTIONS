@@ -19,7 +19,7 @@ import {
   UNSUBSCRIBE_ON_USER,
   REMOVE_SHOW_MESSAGE,
   EDIT_USER,
-  EDIT_AVATAR, GET_USER_COLLECTION,
+  EDIT_AVATAR, GET_USER_COLLECTION, EMAIL_RESENDING,
 } from '../types'
 
 import {addCommentAction, removeCommentAction} from './components/commentActions'
@@ -169,4 +169,8 @@ export function editAvatarAction(payload) {
     type: EDIT_AVATAR,
     payload
   })
+}
+
+export function emailResendingAction() {
+  return({type: EMAIL_RESENDING})
 }

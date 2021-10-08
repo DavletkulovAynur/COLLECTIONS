@@ -4,7 +4,13 @@ import {
 	LOGIN_AUTHENTICATION,
 	LOGOUT,
 	CHECK_REGISTRATION,
-	CHECK_REGISTRATION_RETURN_FALSE, SHOW_MESSAGE, GET_ALL_COLLECTION, SAGA_AUTH_TOKEN, REGISTRATION, SAGA_LOGIN,
+	CHECK_REGISTRATION_RETURN_FALSE,
+	SHOW_MESSAGE,
+	GET_ALL_COLLECTION,
+	SAGA_AUTH_TOKEN,
+	REGISTRATION,
+	SAGA_LOGIN,
+	EMAIL_RESENDING,
 } from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
@@ -47,8 +53,20 @@ function* authWorker() {
 	}
 }
 
+function* authEmailResendingWorker() {
+	try {
+		const payload = yield call(() => Fetcher('http://localhost:5000/authentication/email-resending', 'POST', '', {
+			Authorization:`Bearer ${localStorage.getItem('token')}`
+		}))
+		console.log(payload)
+	} catch (e) {
+		yield put({type: LOGOUT})
+	}
+}
+
 export function* authWatcher() {
 	yield takeEvery(SAGA_AUTH_TOKEN, authWorker)
 	yield takeEvery(REGISTRATION, registrationWorker)
 	yield takeEvery(SAGA_LOGIN, loginWorker)
+	yield  takeEvery(EMAIL_RESENDING, authEmailResendingWorker)
 }

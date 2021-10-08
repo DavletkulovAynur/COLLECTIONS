@@ -37,11 +37,7 @@ class AuthControllers {
 						{ expiresIn: '1h'}
 			)
 
-			const userAdapter = adapter(user)
 
-			const resUser = {
-				token, ...userAdapter
-			}
 
 			emailService(email, user)
 
@@ -49,6 +45,12 @@ class AuthControllers {
 
 			if (!fs.existsSync(filePath)) {
 				fs.mkdirSync(filePath)
+			}
+
+			const userAdapter = adapter(user)
+
+			const resUser = {
+				token, ...userAdapter
 			}
 
 			res.status(201).json({resData: resUser, message: 'Добавлен новый пользователь'})
