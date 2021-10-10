@@ -6,7 +6,8 @@ import {userEditReducer} from './components/userEditReducer'
 import {collectionViewReducer} from './components/collectionViewReducer'
 import {userAreaPageReducer} from './components/userAreaPageReducer'
 import {subscribeReducer} from './components/subscribeReducer'
-import {showMessageReducer} from "./components/showMessageReducer";
+import {showMessageReducer} from './components/showMessageReducer'
+import {PopUpCardReducer} from './components/PopUpCardReducer'
 
 const reducer = combineReducers({
   collectionReducer,
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   collectionViewReducer,
   userAreaPageReducer,
   subscribeReducer,
-  showMessageReducer
+  showMessageReducer,
+  PopUpCardReducer
 })
 
 export default reducer

@@ -6,6 +6,7 @@ const router = Router()
 const authMiddleware = require('../middleware/auth.middleware')
 
 router.post('/add', authMiddleware, collectionControllers.addCollection)
+router.post('/delete', authMiddleware, collectionControllers.deleteCollection)
 
 router.get('/get-all',collectionControllers.getAllCollection)
 

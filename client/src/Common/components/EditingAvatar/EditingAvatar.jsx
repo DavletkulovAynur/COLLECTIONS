@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useSelector} from "react-redux";
 import EditingAvatarTemplate from "./EditingAvatarTemplate";
 import './EditingAvatar.scss'
-import {DefineAvatarUrl} from "../../utils/DefineAvatarUrl";
+import {DefineAvatarUrl} from '../../utils/DefineAvatarUrl'
 
 export default function EditingAvatar({sendAvatar}) {
   let reader = new FileReader()
@@ -14,8 +14,13 @@ export default function EditingAvatar({sendAvatar}) {
   const [openPopupPreview, setOpenPopupPreview] = useState(false)
   const [loadAvatar, setLoadAvatar] = useState(null)
 
-  const fileUploadHandler = async (event) => {
+  const fileUploadHandler =(event) => {
+
     const files = [...event.target.files]
+
+    if(!files.length) {
+      return
+    }
     const arrFiles = [...files]
     const mainImg = arrFiles[0]
     setLoadAvatar(mainImg)
@@ -28,6 +33,7 @@ export default function EditingAvatar({sendAvatar}) {
   }
 
   const deleteFile = () => {
+
     setPreviewImg(null)
     setOpenPopupPreview(false)
   }

@@ -13,60 +13,78 @@ const timestamp = require('time-stamp');
 
 class CollectionControllers {
 	async addCollection(req, res){
-		try {
-			const file = req.files.file
-			const {title, description, stylePin} = req.body
-			const user = await USER_MODEL.find({_id: req.user.id})
+	try {
+		const file = req.files.file
+		const {title, description, stylePin} = req.body
+		const user = await USER_MODEL.find({_id: req.user.id})
 
-			//
-			const type = file.name.split('.').pop()
-			const mainImg = Uuid.v4() + `.${type}`
-			//
+		//
+		const type = file.name.split('.').pop()
+		const mainImg = Uuid.v4() + `.${type}`
+		//
 
-			let originalImgPathWay = path.join(__dirname, `../static/${req.user.id}/original`)
-			let pathWay = path.join(__dirname, `../static/${req.user.id}/original/${mainImg}`)
+		let originalImgPathWay = path.join(__dirname, `../static/${req.user.id}/original`)
+		let pathWay = path.join(__dirname, `../static/${req.user.id}/original/${mainImg}`)
 
-			if(!fs.existsSync(originalImgPathWay)) {
-				fs.mkdir(originalImgPathWay, () => {
-					file.mv(pathWay)
-				})
-			} else {
+		if(!fs.existsSync(originalImgPathWay)) {
+			fs.mkdir(originalImgPathWay, () => {
 				file.mv(pathWay)
-			}
-
-			await imagemin(
-				[`${path.join(__dirname, `../static/${req.user.id}/original/${mainImg}`)}`],
-				{
-				destination: `${path.join(__dirname, `../static/${req.user.id}/compressed`)}`,
-				plugins: [
-					imageminJpegRecompress({quality: 'low'}),
-					imageminPngquant({
-						quality: [0.1, 0.1]
-					})
-				]
-			});
-
-			const avatar = user[0].avatar ? user[0].avatar : ''
-			const collection = new COLLECTION_MODEL({
-				nameCollection: 'Нужно прописать',
-				title,
-				date: timestamp('DD/MM/YYYY'),
-				author: user[0].username,
-				authorAvatar: avatar,
-				description,
-				mainImg,
-				stylePin,
-				owner: req.user.id
 			})
-
-			await collection.save()
-
-			res.status(201).json({message: 'success', status: true})
-
-			} catch (e) {
-			res.status(400).json(e)
-			}
+		} else {
+			file.mv(pathWay)
 		}
+
+		await imagemin(
+			[`${path.join(__dirname, `../static/${req.user.id}/original/${mainImg}`)}`],
+			{
+			destination: `${path.join(__dirname, `../static/${req.user.id}/compressed`)}`,
+			plugins: [
+				imageminJpegRecompress({quality: 'low'}),
+				imageminPngquant({
+					quality: [0.1, 0.1]
+				})
+			]
+		});
+
+		const avatar = user[0].avatar ? user[0].avatar : ''
+		const collection = new COLLECTION_MODEL({
+			nameCollection: 'Нужно прописать',
+			title,
+			date: timestamp('DD/MM/YYYY'),
+			author: user[0].username,
+			authorAvatar: avatar,
+			description,
+			mainImg,
+			stylePin,
+			owner: req.user.id
+		})
+
+		await collection.save()
+
+		res.status(201).json({message: 'success', status: true})
+
+		} catch (e) {
+		res.status(400).json(e)
+		}
+	}
+
+	async deleteCollection(req, res) {
+		try {
+			// удалить коллекцию
+			console.log('данные которые получаем', req.body)
+			// await  COLLECTION_MODEL.updateMany({_id: id}, {$push: {comments : commentObj}})
+			const {idCollection} = req.body
+			const collection = await COLLECTION_MODEL.find({_id: idCollection})
+			const {mainImg} = collection[0]
+			const filePathOriginal = path.join(__dirname, `../static/${req.user.id}/original/${mainImg}`)
+			const filePathCompressed = path.join(__dirname, `../static/${req.user.id}/compressed/${mainImg}`)
+			fs.unlinkSync(filePathOriginal);
+			fs.unlinkSync(filePathCompressed);
+			await COLLECTION_MODEL.remove({_id: idCollection})
+		} catch (e) {
+			console.log('error', e)
+		}
+	}
 
 	async getAllCollection(req, res){
 		try {

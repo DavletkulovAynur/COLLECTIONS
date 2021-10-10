@@ -9,6 +9,7 @@ import {getCollectionDataWatcher} from './components/sagaGetCollectionData'
 import {searchCollectionWatcher} from './components/sagaSearch'
 import {subscribeWatcher} from './components/sagaSubscribe'
 import {userWatcher} from "./components/sagaUser";
+import {sagaDeleteCollectionWatcher} from "./components/sagaDeleteCollection";
 
 
 export function* rootSaga() {
@@ -22,6 +23,7 @@ export function* rootSaga() {
     fork(searchCollectionWatcher),
     fork(subscribeWatcher),
     fork(userWatcher),
+    fork(sagaDeleteCollectionWatcher)
   ])
 
 }

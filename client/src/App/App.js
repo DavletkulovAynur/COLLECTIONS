@@ -24,6 +24,8 @@ import {  faCheckSquare,
   faTrashAlt,
   faChevronLeft,
   faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import {PopUpCard} from "../Common/components/PopUpCard/PopUpCard";
+
 
 library.add(fab, faCheck, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends, faTrashAlt, faPencilAlt, faChevronLeft)
 
@@ -60,6 +62,7 @@ function App() {
     <div className="App">
       {routes}
       <ShowMessage showMessage={showMessage} text={text} severity={severity}/>
+      <PopUpCard/>
     </div>
   );
 }
