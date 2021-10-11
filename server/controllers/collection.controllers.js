@@ -81,6 +81,7 @@ class CollectionControllers {
 			fs.unlinkSync(filePathOriginal);
 			fs.unlinkSync(filePathCompressed);
 			await COLLECTION_MODEL.remove({_id: idCollection})
+			res.status(201).json({message: 'delete collection', status: true})
 		} catch (e) {
 			console.log('error', e)
 		}

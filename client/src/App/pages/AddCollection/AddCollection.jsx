@@ -28,6 +28,7 @@ function AddCollection() {
   //
   const title = useInput('')
   const description = useInput('')
+  const nameCollection = useInput('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -93,7 +94,7 @@ function AddCollection() {
         </section>
         <section className='Add-collection__inputs'>
           <div>
-            <AddCollectionInputs inputErrors={inputErrors} description={description} title={title}/>
+            <AddCollectionInputs inputErrors={inputErrors} description={description} title={title} nameCollection={nameCollection}/>
             <StylePin changeStyleSelect={changeStyleSelect}/>
           </div>
           <AddCollectionButton load={load} handleSubmit={handleSubmit}/>

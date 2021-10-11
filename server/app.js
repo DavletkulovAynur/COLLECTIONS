@@ -17,6 +17,7 @@ app.use('/collection', require('./routes/collection.routes'))
 app.use('/users', require('./routes/users.routes'))
 app.use('/authentication', require('./routes/authentication-email.routes'))
 app.use('/comment', require('./routes/comment.routes'))
+app.use('/subscribe', require('./routes/subscribe.routes'))
 
 
 const PORT = config.get('port') || 5000

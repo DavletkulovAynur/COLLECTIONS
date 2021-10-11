@@ -1,0 +1,40 @@
+.User-information {
+
+  &__subscribe-popup-content {
+    max-width: 460px;
+    border-radius: 4px;
+  }
+
+  &__subscribe-popup {}
+
+  &__subscribe-popup-header {
+    display: flex;
+  }
+
+  &__type-subscribe {
+    &:hover {
+      cursor: pointer;
+      color: #ef0610;
+    }
+  }
+
+  &__subscribe-popup-header-button {
+    width: 50%;
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #f5f5f5;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+
+    &_active {
+      border-bottom: 2px solid #000;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: #ef0610;
+    }
+  }
+}
+
