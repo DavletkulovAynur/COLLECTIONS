@@ -46,15 +46,13 @@
     }
 
     &-author {
-      position: absolute;
-      bottom: -28px;
-      color: #000;
       display: flex;
       align-items: center;
       overflow: hidden;
     }
 
     &-author-avatar {
+
       width: 24px;
       height: 24px;
       border-radius: 50%;
@@ -63,11 +61,29 @@
     }
 
     &-author-name {
+      color: #000;
       margin-left: 6px;
       font-size: 12px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+
+  &__avatar-and-button {
+    position: absolute;
+    bottom: -28px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    justify-content: space-between;
+    width: 100%;
+    left: 0;
+  }
+
+  &__dots {
+    border: none;
+    background: none;
+    cursor: pointer;
   }
 
   &__shadow {
