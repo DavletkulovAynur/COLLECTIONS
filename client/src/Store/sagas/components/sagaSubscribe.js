@@ -2,7 +2,11 @@ import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
 import {call, put, takeEvery, select} from 'redux-saga/effects'
 import {SHOW_MESSAGE, SUBSCRIBE_ON_USER, UNSUBSCRIBE_ON_USER} from '../../types'
-import {loaderSubscribeAction} from '../../reducers/components/subscribeReducer'
+import {
+  GET_ALL_SUBSCRIBE,
+  getAllSubscribeLoaderAction,
+  loaderSubscribeAction
+} from '../../reducers/components/subscribeReducer'
 import {
   subscribeFromThisUserAction,
   unSubscribeFromThisUserAction
@@ -37,11 +41,29 @@ function* unSubscribeOnUserWorker(data) {
   }
 }
 
+function* getAllSubscribeWorker(data) {
+  try {
+    yield put(getAllSubscribeLoaderAction(true))
+    const payload = yield call(() => Fetcher(
+      `${API_URL}subscribe/get-all-subscribe`,
+      'POST',
+      data.payload,
+      {Authorization: `Bearer ${localStorage.getItem('token')}`}
+    ))
+    yield put(getAllSubscribeLoaderAction(false))
+    console.log(payload.data)
+  } catch (e) {
+    console.log('ERROR', e)
+  }
+}
+
 export function* subscribeWatcher() {
   yield takeEvery(SUBSCRIBE_ON_USER, subscribeOnUserWorker)
   yield takeEvery(UNSUBSCRIBE_ON_USER, unSubscribeOnUserWorker)
+  yield takeEvery(GET_ALL_SUBSCRIBE, getAllSubscribeWorker)
 }
 
+// UTILS
 function* subscribe(user, url, messageText) {
   yield put(loaderSubscribeAction(true))
   yield call(() => Fetcher(

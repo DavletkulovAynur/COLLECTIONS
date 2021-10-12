@@ -8,6 +8,7 @@ import {userAreaPageReducer} from './components/userAreaPageReducer'
 import {subscribeReducer} from './components/subscribeReducer'
 import {showMessageReducer} from './components/showMessageReducer'
 import {PopUpCardReducer} from './components/PopUpCardReducer'
+import {deleteCollectionReducer} from './components/deleteCollectionReducer'
 
 const reducer = combineReducers({
   collectionReducer,
@@ -18,7 +19,8 @@ const reducer = combineReducers({
   userAreaPageReducer,
   subscribeReducer,
   showMessageReducer,
-  PopUpCardReducer
+  PopUpCardReducer,
+  deleteCollectionReducer
 })
 
 export default reducer

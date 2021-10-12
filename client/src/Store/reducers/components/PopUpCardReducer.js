@@ -4,7 +4,7 @@ const initialState = {
   idCollection: null
 }
 
-const CHANGE_STATE_POPUP = 'CHANGE_STATE_POPUP'
+export const CHANGE_STATE_POPUP = 'CHANGE_STATE_POPUP'
 
 export function PopUpCardReducer(state = initialState, action) {
   switch (action.type) {

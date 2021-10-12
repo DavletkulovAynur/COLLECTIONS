@@ -2,7 +2,10 @@ import Input from "../../../../Common/components/Input/Input";
 import React, {useEffect, useState} from "react";
 
 
-export function AddCollectionInputs({inputErrors, title, description}) {
+export function AddCollectionInputs({inputErrors,
+                                      title,
+                                      description,
+                                      nameCollection}) {
   const [titleInputError, setTitleInputError] = useState(false)
 
   useEffect(() => {
@@ -30,6 +33,9 @@ export function AddCollectionInputs({inputErrors, title, description}) {
       <div>
         <Input binding={description} placeholder='Добавьте описание'/>
       </div>
+      {/*<div>*/}
+      {/*  <Input binding={nameCollection} placeholder='Добавьте название 1'/>*/}
+      {/*</div>*/}
     </>
   )
 }
