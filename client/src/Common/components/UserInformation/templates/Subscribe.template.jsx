@@ -11,6 +11,7 @@ export function SubscribeTemplate({numberUserPublications, subscribers, subscrip
     let $root = event.target.closest('[data-type]');
     if (!$root) return;
     if($root.dataset.type === 'publication') return;
+
     getAllSubscribe()
     setTypeSubscribeValue($root.dataset.value)
     openPopup()

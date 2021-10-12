@@ -3,10 +3,12 @@ import {useSelector} from "react-redux";
 import {ButtonLoading} from "../../ButtonLoading/ButtonLoading";
 
 
-export function SubscribeButtonsTemplate({userId, subscribers, unSubscribeOnUser, subscribeOnUser, subscriptions}) {
+export function SubscribeButtonsTemplate({subscribers, unSubscribeOnUser, subscribeOnUser}) {
   const {loader} = useSelector((state) => state.subscribeReducer)
+  // TODO Owner страницы
+  const {owner} = useSelector((state) => state.authReducer)
+  const {userId} = owner
 
-  console.log('subscribers', subscribers)
   return (
     <div className='User-information__button-box'>
       {subscribers.includes(userId)

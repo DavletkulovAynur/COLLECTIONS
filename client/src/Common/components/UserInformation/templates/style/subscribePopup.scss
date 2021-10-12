@@ -36,5 +36,35 @@
       color: #ef0610;
     }
   }
+
+  &__subscribe-popup-users {
+    height: 50vh;
+    overflow: scroll;
+  }
+
+  &__popup-users {
+    padding: 0;
+    margin: 16px 0;
+  }
+
+  &__popup-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  &__popup-user-name {
+    font-size: 14px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #000;
+    margin-left: 8px;
+  }
+
+  &__popup-user-avatar {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+  }
 }
 

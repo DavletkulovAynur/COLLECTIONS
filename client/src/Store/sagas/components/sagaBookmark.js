@@ -6,6 +6,7 @@ import {
   DELETE_BOOKMARK_UPDATE_STATE, GET_BOOKMARK_COLLECTION, SHOW_MESSAGE,
   WRITE_DOWN_BOOKMARK_COLLECTION
 } from '../../types'
+import {collectionLoaderAction} from "../../reducers/components/collectionReducer";
 
 function* addBookmark(data) {
     try {
@@ -59,7 +60,7 @@ function* getBookmarkCollection(formData) {
             {Authorization: `Bearer ${localStorage.getItem('token')}`}))
 
         yield put({type: WRITE_DOWN_BOOKMARK_COLLECTION, payload})
-
+        yield put(collectionLoaderAction(false))
     } catch (e) {
         console.log(e)
     }

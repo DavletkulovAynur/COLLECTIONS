@@ -6,13 +6,18 @@ import {
   WRITE_DOWN_COLLECTION, WRITE_DOWN_SEARCH_COLLECTION
 } from "../../types";
 
+const COLLECTION_LOADER = 'COLLECTION_LOADER'
+
+// TODO ошибка в том что (загрузка всегда true)
 const initialState = {
   myCollection: [],
   allCollection: [],
   bookmarkCollection: [],
   searchCollection: [],
   searchCollectionState: false,
-  numberUserPublications: 0
+  numberUserPublications: 0,
+  collectionLoader: true
+
 }
 
 export const collectionReducer = (state = initialState, action) => {
@@ -29,7 +34,11 @@ export const collectionReducer = (state = initialState, action) => {
       return {...state, searchCollectionState: true}
     case SEARCH_COLLECTION_HIDE_LOADING:
       return {...state, searchCollectionState: false}
+    case COLLECTION_LOADER:
+      return {...state, collectionLoader: action.payload}
     default:
       return state
   }
 }
+
+export const collectionLoaderAction = (payload) => ({type: COLLECTION_LOADER, payload})

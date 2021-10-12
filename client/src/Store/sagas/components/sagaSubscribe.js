@@ -5,7 +5,7 @@ import {SHOW_MESSAGE, SUBSCRIBE_ON_USER, UNSUBSCRIBE_ON_USER} from '../../types'
 import {
   GET_ALL_SUBSCRIBE,
   getAllSubscribeLoaderAction,
-  loaderSubscribeAction
+  loaderSubscribeAction, writeDownFullInfoSubscribeUser
 } from '../../reducers/components/subscribeReducer'
 import {
   subscribeFromThisUserAction,
@@ -50,8 +50,10 @@ function* getAllSubscribeWorker(data) {
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}
     ))
+
+    yield put(writeDownFullInfoSubscribeUser(payload.data))
     yield put(getAllSubscribeLoaderAction(false))
-    console.log(payload.data)
+
   } catch (e) {
     console.log('ERROR', e)
   }

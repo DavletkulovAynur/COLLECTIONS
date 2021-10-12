@@ -4,26 +4,28 @@ import {
 	GET_COLLECTION_VIEW,
 	GET_MY_COLLECTION,
 	GET_SUBSCRIBE_COLLECTION,
-	GET_USER, GET_USER_COLLECTION,
+
 	WRITE_DOWN_ALL_COLLECTION,
 	WRITE_DOWN_COLLECTION,
 	WRITE_DOWN_COLLECTION_VIEW,
-	WRITE_DOWN_GET_USER,
-	WRITE_DOWN_SUBSCRIBE_COLLECTION, WRITE_DOWN_USER_COLLECTION,
+
+	WRITE_DOWN_SUBSCRIBE_COLLECTION,
 } from '../../types'
 
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
+import {collectionLoaderAction} from "../../reducers/components/collectionReducer";
 
 
 
 function* getAllCollection() {
 	try {
+
 		const allCollection = yield call(() => Fetcher('http://localhost:5000/collection/get-all', 'GET'))
 		const payload = allCollection.data
 		yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload })
+		yield put(collectionLoaderAction(false))
 	} catch (e) {
-		// yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload })
 		console.log('error', e)
 
 	}
@@ -34,9 +36,11 @@ function* getOwnerUserCollection(data) {
 		const user = {
 			userId: data.payload
 		}
+
 		const userCollection = yield call(() => Fetcher('http://localhost:5000/collection/get', 'POST', user))
 		const payload = userCollection.data
 		yield put({type: WRITE_DOWN_COLLECTION, payload})
+		yield put(collectionLoaderAction(false))
 	} catch (e) {
 		console.log(e)
 
@@ -54,6 +58,7 @@ function* getSubscribeCollection(data) {
 			{Authorization: `Bearer ${localStorage.getItem('token')}`}
 		))
 		yield put({type: WRITE_DOWN_SUBSCRIBE_COLLECTION, payload})
+		yield put(collectionLoaderAction(false))
 	} catch (e) {
 		console.log('error', e)
 	}
