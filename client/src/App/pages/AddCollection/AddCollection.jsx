@@ -24,6 +24,7 @@ function AddCollection() {
   const dispatch = useDispatch()
   const formData = new FormData()
   const [stylePin, setStylePin]= useState('middle')
+  const [selectValue, setSelectValue] = useState('')
 
   //
   const title = useInput('')
@@ -60,6 +61,7 @@ function AddCollection() {
     formData.append('title', title.value)
     formData.append('description', description.value)
     formData.append('stylePin', stylePin)
+    formData.append('nameCollection', selectValue)
   }
 
   function sendCollection() {
@@ -85,16 +87,21 @@ function AddCollection() {
     setStylePin(type)
   }
 
+  function writeDownSelectValue(value) {
+    console.log(value)
+    setSelectValue(value)
+  }
+
   return (
     <div className='Add-collection Add-collection-root'>
-      <h1 className='Add-collection__title'>Создание пина</h1>
+      <h1 className='Add-collection__title'>Создание коллекции</h1>
       <form className='Add-collection__form'>
         <section className='Add-collection__drag-drop-box'>
           <DragAndDrop loadImg={loadImg} deleteImg={deleteImg}/>
         </section>
         <section className='Add-collection__inputs'>
           <div>
-            <AddCollectionInputs inputErrors={inputErrors} description={description} title={title} nameCollection={nameCollection}/>
+            <AddCollectionInputs writeDownSelectValue={writeDownSelectValue} inputErrors={inputErrors} description={description} title={title} nameCollection={nameCollection}/>
             <StylePin changeStyleSelect={changeStyleSelect}/>
           </div>
           <AddCollectionButton load={load} handleSubmit={handleSubmit}/>

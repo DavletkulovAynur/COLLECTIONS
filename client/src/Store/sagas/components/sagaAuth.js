@@ -5,7 +5,6 @@ import {
 	LOGOUT,
 	CHECK_REGISTRATION,
 	CHECK_REGISTRATION_RETURN_FALSE,
-	SHOW_MESSAGE,
 	GET_ALL_COLLECTION,
 	SAGA_AUTH_TOKEN,
 	REGISTRATION,
@@ -14,6 +13,7 @@ import {
 } from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
+import {showMessageAction} from "../../reducers/components/showMessageReducer";
 
 
 function* loginWorker(user) {
@@ -27,7 +27,7 @@ function* loginWorker(user) {
 		yield put({type: CHECK_REGISTRATION_RETURN_FALSE})
 	} catch (e) {
 		const payload = {text: `${e.message}`, severity: 'error'}
-		yield put({type: SHOW_MESSAGE, payload})
+		yield put(showMessageAction(payload))
 		yield put({type: CHECK_REGISTRATION_RETURN_FALSE})
 	}
 }
@@ -38,7 +38,7 @@ function* registrationWorker(data) {
 		yield put({type: LOGIN_AUTHENTICATION, payload})
 	} catch (e) {
 		const payload = {text: `${e.message}`, severity: 'error'}
-		yield put({type: SHOW_MESSAGE, payload})
+		yield put(showMessageAction(payload))
 	}
 }
 
@@ -58,7 +58,7 @@ function* authEmailResendingWorker() {
 		const payload = yield call(() => Fetcher('http://localhost:5000/authentication/email-resending', 'POST', '', {
 			Authorization:`Bearer ${localStorage.getItem('token')}`
 		}))
-		console.log(payload)
+
 	} catch (e) {
 		yield put({type: LOGOUT})
 	}

@@ -23,7 +23,7 @@ export function InitCommentFormBox({commentTitle,
           <Input binding={commentTitle} label='title' placeholder='Заголовок'/>
         </div>
         <div className='Comment-create-form__input'>
-          <Input binding={commentValue} label='placeholder' rows='4' multiline='true'/>
+          <Input binding={commentValue} label='placeholder' placeholder='Комментарий' rows='4' multiline='true'/>
         </div>
       </section>
     )
@@ -32,7 +32,7 @@ export function InitCommentFormBox({commentTitle,
   function actionButtons() {
     return (
       <section className='Comment-create-form__buttons'>
-        <button disabled={commentLoading} className='Comment-create-form__button Button Button-root' onClick={() => formClose()}>
+        <button disabled={commentLoading} className='Comment-create-form__button Button Button-root Button_undo-actions' onClick={() => formClose()}>
           ОТМЕНА
         </button>
         <button disabled={commentLoading} className='Comment-create-form__button Button Button-root' onClick={(event) => submitForm(event)}>

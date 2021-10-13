@@ -23,11 +23,13 @@ import {  faCheckSquare,
   faCheck,
   faTrashAlt,
   faChevronLeft,
+  faEllipsisH,
+  faEllipsisV,
   faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import {PopUpCard} from "../Common/components/PopUpCard/PopUpCard";
 
 
-library.add(fab, faCheck, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends, faTrashAlt, faPencilAlt, faChevronLeft)
+library.add(fab, faEllipsisH, faEllipsisV, faCheck, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends, faTrashAlt, faPencilAlt, faChevronLeft)
 
 
 function App() {

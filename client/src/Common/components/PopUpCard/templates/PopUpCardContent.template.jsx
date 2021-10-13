@@ -1,20 +1,44 @@
 import React from "react";
 
-export function PopUpCardContentTemplate({deleteCollection, closePopUp, deleteLoading}) {
-  function test() {
-    console.log('super')
+export function PopUpCardContentTemplate({ copyUrl,
+                                           deleteCollection,
+                                           closePopUp,
+                                           deleteLoading,
+                                           complainAboutCollection,
+                                           ownerCard}) {
+
+  const buttons = {
+    deleteButton: {
+      textValue: 'Удалить',
+      action: deleteCollection,
+    },
+
+    complainButton: {
+      textValue: 'Пожаловаться',
+      action: complainAboutCollection,
+    }
   }
+
+  const deleteOrComplainTemplate = ({textValue, action}) => {
+    return (
+      <div onClick={action} className='Popup__button Popup__content-button Popup__content-button-delete'>
+        {deleteLoading
+          ? 'Loading'
+          : textValue
+        }
+      </div>
+    )
+  }
+
   return (
     <>
       <div className='Popup Popup-root'>
         <div className='Popup__content'>
-          <div onClick={deleteCollection} className='Popup__button Popup__content-button Popup__content-button-delete'>
-            {deleteLoading
-              ? 'Loading'
-              : 'Удалить'
-            }
-          </div>
-          <div className='Popup__button Popup__content-button'>
+          {ownerCard
+            ?  deleteOrComplainTemplate(buttons.deleteButton)
+            :  deleteOrComplainTemplate(buttons.complainButton)
+          }
+          <div onClick={copyUrl} className='Popup__button Popup__content-button'>
             Копировать ссылку
           </div>
         </div>
@@ -22,7 +46,7 @@ export function PopUpCardContentTemplate({deleteCollection, closePopUp, deleteLo
           отмена
         </div>
       </div>
-      <div onKeyUp={test} onClick={closePopUp} className='Popup__shadow'></div>
+      <div onClick={closePopUp} className='Popup__shadow'></div>
     </>
   )
 }

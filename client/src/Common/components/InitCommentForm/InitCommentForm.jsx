@@ -1,10 +1,9 @@
-
-import React, {useState} from "react";
-import {useInput} from "../../utils/hooks/input.hook";
+import React, {useState} from 'react'
+import {useInput} from '../../utils/hooks/input.hook'
 import './InitCommentForm.scss'
-import {InitCommentFormPreview} from "./templates/InitCommentFormPreview";
-import {InitCommentFormBox} from "./templates/InitCommentFormBox";
-import {useSelector} from "react-redux";
+import {InitCommentFormPreview} from './templates/InitCommentFormPreview'
+import {InitCommentFormBox} from './templates/InitCommentFormBox'
+import {useSelector} from 'react-redux'
 
 
 const InitCommentForm = ({sendComment}) => {
