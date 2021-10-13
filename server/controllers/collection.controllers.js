@@ -46,6 +46,9 @@ class CollectionControllers {
 			]
 		});
 
+		//DATE
+		const dateTimestamp = Date.now();
+
 		const avatar = user[0].avatar ? user[0].avatar : ''
 		const collection = new COLLECTION_MODEL({
 			nameCollection: 'Нужно прописать',
@@ -53,6 +56,7 @@ class CollectionControllers {
 			date: timestamp('DD/MM/YYYY'),
 			author: user[0].username,
 			authorAvatar: avatar,
+			dateTimestamp,
 			description,
 			mainImg,
 			stylePin,
@@ -89,7 +93,8 @@ class CollectionControllers {
 
 	async getAllCollection(req, res){
 		try {
-			const collection = await COLLECTION_MODEL.find()
+			const collection = await COLLECTION_MODEL.find({ }).sort( { dateTimestamp: -1 } )
+			//TODO sort
 			res.status(201).json({resData: collection})
 		} catch (e) {
 			res.status(500).json(e)
@@ -109,7 +114,7 @@ class CollectionControllers {
 	async getOwnerUserCollection(req, res) {
 		try {
 		const {userId} = req.body
-			const collection = await COLLECTION_MODEL.find({owner: userId})
+			const collection = await COLLECTION_MODEL.find({owner: userId}).sort( { dateTimestamp: -1 } )
 			res.status(201).json({resData: collection})
 		} catch (e) {
 			res.status(500).json(e)
@@ -137,7 +142,7 @@ class CollectionControllers {
 		try {
 			const {value} = req.body
 
-			const data = await COLLECTION_MODEL.find()
+			const data = await COLLECTION_MODEL.find().sort( { dateTimestamp: -1 } )
 
 			const searchResult = data.filter((collection) => {
 				return !collection.title.toLowerCase().indexOf(value.toLowerCase())

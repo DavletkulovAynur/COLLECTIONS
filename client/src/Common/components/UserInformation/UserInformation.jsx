@@ -20,19 +20,13 @@ export const UserInformation = ({   unSubscribeOnUser,
                                     guest = false,
                                     numberUserPublications = '0'}) => {
 
-
-  const {userName, description, avatar, subscribers, subscriptions} = user
+  const {userName, description, avatar, subscribers, subscriptions, userId} = user
   const avatarUrl = DefineAvatarUrl(avatar)
   const dispatch = useDispatch()
 
-  // TODO Owner страницы
-  const {owner} = useSelector((state) => state.authReducer)
-  const {userId} = owner
-
   function getAllSubscribe() {
     dispatch(getAllSubscribeAction({
-      subscribers,
-      subscriptions
+      userId
     }))
   }
 
@@ -43,8 +37,6 @@ export const UserInformation = ({   unSubscribeOnUser,
             {guest
               ? <SubscribeButtonsTemplate
                 subscribers={subscribers}
-                subscriptions={subscriptions}
-                userId={userId}
                 subscribeOnUser={subscribeOnUser}
                 unSubscribeOnUser={unSubscribeOnUser}/>
               : <PencilTemplate/>
