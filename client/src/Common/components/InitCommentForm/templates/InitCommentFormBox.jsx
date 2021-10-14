@@ -4,6 +4,8 @@ import {ButtonLoading} from "../../ButtonLoading/ButtonLoading";
 
 export function InitCommentFormBox({commentTitle,
                                      commentValue,
+                                     commentTitleError,
+                                     commentValueError,
                                      formClose,
                                      commentLoading,
                                      submitForm}) {
@@ -20,10 +22,10 @@ export function InitCommentFormBox({commentTitle,
     return (
       <section className='Comment-create-form__inputs'>
         <div className='Comment-create-form__input'>
-          <Input binding={commentTitle} label='title' placeholder='Заголовок'/>
+          <Input error={commentTitleError} binding={commentTitle} label='title' placeholder='Заголовок'/>
         </div>
         <div className='Comment-create-form__input'>
-          <Input binding={commentValue} label='placeholder' placeholder='Комментарий' rows='4' multiline='true'/>
+          <Input error={commentValueError} binding={commentValue} label='placeholder' placeholder='Комментарий' rows='4' multiline='true'/>
         </div>
       </section>
     )

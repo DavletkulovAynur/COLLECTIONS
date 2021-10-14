@@ -91,6 +91,17 @@ class CollectionControllers {
 		}
 	}
 
+	async complainCollection(req, res) {
+		try {
+			const {idCollection} = req.body
+			const collection = await COLLECTION_MODEL.find({_id: idCollection})
+			console.log('collection', collection)
+			res.status(201).json({message: 'complain collection', status: true})
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	async getAllCollection(req, res){
 		try {
 			const collection = await COLLECTION_MODEL.find({ }).sort( { dateTimestamp: -1 } )

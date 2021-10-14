@@ -26,12 +26,18 @@ function AddCollection() {
   const [stylePin, setStylePin]= useState('middle')
   const [selectValue, setSelectValue] = useState('')
 
+
+  const test2 = () => {
+    console.log('super puper')
+  }
   //
-  const title = useInput('')
-  const description = useInput('')
+  const title = useInput('', handleSubmit)
+  const description = useInput('', handleSubmit)
   const nameCollection = useInput('')
 
-  const handleSubmit = (event) => {
+
+
+  function handleSubmit(event) {
     event.preventDefault()
     const error = errorChecking()
 
@@ -88,7 +94,6 @@ function AddCollection() {
   }
 
   function writeDownSelectValue(value) {
-    console.log(value)
     setSelectValue(value)
   }
 

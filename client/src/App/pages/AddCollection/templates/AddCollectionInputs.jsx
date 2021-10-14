@@ -1,7 +1,7 @@
 import Input from '../../../../Common/components/Input/Input'
 import React, {useEffect, useState} from 'react'
 
-import {SelectType} from "./SelectType";
+import {SelectType} from './SelectType'
 
 
 export function AddCollectionInputs({inputErrors,

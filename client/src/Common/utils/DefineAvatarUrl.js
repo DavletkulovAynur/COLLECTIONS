@@ -6,5 +6,5 @@ export function DefineAvatarUrl(authorAvatar) {
     if(!authorAvatar) {
         return defaultAvatar
     }
-    return authorAvatar ? `${API_URL + '/avatars/' + authorAvatar}` : ''
+    return authorAvatar ? `${API_URL + 'avatars/' + authorAvatar}` : ''
 }

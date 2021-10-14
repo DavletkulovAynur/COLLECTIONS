@@ -4,11 +4,12 @@ import {API_URL} from '../../../config'
 import {DELETE_COLLECTION, DELETE_COLLECTION_LOADING} from "../../reducers/components/deleteCollectionReducer";
 import {CHANGE_STATE_POPUP} from "../../reducers/components/PopUpCardReducer";
 import {showMessageAction} from "../../reducers/components/showMessageReducer";
-import {superFunctionForWorkingWithArray} from "../../../Common/utils/superFunctionForWorkingWithArray";
 import {WRITE_DOWN_ALL_COLLECTION} from "../../types";
 
 
 const collection = (state) => state.collectionReducer
+
+const COMPLAIN_COLLECTION = 'COMPLAIN_COLLECTION'
 
 function* sagaDeleteCollectionWorker(data) {
   try {
@@ -36,7 +37,32 @@ function* sagaDeleteCollectionWorker(data) {
   }
 }
 
-export function* sagaDeleteCollectionWatcher() {
-  yield takeEvery(DELETE_COLLECTION, sagaDeleteCollectionWorker)
+function* sagaComplainCollectionWorker(data) {
+  try {
+    yield put({type: DELETE_COLLECTION_LOADING, payload: true})
+    yield call (() => Fetcher(`${API_URL}collection/complain`,
+      'POST',
+      data.payload,
+      {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    ))
+    yield put({type: DELETE_COLLECTION_LOADING, payload: false})
+    yield put({type: CHANGE_STATE_POPUP, payload: {
+        statePopUp: false,
+        idCollection: null
+      }})
+    const showMessageText = {text: 'ну за что (((('}
+    yield put(showMessageAction(showMessageText))
+  } catch (e) {
+    console.log(e)
+  }
 }
 
+export function* sagaDeleteCollectionWatcher() {
+  yield takeEvery(DELETE_COLLECTION, sagaDeleteCollectionWorker)
+  yield takeEvery(COMPLAIN_COLLECTION, sagaComplainCollectionWorker)
+}
+
+// actions
+export const complainCollectionAction = (payload) => ({type: COMPLAIN_COLLECTION, payload})

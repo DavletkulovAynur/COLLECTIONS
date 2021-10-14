@@ -11,12 +11,27 @@ const InitCommentForm = ({sendComment}) => {
   const [formOpen, setFormOpen] = useState(false)
   const commentValue = useInput('')
   const commentTitle = useInput('')
+  const [commentValueError, setCommentValueError] = useState(false)
+  const [commentTitleError, setCommentTitleError] = useState(false)
+
 
   const submitForm = (event) => {
-    sendComment(commentValue.value, commentTitle.value)
+    event.preventDefault()
+    const comment = {
+      title: commentTitle.value,
+      description: commentValue.value,
+    }
+    // TODO пока так
+    const test = checkForm()
+    if(!test) {
+      return
+    }
+
+    sendComment(comment)
+    // TODO clear в другую функцию
     commentValue.clear()
     commentTitle.clear()
-    event.preventDefault()
+
   }
 
   const formShow = () => {
@@ -25,6 +40,16 @@ const InitCommentForm = ({sendComment}) => {
 
   const formClose = () => {
     setFormOpen(false)
+  }
+
+  // TODO подумать над реализацией
+  function checkForm() {
+    !commentTitle.value ? setCommentTitleError(true) : setCommentTitleError(false)
+    !commentValue.value ? setCommentValueError(true) : setCommentValueError(false)
+    if(!commentValue.value || !commentTitle.value) {
+      return false
+    }
+    return true
   }
 
   return (
@@ -36,6 +61,8 @@ const InitCommentForm = ({sendComment}) => {
             commentLoading={commentLoading}
             commentTitle={commentTitle}
             commentValue={commentValue}
+            commentValueError={commentValueError}
+            commentTitleError={commentTitleError}
             formClose={formClose}
             submitForm={submitForm}/>
       }

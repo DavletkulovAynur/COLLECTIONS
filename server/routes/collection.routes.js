@@ -7,6 +7,8 @@ const authMiddleware = require('../middleware/auth.middleware')
 
 router.post('/add', authMiddleware, collectionControllers.addCollection)
 router.post('/delete', authMiddleware, collectionControllers.deleteCollection)
+//TODO реализовать complain
+router.post('/complain', authMiddleware, collectionControllers.complainCollection)
 
 router.get('/get-all',collectionControllers.getAllCollection)
 
