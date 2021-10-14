@@ -9,7 +9,7 @@ import {UserNameTemplate} from './templates/UserName.template'
 import {AvatarTemplate} from './templates/Avatar.template'
 import {SubscribeButtonsTemplate} from './templates/SubscribeButtons.template'
 import {DefineAvatarUrl} from '../../utils/DefineAvatarUrl'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {getAllSubscribeAction} from "../../../Store/reducers/components/subscribeReducer";
 
 

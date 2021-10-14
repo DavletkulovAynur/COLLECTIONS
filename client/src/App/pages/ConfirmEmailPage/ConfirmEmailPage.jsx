@@ -1,20 +1,20 @@
 import React, {useState} from 'react'
 import './ConfirmEmailPage.scss'
-import {useDispatch} from "react-redux";
-import {useInterval} from "../../../Common/utils/hooks/useInterval.hook";
-import {HeaderLogo} from "../../../Common/components/Header/templates/HeaderLogo";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {emailResendingAction, logoutAction} from "../../../Store/actions/action";
+import {useDispatch} from 'react-redux'
+import {useInterval} from '../../../Common/utils/hooks/useInterval.hook'
+import {HeaderLogo} from '../../../Common/components/Header/templates/HeaderLogo'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {emailResendingAction, logoutAction} from '../../../Store/actions/action'
 
 const ConfirmEmailPage = () => {
+  const delay = 1000
   const dispatch = useDispatch()
   const [count, setCount] = useState(2)
-  const [delay, setDelay] = useState(1000);
+
   const [isRunning, setIsRunning] = useState(true)
   const [disabledButton, setDisabledButton] = useState(true)
 
   useInterval(() => {
-    // Your custom logic here
     if(count === 1) {
       stopTimer()
     }
@@ -25,11 +25,6 @@ const ConfirmEmailPage = () => {
     setDisabledButton(false)
     setIsRunning(false)
     setCount(10)
-  }
-
-  function startTimer() {
-    setCount(10)
-    setIsRunning(true)
   }
 
   const logOut = () => {

@@ -3,10 +3,11 @@ import Fetcher from '../../../Common/utils/fetch'
 import {
   ADD_BOOKMARK,
   ADD_BOOKMARK_UPDATE_STATE, DELETE_BOOKMARK,
-  DELETE_BOOKMARK_UPDATE_STATE, GET_BOOKMARK_COLLECTION, SHOW_MESSAGE,
+  DELETE_BOOKMARK_UPDATE_STATE, GET_BOOKMARK_COLLECTION,
   WRITE_DOWN_BOOKMARK_COLLECTION
 } from '../../types'
 import {collectionLoaderAction} from "../../reducers/components/collectionReducer";
+import {showMessageAction} from "../../reducers/components/showMessageReducer";
 
 function* addBookmark(data) {
     try {
@@ -24,7 +25,7 @@ function* addBookmark(data) {
         const testShowMessage = {
            text: 'Вы успешно добавили',
         }
-        yield put({type: SHOW_MESSAGE, payload: testShowMessage})
+        yield put(showMessageAction(testShowMessage))
     } catch(e) {
         console.log(e)
     }

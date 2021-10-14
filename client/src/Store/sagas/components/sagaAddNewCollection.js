@@ -1,7 +1,8 @@
 import {call, put, takeEvery} from "redux-saga/effects";
 import Fetcher from "../../../Common/utils/fetch";
 import {API_URL} from "../../../config";
-import {ADD_COLLECTION, SEND_COLLECTION_LOAD, SHOW_MESSAGE, SUCCESSFULLY_SEND_COLLECTION} from "../../types";
+import {ADD_COLLECTION, SEND_COLLECTION_LOAD, SUCCESSFULLY_SEND_COLLECTION} from "../../types";
+import {showMessageAction} from "../../reducers/components/showMessageReducer";
 
 function* addNewCollectionWorker(formData) {
   try {
@@ -15,7 +16,7 @@ function* addNewCollectionWorker(formData) {
       false
     ))
     yield put({type: SUCCESSFULLY_SEND_COLLECTION, payload})
-    yield put({type: SHOW_MESSAGE, payload: {text: 'успешно'}})
+    yield put(showMessageAction({text: 'успешно'}))
   } catch (e) {
     console.log(e)
   }

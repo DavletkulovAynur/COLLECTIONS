@@ -1,7 +1,8 @@
 
 const initialState = {
   statePopUp: false,
-  idCollection: null
+  idCollection: null,
+  ownerCard: false
 }
 
 export const CHANGE_STATE_POPUP = 'CHANGE_STATE_POPUP'
@@ -9,8 +10,8 @@ export const CHANGE_STATE_POPUP = 'CHANGE_STATE_POPUP'
 export function PopUpCardReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_STATE_POPUP:
-      const {statePopUp, idCollection} = action.payload
-      return {...state, statePopUp, idCollection}
+      const {statePopUp, idCollection, ownerCard} = action.payload
+      return {...state, statePopUp, idCollection, ownerCard}
     default:
       return {...state}
   }

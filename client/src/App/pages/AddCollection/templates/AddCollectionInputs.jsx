@@ -1,11 +1,13 @@
-import Input from "../../../../Common/components/Input/Input";
-import React, {useEffect, useState} from "react";
+import Input from '../../../../Common/components/Input/Input'
+import React, {useEffect, useState} from 'react'
+
+import {SelectType} from "./SelectType";
 
 
 export function AddCollectionInputs({inputErrors,
+                                      writeDownSelectValue,
                                       title,
-                                      description,
-                                      nameCollection}) {
+                                      description}) {
   const [titleInputError, setTitleInputError] = useState(false)
 
   useEffect(() => {
@@ -24,18 +26,17 @@ export function AddCollectionInputs({inputErrors,
     }
   }
 
-
   return (
     <>
       <div className='Add-collection__input-name-collection'>
         <Input binding={title} error={titleInputError} placeholder='Добавьте название'/>
       </div>
-      <div>
-        <Input binding={description} placeholder='Добавьте описание'/>
+      <div className='Add-collection__select'>
+        <SelectType writeDownSelectValue={writeDownSelectValue}/>
       </div>
-      {/*<div>*/}
-      {/*  <Input binding={nameCollection} placeholder='Добавьте название 1'/>*/}
-      {/*</div>*/}
+      <div>
+        <Input binding={description} placeholder='Описание'/>
+      </div>
     </>
   )
 }

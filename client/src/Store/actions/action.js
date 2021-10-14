@@ -17,7 +17,6 @@ import {
   SUBSCRIBE_ON_USER,
   GET_SUBSCRIBE_COLLECTION,
   UNSUBSCRIBE_ON_USER,
-  REMOVE_SHOW_MESSAGE,
   EDIT_USER,
   EDIT_AVATAR, GET_USER_COLLECTION, EMAIL_RESENDING,
 } from '../types'
@@ -145,14 +144,6 @@ export function getSubscribeCollectionAction(payload) {
   return({
     type: GET_SUBSCRIBE_COLLECTION,
     payload
-  })
-}
-
-// Show_Message
-
-export function removeShowMessageAction() {
-  return({
-    type: REMOVE_SHOW_MESSAGE
   })
 }
 

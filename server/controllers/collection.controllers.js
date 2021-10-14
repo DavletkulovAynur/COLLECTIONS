@@ -15,7 +15,7 @@ class CollectionControllers {
 	async addCollection(req, res){
 	try {
 		const file = req.files.file
-		const {title, description, stylePin} = req.body
+		const {title, description, stylePin, nameCollection} = req.body
 		const user = await USER_MODEL.find({_id: req.user.id})
 
 		//
@@ -51,7 +51,7 @@ class CollectionControllers {
 
 		const avatar = user[0].avatar ? user[0].avatar : ''
 		const collection = new COLLECTION_MODEL({
-			nameCollection: 'Нужно прописать',
+			nameCollection,
 			title,
 			date: timestamp('DD/MM/YYYY'),
 			author: user[0].username,
@@ -75,7 +75,7 @@ class CollectionControllers {
 	async deleteCollection(req, res) {
 		try {
 			// удалить коллекцию
-			console.log('данные которые получаем', req.body)
+
 			// await  COLLECTION_MODEL.updateMany({_id: id}, {$push: {comments : commentObj}})
 			const {idCollection} = req.body
 			const collection = await COLLECTION_MODEL.find({_id: idCollection})

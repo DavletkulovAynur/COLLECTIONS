@@ -11,6 +11,7 @@ import {CollectionViewImg} from "./templates/CollectionViewImg";
 import {CollectionViewCommentTitle} from "./templates/CollectionViewCommentTitle";
 import {CollectionViewDescription} from "./templates/CollectionViewDescription";
 import {DefineAvatarUrl} from "../../../Common/utils/DefineAvatarUrl";
+import {CollectionViewType} from "./templates/CollectionViewType";
 
 
 export function CollectionViewTemplate({collection = [],
@@ -18,7 +19,8 @@ export function CollectionViewTemplate({collection = [],
                                          comments,
                                          removeComment,}) {
 
-  const {title, mainImg, owner, description, author, date, authorAvatar} = collection
+
+  const {title, mainImg, owner, description, author, date, authorAvatar, nameCollection} = collection
 
   const avatarUrl = DefineAvatarUrl(authorAvatar)
 
@@ -34,7 +36,9 @@ export function CollectionViewTemplate({collection = [],
         {/*TODO переделать */}
         <CollectionViewImg mainImg={mainImg} owner={owner}/>
 
+        <CollectionViewType nameCollection={nameCollection}/>
         <CollectionViewDescription description={description}/>
+
       </section>
 
       <section className='Comments-wrapper'>

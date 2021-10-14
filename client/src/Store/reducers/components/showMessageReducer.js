@@ -1,10 +1,11 @@
-import {REMOVE_SHOW_MESSAGE, SHOW_MESSAGE} from "../../types";
-
 const initialState = {
   showMessage: false,
   text: '',
   severity: ''
 }
+
+export const SHOW_MESSAGE = 'SHOW_MESSAGE'
+export const REMOVE_SHOW_MESSAGE = 'REMOVE_SHOW_MESSAGE'
 
 export const showMessageReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,3 +20,6 @@ export const showMessageReducer = (state = initialState, action) => {
       return {...state}
   }
 }
+
+export const showMessageAction = (payload) => ({type: SHOW_MESSAGE, payload})
+export const removeShowMessageAction = (payload) => ({type: REMOVE_SHOW_MESSAGE, payload})

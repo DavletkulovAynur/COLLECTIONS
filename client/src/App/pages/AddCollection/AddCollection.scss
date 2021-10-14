@@ -41,6 +41,12 @@
       font-weight: bold;
     }
   }
+
+  &__select {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 36px;
+  }
 }
 
 .Style-pin {

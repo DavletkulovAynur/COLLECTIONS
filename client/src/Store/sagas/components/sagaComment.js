@@ -3,7 +3,7 @@ import {
   COMMENT_REMOVE,
   COMMENT_UPDATE,
   LOADING_COLLECTION_UPDATE,
-  LOADING_HIDDEN_COLLECTION_UPDATE, SHOW_MESSAGE,
+  LOADING_HIDDEN_COLLECTION_UPDATE,
   UPDATE_COLLECTION_VIEW
 } from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
@@ -13,6 +13,7 @@ import {
   SEND_COMMENT_LOADING,
   UPDATE_COLLECTION_COMMENT
 } from '../../reducers/components/collectionViewReducer'
+import {showMessageAction} from "../../reducers/components/showMessageReducer";
 
 export function* addComment(data) {
   try {
@@ -22,7 +23,8 @@ export function* addComment(data) {
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}))
     const messageText = {text: `успешно`, severity: 'success'}
-    yield put({type: SHOW_MESSAGE, payload: messageText })
+    yield put(showMessageAction(messageText))
+
     yield put({type: UPDATE_COLLECTION_COMMENT, payload})
     yield put({type: SEND_COMMENT_LOADING, payload: false})
   } catch (e) {
@@ -40,7 +42,7 @@ export function* removeComment(data) {
       {Authorization: `Bearer ${localStorage.getItem('token')}`}))
 
     const messageText = {text: `Комментарий удален`, severity: 'success'}
-    yield put({type: SHOW_MESSAGE, payload: messageText })
+    yield put(showMessageAction(messageText))
     yield put({type: DELETE_COLLECTION_COMMENT, payload})
     // yield put({type: LOADING_HIDDEN_COLLECTION_UPDATE})
   } catch (e) {

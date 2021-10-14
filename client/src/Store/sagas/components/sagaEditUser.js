@@ -1,14 +1,14 @@
-import {call, put, takeEvery} from "redux-saga/effects";
-import Fetcher from "../../../Common/utils/fetch";
-import {API_URL} from "../../../config";
+import {call, put, takeEvery} from 'redux-saga/effects'
+import Fetcher from '../../../Common/utils/fetch'
+import {API_URL} from '../../../config'
 import {
   EDIT_AVATAR,
   EDIT_PROFILE_LOADING, EDIT_PROFILE_LOADING_COMPLETE,
   EDIT_USER,
   LOAD_AVATAR,
   LOAD_AVATAR_COMPLETE,
-  SHOW_MESSAGE
 } from "../../types";
+import {showMessageAction} from "../../reducers/components/showMessageReducer";
 
 function* userInfoEditWorker(data) {
   try {
@@ -21,7 +21,7 @@ function* userInfoEditWorker(data) {
     ))
     yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
     const showText = {text: `успешно`}
-    yield put({type: SHOW_MESSAGE, payload: showText})
+    yield put(showMessageAction(showText))
   } catch (e) {
     yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
     console.log('error', e)
@@ -40,10 +40,10 @@ function* userAvatarEditWorker(data) {
     ))
     yield put({type: LOAD_AVATAR_COMPLETE})
     const showText = {text: `успешно`}
-    yield put({type: SHOW_MESSAGE, payload: showText})
+    yield put(showMessageAction(showText))
   } catch (e) {
     const payload = {text: `ошибка ${e.statusText}`, severity: 'error'}
-    yield put({type: SHOW_MESSAGE, payload})
+    yield put(showMessageAction(payload))
     console.log('ERROR', e)
   }
 }

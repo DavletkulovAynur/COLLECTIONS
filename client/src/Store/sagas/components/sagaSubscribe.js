@@ -1,7 +1,7 @@
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
 import {call, put, takeEvery, select} from 'redux-saga/effects'
-import {SHOW_MESSAGE, SUBSCRIBE_ON_USER, UNSUBSCRIBE_ON_USER} from '../../types'
+import {SUBSCRIBE_ON_USER, UNSUBSCRIBE_ON_USER} from '../../types'
 import {
   GET_ALL_SUBSCRIBE,
   getAllSubscribeLoaderAction,
@@ -11,6 +11,7 @@ import {
   subscribeFromThisUserAction,
   unSubscribeFromThisUserAction
 } from '../../reducers/components/userAreaPageReducer'
+import {showMessageAction} from '../../reducers/components/showMessageReducer'
 
 const test = (state) => state.authReducer
 
@@ -76,7 +77,7 @@ function* subscribe(user, url, messageText) {
   ))
   yield put(loaderSubscribeAction(false))
   const showText = {text: messageText}
-  yield put({type: SHOW_MESSAGE, payload: showText})
+  yield put(showMessageAction(showText))
 }
 
 
