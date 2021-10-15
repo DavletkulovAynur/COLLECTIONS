@@ -16,8 +16,6 @@ const Input = ({error = '',
   //   errorStyle = error ? 'error' : ''
   // }, [error])
 
-  console.log('errore', error)
-
   const inputIcon = () => {
     if(type === 'password') {
       return (
@@ -32,6 +30,8 @@ const Input = ({error = '',
   const checkShowPassword = () => {
     return eyeView ? 'password': 'text'
   }
+
+  // TODO нажатие на enter
 
   return (
       <div className={`Input`}>

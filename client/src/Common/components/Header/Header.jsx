@@ -23,7 +23,10 @@ export function Header() {
         <Search/>
       </div>
       <div className='mini-icons-container'>
-        <HeaderActionButtons logOut={logOut}/>
+        <div className='Header__action-buttons'>
+          <HeaderActionButtons logOut={logOut}/>
+        </div>
+
         <HeaderAvatar/>
       </div>
     </div>

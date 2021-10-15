@@ -21,10 +21,10 @@ function CollectionView() {
     dispatch(getCollectionViewAction({collectionId}))
   }, [])
 
-  const sendComment = (commentValue, commentTitle) => {
+  const sendComment = ({title, description}) => {
     const comment = {
-      description: commentValue,
-      title: commentTitle,
+      title,
+      description,
       id: collectionId,
     }
 

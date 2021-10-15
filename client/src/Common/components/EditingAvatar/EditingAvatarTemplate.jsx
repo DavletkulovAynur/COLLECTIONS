@@ -51,19 +51,26 @@ const PreviewImgPopup = ({openPopupPreview, previewImg, deleteFile, changeUserAv
   )
 }
 
+
+
 const AvatarChange = ({fileUploadHandler, avatarUrl, loader}) => {
   const test = useRef()
-  console.log(test.current)
+
+  function wqe() {
+    console.log('super')
+  }
   return (
     <div className='Avatar-edit__box'>
       <div className='Avatar-edit__content'>
         <img className='Avatar-edit__photo' src={avatarUrl}/>
         <section className="Avatar-edit__input-wrapper">
-          <input id="input__file" className="Avatar-edit__input-file"
-                 ref={test}
+          <input id="input__file"
+            className="Avatar-edit__input-file"
+            ref={test}
             accept="image/*"
             type="file"
-            onInput={(event) => fileUploadHandler(event)}
+            onClick={(event) => event.target.value = ''}
+            onChange={(event) => fileUploadHandler(event)}
           />
           <label htmlFor="input__file">
             <span className="Avatar-edit__input-button-text">
