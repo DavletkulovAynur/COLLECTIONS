@@ -9,7 +9,7 @@ import {
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
 import {
-  DELETE_COLLECTION_COMMENT,
+  DELETE_COLLECTION_COMMENT, removeCommentLoadingAction,
   SEND_COMMENT_LOADING,
   UPDATE_COLLECTION_COMMENT
 } from '../../reducers/components/collectionViewReducer'
@@ -34,8 +34,7 @@ export function* addComment(data) {
 
 export function* removeComment(data) {
   try {
-
-    // yield put({type: LOADING_COLLECTION_UPDATE})
+    yield put(removeCommentLoadingAction(true))
     const payload =  yield call(() => Fetcher(`${API_URL}comment/remove`,
       'PUT',
       data.payload,
@@ -44,7 +43,7 @@ export function* removeComment(data) {
     const messageText = {text: `Комментарий удален`, severity: 'success'}
     yield put(showMessageAction(messageText))
     yield put({type: DELETE_COLLECTION_COMMENT, payload})
-    // yield put({type: LOADING_HIDDEN_COLLECTION_UPDATE})
+    yield put(removeCommentLoadingAction(false))
   } catch (e) {
     console.log(e)
   }

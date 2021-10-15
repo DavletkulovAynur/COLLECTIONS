@@ -1,7 +1,5 @@
 import {
     LOADING_COLLECTION_UPDATE,
-    LOADING_HIDDEN_COLLECTION_UPDATE,
-
     WRITE_DOWN_COLLECTION_VIEW
 } from '../../types'
 
@@ -16,6 +14,10 @@ const initialState = {
     title: ''
 }
 
+export const UPDATE_COLLECTION_COMMENT = 'UPDATE_COLLECTION_COMMENT'
+export const DELETE_COLLECTION_COMMENT = 'DELETE_COLLECTION_COMMENT'
+export const SEND_COMMENT_LOADING = 'SEND_COMMENT_LOADING'
+export const REMOVE_COMMENT_LOADING = 'REMOVE_COMMENT_LOADING'
 
 
 export const collectionViewReducer = (state = initialState, action) => {
@@ -35,14 +37,9 @@ export const collectionViewReducer = (state = initialState, action) => {
             return {...state, removeCommentLoading: action.payload}
         case LOADING_COLLECTION_UPDATE:
             return {...state, loading: true}
-        case LOADING_HIDDEN_COLLECTION_UPDATE:
-            return {...state, loading: false}
         default:
             return {...state}
     }
 }
 
-export const UPDATE_COLLECTION_COMMENT = 'UPDATE_COLLECTION_COMMENT'
-export const DELETE_COLLECTION_COMMENT = 'DELETE_COLLECTION_COMMENT'
-export const SEND_COMMENT_LOADING = 'SEND_COMMENT_LOADING'
-export const REMOVE_COMMENT_LOADING = 'REMOVE_COMMENT_LOADING'
+export const removeCommentLoadingAction = (payload) => ({type: REMOVE_COMMENT_LOADING, payload})

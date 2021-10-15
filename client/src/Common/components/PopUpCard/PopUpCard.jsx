@@ -5,6 +5,7 @@ import {deleteCollectionAction} from '../../../Store/reducers/components/deleteC
 import {changeStatePopupAction} from '../../../Store/reducers/components/PopUpCardReducer'
 import {PopUpCardContentTemplate} from './templates/PopUpCardContent.template'
 import {URL_CLIENT} from '../../../config'
+import {complainCollectionAction} from '../../../Store/sagas/components/sagaDeleteCollection'
 
 // TODO Умный компонент
 export function PopUpCard() {
@@ -13,7 +14,9 @@ export function PopUpCard() {
   const {deleteLoading} = useSelector((state) => state.deleteCollectionReducer)
 
   function complainAboutCollection() {
-    console.log('complain')
+    dispatch(complainCollectionAction({
+      idCollection
+    }))
   }
 
   function deleteCollection() {

@@ -98,6 +98,8 @@
   }
 
   @media (max-width: $mobile) {
+    padding: 16px 0 0;
+
     .search-wrapper {
       display: none;
     }
@@ -111,6 +113,10 @@
     }
 
     .main-link-button {
+      display: none;
+    }
+
+    &__action-buttons {
       display: none;
     }
   }

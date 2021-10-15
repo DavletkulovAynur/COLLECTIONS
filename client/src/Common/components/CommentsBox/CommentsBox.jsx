@@ -23,7 +23,9 @@ const CommentsBox = ({removeComment}) => {
       <div  className='Comments-box__content-area'>
         {sortComments.map((comment, index) => {
           const {time, title, authorName, description, authorAvatar, authorId, idComment} = comment
+          console.log('authorAvatar', authorAvatar)
           const avatarUrl = DefineAvatarUrl(authorAvatar)
+          console.log('avatarUrl', avatarUrl)
           const datePublication = timeConverter(time)
           return (
             <section key={index}  className='Comments-box__Comment Comment'>
