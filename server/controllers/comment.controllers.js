@@ -15,8 +15,8 @@ class CommentControllers {
       description,
       time: Date.now(),
       authorId: req.user.id,
-      authorAvatar: user[0].avatar,
-      authorName: user[0].username
+      // avatar: user[0].avatar,
+      // authorName: user[0].username
     }
 
 

@@ -1,5 +1,6 @@
 const {Schema, model, Types} = require('mongoose')
 
+// TODO не понятно
 const schema = new Schema ({
   nameCollection: {type: String},
   date: {type: String},
@@ -10,7 +11,13 @@ const schema = new Schema ({
   mainImg: {type: String},
   publisher: {type: String},
   description: {type: String},
-  comments: {type: Array},
+  comments: {
+    idComment: {type: String},
+    title: {type: String},
+    description: {type: String},
+    time: {type: Number},
+    // test: {type: Types.ObjectId, ref: 'Users', required: true},
+  },
   stylePin: {type: String},
   owner: {type: Types.ObjectId, ref: 'Users'}
 })
