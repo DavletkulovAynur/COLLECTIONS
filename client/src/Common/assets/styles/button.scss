@@ -1,3 +1,7 @@
+button {
+  font-family: 'Roboto', sans-serif;
+}
+
 .Button {
   &-root {
     color: #fff;
@@ -26,30 +30,11 @@
   }
 
   &_bookmark {
-    border: none;
     border-radius: 20px;
-    background: #e60023;
-    color: #fff;
     font-size: 14px;
-
-    &:hover {}
   }
 
   &_undo-actions {
-    background: #000;
-    color: #fff;
-
-    &:hover {
-      background: #383838;
-    }
-  }
-
-  &_bookmark-save {
-    background: #000;
-    color: #fff;
-  }
-
-  &_cancel {
     background: #141414;
     color: #fff;
 
@@ -57,13 +42,4 @@
       background: #383838;
     }
   }
-
-  //&__active-action {
-  //  color: #fff;
-  //  background: #e60023;
-  //}
-}
-
-button {
-  font-family: 'Roboto', sans-serif;
 }

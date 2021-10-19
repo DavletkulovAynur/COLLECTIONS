@@ -72,9 +72,14 @@ export function CommonCard({data}) {
                         <Link to={`/article-view/${_id}`}>
                           {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}
                         </Link>
-                        <div className='Pin__avatar-and-button'>
-                          <UserLink author={author} authorAvatar={authorAvatar} owner={owner} userId={userId}/>
-                          <PointButton owner={owner} userId={userId} idCollection={_id} deleteCollection={deleteCollection}/>
+                        <div className='Pin__footer'>
+                          <div className='Pin__mobile-title'>
+                            Test
+                          </div>
+                          <div className='Pin__avatar-and-button'>
+                            <UserLink author={author} authorAvatar={authorAvatar} owner={owner} userId={userId}/>
+                            <PointButton owner={owner} userId={userId} idCollection={_id} deleteCollection={deleteCollection}/>
+                          </div>
                         </div>
                       </div>
                   </div>

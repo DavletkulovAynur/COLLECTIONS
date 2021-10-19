@@ -82,16 +82,25 @@
     }
   }
 
-  &__avatar-and-button {
+  &__footer {
     position: absolute;
     bottom: -32px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    justify-content: space-between;
     width: 100%;
     left: 0;
     padding: 0 6px;
+  }
+
+  &__avatar-and-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  &__mobile-title {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
   }
 
   &__dots {
@@ -128,16 +137,7 @@
     background-size: cover;
     cursor: pointer;
 
-    &:hover {
-      .Pin__about-inside {
-        display: flex;
-      }
-
-      .Pin__shadow {
-        background: rgba(0, 0, 0, .3);
-        border-radius: var(--card_border_radius);
-      }
-    }
+   
 
     &__small {
       grid-row-end: span var(--card_small);
@@ -149,6 +149,43 @@
 
     &__large {
       grid-row-end: span var(--card_large);
+    }
+  }
+
+  @media(min-width: 760px) {
+    &_card { 
+      &:hover {
+        .Pin__about-inside {
+          display: flex;
+        }
+  
+        .Pin__shadow {
+          background: rgba(0, 0, 0, .3);
+          border-radius: var(--card_border_radius);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 760px) {
+    &_card {
+      // pointer-events: none;
+      margin: 28px 5px;
+    }
+
+    &__footer {
+      bottom: -46px;
+    }
+
+    &__about {
+      &-author-avatar {
+        width: 18px;
+        height: 18px;
+      }
+
+      &-author-name {
+        font-size: 8px;
+      }
     }
   }
 }

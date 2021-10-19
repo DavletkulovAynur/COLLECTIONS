@@ -37,7 +37,7 @@ export function Bookmark({id}) {
         <div
           id={id}
           onClick={saveInMyCollection}
-          className={`Button Button-root Button_bookmark ${bookmark.includes(id) ? 'Button_bookmark-save' : ''}`}>
+          className={`Button Button-root Button_bookmark ${bookmark.includes(id) ? 'Button_undo-actions' : ''}`}>
           сохранить
         </div>
       </div>
