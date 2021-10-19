@@ -137,16 +137,7 @@
     background-size: cover;
     cursor: pointer;
 
-    &:hover {
-      .Pin__about-inside {
-        display: flex;
-      }
-
-      .Pin__shadow {
-        background: rgba(0, 0, 0, .3);
-        border-radius: var(--card_border_radius);
-      }
-    }
+   
 
     &__small {
       grid-row-end: span var(--card_small);
@@ -161,8 +152,24 @@
     }
   }
 
+  @media(min-width: 760px) {
+    &_card { 
+      &:hover {
+        .Pin__about-inside {
+          display: flex;
+        }
+  
+        .Pin__shadow {
+          background: rgba(0, 0, 0, .3);
+          border-radius: var(--card_border_radius);
+        }
+      }
+    }
+  }
+
   @media (max-width: 760px) {
     &_card {
+      // pointer-events: none;
       margin: 28px 5px;
     }
 
