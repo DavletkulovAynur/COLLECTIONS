@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {addBookmarkAction, bookmarkDeleteAction} from '../../../Store/actions/action'
 
 import './Bookmark.scss'
+import { BookmarkDesktop } from './templates/BookmarkDesktop.templates'
 
 export function Bookmark({id}) {
   const {bookmark} = useSelector((state) => state.authReducer)
@@ -33,14 +34,10 @@ export function Bookmark({id}) {
 
   return (
     <div className='Bookmark Bookmark-root'>
-      <div className='Bookmark__button-wrapper'>
-        <div
-          id={id}
-          onClick={saveInMyCollection}
-          className={`Button Button-root Button_bookmark ${bookmark.includes(id) ? 'Button_undo-actions' : ''}`}>
-          сохранить
-        </div>
-      </div>
+      <BookmarkDesktop id={id} saveInMyCollection={saveInMyCollection} bookmark={bookmark}/>
+      <section className='Bokkmark__mobile'>
+        <h1>mobile</h1>
+      </section>
     </div>
   )
 }

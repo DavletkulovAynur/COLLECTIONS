@@ -98,6 +98,7 @@
   }
 
   &__mobile-title {
+    display: none;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 500;
@@ -152,7 +153,7 @@
     }
   }
 
-  @media(min-width: 760px) {
+  @media(min-width: 1025px) {
     &_card { 
       &:hover {
         .Pin__about-inside {
@@ -167,14 +168,17 @@
     }
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 1024px) {
     &_card {
-      // pointer-events: none;
       margin: 28px 5px;
     }
 
     &__footer {
       bottom: -46px;
+    }
+
+    &__mobile-title { 
+      display: block;
     }
 
     &__about {

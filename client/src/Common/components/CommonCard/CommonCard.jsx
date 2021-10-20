@@ -16,22 +16,28 @@ export function CommonCard({data}) {
   const {userId} = owner
   const dispatch = useDispatch()
 
+  //TODO 
   const divStyle = (owner, mainImg) => {
       return {
         backgroundImage: `url(${API_URL}/${owner}/compressed/${mainImg})`,
       }
     };
-
-  function infoTemplate(_id, title, date) {
+function infoTemplate(_id, title) {
       return (
-      <>
-        <section className='Pin__about-inside'>
-          <Bookmark id={_id} />
-          <div>
-            <div className='Pin__about-title'>{title}</div>
-          </div>
-        </section>
-      </>
+        <>
+          <section className='Pin__about-inside'>
+            <Bookmark id={_id} />
+            <div>
+              <div className='Pin__about-title'>{title}</div>
+            </div>
+          </section>
+        </>
+    )
+  }
+
+  function mobileBookmark(_id) {
+    return (
+      <Bookmark id={_id} />
     )
   }
 
@@ -56,9 +62,7 @@ export function CommonCard({data}) {
         {data.map((item) => {
               const {
                 _id,
-                date,
                 title,
-                nameCollection,
                 owner,
                 mainImg,
                 author,
@@ -70,8 +74,9 @@ export function CommonCard({data}) {
                       <div className='Pin__shadow'></div>
                       <div className='Pin__about'>
                         <Link to={`/article-view/${_id}`}>
-                          {infoTemplate(_id, title, nameCollection, author, authorAvatar, owner, date)}
+                          {infoTemplate(_id, title)}
                         </Link>
+                        {mobileBookmark(_id)}
                         <div className='Pin__footer'>
                           <div className='Pin__mobile-title'>
                             Test
@@ -79,6 +84,7 @@ export function CommonCard({data}) {
                           <div className='Pin__avatar-and-button'>
                             <UserLink author={author} authorAvatar={authorAvatar} owner={owner} userId={userId}/>
                             <PointButton owner={owner} userId={userId} idCollection={_id} deleteCollection={deleteCollection}/>
+                            
                           </div>
                         </div>
                       </div>
