@@ -5,9 +5,10 @@ export function BookmarkDesktop({id, saveInMyCollection, bookmark}) {
         <section className='Bookmark__desktop'>
             <div className='Bookmark__button-wrapper'>
                 <div
+                    data-bookmark
                     id={id}
                     onClick={saveInMyCollection}
-                    className={`Button Button-root Button_bookmark ${bookmark.includes(id) ? 'Button_undo-actions' : ''}`}>
+                    className={`Button Button-root ${bookmark.includes(id) ? 'Button_undo-actions' : ''}`}>
                     сохранить
                 </div>
             </div>

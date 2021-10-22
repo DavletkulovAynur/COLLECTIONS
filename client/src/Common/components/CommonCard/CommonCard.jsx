@@ -35,12 +35,6 @@ function infoTemplate(_id, title) {
     )
   }
 
-  function mobileBookmark(_id) {
-    return (
-      <Bookmark id={_id} />
-    )
-  }
-
 
   function deleteCollection(event, ownerCard) {
     event.preventDefault()
@@ -76,7 +70,6 @@ function infoTemplate(_id, title) {
                         <Link to={`/article-view/${_id}`}>
                           {infoTemplate(_id, title)}
                         </Link>
-                        {mobileBookmark(_id)}
                         <div className='Pin__footer'>
                           <div className='Pin__mobile-title'>
                             Test

@@ -5,12 +5,35 @@
     justify-content: flex-end;
   }
 
-  &__button-wrapper {
-    width: 50%;
+  // &__desktop {
+  //   display: flex;
+  //   justify-content: flex-end;
+  // }
+
+  .Button {
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 12px 20px;
   }
 
   &__mobile {
     display: none;
+  }
+
+  &__mobile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+
+    &_active {
+      .fa-bookmark {
+        color: #ef0610;
+      }
+    }
   }
   
 

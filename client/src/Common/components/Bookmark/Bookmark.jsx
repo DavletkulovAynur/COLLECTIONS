@@ -5,6 +5,7 @@ import {addBookmarkAction, bookmarkDeleteAction} from '../../../Store/actions/ac
 
 import './Bookmark.scss'
 import { BookmarkDesktop } from './templates/BookmarkDesktop.templates'
+import { BookmarkMobile } from './templates/BookmarkMobile.templates'
 
 export function Bookmark({id}) {
   const {bookmark} = useSelector((state) => state.authReducer)
@@ -12,8 +13,10 @@ export function Bookmark({id}) {
 
   const saveInMyCollection = async (event) => {
     event.preventDefault()
+    const $root = event.target.closest('[data-bookmark]')
+    if(!$root) return;
     const bookmarkInfo = {
-      bookmarkID: event.target.id,
+      bookmarkID: $root.id,
       allBookmarkArray: bookmark
     }
 
@@ -35,9 +38,7 @@ export function Bookmark({id}) {
   return (
     <div className='Bookmark Bookmark-root'>
       <BookmarkDesktop id={id} saveInMyCollection={saveInMyCollection} bookmark={bookmark}/>
-      <section className='Bokkmark__mobile'>
-        <h1>mobile</h1>
-      </section>
+      <BookmarkMobile id={id} saveInMyCollection={saveInMyCollection} bookmark={bookmark}/>
     </div>
   )
 }
