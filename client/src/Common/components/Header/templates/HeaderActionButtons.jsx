@@ -5,17 +5,20 @@ import React from "react";
 export function HeaderActionButtons({logOut}) {
   return (
     <>
-      <section>
-        <div onClick={logOut}>
+      <section >
+        <div className='Header__action-button' onClick={logOut}>
           <FontAwesomeIcon icon='sign-out-alt' color='#18191A' size='lg'/>
         </div>
       </section>
 
+
+    <section className='Header__action-button-add'>
       <Link to='/add'>
-        <section className='add'>
+        <div className='Header__action-button'>
           <FontAwesomeIcon icon='plus' color='#000' size='lg'/>
-        </section>
+        </div>
       </Link>
+    </section>
     </>
   )
 }

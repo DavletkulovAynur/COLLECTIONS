@@ -65,8 +65,8 @@ export const useRoutes = (isAuthenticated, active) => {
 
     return (
       <>
+       <Header/>
         <section className='content'>
-          <Header/>
             <Switch>
               {routes.map((r, index) => {
                 const {...props} = r
