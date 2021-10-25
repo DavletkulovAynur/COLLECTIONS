@@ -10,6 +10,7 @@ import {HeaderAvatar} from './templates/HeaderAvatar'
 
 export function Header() {
   const dispatch = useDispatch()
+  // const state = useSelector(state => state.PopUpCardReducer)
 
   const logOut = () => {
     dispatch(logoutAction())
