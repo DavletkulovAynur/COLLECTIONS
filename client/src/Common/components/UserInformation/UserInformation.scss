@@ -3,6 +3,7 @@
 
 .User-information {
   &-root {
+    margin-top: 40px;
     display: flex;
     align-items: center;
     margin-bottom: 36px;
@@ -89,5 +90,28 @@
     flex-shrink: 0;
   }
 
+  @media (max-width: 760px) {
+    &-root {
+      flex-direction: column;
+      margin-bottom: 12px;
+    }
 
+    &__user-name {
+      font-size: 18px;
+    }
+
+    &__about {
+      margin-left: 0;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    &__publication-subscribe {
+      justify-content: center;
+    }
+
+    &__publication-subscribe-item {
+      font-size: 12px;
+    }
+  }
 }

@@ -5,6 +5,8 @@ const initialState = {
   ownerCard: false
 }
 
+
+
 export const CHANGE_STATE_POPUP = 'CHANGE_STATE_POPUP'
 
 export function PopUpCardReducer(state = initialState, action) {

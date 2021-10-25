@@ -16,27 +16,7 @@
 
   &__icon {
     text-align: center;
-    //background: url("../../assets/images/icons/home.svg") no-repeat center;
-    //width: 100%;
-    //height: 24px;
-    //background-size: contain;
-    //cursor: pointer;
   }
-
-  //.loupe {
-  //  background: url("../../assets/images/icons/loupe_black.svg") no-repeat center;
-  //  background-size: contain;
-  //}
-  //
-  //.plus {
-  //  background: url("../../assets/images/icons/plus_black.svg") no-repeat center;
-  //  background-size: contain;
-  //}
-  //
-  //.user {
-  //  background: url("../../assets/images/icons/user.svg") no-repeat center;
-  //  background-size: contain;
-  //}
 
   @media (max-width: $mobile) {
     display: block;

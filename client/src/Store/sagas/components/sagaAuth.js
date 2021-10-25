@@ -12,14 +12,15 @@ import {
 	EMAIL_RESENDING,
 } from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
-import {API_URL} from '../../../config'
+
 import {showMessageAction} from "../../reducers/components/showMessageReducer";
+import {API_URL} from '../../../config'
 
 
 function* loginWorker(user) {
 	try {
 		yield put({type: CHECK_REGISTRATION})
-		const payload = yield call(() => Fetcher('http://localhost:5000/auth/login',
+		const payload = yield call(() => Fetcher(`${API_URL}/auth/login`,
 											'POST',
 											user.payload,))
 
@@ -34,7 +35,7 @@ function* loginWorker(user) {
 
 function* registrationWorker(data) {
 	try {
-		const payload = yield call(() => Fetcher(`${API_URL}auth/register`, 'POST', data.payload))
+		const payload = yield call(() => Fetcher(`${API_URL}/auth/register`, 'POST', data.payload))
 		yield put({type: LOGIN_AUTHENTICATION, payload})
 	} catch (e) {
 		const payload = {text: `${e.message}`, severity: 'error'}
@@ -44,7 +45,7 @@ function* registrationWorker(data) {
 
 function* authWorker() {
 	try {
-		const payload = yield call(() => Fetcher('http://localhost:5000/auth/auth', 'GET', '', {
+		const payload = yield call(() => Fetcher(`${API_URL}/auth/auth`, 'GET', '', {
 			Authorization:`Bearer ${localStorage.getItem('token')}`
 		}))
 		yield put({type: WRITE_REDUCER_TOKEN, payload})
@@ -55,7 +56,7 @@ function* authWorker() {
 
 function* authEmailResendingWorker() {
 	try {
-		const payload = yield call(() => Fetcher('http://localhost:5000/authentication/email-resending', 'POST', '', {
+		const payload = yield call(() => Fetcher(`${API_URL}/authentication/email-resending`, 'POST', '', {
 			Authorization:`Bearer ${localStorage.getItem('token')}`
 		}))
 

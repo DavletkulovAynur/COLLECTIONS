@@ -32,7 +32,7 @@ function SearchResultElements({searchResult, searchCollectionState, viewResultSe
 			const {_id, mainImg, title, owner} = collection
 			const divStyle = (owner, img) => {
 				return {
-					backgroundImage: `url(${API_URL}${owner}/compressed/${img})`,
+					backgroundImage: `url(${API_URL}/${owner}/compressed/${img})`,
 				}
 			};
 			return (

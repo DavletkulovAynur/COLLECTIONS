@@ -7,7 +7,7 @@ import {showMessageAction} from "../../reducers/components/showMessageReducer";
 function* addNewCollectionWorker(formData) {
   try {
     yield put({type: SEND_COLLECTION_LOAD})
-    const payload = yield call (() => Fetcher(`${API_URL}collection/add`,
+    const payload = yield call (() => Fetcher(`${API_URL}/collection/add`,
       'POST',
       formData.payload,
       {

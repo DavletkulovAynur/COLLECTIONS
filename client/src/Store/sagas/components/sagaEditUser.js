@@ -14,7 +14,7 @@ function* userInfoEditWorker(data) {
   try {
     yield put({type: EDIT_PROFILE_LOADING})
     yield call(() => Fetcher(
-      `${API_URL}users/edit-user`,
+      `${API_URL}/users/edit-user`,
       'POST',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}
@@ -32,7 +32,7 @@ function* userAvatarEditWorker(data) {
   try {
     yield put({type: LOAD_AVATAR})
     const payload = yield call(() => Fetcher(
-      ` ${API_URL}users/load-avatar`,
+      ` ${API_URL}/users/load-avatar`,
       'POST',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`},
