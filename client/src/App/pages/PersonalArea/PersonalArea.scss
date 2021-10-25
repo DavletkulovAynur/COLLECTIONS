@@ -69,4 +69,11 @@
 
 
   }
+
+  @media (max-width: 760px) {
+    &__tab-box { 
+      justify-content: space-around;
+      margin-bottom: 0;
+    }
+  }
 }
