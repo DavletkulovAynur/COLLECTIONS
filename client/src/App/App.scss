@@ -9,22 +9,15 @@
   margin: 0 auto;
   height: 100%;
 
-  .content {
-    //height: 100%;
-    max-width: 1480px;
+  &-root {
+    // max-width: 1480px;
     padding-top: 70px;
-    // padding: 0 24px 24px;
   }
 
   @media (max-width: $mobile) {
-    .content {
+    &-root {
       // padding: 0 6px 60px;
       padding-top: 20px;
     }
   }
-}
-
-
-:global(.test) {
-  color: red;
 }

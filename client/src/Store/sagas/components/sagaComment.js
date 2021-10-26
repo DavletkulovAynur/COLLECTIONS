@@ -18,7 +18,7 @@ import {showMessageAction} from "../../reducers/components/showMessageReducer";
 export function* addComment(data) {
   try {
     yield put({type: SEND_COMMENT_LOADING, payload: true})
-    const payload =  yield call(() => Fetcher(`${API_URL}comment/add`,
+    const payload =  yield call(() => Fetcher(`${API_URL}/comment/add`,
       'PUT',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}))
@@ -35,7 +35,7 @@ export function* addComment(data) {
 export function* removeComment(data) {
   try {
     yield put(removeCommentLoadingAction(true))
-    const payload =  yield call(() => Fetcher(`${API_URL}comment/remove`,
+    const payload =  yield call(() => Fetcher(`${API_URL}/comment/remove`,
       'PUT',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}))

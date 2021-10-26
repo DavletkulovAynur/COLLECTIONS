@@ -5,12 +5,13 @@ import {
   SEARCH_COLLECTION_LOADING,
   WRITE_DOWN_SEARCH_COLLECTION
 } from "../../types";
-import Fetcher from "../../../Common/utils/fetch";
+import Fetcher from '../../../Common/utils/fetch'
+import {API_URL} from '../../../config'
 
 function* searchCollectionWorker(data) {
   try {
     yield put({type: SEARCH_COLLECTION_LOADING})
-    const payload = yield call (() => Fetcher('http://localhost:5000/collection/search', 'POST', data.payload))
+    const payload = yield call (() => Fetcher(`${API_URL}/collection/search`, 'POST', data.payload))
     yield put({type: WRITE_DOWN_SEARCH_COLLECTION, payload})
     yield put ({type: SEARCH_COLLECTION_HIDE_LOADING})
   } catch (e) {

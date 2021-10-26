@@ -46,7 +46,7 @@ function* getAllSubscribeWorker(data) {
   try {
     yield put(getAllSubscribeLoaderAction(true))
     const payload = yield call(() => Fetcher(
-      `${API_URL}subscribe/get-all-subscribe`,
+      `${API_URL}/subscribe/get-all-subscribe`,
       'POST',
       data.payload,
       {Authorization: `Bearer ${localStorage.getItem('token')}`}
@@ -70,7 +70,7 @@ export function* subscribeWatcher() {
 function* subscribe(user, url, messageText) {
   yield put(loaderSubscribeAction(true))
   yield call(() => Fetcher(
-    `${API_URL}users/${url}`,
+    `${API_URL}/users/${url}`,
     'POST',
     user,
     {Authorization: `Bearer ${localStorage.getItem('token')}`}

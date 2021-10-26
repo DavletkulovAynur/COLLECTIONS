@@ -11,7 +11,7 @@ async function emailService(email, user, hash = null) {
   if(hash) {
     fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
       let htmlFile = data;
-      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:5000/authentication/email?id=${hash}`)
+      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:4000/authentication/email?id=${hash}`)
 
       const message = {
         to: email,
@@ -25,7 +25,7 @@ async function emailService(email, user, hash = null) {
     const randomEmailHash = randomBytes(16).toString('hex')
     fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
       let htmlFile = data;
-      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:5000/authentication/email?id=${randomEmailHash}`)
+      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:4000/authentication/email?id=${randomEmailHash}`)
 
       const message = {
         to: email,

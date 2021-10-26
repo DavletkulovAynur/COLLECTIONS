@@ -14,7 +14,7 @@ const COMPLAIN_COLLECTION = 'COMPLAIN_COLLECTION'
 function* sagaDeleteCollectionWorker(data) {
   try {
     yield put({type: DELETE_COLLECTION_LOADING, payload: true})
-    yield call (() => Fetcher(`${API_URL}collection/delete`,
+    yield call (() => Fetcher(`${API_URL}/collection/delete`,
       'POST',
       data.payload,
       {
@@ -40,7 +40,7 @@ function* sagaDeleteCollectionWorker(data) {
 function* sagaComplainCollectionWorker(data) {
   try {
     yield put({type: DELETE_COLLECTION_LOADING, payload: true})
-    yield call (() => Fetcher(`${API_URL}collection/complain`,
+    yield call (() => Fetcher(`${API_URL}/collection/complain`,
       'POST',
       data.payload,
       {

@@ -13,7 +13,7 @@ function* getUserWorker(data) {
     const user = {
       userId: data.payload
     }
-    const payload = yield call(() => Fetcher(`${API_URL}users/get-user`, 'POST', user))
+    const payload = yield call(() => Fetcher(`${API_URL}/users/get-user`, 'POST', user))
 
     yield put({type: WRITE_DOWN_GET_USER, payload})
   } catch (e) {
@@ -26,7 +26,7 @@ function* getUserCollectionWorker(data) {
     const user = {
       userId: data.payload
     }
-    const payload = yield call(() => Fetcher(`${API_URL}users/get-user-collection`, 'POST', user))
+    const payload = yield call(() => Fetcher(`${API_URL}/users/get-user-collection`, 'POST', user))
     console.log('payload', payload)
     yield put({type: WRITE_DOWN_USER_COLLECTION, payload})
   } catch(e) {

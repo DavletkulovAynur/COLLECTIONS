@@ -7,11 +7,12 @@ import {
   WRITE_DOWN_BOOKMARK_COLLECTION
 } from '../../types'
 import {collectionLoaderAction} from "../../reducers/components/collectionReducer";
-import {showMessageAction} from "../../reducers/components/showMessageReducer";
+import {showMessageAction} from '../../reducers/components/showMessageReducer'
+import {API_URL} from '../../../config'
 
 function* addBookmark(data) {
     try {
-       yield call (() => Fetcher('http://localhost:5000/users/save-bookmark',
+       yield call (() => Fetcher(`${API_URL}/users/save-bookmark`,
             'PUT',
                     data.payload,
             {Authorization: `Bearer ${localStorage.getItem('token')}`}))
@@ -33,7 +34,7 @@ function* addBookmark(data) {
 
 function* deleteBookmark(data) {
     try {
-        yield call(() => Fetcher('http://localhost:5000/users/delete-bookmark',
+        yield call(() => Fetcher(`${API_URL}/users/delete-bookmark`,
             'PUT',
                     data.payload,
             {Authorization: `Bearer ${localStorage.getItem('token')}`}))
@@ -55,7 +56,7 @@ function* getBookmarkCollection(formData) {
             data: formData.payload
         }
         const payload = yield call(() => Fetcher(
-            'http://localhost:5000/collection/get-bookmark',
+            `${API_URL}/collection/get-bookmark`,
             'POST',
             test,
             {Authorization: `Bearer ${localStorage.getItem('token')}`}))
