@@ -30,6 +30,7 @@ import {  faCheckSquare,
   faSearch,
   faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import {PopUpCard} from "../Common/components/PopUpCard/PopUpCard";
+import { showMessageAction } from 'Store/reducers/components/showMessageReducer'
 
 
 library.add(fab,  faUser, faSearch, faHome, faEllipsisH, faEllipsisV, faCheck, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends, faTrashAlt, faPencilAlt, faChevronLeft)
@@ -61,6 +62,10 @@ function App() {
 
   if(token) {
     localStorage.setItem('token', token)
+  }
+
+  function test() {
+    dispatch(showMessageAction({text: 'успешно'}))
   }
 
   return (

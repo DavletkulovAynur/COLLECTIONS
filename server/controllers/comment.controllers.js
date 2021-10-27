@@ -1,29 +1,29 @@
 const USER_MODEL = require('../models/user')
 const COLLECTION_MODEL = require('../models/collection')
+const COMMENT_MODEL = require('../models/comments')
 const Uuid = require('uuid')
 
 class CommentControllers {
   async addComment(req, res) {
-    const {description, id, title} = req.body
-    const user = await USER_MODEL.find({_id: req.user.id})
+	try {
 
-    const idComment = Uuid.v4()
+      	const {description, id, title} = req.body
+		const user = await USER_MODEL.find({_id: req.user.id})
 
-    const commentObj = {
-      idComment,
-      title,
-      description,
-      time: Date.now(),
-      authorId: req.user.id,
-      // avatar: user[0].avatar,
-      // authorName: user[0].username
-    }
+		const collection = new COMMENT_MODEL({
+        title,
+        description,
+        time: Date.now(),
+        authorId: req.user.id,
+        avatar: user[0].avatar,
+        authorName: user[0].username,
+        owner: req.user.id
+      })
 
-
-
-    try {
-      await  COLLECTION_MODEL.updateMany({_id: id}, {$push: {comments : commentObj}})
-      res.status(201).json({message: 'Collection update', status: true, resData: commentObj})
+		await collection.save()
+      
+   
+      res.status(201).json({message: 'Collection update', status: true})
     } catch (e) {
       res.status(500).json(e)
     }
