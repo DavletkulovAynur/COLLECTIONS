@@ -13,15 +13,18 @@ import {UserLink} from './templates/UserLink'
 // TODO smart component
 export function CommonCard({data}) {
   const {owner} = useSelector((state) => state.authReducer)
+  const {avatar} = owner
   const {userId} = owner
   const dispatch = useDispatch()
 
+  console.log(owner)
   //TODO 
   const divStyle = (owner, mainImg) => {
       return {
         backgroundImage: `url(${API_URL}/${owner}/compressed/${mainImg})`,
       }
     };
+
 function infoTemplate(_id, title) {
       return (
         <>
@@ -75,7 +78,7 @@ function infoTemplate(_id, title) {
                             Test
                           </div>
                           <div className='Pin__avatar-and-button'>
-                            <UserLink author={author} authorAvatar={authorAvatar} owner={owner} userId={userId}/>
+                            <UserLink author={author} avatar={avatar} authorAvatar={authorAvatar} owner={owner} userId={userId}/>
                             <PointButton owner={owner} userId={userId} idCollection={_id} deleteCollection={deleteCollection}/>
                             
                           </div>

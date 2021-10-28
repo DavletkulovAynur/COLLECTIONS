@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const USER_MODEL = require('../models/user')
 const COLLECTION_MODEL = require('../models/collection')
+const COMMENT_MODEL = require('../models/comments')
 const Uuid = require('uuid')
 const adapter = require("../services/userDataAdapter");
 const { isArray } = require('util')
@@ -103,17 +104,15 @@ class UserControllers {
 
 			file.mv(pathWay)
 
-			try {
-				await  USER_MODEL.updateOne({_id: req.user.id}, {$set: {avatar: avatarName}}, {upsert: true})
-				await COLLECTION_MODEL.updateMany({owner: req.user.id}, {$set: {authorAvatar: avatarName}}, {multi: true})
+			
+			await  USER_MODEL.updateOne({_id: req.user.id}, {$set: {avatar: avatarName}}, {upsert: true})
+			await COLLECTION_MODEL.updateMany({owner: req.user.id}, {$set: {authorAvatar: avatarName}}, {multi: true})
+			
+			await COMMENT_MODEL.updateMany({ownerUser: req.user.id}, {$set: {avatar: avatarName}})
+			res.status(201).json({message: 'Avatar update', status: true, resData: avatarName})
 				
-				const a = await COLLECTION_MODEL.find({"comments.authorId": String(req.user.id)})
-				res.status(201).json({message: 'Avatar update', status: true})
-				
-			} catch (e) {
-				console.log(e)
-			}
-
+			
+			
 		} catch(e) {
 			res.status(400).json({message: 'Error load Avatar'})
 		}

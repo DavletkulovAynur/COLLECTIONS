@@ -6,5 +6,6 @@ const router = Router()
 
 router.put('/add', authMiddleware, commentControllers.addComment)
 router.put('/remove', authMiddleware, commentControllers.removeComment)
+router.post('/get', authMiddleware, commentControllers.getComment)
 
 module.exports = router
