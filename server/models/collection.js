@@ -11,13 +11,6 @@ const schema = new Schema ({
   mainImg: {type: String},
   publisher: {type: String},
   description: {type: String},
-  comments: {
-    idComment: {type: String},
-    title: {type: String},
-    description: {type: String},
-    time: {type: Number},
-    // test: {type: Types.ObjectId, ref: 'Users', required: true},
-  },
   stylePin: {type: String},
   owner: {type: Types.ObjectId, ref: 'Users'}
 })

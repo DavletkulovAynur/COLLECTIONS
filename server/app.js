@@ -20,7 +20,7 @@ app.use('/comment', require('./routes/comment.routes'))
 app.use('/subscribe', require('./routes/subscribe.routes'))
 
 
-const PORT = config.get('port') || 4000
+const PORT = process.env.PORT
 async function start() {
   try {
     await mongoose.connect(config.get('mongoUrl'), {

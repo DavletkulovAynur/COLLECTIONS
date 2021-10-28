@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './ShowMessage.scss'
 import {removeShowMessageAction} from "../../../Store/reducers/components/showMessageReducer";
+import { useInterval } from 'Common/utils/hooks/useInterval.hook';
 
 
 export function ShowMessage({showMessage,
@@ -16,8 +17,6 @@ export function ShowMessage({showMessage,
 
     let timerID
 
-
-    // TODO -  ERROR (таймер работает неправильно)
     useEffect(() => {
       setVisible(showMessage)
       if(showMessage) {
@@ -25,10 +24,13 @@ export function ShowMessage({showMessage,
           removeMessage()
         }, 3000)
       }
+      return () => clearTimeout(timerID);
+
     }, [showMessage])
 
+   
+
     const removeMessage = () => {
-      clearTimeout(timerID);
       setVisible(false)
       dispatch(removeShowMessageAction())
     }

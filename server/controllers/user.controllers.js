@@ -4,6 +4,7 @@ const USER_MODEL = require('../models/user')
 const COLLECTION_MODEL = require('../models/collection')
 const Uuid = require('uuid')
 const adapter = require("../services/userDataAdapter");
+const { isArray } = require('util')
 
 class UserControllers {
 	async getUsers(req, res) {
@@ -104,8 +105,11 @@ class UserControllers {
 
 			try {
 				await  USER_MODEL.updateOne({_id: req.user.id}, {$set: {avatar: avatarName}}, {upsert: true})
-				await COLLECTION_MODEL.update({owner: req.user.id}, {$set: {authorAvatar: avatarName}}, {multi: true})
+				await COLLECTION_MODEL.updateMany({owner: req.user.id}, {$set: {authorAvatar: avatarName}}, {multi: true})
+				
+				const a = await COLLECTION_MODEL.find({"comments.authorId": String(req.user.id)})
 				res.status(201).json({message: 'Avatar update', status: true})
+				
 			} catch (e) {
 				console.log(e)
 			}
