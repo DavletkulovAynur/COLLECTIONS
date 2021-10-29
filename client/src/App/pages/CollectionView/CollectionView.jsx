@@ -5,20 +5,26 @@ import {useRouter} from 'Common/utils/hooks/useRouter.hook'
 import {addCommentAction, getCollectionViewAction, removeCommentAction} from '../../../Store/actions/action'
 
 import {CollectionViewTemplate} from "./CollectionViewTemplate";
+import { getCommentsAction } from 'Store/reducers/components/collectionViewReducer';
+import { Loading } from 'Common/components/Loading/Loading';
 
 
 
 function CollectionView() {
   const dispatch = useDispatch()
   const router = useRouter()
-  const {collection = [], comments} = useSelector(state => state.collectionViewReducer)
+  const {collection, comments, getCollectionLoading} = useSelector(state => state.collectionViewReducer)
+  const {_id} = collection
+  console.log(_id)
 
   const collectionId = router.match.params.id
 
 
 
   useEffect(() => {
+	
     dispatch(getCollectionViewAction({collectionId}))
+    dispatch(getCommentsAction({collectionId}))
   }, [])
 
   const sendComment = ({title, description}) => {
@@ -40,9 +46,10 @@ function CollectionView() {
     dispatch(removeCommentAction(comment))
   }
 
-  if(!collection) {
+
+  if(getCollectionLoading || _id !== collectionId) {
     return (
-      <h1>LOADING</h1>
+      <Loading/>
     )
   }
 

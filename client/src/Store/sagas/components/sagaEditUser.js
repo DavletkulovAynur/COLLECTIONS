@@ -9,6 +9,7 @@ import {
   LOAD_AVATAR_COMPLETE,
 } from "../../types";
 import {showMessageAction} from "../../reducers/components/showMessageReducer";
+import { loadNewAvatarAction } from 'Store/reducers/components/authReducer';
 
 function* userInfoEditWorker(data) {
   try {
@@ -38,9 +39,11 @@ function* userAvatarEditWorker(data) {
       {Authorization: `Bearer ${localStorage.getItem('token')}`},
       false
     ))
+    console.log(payload)
     yield put({type: LOAD_AVATAR_COMPLETE})
-    const showText = {text: `успешно`}
-    yield put(showMessageAction(showText))
+    yield put(showMessageAction({text: `успешно`}))
+    yield put(loadNewAvatarAction(payload))
+
   } catch (e) {
     const payload = {text: `ошибка ${e.statusText}`, severity: 'error'}
     yield put(showMessageAction(payload))

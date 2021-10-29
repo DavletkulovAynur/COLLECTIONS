@@ -6,6 +6,8 @@ import {
   ADD_BOOKMARK_UPDATE_STATE, CHECK_REGISTRATION, CHECK_REGISTRATION_RETURN_FALSE
 } from '../../types'
 
+export const LOAD_NEW_AVATAR = 'LOAD_NEW_AVATAR'
+
 const initialState = {
   active: false,
   token: null,
@@ -40,6 +42,8 @@ export const authReducer = (state = initialState, action) => {
       return {...state, checkRegistration: true}
     case CHECK_REGISTRATION_RETURN_FALSE:
       return {...state, checkRegistration: false}
+	case LOAD_NEW_AVATAR: 
+		return {...state, owner: {...state.owner, avatar: action.payload.data}}
     default:
 			return {...state}
 	}
@@ -61,7 +65,11 @@ function authenticationInformationUser(data, state) {
             subscribers,
             avatar,
             description,
-            place
+            place,
           },
   }
 }
+
+
+//actions
+export const loadNewAvatarAction = (payload) => ({type: LOAD_NEW_AVATAR, payload})

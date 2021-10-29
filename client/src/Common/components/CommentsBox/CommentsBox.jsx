@@ -22,8 +22,8 @@ const CommentsBox = ({removeComment}) => {
     <section className='Comments-box'>
       <div  className='Comments-box__content-area'>
         {sortComments.map((comment, index) => {
-          const {time, title, authorName, description, avatar, authorId, idComment} = comment
-         console.log(avatar)
+          const {time, title, authorName, description, avatar, authorId, _id} = comment
+         
           const avatarUrl = DefineAvatarUrl(avatar)
           
           const datePublication = timeConverter(time)
@@ -41,7 +41,7 @@ const CommentsBox = ({removeComment}) => {
                 </div>
               </div>
               {authorId === userId
-                ? <DeleteButton eventFunction={defineIdComments} idElement={idComment}/>
+                ? <DeleteButton eventFunction={defineIdComments} idElement={_id}/>
                 : null
               }
             </section>

@@ -9,7 +9,8 @@ const schema = new Schema ({
     authorId: {type: String},
     avatar: {type: String},
     authorName: {type: String},
-    ownerCollection: {type: Types.ObjectId, ref: 'Collection'}
+    ownerCollection: {type: Types.ObjectId, ref: 'Collection'},
+    ownerUser: {type: Types.ObjectId, ref: 'Users'}
 })
   
   module.exports = model('Comments', schema)

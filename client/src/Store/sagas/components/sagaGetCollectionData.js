@@ -15,6 +15,7 @@ import {
 import Fetcher from '../../../Common/utils/fetch'
 import {API_URL} from '../../../config'
 import {collectionLoaderAction} from "../../reducers/components/collectionReducer";
+import { getCollectionLoadingAction } from 'Store/reducers/components/collectionViewReducer';
 
 
 
@@ -66,11 +67,13 @@ function* getSubscribeCollection(data) {
 
 function* getCollectionView(data) {
 	try {
+		yield put(getCollectionLoadingAction(true))
 		const payload = yield call(() => Fetcher(`${API_URL}/collection/get-collection-view`,
 			'POST',
 			data.payload,
 			{Authorization: `Bearer ${localStorage.getItem('token')}`}))
 		yield put({type: WRITE_DOWN_COLLECTION_VIEW, payload})
+		yield put(getCollectionLoadingAction(false))
 	} catch (e){
 		console.log(e)
 	}
