@@ -90,6 +90,15 @@
     flex-shrink: 0;
   }
 
+  &__button-box {
+    margin-top: 6px;
+  }
+
+  .Button {
+    padding: 12px 6px;
+    font-size: 12px;
+  }
+
   @media (max-width: 760px) {
     &-root {
       flex-direction: column;

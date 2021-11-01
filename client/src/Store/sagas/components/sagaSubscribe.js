@@ -12,19 +12,19 @@ import {
   unSubscribeFromThisUserAction
 } from '../../reducers/components/userAreaPageReducer'
 import {showMessageAction} from '../../reducers/components/showMessageReducer'
+import { unsubscribeChangeOwnerAction } from 'Store/reducers/components/authReducer'
 
-const test = (state) => state.authReducer
-
-
+const auth = (state) => state.authReducer
 
 function* subscribeOnUserWorker(data) {
   try {
     const user = {
       subscribeUserId: data.payload
     }
-    let project = yield select(test);
+    let project = yield select(auth);
     yield subscribe(user, 'subscribe-on-user', 'Успешно подписались')
     yield put(subscribeFromThisUserAction(project.owner.userId))
+
   } catch (e) {
     console.log('error', e)
   }
@@ -37,6 +37,10 @@ function* unSubscribeOnUserWorker(data) {
     }
     yield subscribe(user, 'unsubscribe-on-user', 'Успешно отписались' )
     yield put(unSubscribeFromThisUserAction(user))
+    yield put(unsubscribeChangeOwnerAction(user))
+
+    
+
   } catch (e) {
     console.log('error', e)
   }
@@ -69,16 +73,19 @@ export function* subscribeWatcher() {
 // UTILS
 function* subscribe(user, url, messageText) {
   yield put(loaderSubscribeAction(true))
-  yield call(() => Fetcher(
-    `${API_URL}/users/${url}`,
+  const payload = yield call(() => Fetcher(
+    `${API_URL}/subscribe/${url}`,
     'POST',
     user,
     {Authorization: `Bearer ${localStorage.getItem('token')}`}
   ))
   yield put(loaderSubscribeAction(false))
-  const showText = {text: messageText}
-  yield put(showMessageAction(showText))
+  yield put(showMessageAction({text: messageText}))
+  
 }
+
+
+
 
 
 

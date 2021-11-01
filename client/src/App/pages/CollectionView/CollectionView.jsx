@@ -15,7 +15,6 @@ function CollectionView() {
   const router = useRouter()
   const {collection, comments, getCollectionLoading} = useSelector(state => state.collectionViewReducer)
   const {_id} = collection
-  console.log(_id)
 
   const collectionId = router.match.params.id
 

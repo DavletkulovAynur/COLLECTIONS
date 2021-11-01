@@ -10,8 +10,6 @@ function CollectionsList({data = []}) {
 
 	const {collectionLoader} = useSelector((state) => state.collectionReducer)
 
-
-	console.log('data', data)
 	// TODO случай ошибка
 
 	// if(error) {

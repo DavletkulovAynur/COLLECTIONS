@@ -42,28 +42,6 @@ class UserControllers {
 		}
 	}
 
-	async subscribeOnUser(req, res) {
-		try {
-			const {subscribeUserId} = req.body
-			await USER_MODEL.update({_id: subscribeUserId}, {$addToSet: {subscribers: req.user.id}})
-			await USER_MODEL.update({_id: req.user.id}, {$addToSet: {subscriptions: subscribeUserId}})
-			res.status(201).json({message: 'Успешно'})
-		} catch (e) {
-			res.status(500).json(e)
-		}
-	}
-
-	async unSubscribeUser(req, res) {
-		try {
-			const {subscribeUserId} = req.body
-			await USER_MODEL.update({_id: subscribeUserId}, {$pull: {subscribers: req.user.id}})
-			await USER_MODEL.update({_id: req.user.id}, {$pull: {subscriptions: subscribeUserId}})
-			res.status(201).json({message: 'Успешно'})
-		} catch (e) {
-			res.status(500).json(e)
-		}
-	}
-
 	async saveBookmark(req, res){
 	const {bookmarkID} = req.body
 		try {
@@ -72,7 +50,7 @@ class UserControllers {
 		} catch (e) {
 			res.status(500).json(e)
 		}
-	}
+	} 
 
 	async deleteBookmark(req, res){
 		const {bookmarkID} = req.body

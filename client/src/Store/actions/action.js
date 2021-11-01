@@ -134,12 +134,6 @@ export function unSubscribeOnUserAction(payload) {
   })
 }
 
-export function getSubscribeCollectionAction(payload) {
-  return({
-    type: GET_SUBSCRIBE_COLLECTION,
-    payload
-  })
-}
 
 //Edit user
 export function editUserAction(payload) {

@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import UserAreaTemplate from "./UserAreaTemplate";
-import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "../../../Common/utils/hooks/useRouter.hook";
+import UserAreaTemplate from './UserAreaTemplate'
+import {useDispatch, useSelector} from 'react-redux'
+import {useRouter} from '../../../Common/utils/hooks/useRouter.hook'
 import {
     getUserAction, getUserCollectionAction,
     subscribeOnUserAction,
     unSubscribeOnUserAction
-} from "../../../Store/actions/action";
-import {Loading} from "../../../Common/components/Loading/Loading";
+} from '../../../Store/actions/action'
+import {Loading} from '../../../Common/components/Loading/Loading'
 
 
 const UserArea = () => {
@@ -21,6 +21,7 @@ const UserArea = () => {
         dispatch(getUserCollectionAction(userId))
     }, [])
 
+    // ПОДПИСКА и ОТПИСКА
     const subscribeOnUser = () => {
         dispatch(subscribeOnUserAction(userId))
     }

@@ -16,35 +16,48 @@ const initialState = {
   bookmark: [],
   owner: {
     subscribers: [],
+	  subscriptions: [],
     userId: null,
     userName: '',
     description: '',
     place: '',
     avatar: '',
-    subscriptions: [],
   }
 }
 
 export const LOGOUT = 'LOGOUT'
+const UNSUBSCRIBE_CHANGE_OWNER = 'UNSUBSCRIBE_FROM_THIS_USER'
+const SUBSCRIBE_CHANGE_OWNER = 'SUBSCRIBE_FROM_THIS_USER'
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
     case LOGIN_AUTHENTICATION:
       return authenticationInformationUser(action.payload.data, state)
+
     case WRITE_REDUCER_TOKEN:
       return authenticationInformationUser(action.payload.data, state)
+
     case DELETE_BOOKMARK_UPDATE_STATE:
       return {...state, bookmark: [...action.payload]}
+
     case ADD_BOOKMARK_UPDATE_STATE:
       return {...state, bookmark: [...action.payload]}
+
     case LOGOUT:
       return {...state, isAuthenticated: false, token: null, ready: true}
+
     case CHECK_REGISTRATION:
       return {...state, checkRegistration: true}
+
     case CHECK_REGISTRATION_RETURN_FALSE:
       return {...state, checkRegistration: false}
+
 	case LOAD_NEW_AVATAR: 
 		return {...state, owner: {...state.owner, avatar: action.payload.data}}
+
+	case UNSUBSCRIBE_CHANGE_OWNER:
+		return {...state, owner: {...state.owner, subscriptions: state.owner.subscribers.filter(item => item === action.payload.subscribeUserId)}}
+
     default:
 			return {...state}
 	}
@@ -75,3 +88,4 @@ function authenticationInformationUser(data, state) {
 //actions
 export const loadNewAvatarAction = (payload) => ({type: LOAD_NEW_AVATAR, payload})
 export const logoutAction = (payload) => ({type: LOGOUT})
+export const unsubscribeChangeOwnerAction = (payload) => ({type: UNSUBSCRIBE_CHANGE_OWNER, payload})

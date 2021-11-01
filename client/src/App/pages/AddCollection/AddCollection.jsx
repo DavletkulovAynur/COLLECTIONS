@@ -26,10 +26,6 @@ function AddCollection() {
   const [stylePin, setStylePin]= useState('middle')
   const [selectValue, setSelectValue] = useState('')
 
-
-  const test2 = () => {
-    console.log('super puper')
-  }
   //
   const title = useInput('', handleSubmit)
   const description = useInput('', handleSubmit)
