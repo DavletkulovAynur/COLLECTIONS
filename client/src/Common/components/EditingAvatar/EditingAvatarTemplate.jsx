@@ -56,9 +56,6 @@ const PreviewImgPopup = ({openPopupPreview, previewImg, deleteFile, changeUserAv
 const AvatarChange = ({fileUploadHandler, avatarUrl, loader}) => {
   const test = useRef()
 
-  function wqe() {
-    console.log('super')
-  }
   return (
     <div className='Avatar-edit__box'>
       <div className='Avatar-edit__content'>

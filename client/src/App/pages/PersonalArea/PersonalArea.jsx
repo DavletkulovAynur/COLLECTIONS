@@ -32,6 +32,7 @@ export function PersonalArea() {
 				<TabTemplates changeTabValue={changeTabValue} tabValue={tabValue}/>
 			</section>
 			<CollectionListTemplate user={owner} tabValue={tabValue}/>
+			
 		</div>
 	)
 }

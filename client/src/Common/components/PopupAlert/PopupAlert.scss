@@ -1,0 +1,23 @@
+
+.Popup-alert {
+
+    &-content {
+        border-radius: 4px;
+        max-width: 375px;
+        width: 90%;
+    }
+    &__title {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 24px;
+    }
+
+    &__action-buttons {
+        display: flex;
+    }
+
+    &__main-action-button {
+        margin-left: 16px;
+    }
+}

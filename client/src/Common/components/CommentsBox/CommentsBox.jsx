@@ -40,10 +40,13 @@ const CommentsBox = ({removeComment}) => {
                   <div className='Comment__date'>{datePublication}</div>
                 </div>
               </div>
-              {authorId === userId
-                ? <DeleteButton eventFunction={defineIdComments} idElement={_id}/>
-                : null
-              }
+              <div className='Comment__delete-button'>
+                {authorId === userId
+                  ? <DeleteButton eventFunction={defineIdComments} idElement={_id}/>
+                  : null
+                }
+              </div>
+            
             </section>
           )
         })}

@@ -1,20 +1,36 @@
 import React from 'react'
-import './Header.scss'
-import {useDispatch, useSelector} from 'react-redux'
-import {logoutAction} from '../../../Store/actions/action'
+import {useDispatch} from 'react-redux'
+import { logoutAction } from 'Store/reducers/components/authReducer'
+
 //Templates
 import {HeaderLogo} from './templates/HeaderLogo'
 import {Search} from '../Search/Search'
 import {HeaderActionButtons} from './templates/HeaderActionButtons'
 import {HeaderAvatar} from './templates/HeaderAvatar'
 
+//Style
+import './Header.scss'
+import { popupAlertOpenAction } from 'Store/reducers/components/popupAlertReducer'
+
 export function Header() {
   const dispatch = useDispatch()
-  // const state = useSelector(state => state.PopUpCardReducer)
 
-  const logOut = () => {
+  const test = () => {
+    
     dispatch(logoutAction())
     localStorage.removeItem('token')
+  }
+  
+  const logOut = () => {
+    dispatch(popupAlertOpenAction(
+      {
+        statePopupAlert: true,
+        text: 'Вы действительно хотите выйти?',
+        fn: test
+      }
+    ))
+    // dispatch(logoutAction())
+    // localStorage.removeItem('token')
   }
 
   return (

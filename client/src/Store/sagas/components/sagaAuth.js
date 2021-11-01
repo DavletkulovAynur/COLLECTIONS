@@ -2,7 +2,6 @@ import {call, put, takeEvery} from 'redux-saga/effects'
 import {
 	WRITE_REDUCER_TOKEN,
 	LOGIN_AUTHENTICATION,
-	LOGOUT,
 	CHECK_REGISTRATION,
 	CHECK_REGISTRATION_RETURN_FALSE,
 	GET_ALL_COLLECTION,
@@ -13,8 +12,9 @@ import {
 } from '../../types'
 import Fetcher from '../../../Common/utils/fetch'
 
-import {showMessageAction} from "../../reducers/components/showMessageReducer";
+import {showMessageAction} from '../../reducers/components/showMessageReducer'
 import {API_URL} from '../../../config'
+import { logoutAction } from 'Store/reducers/components/authReducer';
 
 
 function* loginWorker(user) {
@@ -50,7 +50,7 @@ function* authWorker() {
 		}))
 		yield put({type: WRITE_REDUCER_TOKEN, payload})
 	} catch (e) {
-		yield put({type: LOGOUT})
+		yield put(logoutAction())
 	}
 }
 
@@ -61,7 +61,7 @@ function* authEmailResendingWorker() {
 		}))
 
 	} catch (e) {
-		yield put({type: LOGOUT})
+		yield put(logoutAction())
 	}
 }
 

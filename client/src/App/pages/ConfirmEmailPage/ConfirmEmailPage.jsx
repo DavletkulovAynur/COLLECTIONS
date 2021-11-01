@@ -4,7 +4,8 @@ import {useDispatch} from 'react-redux'
 import {useInterval} from '../../../Common/utils/hooks/useInterval.hook'
 import {HeaderLogo} from '../../../Common/components/Header/templates/HeaderLogo'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {emailResendingAction, logoutAction} from '../../../Store/actions/action'
+import {emailResendingAction} from '../../../Store/actions/action'
+import { logoutAction } from 'Store/reducers/components/authReducer'
 
 const ConfirmEmailPage = () => {
   const delay = 1000
