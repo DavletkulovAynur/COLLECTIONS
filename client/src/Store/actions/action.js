@@ -96,12 +96,6 @@ export function loginAction(payload) {
   })
 }
 
-export function logoutAction() {
-  return({
-    type: LOGOUT
-  })
-}
-
 export function registrationAction(payload) {
   return({
     type: REGISTRATION,

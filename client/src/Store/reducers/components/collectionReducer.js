@@ -12,6 +12,7 @@ const COLLECTION_LOADER = 'COLLECTION_LOADER'
 const initialState = {
   myCollection: [],
   allCollection: [],
+  subscriptionsCollection: [],
   bookmarkCollection: [],
   searchCollection: [],
   searchCollectionState: false,

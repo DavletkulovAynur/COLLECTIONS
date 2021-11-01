@@ -9,6 +9,7 @@ import {subscribeReducer} from './components/subscribeReducer'
 import {showMessageReducer} from './components/showMessageReducer'
 import {PopUpCardReducer} from './components/PopUpCardReducer'
 import {deleteCollectionReducer} from './components/deleteCollectionReducer'
+import {popupAlertReducer} from './components/popupAlertReducer'
 
 const reducer = combineReducers({
   collectionReducer,
@@ -20,7 +21,8 @@ const reducer = combineReducers({
   subscribeReducer,
   showMessageReducer,
   PopUpCardReducer,
-  deleteCollectionReducer
+  deleteCollectionReducer,
+  popupAlertReducer,
 })
 
 export default reducer

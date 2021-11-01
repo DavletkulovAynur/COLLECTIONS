@@ -1,7 +1,6 @@
 import {
   WRITE_REDUCER_TOKEN,
   LOGIN_AUTHENTICATION,
-  LOGOUT,
   DELETE_BOOKMARK_UPDATE_STATE,
   ADD_BOOKMARK_UPDATE_STATE, CHECK_REGISTRATION, CHECK_REGISTRATION_RETURN_FALSE
 } from '../../types'
@@ -25,6 +24,8 @@ const initialState = {
     subscriptions: [],
   }
 }
+
+export const LOGOUT = 'LOGOUT'
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -73,3 +74,4 @@ function authenticationInformationUser(data, state) {
 
 //actions
 export const loadNewAvatarAction = (payload) => ({type: LOAD_NEW_AVATAR, payload})
+export const logoutAction = (payload) => ({type: LOGOUT})
