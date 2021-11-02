@@ -16,8 +16,7 @@ export function CommonCard({data}) {
   const {avatar} = owner
   const {userId} = owner
   const dispatch = useDispatch()
-
-  console.log(owner)
+  
   //TODO 
   const divStyle = (owner, mainImg) => {
       return {

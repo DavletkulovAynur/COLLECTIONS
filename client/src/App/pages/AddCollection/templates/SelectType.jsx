@@ -17,11 +17,6 @@ export function SelectType({writeDownSelectValue}) {
     })
   }
 
-  function test(event) {
-    console.log(event.value)
-  }
-
-
   return <Select placeholder='Тип коллекции'
                  onChange={(event) => writeDownSelectValue(event.value)}
                  options={typeCollection}
