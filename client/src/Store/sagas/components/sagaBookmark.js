@@ -6,7 +6,7 @@ import {
   DELETE_BOOKMARK_UPDATE_STATE, GET_BOOKMARK_COLLECTION,
   WRITE_DOWN_BOOKMARK_COLLECTION
 } from '../../types'
-import {collectionLoaderAction} from "../../reducers/components/collectionReducer";
+import {collectionLoaderAction, GET_SUBSCRIBE_COLLECTION, writeDownSubscribeCollectionAction} from "../../reducers/components/collectionReducer";
 import {showMessageAction} from '../../reducers/components/showMessageReducer'
 import {API_URL} from '../../../config'
 
@@ -68,8 +68,27 @@ function* getBookmarkCollection(formData) {
     }
 }
 
+function* getSubscribeCollection(data) {
+    try {
+        const subscribe = {
+            userSubscribe: data.payload,
+        }
+        const payload = yield call(() => Fetcher(
+            `${API_URL}/collection/get-subscribe-collection`,
+            'POST',
+            subscribe,
+            {Authorization: `Bearer ${localStorage.getItem('token')}`},
+        ))
+        console.log('payload', payload)
+        yield put(writeDownSubscribeCollectionAction(payload))
+    } catch(e) {
+        console.log('ERROR', e)
+    }
+}
+
 export function* bookmarkWatcher() {
   yield takeEvery(GET_BOOKMARK_COLLECTION, getBookmarkCollection)
   yield takeEvery(ADD_BOOKMARK, addBookmark)
   yield takeEvery(DELETE_BOOKMARK, deleteBookmark)
+  yield takeEvery(GET_SUBSCRIBE_COLLECTION, getSubscribeCollection)
 }

@@ -7,7 +7,7 @@ export function SubscribeTemplate({numberUserPublications, subscribers, subscrip
   const [typeSubscribeValue, setTypeSubscribeValue] = useState('')
 
   // TODO функцию переделать
-  function test(event) {
+  function loadDataSubscribe(event) {
     let $root = event.target.closest('[data-type]');
     if (!$root) return;
     if($root.dataset.type === 'publication') return;
@@ -58,7 +58,7 @@ export function SubscribeTemplate({numberUserPublications, subscribers, subscrip
           return (
             <div  data-type={item.dataType}
                   data-value={item.value}
-                  onClick={(event) => test(event)}
+                  onClick={(event) => loadDataSubscribe(event)}
                   key={index}
                   className={`User-information__publication-subscribe-item User-information__type-${item.dataType}`}>
               <span className='User-information__publication-subscribe-item-number'>{item.number}</span>
@@ -74,9 +74,7 @@ export function SubscribeTemplate({numberUserPublications, subscribers, subscrip
         changeSubscribeValue={changeSubscribeValue}
         typeSubscribeValue={typeSubscribeValue}
         closePopup={closePopup}
-        statePopup={statePopup}
-        subscribers={subscribers}
-        subscriptions={subscriptions}/>
+        statePopup={statePopup}/>
     </>
 
   )

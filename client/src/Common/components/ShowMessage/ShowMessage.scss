@@ -11,7 +11,7 @@
     bottom: 10px;
     border-radius: 2px;
     padding: 8px 24px;
-    background-color: rgba(46, 204, 113, .95);
+    background-color: rgba(46, 204, 113, 1);
   }
 
   &_error {
@@ -32,5 +32,10 @@
     border: none;
     outline: none;
     background: transparent;
+  }
+
+  @media (max-width: 760px) {
+    bottom: 80px;
+    max-width: 320px;
   }
 }

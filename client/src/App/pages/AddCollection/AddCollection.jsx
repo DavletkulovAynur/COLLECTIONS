@@ -15,6 +15,7 @@ import {DragAndDrop} from '../../../Common/components/DragAndDrop/DragAndDrop'
 import {AddCollectionInputs} from './templates/AddCollectionInputs'
 import StylePin from './templates/StylePin'
 import {AddCollectionButton} from './templates/AddCollectionButton'
+import { AddCollectionMobile } from './AddCollectionMobile'
 
 
 function AddCollection() {
@@ -26,10 +27,6 @@ function AddCollection() {
   const [stylePin, setStylePin]= useState('middle')
   const [selectValue, setSelectValue] = useState('')
 
-
-  const test2 = () => {
-    console.log('super puper')
-  }
   //
   const title = useInput('', handleSubmit)
   const description = useInput('', handleSubmit)
@@ -100,18 +97,24 @@ function AddCollection() {
   return (
     <div className='Add-collection Add-collection-root'>
       <h1 className='Add-collection__title'>Создание коллекции</h1>
-      <form className='Add-collection__form'>
-        <section className='Add-collection__drag-drop-box'>
-          <DragAndDrop loadImg={loadImg} deleteImg={deleteImg}/>
-        </section>
-        <section className='Add-collection__inputs'>
-          <div>
-            <AddCollectionInputs writeDownSelectValue={writeDownSelectValue} inputErrors={inputErrors} description={description} title={title} nameCollection={nameCollection}/>
-            <StylePin changeStyleSelect={changeStyleSelect}/>
-          </div>
-          <AddCollectionButton load={load} handleSubmit={handleSubmit}/>
-        </section>
-      </form>
+      <div className='Add-collection__desktop'>
+		<form className='Add-collection__form'>
+			<section className='Add-collection__drag-drop-box'>
+			<DragAndDrop loadImg={loadImg} deleteImg={deleteImg}/>
+			</section>
+			<section className='Add-collection__inputs'>
+			<div>
+				<AddCollectionInputs writeDownSelectValue={writeDownSelectValue} inputErrors={inputErrors} description={description} title={title} nameCollection={nameCollection}/>
+				<StylePin changeStyleSelect={changeStyleSelect}/>
+			</div>
+			<AddCollectionButton load={load} handleSubmit={handleSubmit}/>
+			</section>
+		</form>
+      </div>
+     
+      <div className='Add-collection__mobile'>
+        <AddCollectionMobile loadImg={loadImg} deleteImg={deleteImg}/>
+      </div>
     </div>
   )
 }

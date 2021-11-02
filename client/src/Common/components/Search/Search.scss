@@ -35,6 +35,8 @@
     background-color: #202020;
     padding: 12px;
     min-height: 200px;
+    max-height: 70vh;
+    overflow: scroll;
 
     .item {
       margin-bottom: 12px;

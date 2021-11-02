@@ -1,28 +1,30 @@
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './FooterMobile.scss'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { useRouter } from 'Common/utils/hooks/useRouter.hook'
 
 export function FooterMobile() {
-const {statePopUp} = useSelector(state => state.PopUpCardReducer)
+const {hiddenMobileFooter} = useSelector(state => state.mobileFooterReducer)
+const router = useRouter()
 
-  return (
+return (
     <>
-      {!statePopUp
+      {!hiddenMobileFooter
         ? <div className='Footer-mobile'>
           <div className='icons-wrapper'>
             <Link className='Footer-mobile__icon' to='/'>
-              <FontAwesomeIcon icon='home' color='#fff'/>
+              <FontAwesomeIcon icon='home' color={`${router.pathname === '/' ? '#e60023' : '#fff'} `} />
             </Link>
             <Link className='Footer-mobile__icon' to='/search-mobile'>
-              <FontAwesomeIcon icon='search' color='#fff'/>
+              <FontAwesomeIcon icon='search' color={`${router.pathname.includes('/search-mobile') ? '#e60023' : '#fff'} `}/>
             </Link>
             <Link className='Footer-mobile__icon' to='/add'>
-              <FontAwesomeIcon icon='plus' color='#fff'/>
+              <FontAwesomeIcon icon='plus' color={`${router.pathname.includes('/add') ? '#e60023' : '#fff'} `}/>
             </Link>
             <Link className='Footer-mobile__icon' to='/personal-area'>
-              <FontAwesomeIcon icon='user' color='#fff'/>
+              <FontAwesomeIcon icon='user' color={`${router.pathname.includes('/personal-area') ? '#e60023' : '#fff'} `}/>
             </Link>
           </div>
       </div>

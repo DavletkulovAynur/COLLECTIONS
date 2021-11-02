@@ -5,7 +5,6 @@ import {ButtonLoading} from "../../ButtonLoading/ButtonLoading";
 
 export function SubscribeButtonsTemplate({subscribers, unSubscribeOnUser, subscribeOnUser}) {
   const {loader} = useSelector((state) => state.subscribeReducer)
-  // TODO Owner страницы
   const {owner} = useSelector((state) => state.authReducer)
   const {userId} = owner
 

@@ -7,9 +7,7 @@ import {DefineAvatarUrl} from "../../../utils/DefineAvatarUrl";
 import {Shruggie} from "../../Shruggie/Shruggie";
 
 // TODO ошибки в именах
-export function SubscribePopupUsers({subscribers,
-                                      subscriptions,
-                                      statePopup,
+export function SubscribePopupUsers({ statePopup,
                                       closePopup,
                                       changeSubscribeValue,
                                       typeSubscribeValue}) {
@@ -19,9 +17,6 @@ export function SubscribePopupUsers({subscribers,
   function changeStateSubscribe(value) {
     changeSubscribeValue(value)
   }
-
-
-
 
   function arrSubscribe(arr) {
     if(!arr.length) {
@@ -45,19 +40,17 @@ export function SubscribePopupUsers({subscribers,
     )
   }
 
-  console.log(onlySubscriptions)
-
   return (
     <Popup open={statePopup} onClose={closePopup} className='User-information__subscribe-popup'>
       <div className='User-information__subscribe-popup'>
         <section className='User-information__subscribe-popup-header'>
           <div onClick={() => changeStateSubscribe('subscribers')}  className={`User-information__subscribe-popup-header-button 
                           User-information__subscribe-popup-header-button_${ typeSubscribeValue === 'subscribers' ? 'active' : null}`}>
-            {subscribers.length} Подписчики
+            {onlySubscribers.length} Подписчики
           </div>
           <div onClick={() => changeStateSubscribe('subscriptions')} className={`User-information__subscribe-popup-header-button 
                           User-information__subscribe-popup-header-button_${ typeSubscribeValue === 'subscriptions' ? 'active' : null}`}>
-            {subscriptions.length} Подписки
+            {onlySubscriptions.length} Подписки
           </div>
         </section>
         <section className='User-information__subscribe-popup-users'>

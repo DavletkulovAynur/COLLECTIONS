@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {PointButton} from './templates/PointButton'
 import {changeStatePopupAction} from '../../../Store/reducers/components/PopUpCardReducer'
 import {UserLink} from './templates/UserLink'
+import { hiddenMobileFooterChangeAction } from 'Store/reducers/components/mobileFooterReducer'
 
 
 
@@ -16,8 +17,7 @@ export function CommonCard({data}) {
   const {avatar} = owner
   const {userId} = owner
   const dispatch = useDispatch()
-
-  console.log(owner)
+  
   //TODO 
   const divStyle = (owner, mainImg) => {
       return {
@@ -41,7 +41,6 @@ function infoTemplate(_id, title) {
 
   function deleteCollection(event, ownerCard) {
     event.preventDefault()
-    // TODO вынести в отдельную функцию
     let $root = event.target.closest('[data-id-collection]');
     if (!$root) return;
     const idCollection = $root.dataset.idCollection
@@ -51,6 +50,7 @@ function infoTemplate(_id, title) {
       idCollection,
       ownerCard
     }))
+    dispatch(hiddenMobileFooterChangeAction(true))
   }
 
   return (

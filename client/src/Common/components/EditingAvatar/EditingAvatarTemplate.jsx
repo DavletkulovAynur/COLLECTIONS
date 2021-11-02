@@ -28,8 +28,7 @@ const PreviewImgPopup = ({openPopupPreview, previewImg, deleteFile, changeUserAv
     <Popup
       open={openPopupPreview}
       onClose={() => {deleteFile()}}
-      modal
-      nested
+      className='Avatar-edit__modal'
     >
       <div className="Avatar-edit__modal">
         <div className='Avatar-edit__modal-header'>

@@ -171,23 +171,14 @@ class CollectionControllers {
 			//переделать
 			const {userSubscribe} = req.body
 
-			async function processArray(array) {
-				let test = []
-				for(const id of array) {
-					const user = await COLLECTION_MODEL.find({owner: id})
-					test.push(user[0])
-				}
-				return test
-			}
-
-			const val = processArray(userSubscribe)
-
-			val.then((arr) => {
-				res.status(201).json({resData: arr})
+			const allCollections = await COLLECTION_MODEL.find()
+			
+			const subscribeCollections = allCollections.filter((item) =>  {
+				return userSubscribe.includes(String(item.owner))
 			})
 
-
-
+			res.status(201).json({resData: subscribeCollections})
+		
 		} catch (e) {
 			res.status(500).json(e)
 		}
