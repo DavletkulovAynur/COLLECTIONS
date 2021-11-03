@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import './DragAndDrop.scss'
-import DragAndDropTemplate from "./DragAndDrop.template";
-import {useSelector} from "react-redux";
+import DragAndDropTemplate from './DragAndDrop.template'
+import {useDispatch, useSelector} from 'react-redux'
 
 
+// SMART Component
 export function DragAndDrop({loadImg, deleteImg}) {
+  const dispatch = useDispatch()
   let reader = new FileReader()
   const {errorFiles, previewImg} = useSelector((state) => state.addCollectionReducer)
   const [fileUploadMoment, setFileUploadMoment] = useState(false)

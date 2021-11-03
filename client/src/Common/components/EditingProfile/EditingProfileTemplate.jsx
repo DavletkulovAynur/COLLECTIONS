@@ -3,12 +3,6 @@ import './EditingProfile.scss'
 import Input from '../Input/Input'
 import {useInput} from "../../utils/hooks/input.hook";
 
-
-
-// TODO - ERROR profileLoading - false
-// setDisabledButton(!profileLoading)
-
-
 export default function EditingProfileTemplate({  sendUserInformation,
                                                   userName,
                                                   description,
@@ -75,7 +69,7 @@ export default function EditingProfileTemplate({  sendUserInformation,
       })}
 
       <div className='Editing-profile__buttons'>
-        <button disabled={disabledButton} className='Editing-profile__button Button Button-root Button_cancel' onClick={() => returnInitialState()}>
+        <button disabled={disabledButton} className='Editing-profile__button Button Button-root Button_undo-actions' onClick={() => returnInitialState()}>
           Сбросить
         </button>
         <button disabled={disabledButton} className='Editing-profile__button Button Button-root' onClick={handleClick}>

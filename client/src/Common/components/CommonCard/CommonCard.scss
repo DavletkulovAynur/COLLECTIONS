@@ -207,6 +207,12 @@
       }
     }
   }
+
+  @media (max-width: 760px) {
+    &_container { 
+      padding-bottom: 100px;
+    }
+  }
 }
 
 

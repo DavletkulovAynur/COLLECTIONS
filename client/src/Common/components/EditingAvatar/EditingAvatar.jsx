@@ -1,11 +1,13 @@
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import EditingAvatarTemplate from "./EditingAvatarTemplate";
 import './EditingAvatar.scss'
 import {DefineAvatarUrl} from '../../utils/DefineAvatarUrl'
+import { hiddenMobileFooterChangeAction } from "Store/reducers/components/mobileFooterReducer";
 
 export default function EditingAvatar({sendAvatar}) {
   let reader = new FileReader()
+  const dispatch = useDispatch()
   const {owner} = useSelector((state) => state.authReducer)
   const {loading} = useSelector((state) => state.userEditReducer)
   const {avatar} = owner
@@ -29,13 +31,14 @@ export default function EditingAvatar({sendAvatar}) {
     reader.onload = function () {
       setPreviewImg(reader.result)
       setOpenPopupPreview(true)
+      dispatch(hiddenMobileFooterChangeAction(true))
     }
   }
 
   const deleteFile = () => {
-
     setPreviewImg(null)
     setOpenPopupPreview(false)
+    dispatch(hiddenMobileFooterChangeAction(false))
   }
 
   const avatarUrl = DefineAvatarUrl(avatar)
@@ -45,8 +48,7 @@ export default function EditingAvatar({sendAvatar}) {
     formData.append('avatar', avatar)
     formData.append('file', loadAvatar)
     sendAvatar(formData)
-    setPreviewImg(null)
-    setOpenPopupPreview(false)
+    deleteFile()
   }
 
   return (

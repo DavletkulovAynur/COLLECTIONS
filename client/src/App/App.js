@@ -28,13 +28,14 @@ import {  faCheckSquare,
   faHome,
   faUser,
   faSearch,
-  faUserFriends } from '@fortawesome/free-solid-svg-icons'
+  faChevronRight,
+  faUserFriends, } from '@fortawesome/free-solid-svg-icons'
 import {PopUpCard} from "../Common/components/PopUpCard/PopUpCard";
 import { showMessageAction } from 'Store/reducers/components/showMessageReducer'
 import { PopupAlert } from 'Common/components/PopupAlert/PopupAlert'
 
 
-library.add(fab,  faUser, faSearch, faHome, faEllipsisH, faEllipsisV, faCheck, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends, faTrashAlt, faPencilAlt, faChevronLeft)
+library.add(fab, faChevronRight, faUser, faSearch, faHome, faEllipsisH, faEllipsisV, faCheck, faCheckSquare, faCoffee, faTimes, faEye, faEyeSlash, faArrowAltCircleUp, faPlus, faSignOutAlt, faBookmark, faArchive, faStream, faUserFriends, faTrashAlt, faPencilAlt, faChevronLeft)
 
 
 function App() {
