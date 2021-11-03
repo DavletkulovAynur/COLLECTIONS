@@ -40,6 +40,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
+    width: 100%;
   }
 
   &__cloud-text {
@@ -81,6 +83,24 @@
     position: absolute;
     top: 50%;
     left: 1%;
+  }
+
+  &__cloud-text-mobile {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    &__cloud-text-desktop {
+      display: none;
+    }
+
+    &__cloud-text-mobile {
+      display: block;
+    }
+
+    &__preview {
+      max-height: 70vh;
+    }
   }
 }
 

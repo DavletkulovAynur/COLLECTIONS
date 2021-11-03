@@ -9,7 +9,7 @@ import {
   LOAD_AVATAR_COMPLETE,
 } from "../../types";
 import {showMessageAction} from "../../reducers/components/showMessageReducer";
-import { loadNewAvatarAction } from 'Store/reducers/components/authReducer';
+import { loadNewAvatarAction, updateOwnerInformationAction } from 'Store/reducers/components/authReducer';
 
 function* userInfoEditWorker(data) {
   try {
@@ -21,10 +21,11 @@ function* userInfoEditWorker(data) {
       {Authorization: `Bearer ${localStorage.getItem('token')}`}
     ))
     yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
-    const showText = {text: `успешно`}
-    yield put(showMessageAction(showText))
+    yield put(showMessageAction({text: `успешно`}))
+    yield put(updateOwnerInformationAction(data.payload))
   } catch (e) {
     yield put({type: EDIT_PROFILE_LOADING_COMPLETE})
+    yield put(showMessageAction({text: `НЕ УДАЛОСЬ ОБНОВИТЬ ИНФОРМАЦИЮ`, severity: 'error'}))
     console.log('error', e)
   }
 }

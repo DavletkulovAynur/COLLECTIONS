@@ -9,9 +9,9 @@ export function SearchTemplate({search, searchResult, viewResultSearch, searchCo
 			<input type="text" className="Search__input" placeholder="Search" {...search.bind}/>
 					{search.value.length
 					?  	<div className='Search_result-box'>
-									<SearchResultElements searchCollectionState={searchCollectionState}
-																				searchResult={searchResult}
-																				viewResultSearch={viewResultSearch}
+									<SearchResultElements 	searchCollectionState={searchCollectionState}
+															searchResult={searchResult}
+															viewResultSearch={viewResultSearch}
 																	/>
 							</div>
 			: 	null }

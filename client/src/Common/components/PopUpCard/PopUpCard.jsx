@@ -6,6 +6,7 @@ import {changeStatePopupAction} from '../../../Store/reducers/components/PopUpCa
 import {PopUpCardContentTemplate} from './templates/PopUpCardContent.template'
 import {URL_CLIENT} from '../../../config'
 import {complainCollectionAction} from '../../../Store/sagas/components/sagaDeleteCollection'
+import { hiddenMobileFooterChangeAction } from 'Store/reducers/components/mobileFooterReducer'
 
 // TODO Умный компонент
 export function PopUpCard() {
@@ -17,12 +18,14 @@ export function PopUpCard() {
     dispatch(complainCollectionAction({
       idCollection
     }))
+    closePopUp()
   }
 
   function deleteCollection() {
     dispatch(deleteCollectionAction({
       idCollection
     }))
+    closePopUp()
   }
 
   function closePopUp() {
@@ -30,7 +33,7 @@ export function PopUpCard() {
       statePopUp: false,
       idCollection: null
     }))
-
+    dispatch(hiddenMobileFooterChangeAction(false))
   }
 
   function listener(event){

@@ -18,6 +18,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
 
 
   &__wrapper {
@@ -52,6 +53,13 @@
 
   &__description {
     font-size: 13px;
+    display: block;
+    padding: 6px 0;
+    letter-spacing: -0.003em;
+    line-height: 20px;
+    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: 14px;
+    // margin-right: 30px;
   }
 
   &__date {
@@ -61,11 +69,21 @@
 
   &__delete-button {
     display: none;
+    position: absolute;
+    right: 2%;
+    top: 3%;
   }
 
   &:hover {
     .Comment__delete-button {
       display: block;
+    }
+  }
+
+  @media (max-width: 760px) {
+    &__delete-button {
+      display: block;
+      top: 2%;
     }
   }
 }

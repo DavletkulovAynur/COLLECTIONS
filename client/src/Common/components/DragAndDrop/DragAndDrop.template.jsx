@@ -53,7 +53,8 @@ const DragAndDropTemplate = ({errorFiles, previewImg, deleteFile, initialFile, f
             <section className="Drag-Drop__cloud">
               <FontAwesomeIcon icon='arrow-alt-circle-up' color='#000'/>
               <span className="Drag-Drop__cloud-text">
-                        Кликните или перетащите, чтобы загрузить фотографию
+                        <span className='Drag-Drop__cloud-text-desktop'>Кликните или перетащите, чтобы загрузить фотографию</span>
+                        <span className='Drag-Drop__cloud-text-mobile'>Выбрать изображение</span>
                     </span>
             </section>
 

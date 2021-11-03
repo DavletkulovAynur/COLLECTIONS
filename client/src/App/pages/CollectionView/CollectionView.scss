@@ -2,8 +2,9 @@
   &-root {
     margin: 12px 0 36px 0;
     width: 100%;
-    max-width: 680px;
+    max-width: 760px;
     margin: 0 auto;
+    padding: 0 5px 12px;
   }
 
   &__title {
@@ -15,7 +16,6 @@
     display: flex;
     align-items: center;
     margin-bottom: 24px;
-
   }
 
   &__author {
