@@ -6,11 +6,13 @@ import {HeaderLogo} from '../../../Common/components/Header/templates/HeaderLogo
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {emailResendingAction} from '../../../Store/actions/action'
 import { logoutAction } from 'Store/reducers/components/authReducer'
+import { SITE_NAME } from 'config'
 
 const ConfirmEmailPage = () => {
+  const delayInSending = 60
   const delay = 1000
   const dispatch = useDispatch()
-  const [count, setCount] = useState(2)
+  const [count, setCount] = useState(delayInSending)
 
   const [isRunning, setIsRunning] = useState(true)
   const [disabledButton, setDisabledButton] = useState(true)
@@ -25,7 +27,6 @@ const ConfirmEmailPage = () => {
   function stopTimer() {
     setDisabledButton(false)
     setIsRunning(false)
-    setCount(10)
   }
 
   const logOut = () => {
@@ -33,8 +34,11 @@ const ConfirmEmailPage = () => {
     localStorage.removeItem('token')
   }
 
-  function test() {
+  function emailResending() {
     dispatch(emailResendingAction())
+    setDisabledButton(true)
+    setIsRunning(true)
+    setCount(delayInSending)
   }
 
   return (
@@ -45,11 +49,11 @@ const ConfirmEmailPage = () => {
         </div>
 
         <p className='Confirm-email__content-text'>
-          С адреса <span className='Confirm-email__content-text-email'>ainurikda@gmail.com</span> отправлено письмо со ссылкой-подтверждением.
+          С адреса <span className='Confirm-email__content-text-email'>{SITE_NAME}</span> отправлено письмо со ссылкой-подтверждением.
         </p>
 
         <div className='Confirm-email__buttons'>
-          <button onClick={test} disabled={disabledButton} className='Button Button-root Confirm-email__re-request'>Перезапросить подтвержение</button>
+          <button onClick={emailResending} disabled={disabledButton} className='Button Button-root Confirm-email__re-request'>Перезапросить подтвержение</button>
           <div className={`Confirm-email__timer ${isRunning ? null : 'Confirm-email__timer_none'}`}>Повторная отправка через {count}</div>
         </div>
 

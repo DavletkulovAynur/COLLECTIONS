@@ -1,13 +1,14 @@
 const nodemailer = require('nodemailer')
 
-const defaultConfig = "smtps://testsendmail2@mail.ru:Sendmail3@smtp.mail.ru"
+const email = 'collection-2000@mail.ru'
+const pass = '9qMnfd5JKxNfrZrL8yV2'
 
-const poolConfig = "smtps://testsendmail2@mail.ru:Sendmail3@smtp.mail.ru/?pool=true"
+const poolConfig = `smtps://${email}:${pass}@smtp.mail.ru/?pool=true`
 
 const transporter = nodemailer.createTransport(
     poolConfig,
   {
-    from: 'Mailer test <testsendmail2@mail.ru>',
+    from: `COLLECTION <${email}>`,
   })
 
 const mailer = message => {
@@ -18,3 +19,4 @@ const mailer = message => {
 }
 
 module.exports = mailer
+

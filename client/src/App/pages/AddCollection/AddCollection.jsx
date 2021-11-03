@@ -19,8 +19,8 @@ import { AddCollectionMobile } from './AddCollectionMobile'
 
 
 function AddCollection() {
-  const {load} = useSelector((state) => state.addCollectionReducer)
-  const [fileImg, setFileImg] = useState(null)
+  const {load, fileImg} = useSelector((state) => state.addCollectionReducer)
+  // const [fileImg, setFileImg] = useState(null)
   const [inputErrors, SetInputErrors] = useState({})
   const dispatch = useDispatch()
   const formData = new FormData()
@@ -76,14 +76,21 @@ function AddCollection() {
 
   const deleteImg = () => {
     dispatch(sendCollectionImgErrorAction(false))
-    dispatch(sendCollectionPreviewImg(null))
-    setFileImg(null)
+    dispatch(sendCollectionPreviewImg({
+      file: null,
+      reader: null
+    }))
+    // setFileImg(null)
   }
 
   const loadImg = (file, reader) => {
-    dispatch(sendCollectionPreviewImg(reader))
     dispatch(sendCollectionImgErrorAction(false))
-    setFileImg(file)
+    // отправить одним файлом
+    dispatch(sendCollectionPreviewImg({
+      file,
+      reader
+    }))
+   
   }
 
   function changeStyleSelect(type) {
@@ -96,8 +103,9 @@ function AddCollection() {
 
   return (
     <div className='Add-collection Add-collection-root'>
-      <h1 className='Add-collection__title'>Создание коллекции</h1>
+      
       <div className='Add-collection__desktop'>
+	  	<h1 className='Add-collection__title'>Создание коллекции</h1>
 		<form className='Add-collection__form'>
 			<section className='Add-collection__drag-drop-box'>
 			<DragAndDrop loadImg={loadImg} deleteImg={deleteImg}/>
@@ -113,7 +121,14 @@ function AddCollection() {
       </div>
      
       <div className='Add-collection__mobile'>
-        <AddCollectionMobile loadImg={loadImg} deleteImg={deleteImg}/>
+		<AddCollectionMobile 	fileImg={fileImg} 
+                              	loadImg={loadImg} 
+								deleteImg={deleteImg} 
+								changeStyleSelect={changeStyleSelect}
+								writeDownSelectValue={writeDownSelectValue} inputErrors={inputErrors} description={description} title={title} nameCollection={nameCollection}
+								load={load} handleSubmit={handleSubmit}
+
+								/>
       </div>
     </div>
   )

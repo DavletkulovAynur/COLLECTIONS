@@ -16,7 +16,7 @@ const initialState = {
   bookmark: [],
   owner: {
     subscribers: [],
-	subscriptions: [],
+	  subscriptions: [],
     userId: null,
     userName: '',
     description: '',
@@ -52,14 +52,14 @@ export const authReducer = (state = initialState, action) => {
     case CHECK_REGISTRATION_RETURN_FALSE:
       return {...state, checkRegistration: false}
 
-	case LOAD_NEW_AVATAR: 
-		return {...state, owner: {...state.owner, avatar: action.payload.data}}
+    case LOAD_NEW_AVATAR: 
+      return {...state, owner: {...state.owner, avatar: action.payload.data}}
 
-	case UNSUBSCRIBE_CHANGE_OWNER:
-		return {...state, owner: {...state.owner, subscriptions: state.owner.subscribers.filter(item => item === action.payload.subscribeUserId)}}
+    case UNSUBSCRIBE_CHANGE_OWNER:
+      return {...state, owner: {...state.owner, subscriptions: state.owner.subscribers.filter(item => item === action.payload.subscribeUserId)}}
 
-  case UPDATE_OWNER_INFORMATION:
-		return {...state, owner: {...state.owner, userName: action.payload.username, description: action.payload.description,}}
+    case UPDATE_OWNER_INFORMATION:
+      return {...state, owner: {...state.owner, userName: action.payload.username, description: action.payload.description,}}
 
     default:
 			return {...state}

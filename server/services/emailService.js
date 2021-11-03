@@ -3,37 +3,36 @@ const mailer = require('../nodemailer')
 const randomBytes = require('randombytes')
 const fs = require('fs');
 const path = require("path");
+const config = require('config');
 
 
 async function emailService(email, user, hash = null) {
-  const test = path.join(__dirname, `./auxiliaryElements/email.html`)
+  const pathEmailHTML = path.join(__dirname, `./auxiliaryElements/email.html`)
+
+  function createMessage(htmlFile) {
+    return {
+        to: email,
+        subject: 'Вы успешно прошли регистрацию',
+        html: htmlFile,
+    }
+  }
 
   if(hash) {
-    fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
-      let htmlFile = data;
-      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:4000/authentication/email?id=${hash}`)
+    fs.readFile(pathEmailHTML, {encoding: 'utf-8'}, (err, data) => {
+		let htmlFile = data;
+		htmlFile = htmlFile.replace("#replaceWithLink#", `${config.get('baseUrl')}/authentication/email?id=${hash}`)
 
-      const message = {
-        to: email,
-        subject: 'test',
-        html: htmlFile,
-      }
-
-      mailer(message)
+      	const message = createMessage(htmlFile)
+    	mailer(message)
     })
   } else {
-    const randomEmailHash = randomBytes(16).toString('hex')
-    fs.readFile(test, {encoding: 'utf-8'}, (err, data) => {
-      let htmlFile = data;
-      htmlFile = htmlFile.replace("#replaceWithLink#", `http://localhost:4000/authentication/email?id=${randomEmailHash}`)
+	const randomEmailHash = randomBytes(16).toString('hex')
+    fs.readFile(pathEmailHTML, {encoding: 'utf-8'}, (err, data) => {
+		let htmlFile = data;
+		htmlFile = htmlFile.replace("#replaceWithLink#", `${config.get('baseUrl')}/authentication/email?id=${randomEmailHash}`)
 
-      const message = {
-        to: email,
-        subject: 'test',
-        html: htmlFile,
-      }
-
-      mailer(message)
+      	const message = createMessage(htmlFile)
+		mailer(message)
     })
 
 
