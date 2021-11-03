@@ -75,13 +75,6 @@ export function addCollectionAction(payload) {
   })
 }
 
-export function loadImgDragAndDrop(payload) {
-  return({
-    type: LOAD_IMG_DRAG_AND_DROP,
-    payload
-  })
-}
-
 //auth
 export function checkToken() {
   return({

@@ -1,0 +1,47 @@
+.Add-collection {
+    &__mobile {}
+
+    &__mobile-next-button {
+        background: transparent;
+        border: none;
+        outline: none;
+
+        &:disabled {
+            opacity: .5;
+            color: #000;
+            pointer-events: none;
+        }
+    }
+
+    &__mobile-next-button-text {
+        margin-right: 6px;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    &__mobile-back-button-text {
+        margin-left: 6px;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+
+
+    &__title-mobile {
+        font-size: 18px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    &__mobile-header {
+        margin: 12px 0 24px;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__mobile-button-send {
+        margin-top: 80px;
+    }
+}
