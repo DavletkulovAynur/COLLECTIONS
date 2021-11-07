@@ -1,15 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import './Input.scss'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import React, {useEffect, useState} from 'react'
+import './InputForm.scss'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-const Input = ({error = '',
-               binding,
-                placeholder,
-               type = 'text'}) => {
+
+const InputForm = ({label,
+                    register,
+                    placeholder,
+                    required,
+                    errors,
+                    pattern,
+                    minLength,
+                    type = 'text'}) => {
 
   const [eyeView, setEyeView] = useState(false)
 
- let errorStyle = error ? 'error' : ''
+ let errorStyle = errors[label] ? 'error' : ''
 
   const inputIcon = () => {
     if(type === 'password') {
@@ -26,13 +31,11 @@ const Input = ({error = '',
     return eyeView ? 'password': 'text'
   }
 
-  // TODO нажатие на enter
-
   return (
       <div className={`Input`}>
         <div className={`Input_box Input_box__${errorStyle}`}>
             <input placeholder={placeholder}
-                   {...binding.bind}
+                   {...register(label, { required: required, pattern: pattern,  minLength: minLength})}
                    className='Input_input'
                    type={type !== 'password' ? type : checkShowPassword()}/>
             {inputIcon()}
@@ -41,5 +44,5 @@ const Input = ({error = '',
   );
 }
 
-export default Input
+export default InputForm
 

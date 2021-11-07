@@ -15,10 +15,6 @@ export function Auth() {
 
   return (
     <div className='Auth-root Auth'>
-      {/*<div className='Auth_name-project'>*/}
-      {/*  COLLECTION*/}
-      {/*</div>*/}
-
       <div className='Auth_forms'>
         {login
           ?   <Login changeStateLogin={changeStateLogin}/>

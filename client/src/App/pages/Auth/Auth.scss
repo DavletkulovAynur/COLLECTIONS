@@ -9,7 +9,7 @@
     width: 100%;
     margin: 0 auto;
     max-width: 420px;
-    padding: 24px;
+    padding: 24px 8px;
   }
 
   &_name-project {
@@ -25,6 +25,14 @@
 
   &_input {
     margin-bottom: 24px;
+  }
+
+  &_input-error-pass-text {
+    position: absolute;
+    margin: 6px 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #888888;
   }
 
   .Button {

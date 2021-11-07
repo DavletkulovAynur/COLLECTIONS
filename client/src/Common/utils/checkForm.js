@@ -18,7 +18,8 @@ export function checkForm(data) {
         }
         break
       case 'password':
-        if(!value) {
+
+        if(!value ) {
           errorInputs[key+'Error'] = true
         }
         break

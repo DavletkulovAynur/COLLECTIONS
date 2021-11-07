@@ -3,6 +3,7 @@ import Fetcher from "../../../Common/utils/fetch";
 import {API_URL} from "../../../config";
 import {ADD_COLLECTION, SEND_COLLECTION_LOAD, SUCCESSFULLY_SEND_COLLECTION} from "../../types";
 import {showMessageAction} from "../../reducers/components/showMessageReducer";
+import { updateAddCollectionAction } from 'Store/reducers/components/collectionReducer'
 
 function* addNewCollectionWorker(formData) {
   try {
@@ -15,7 +16,10 @@ function* addNewCollectionWorker(formData) {
       },
       false
     ))
+    console.log(' payload', payload)
+    yield put(updateAddCollectionAction(payload))
     yield put({type: SUCCESSFULLY_SEND_COLLECTION, payload})
+    
     yield put(showMessageAction({text: 'успешно'}))
   } catch (e) {
     console.log(e)

@@ -2,36 +2,50 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 
 
-import {registrationAction} from "../../../../Store/actions/action";
-
-import {checkForm} from '../../../../Common/utils/checkForm'
+import {registrationAction} from "../../../../Store/actions/action"
 import {inputClear} from '../../../../Common/utils/inputClear'
-import RegistrationTemplate from "./RegistrationTemplate";
+import RegistrationTemplate from './RegistrationTemplate'
+import { useForm } from 'react-hook-form'
 
 
 
 export const Registration = ({changeStateLogin}) => {
   const dispatch = useDispatch()
 
-  const handleRegistration = (event, userName, email, password) => {
-    const user = {
-      username: userName.value,
-      email: email.value,
-      password: password.value
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm(
+  );
 
-    checkForm(user)
+  const handleRegistration = (dataInputs) => {
+    const {username, email, password} = dataInputs
+    const user = {
+      username,
+      email,
+      password
+    }
+	
+	
     registrationUser(user)
-    inputClear([userName, email, password])
-    event.preventDefault()
+    
   }
+
+  const onSubmit = (data) => {
+	  handleRegistration(data)
+  };
 
   const registrationUser = (user) => {
     dispatch(registrationAction(user))
   }
 
   return (
-    <RegistrationTemplate handleRegistration={handleRegistration} changeStateLogin={changeStateLogin}/>
+    <RegistrationTemplate errors={errors}
+                          changeStateLogin={changeStateLogin} 
+                          register={register} 
+						              handleSubmit={handleSubmit}
+						              onSubmit={onSubmit}/>
   )
 }
 
