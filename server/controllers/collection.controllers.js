@@ -65,7 +65,7 @@ class CollectionControllers {
 
 		await collection.save()
 
-		res.status(201).json({message: 'success', status: true})
+		res.status(201).json({message: 'success', status: true, resData: collection})
 
 		} catch (e) {
 		res.status(400).json(e)

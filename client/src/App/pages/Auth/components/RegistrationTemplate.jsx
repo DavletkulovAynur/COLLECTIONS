@@ -1,35 +1,69 @@
-import {useInput} from "../../../../Common/utils/hooks/input.hook";
-import Input from "../../../../Common/components/Input/Input";
-import React from "react";
+import React from 'react'
+import InputForm from 'Common/components/InputForm/InputForm'
 
-const RegistrationTemplate = ({handleRegistration, changeStateLogin}) => {
-  const userName = useInput('')
-  const email = useInput('')
-  const password = useInput('')
+const RegistrationTemplate = ({changeStateLogin, register, onSubmit, handleSubmit, errors}) => {
 
-  return (
+	const inputs = [
+		{
+			placeholder: 'Имя пользователя',
+			label: 'username',
+			required: true,
+			pattern: '',
+			minLength: ''
+			
+		},
+		{
+			placeholder: 'Эл. почта',
+			label: 'email',
+			required: true,
+			pattern: /^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u,
+			minLength: ''
+		},
+		{
+			placeholder: 'Пароль',
+			label: 'password',
+			type: 'password',
+			required: true,
+			pattern: '',
+			minLength: 8
+		}
+	]
+  
+return (
     <div className='Auth_registration'>
-      <h2 className='Auth_title'>
-        Новый аккаунт
-      </h2>
-      <form>
-        <div className='Auth_input'>
-          <Input placeholder='Имя пользователя'  binding={userName} label='name'/>
-        </div>
-        <div className='Auth_input'>
-          <Input placeholder='Эл. почта' binding={email} label='Email'/>
-        </div>
-        <div className='Auth_input'>
-          <Input type='password' placeholder='Пароль' binding={password} label='password'/>
-        </div>
-        <button className='Button Button-root' onClick={(event) => handleRegistration(event, userName, email, password)}>
-          Создать
-        </button>
-      </form>
+		<h2 className='Auth_title'>
+			Новый аккаунт
+		</h2>
 
-      <div className='Auth_footer'>
-        У вас уже есть аккаунт?  <span className='link' onClick={() => changeStateLogin()}>Войти</span>
-      </div>
+		<form onSubmit={handleSubmit(onSubmit)}>
+			{inputs.map((item, index) => {
+				const {placeholder, label, type, required, pattern, minLength} =item
+				return (
+					<div className='Auth_input' key={index}>
+						<InputForm 	errors={errors} 
+									required={required} 
+									placeholder={placeholder} 
+									register={register} 
+									label={label} 
+									type={type} 
+									pattern={pattern}
+									minLength={minLength}	
+									/>
+						{label === 'password'
+							? errors.password && <p className='Auth_input-error-pass-text'>Пароль должен содержать не менее 8 символов</p>
+							: null 
+						}
+					</div>
+				)
+			})}
+			<button className='Button Button-root' type="submit">
+				Создать
+			</button>
+		</form>
+
+		<div className='Auth_footer'>
+			У вас уже есть аккаунт?  <span className='link' onClick={() => changeStateLogin()}>Войти</span>
+		</div>
     </div>
   )
 }

@@ -23,6 +23,7 @@ const initialState = {
 
 const WRITE_DOWN_SUBSCRIBE_COLLECTION = 'WRITE_DOWN_SUBSCRIBE_COLLECTION'
 export const GET_SUBSCRIBE_COLLECTION = 'GET_SUBSCRIBE_COLLECTION'
+const UPDATE_ADD_COLLECTION = 'UPDATE_ADD_COLLECTION'
 
 export const collectionReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -44,6 +45,13 @@ export const collectionReducer = (state = initialState, action) => {
     case WRITE_DOWN_SUBSCRIBE_COLLECTION:
       return {...state, subscriptionsCollection: action.payload.data}
 
+    case UPDATE_ADD_COLLECTION:
+		console.log(action.payload.data)
+        return {...state, 
+			myCollection: [action.payload.data, ...state.myCollection, ],
+			allCollection: [action.payload.data, ...state.allCollection],
+		}
+
     default:
       return state
   }
@@ -52,3 +60,4 @@ export const collectionReducer = (state = initialState, action) => {
 export const collectionLoaderAction = (payload) => ({type: COLLECTION_LOADER, payload})
 export const getSubscribeCollectionAction = (payload) => ({type: GET_SUBSCRIBE_COLLECTION, payload})
 export const writeDownSubscribeCollectionAction = (payload) => ({type: WRITE_DOWN_SUBSCRIBE_COLLECTION, payload})
+export const updateAddCollectionAction = (payload) => ({type: UPDATE_ADD_COLLECTION, payload})
