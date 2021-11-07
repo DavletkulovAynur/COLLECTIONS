@@ -48,7 +48,7 @@ export default function(url, method, body = null, headers = {}, test = true) {
         resolve({status: res.status, statusText: res.statusText, data: data.resData, message: data.message})
       })
       .catch(err => {
-          console.log('error', err)
+          // console.log('error', err)
           reject(err)
       });
   });

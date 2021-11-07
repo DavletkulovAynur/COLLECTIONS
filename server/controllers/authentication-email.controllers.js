@@ -10,7 +10,7 @@ class AuthenticationEmailControllers {
       const hash = req.query.id
       const email = await EMAIL_HASH_MODEL.findOne({hash: hash})
       if (email) {
-        await USER_MODEL.update({_id: email.owner}, {active: true})
+        await USER_MODEL.updateMany({_id: email.owner}, {active: true})
         res.redirect('http://localhost:3000/')
         await EMAIL_HASH_MODEL.remove({hash: hash})
       }
@@ -22,13 +22,11 @@ class AuthenticationEmailControllers {
 
   async authenticationEmailResending(req, res) {
     try {
-      console.log(req.user.id)
       const userId = req.user.id
       const user = await EMAIL_HASH_MODEL.find({owner: userId})
 
       const {email, hash} = user[0]
 
-      console.log(email, hash)
       await emailService(email, user, hash)
       res.status(201).json({message: 'success', status: true})
     } catch (e) {

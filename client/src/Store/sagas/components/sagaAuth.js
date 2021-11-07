@@ -56,11 +56,14 @@ function* authWorker() {
 
 function* authEmailResendingWorker() {
 	try {
+
 		const payload = yield call(() => Fetcher(`${API_URL}/authentication/email-resending`, 'POST', '', {
 			Authorization:`Bearer ${localStorage.getItem('token')}`
 		}))
-
+		
+		yield put(showMessageAction({text: `повторное подтверждение отправлено на почту`}))
 	} catch (e) {
+		yield put(showMessageAction({text: `не удалось перезапросить подтверждение`}))
 		yield put(logoutAction())
 	}
 }
