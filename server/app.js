@@ -3,6 +3,7 @@ const config = require('config');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
+const path = require('path')
 
 const app = express()
 
@@ -19,8 +20,18 @@ app.use('/authentication', require('./routes/authentication-email.routes'))
 app.use('/comment', require('./routes/comment.routes'))
 app.use('/subscribe', require('./routes/subscribe.routes'))
 
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.join(__dirname, '../', 'client', 'build')))
 
-const PORT = process.env.PORT
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html'))
+  })
+}
+
+
+
+const PORT = config.get('port') || 4000
+
 async function start() {
   try {
     await mongoose.connect(config.get('mongoUrl'), {
@@ -28,7 +39,7 @@ async function start() {
       useUnifiedTopology: true,
       useCreateIndex: true
     })
-    app.listen(PORT, () => console.log(`start ${PORT}`))
+    app.listen('4000', () => console.log(`start ${PORT}`))
   } catch (e) {
     console.log('Server error', e.message)
     process.exit(1)

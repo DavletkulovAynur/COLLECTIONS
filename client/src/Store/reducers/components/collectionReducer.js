@@ -18,7 +18,6 @@ const initialState = {
   searchCollectionState: false,
   numberUserPublications: 0,
   collectionLoader: true
-
 }
 
 const WRITE_DOWN_SUBSCRIBE_COLLECTION = 'WRITE_DOWN_SUBSCRIBE_COLLECTION'
