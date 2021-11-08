@@ -3,7 +3,7 @@ import './CollectionsList.scss'
 import {Loading} from '../../../Common/components/Loading/Loading'
 import {CommonCard} from '../../../Common/components/CommonCard/CommonCard'
 import empty from '../../assets/images/icons/empty.svg'
-import {useSelector} from "react-redux";
+import {useSelector} from 'react-redux'
 
 
 function CollectionsList({data = []}) {
@@ -26,16 +26,18 @@ function CollectionsList({data = []}) {
 
 
 	if(collectionLoader) {
-		return <Loading/>
+		return (
+			<div className='Collections-list__loader'>
+				<Loading/>
+			</div>
+		)
 	}
 
 	if(!data.length) {
 		return (
 			<div className='Collections-list'>
-				<div className='loader'>
-					<div className='test-wrapper'>
+				<div className='test-wrapper'>
 						<img className='test' src={empty}/>
-					</div>
 				</div>
 			</div>
 		)

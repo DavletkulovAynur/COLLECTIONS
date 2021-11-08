@@ -5,11 +5,11 @@
     margin: 12px 0 24px 0;
   }
 
-  .loader {
+  &__loader {
     position: relative;
     display: flex;
     justify-content: center;
-    top: 50%;
+    top: 10vh;
   }
 
   .error {
@@ -22,30 +22,29 @@
     flex-direction: column;
     align-items: center;
 
-    .icon {
-      //background-image: url("../../../Common/assets/images/icons/panda.svg");
-      width: 64px;
-      height: 64px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin-top: 24px;
+    // .icon {
+    //   width: 64px;
+    //   height: 64px;
+    //   background-size: contain;
+    //   background-repeat: no-repeat;
+    //   margin-top: 24px;
 
-    }
+    // }
   }
 }
 
-.test-wrapper {
-  width: 160px;
-  height: 160px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  //background: #e60023;
-  border-radius: 50%;
+// .test-wrapper {
+//   width: 160px;
+//   height: 160px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+  
+//   border-radius: 50%;
 
-}
+// }
 
-.test {
-  width: 120px;
-  height: 120px;
-}
+// .test {
+//   width: 120px;
+//   height: 120px;
+// }
