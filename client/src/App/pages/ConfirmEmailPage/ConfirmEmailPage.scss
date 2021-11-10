@@ -5,7 +5,6 @@
   align-items: center;
   flex-direction: column;
 
-
   &__logo {
     margin-bottom: 64px;
     display: flex;
@@ -72,9 +71,7 @@
     justify-content: center;
     cursor: pointer;
 
-
     &:hover {
-
       .svg-inline--fa {
         color: #383838;
       }
@@ -94,15 +91,14 @@
     border: none;
   }
 
-  @media(max-width: 760px) {
-    &__content-text { 
+  @media (max-width: 760px) {
+    &__content-text {
       font-size: 14px;
     }
 
-	&__re-request {
-		font-size: 10px;
-		max-width: 300px;
-	}
+    &__re-request {
+      font-size: 10px;
+      max-width: 300px;
+    }
   }
-
 }

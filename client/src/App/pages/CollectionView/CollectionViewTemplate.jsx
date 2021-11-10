@@ -1,52 +1,57 @@
-import React from 'react'
-import './CollectionView.scss'
+import React from "react";
+import "./CollectionView.scss";
 
 import CommentsBox from "../../../Common/components/CommentsBox/CommentsBox";
 import InitCommentForm from "../../../Common/components/InitCommentForm/InitCommentForm";
 
-import {CollectionViewTitle} from "./templates/CollectionViewTitle";
-import {CollectionViewAuthor} from "./templates/CollectionViewAuthor";
-import {CollectionViewDate} from "./templates/CollectionViewDate";
-import {CollectionViewImg} from "./templates/CollectionViewImg";
-import {CollectionViewCommentTitle} from "./templates/CollectionViewCommentTitle";
-import {CollectionViewDescription} from "./templates/CollectionViewDescription";
-import {DefineAvatarUrl} from "../../../Common/utils/DefineAvatarUrl";
-import {CollectionViewType} from "./templates/CollectionViewType";
+import { CollectionViewTitle } from "./templates/CollectionViewTitle";
+import { CollectionViewAuthor } from "./templates/CollectionViewAuthor";
+import { CollectionViewDate } from "./templates/CollectionViewDate";
+import { CollectionViewImg } from "./templates/CollectionViewImg";
+import { CollectionViewCommentTitle } from "./templates/CollectionViewCommentTitle";
+import { CollectionViewDescription } from "./templates/CollectionViewDescription";
+import { DefineAvatarUrl } from "../../../Common/utils/DefineAvatarUrl";
+import { CollectionViewType } from "./templates/CollectionViewType";
 
+export function CollectionViewTemplate({
+  collection = [],
+  sendComment,
+  comments,
+  removeComment,
+}) {
+  const {
+    title,
+    mainImg,
+    owner,
+    description,
+    author,
+    date,
+    authorAvatar,
+    nameCollection,
+  } = collection;
 
-export function CollectionViewTemplate({collection = [],
-                                         sendComment,
-                                         comments,
-                                         removeComment,}) {
-
-
-  const {title, mainImg, owner, description, author, date, authorAvatar, nameCollection} = collection
-
-  const avatarUrl = DefineAvatarUrl(authorAvatar)
-
+  const avatarUrl = DefineAvatarUrl(authorAvatar);
 
   return (
-    <div className='Article-view-root Article-view'>
-      <section className='Article-view__Article-content Article-content'>
-        <CollectionViewTitle title={title}/>
-        <div className='Article-view__author-date'>
-          <CollectionViewAuthor avatarUrl={avatarUrl} author={author}/>
-          <CollectionViewDate date={date}/>
+    <div className="Article-view-root Article-view">
+      <section className="Article-view__Article-content Article-content">
+        <CollectionViewTitle title={title} />
+        <div className="Article-view__author-date">
+          <CollectionViewAuthor avatarUrl={avatarUrl} author={author} />
+          <CollectionViewDate date={date} />
         </div>
         {/*TODO переделать */}
-        <CollectionViewImg mainImg={mainImg} owner={owner}/>
+        <CollectionViewImg mainImg={mainImg} owner={owner} />
 
-        <CollectionViewType nameCollection={nameCollection}/>
-        <CollectionViewDescription description={description}/>
-
+        <CollectionViewType nameCollection={nameCollection} />
+        <CollectionViewDescription description={description} />
       </section>
 
-      <section className='Comments-wrapper'>
-        <CollectionViewCommentTitle comments={comments}/>
-        <InitCommentForm sendComment={sendComment}/>
-        <CommentsBox removeComment={removeComment}/>
+      <section className="Comments-wrapper">
+        <CollectionViewCommentTitle comments={comments} />
+        <InitCommentForm sendComment={sendComment} />
+        <CommentsBox removeComment={removeComment} />
       </section>
     </div>
-  )
+  );
 }
-

@@ -41,7 +41,7 @@ const PreviewImgPopup = ({openPopupPreview, previewImg, deleteFile, changeUserAv
           <img src={previewImg} className='Avatar-edit__modal-preview'/>
         </div>
         <div className="Avatar-edit__modal-actions">
-          <button className='Button Button-root Button_cancel' onClick={deleteFile}>Отмена</button>
+          <button className='Button Button-root Button_undo-actions' onClick={deleteFile}>Отмена</button>
           <button className='Button Button-root Avatar-edit__modal-action-load' onClick={changeUserAvatar}>Загрузить</button>
         </div>
       </div>
