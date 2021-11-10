@@ -4,6 +4,7 @@ import {Loading} from '../../../Common/components/Loading/Loading'
 import {CommonCard} from '../../../Common/components/CommonCard/CommonCard'
 import empty from '../../assets/images/icons/empty.svg'
 import {useSelector} from 'react-redux'
+import { Shruggie } from '../Shruggie/Shruggie'
 
 
 function CollectionsList({data = []}) {
@@ -36,9 +37,7 @@ function CollectionsList({data = []}) {
 	if(!data.length) {
 		return (
 			<div className='Collections-list'>
-				<div className='test-wrapper'>
-						<img className='test' src={empty}/>
-				</div>
+				<Shruggie text='Ничего не найдено'/>
 			</div>
 		)
 	}
