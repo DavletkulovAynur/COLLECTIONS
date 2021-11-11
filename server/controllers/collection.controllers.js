@@ -5,9 +5,10 @@ const fs = require('fs')
 const Uuid = require('uuid')
 
 const imagemin = require('imagemin');
-const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 const imageminPngquant = require('imagemin-pngquant');
+
+const imageminMozjpeg = require ('imagemin-mozjpeg') ;  
 
 const timestamp = require('time-stamp');
 
@@ -39,7 +40,7 @@ class CollectionControllers {
 			{
 			destination: `${path.join(__dirname, `../static/${req.user.id}/compressed`)}`,
 			plugins: [
-				imageminJpegRecompress({quality: 'low'}),
+				imageminMozjpeg({number: 10}),
 				imageminPngquant({
 					quality: [0.1, 0.1]
 				})
