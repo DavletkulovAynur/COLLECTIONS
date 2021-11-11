@@ -16,6 +16,7 @@ export function SubscribePopupUsers({
   const { onlySubscribers, onlySubscriptions, getSubscribeLoader } =
     useSelector((state) => state.subscribeReducer);
   const { owner } = useSelector((state) => state.authReducer);
+  const { userId } = owner;
 
   function changeStateSubscribe(value) {
     changeSubscribeValue(value);
@@ -31,8 +32,15 @@ export function SubscribePopupUsers({
         {arr.map((item, index) => {
           const avatarUrl = DefineAvatarUrl(item.avatar);
 
+          let link;
+          if (userId === item._id) {
+            link = `/personal-area`;
+          } else {
+            link = `/user-area/${item._id}`;
+          }
+
           return (
-            <Link to={"/"}>
+            <Link to={link} key={index}>
               <li className="User-information__popup-user" key={index}>
                 <img
                   className="User-information__popup-user-avatar"
