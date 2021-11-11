@@ -12,8 +12,8 @@
     "express-fileupload": "^1.2.1",
     "express-validator": "^6.6.1",
     "imagemin": "^7.0.1",
-    "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.0",
@@ -22,7 +22,7 @@
     "pm2": "^5.1.2",
     "randombytes": "^2.1.0",
     "time-stamp": "^2.2.0",
-    "uuid": "^8.3.2"
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

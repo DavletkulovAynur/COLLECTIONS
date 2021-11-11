@@ -5,8 +5,6 @@ import store from "./Store/store";
 import { BrowserRouter as Router } from "react-router-dom";
 import Context from "./Common/utils/context";
 
-// import 'materialize-css'
-
 import "./index.scss";
 import App from "./App/App";
 
