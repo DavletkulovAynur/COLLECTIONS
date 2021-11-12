@@ -12,6 +12,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 12px;
+    padding-bottom: 32px;
   }
 
   &__icon {
