@@ -1,14 +1,26 @@
-const {Router} = require('express')
+const { Router } = require("express");
 
-const router = new Router()
+const router = new Router();
 
-const subscribeControllers = require('../controllers/subscribe.controller')
-const authMiddleware = require('../middleware/auth.middleware')
+const subscribeControllers = require("../controllers/subscribe.controller");
+const authMiddleware = require("../middleware/auth.middleware");
 
-router.post('/get-all-subscribe', authMiddleware, subscribeControllers.gelAllSubscribeUser)
+router.post(
+  "/get-all-subscribe",
+  authMiddleware,
+  subscribeControllers.gelAllSubscribeUser
+);
 
-router.post('/subscribe-on-user', authMiddleware, subscribeControllers.subscribeOnUser)
+router.post(
+  "/subscribe-on-user",
+  authMiddleware,
+  subscribeControllers.subscribeOnUser
+);
 
-router.post('/unsubscribe-on-user', authMiddleware, subscribeControllers.unSubscribeUser)
+router.post(
+  "/unsubscribe-on-user",
+  authMiddleware,
+  subscribeControllers.unSubscribeUser
+);
 
-module.exports = router
+module.exports = router;

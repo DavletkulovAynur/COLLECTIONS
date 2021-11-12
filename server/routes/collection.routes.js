@@ -1,27 +1,40 @@
-const {Router} = require('express')
+const { Router } = require("express");
 
-const collectionControllers = require('../controllers/collection.controllers')
+const collectionControllers = require("../controllers/collection.controllers");
 
-const router = Router()
-const authMiddleware = require('../middleware/auth.middleware')
+const router = Router();
+const authMiddleware = require("../middleware/auth.middleware");
 
-router.post('/add', authMiddleware, collectionControllers.addCollection)
-router.post('/delete', authMiddleware, collectionControllers.deleteCollection)
+router.post("/add", authMiddleware, collectionControllers.addCollection);
+router.post("/delete", authMiddleware, collectionControllers.deleteCollection);
 //TODO реализовать complain
-router.post('/complain', authMiddleware, collectionControllers.complainCollection)
+router.post(
+  "/complain",
+  authMiddleware,
+  collectionControllers.complainCollection
+);
 
-router.get('/get-all',collectionControllers.getAllCollection)
+router.get("/get-all", collectionControllers.getAllCollection);
 
-router.post('/get',collectionControllers.getOwnerUserCollection)
-router.post('/get-collection-view', authMiddleware, collectionControllers.getCollectionView)
+router.post("/get", collectionControllers.getOwnerUserCollection);
+router.post(
+  "/get-collection-view",
+  authMiddleware,
+  collectionControllers.getCollectionView
+);
 
-router.post('/search',collectionControllers.searchCollection)
+router.post("/search", collectionControllers.searchCollection);
 
-router.post('/get-bookmark', authMiddleware, collectionControllers.getBookmarkCollection)
+router.post(
+  "/get-bookmark",
+  authMiddleware,
+  collectionControllers.getBookmarkCollection
+);
 
-router.post('/get-subscribe-collection', authMiddleware, collectionControllers.getSubscribeCollection)
+router.post(
+  "/get-subscribe-collection",
+  authMiddleware,
+  collectionControllers.getSubscribeCollection
+);
 
-module.exports = router
-
-
-
+module.exports = router;
