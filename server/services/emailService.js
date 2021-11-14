@@ -1,52 +1,53 @@
-const EMAIL_HASH_MODEL = require('../models/emailHash')
-const mailer = require('../nodemailer')
-const randomBytes = require('randombytes')
-const fs = require('fs');
+const EMAIL_HASH_MODEL = require("../models/emailHash");
+const mailer = require("../nodemailer");
+const randomBytes = require("randombytes");
+const fs = require("fs");
 const path = require("path");
-const config = require('config');
-
+const config = require("config");
 
 async function emailService(email, user, hash = null) {
-  const pathEmailHTML = path.join(__dirname, `./auxiliaryElements/email.html`)
+  const pathEmailHTML = path.join(__dirname, `./auxiliaryElements/email.html`);
 
   function createMessage(htmlFile) {
     return {
-        to: email,
-        subject: 'Вы успешно прошли регистрацию',
-        html: htmlFile,
-    }
+      to: email,
+      subject: "Вы успешно прошли регистрацию",
+      html: htmlFile,
+    };
   }
 
-  if(hash) {
-    fs.readFile(pathEmailHTML, {encoding: 'utf-8'}, (err, data) => {
-		let htmlFile = data;
-		htmlFile = htmlFile.replace("#replaceWithLink#", `${config.get('baseUrl')}/authentication/email?id=${hash}`)
+  if (hash) {
+    fs.readFile(pathEmailHTML, { encoding: "utf-8" }, (err, data) => {
+      let htmlFile = data;
+      htmlFile = htmlFile.replace(
+        "#replaceWithLink#",
+        `${config.get("baseUrl")}/authentication/email?id=${hash}`
+      );
 
-      	const message = createMessage(htmlFile)
-    	mailer(message)
-    })
+      const message = createMessage(htmlFile);
+      mailer(message);
+    });
   } else {
-	const randomEmailHash = randomBytes(16).toString('hex')
-    fs.readFile(pathEmailHTML, {encoding: 'utf-8'}, (err, data) => {
-		let htmlFile = data;
-		htmlFile = htmlFile.replace("#replaceWithLink#", `${config.get('baseUrl')}/authentication/email?id=${randomEmailHash}`)
+    const randomEmailHash = randomBytes(16).toString("hex");
+    fs.readFile(pathEmailHTML, { encoding: "utf-8" }, (err, data) => {
+      let htmlFile = data;
+      htmlFile = htmlFile.replace(
+        "#replaceWithLink#",
+        `${config.get("baseUrl")}/authentication/email?id=${randomEmailHash}`
+      );
 
-      	const message = createMessage(htmlFile)
-		mailer(message)
-    })
-
+      const message = createMessage(htmlFile);
+      mailer(message);
+    });
 
     const emailHash = new EMAIL_HASH_MODEL({
       hash: randomEmailHash,
       owner: user._id,
       email: email,
+    });
 
-    })
-
-    await emailHash.save()
+    await emailHash.save();
   }
-
-
 }
 
-module.exports = emailService
+module.exports = emailService;
