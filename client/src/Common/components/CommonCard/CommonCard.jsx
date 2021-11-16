@@ -75,7 +75,7 @@ function infoTemplate(_id, title) {
                         </Link>
                         <div className='Pin__footer'>
                           <div className='Pin__mobile-title'>
-                            Test
+                            {title}
                           </div>
                           <div className='Pin__avatar-and-button'>
                             <UserLink author={author} avatar={avatar} authorAvatar={authorAvatar} owner={owner} userId={userId}/>

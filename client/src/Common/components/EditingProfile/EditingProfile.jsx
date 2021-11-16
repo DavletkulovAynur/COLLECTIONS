@@ -17,7 +17,6 @@ export default function EditingProfile({sendNewInfoProfile}) {
   const sendUserInformation = (nameInput, placeInput,aboutUserInput ) => {
     const userInformation = {
       username: nameInput.value,
-      place: placeInput.value,
       description: aboutUserInput.value
     }
 

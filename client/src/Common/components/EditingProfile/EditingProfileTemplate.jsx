@@ -42,11 +42,6 @@ export default function EditingProfileTemplate({  sendUserInformation,
       binding: aboutUserInput,
       placeholder: 'Расскажите немного о себе'
     },
-    // {
-    //   text: 'Откуда',
-    //   binding: placeInput,
-    //   placeInput: 'Откуда'
-    // },
   ]
 
   function handleClick() {

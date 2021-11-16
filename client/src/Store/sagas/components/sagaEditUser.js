@@ -13,6 +13,7 @@ import { loadNewAvatarAction, updateOwnerInformationAction } from 'Store/reducer
 
 function* userInfoEditWorker(data) {
   try {
+    
     yield put({type: EDIT_PROFILE_LOADING})
     yield call(() => Fetcher(
       `${API_URL}/users/edit-user`,

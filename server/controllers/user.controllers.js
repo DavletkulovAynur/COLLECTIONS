@@ -76,15 +76,21 @@ class UserControllers {
       const avatarName = Uuid.v4() + `.${type}`;
       const user = await USER_MODEL.findOne({ _id: req.user.id });
 
+      //ERROR
+      const test = path.join(__dirname, `../static/avatars`);
+
+      if (!fs.existsSync(test)) {
+        fs.mkdirSync(test, { recursive: true });
+      }
+
       let pathWay = path.join(__dirname, `../static/avatars/${avatarName}`);
 
+     
       if (user.avatar) {
         fs.unlinkSync(path.join(__dirname, `../static/avatars/${user.avatar}`));
       }
 
-      if (fs.existsSync(pathWay)) {
-        // такой файл уже сущесттвует
-      }
+      
 
       file.mv(pathWay);
 
