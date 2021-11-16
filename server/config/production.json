@@ -1,5 +1,5 @@
 {
-    "port": 4000,
+    "port": 80,
     "jwtSecret": "Aynur",
     "mongoUrl": "mongodb+srv://davlet:redocean@cluster0.h8gck.mongodb.net/<dbname>?retryWrites=true&w=majority",
     "baseUrl": "http://localhost:4000"

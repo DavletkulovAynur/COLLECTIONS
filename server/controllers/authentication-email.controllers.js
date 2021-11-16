@@ -6,13 +6,13 @@ const config = require("config");
 class AuthenticationEmailControllers {
   async authenticationEmail(req, res) {
     try {
-      console.log('super')
+      console.log("super");
       const hash = req.query.id;
       const email = await EMAIL_HASH_MODEL.findOne({ hash: hash });
       if (email) {
         await USER_MODEL.updateMany({ _id: email.owner }, { active: true });
         //FIXME: baseUrl должен указывать на локальный сервер
-        res.redirect("http://localhost:3000/");
+        res.redirect(config.get("baseUrl"));
         await EMAIL_HASH_MODEL.remove({ hash: hash });
       }
     } catch (e) {
