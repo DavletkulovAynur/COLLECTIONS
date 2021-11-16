@@ -36,7 +36,7 @@ function CollectionsList({data = []}) {
 
 	if(!data.length) {
 		return (
-			<div className='Collections-list'>
+			<div className='Collections-list__loader'>
 				<Shruggie text='Ничего не найдено'/>
 			</div>
 		)
