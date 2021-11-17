@@ -13,7 +13,7 @@ import {
 import Fetcher from "../../../Common/utils/fetch";
 
 import { showMessageAction } from "../../reducers/components/showMessageReducer";
-import { API_URL } from "../../../config";
+import { alertMessagesText, API_URL } from "../../../config";
 import { logoutAction } from "Store/reducers/components/authReducer";
 
 function* loginWorker(user) {
@@ -66,11 +66,11 @@ function* authEmailResendingWorker() {
     );
 
     yield put(
-      showMessageAction({ text: `повторное подтверждение отправлено на почту` })
+      showMessageAction({ text: `${alertMessagesText.authEmailResending}` })
     );
   } catch (e) {
     yield put(
-      showMessageAction({ text: `не удалось перезапросить подтверждение` })
+      showMessageAction({ text: `Не удалось перезапросить подтверждение` })
     );
     yield put(logoutAction());
   }

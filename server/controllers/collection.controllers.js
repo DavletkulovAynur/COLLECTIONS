@@ -186,13 +186,11 @@ class CollectionControllers {
         return !collection.title.toLowerCase().indexOf(value.toLowerCase());
       });
 
-      res
-        .status(201)
-        .json({
-          message: "Collection update",
-          status: true,
-          resData: searchResult,
-        });
+      res.status(201).json({
+        message: "Collection update",
+        status: true,
+        resData: searchResult,
+      });
     } catch (e) {
       res.status(500).json(e);
     }

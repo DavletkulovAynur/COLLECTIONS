@@ -2,7 +2,7 @@ import React from 'react'
 import CollectionsList from '../../../../Common/components/CollectionsList/CollectionsList'
 import {useSelector} from 'react-redux'
 
-export function CollectionListTemplate({tabValue, user}) {
+export function CollectionListTemplate({tabValue}) {
   const {myCollection, bookmarkCollection, subscriptionsCollection} = useSelector(state => state.collectionReducer)
   
   return (

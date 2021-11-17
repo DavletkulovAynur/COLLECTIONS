@@ -75,7 +75,6 @@ class UserControllers {
       const type = file.name.split(".").pop();
       const avatarName = Uuid.v4() + `.${type}`;
       const user = await USER_MODEL.findOne({ _id: req.user.id });
-    
 
       const pathAvatar = path.join(__dirname, `../static/avatars`);
       if (!fs.existsSync(pathAvatar)) {
@@ -83,10 +82,15 @@ class UserControllers {
       }
 
       let pathWay = path.join(__dirname, `../static/avatars/${avatarName}`);
-     
 
       if (user.avatar) {
-        fs.unlinkSync(path.join(__dirname, `../static/avatars/${user.avatar}`));
+        const deleteAvatarPath = path.join(
+          __dirname,
+          `../static/avatars/${user.avatar}`
+        );
+        if (fs.existsSync(deleteAvatarPath)) {
+          fs.unlinkSync(deleteAvatarPath);
+        }
       }
 
       file.mv(pathWay);
@@ -110,7 +114,7 @@ class UserControllers {
         .status(201)
         .json({ message: "Avatar update", status: true, resData: avatarName });
     } catch (e) {
-      console.log(e)
+      console.log(e);
       res.status(400).json({ message: "Error load Avatar" });
     }
   }
