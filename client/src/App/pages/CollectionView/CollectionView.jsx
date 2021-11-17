@@ -47,7 +47,11 @@ function CollectionView() {
   };
 
   if (getCollectionLoading || _id !== collectionId) {
-    return <Loading />;
+    return (
+      <div className="Article-view__loading">
+        <Loading />
+      </div>
+    );
   }
 
   return (
