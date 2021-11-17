@@ -8,8 +8,8 @@ function userDataAdapter(user) {
     bookmark: user.bookmark,
     email: user.email,
     avatar: user.avatar,
-    description: user.description ?? '',
-    place: user.place ?? '',
+    description: user.description,
+    place: user.place,
   }
 }
 

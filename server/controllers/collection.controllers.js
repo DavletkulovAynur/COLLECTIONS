@@ -50,7 +50,7 @@ class CollectionControllers {
             `../static/${req.user.id}/compressed`
           )}`,
           plugins: [
-            imageminMozjpeg({ number: 10 }),
+            imageminMozjpeg({ number: 10, progressive: false }),
             imageminPngquant({
               quality: [0.1, 0.1],
             }),
