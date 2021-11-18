@@ -46,7 +46,6 @@ export function* addComment(data) {
 export function* removeComment(data) {
   try {
     yield put(removeCommentLoadingAction(true));
-    console.log(data.payload);
     const payload = yield call(() =>
       Fetcher(`${API_URL}/comment/remove`, "PUT", data.payload, {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

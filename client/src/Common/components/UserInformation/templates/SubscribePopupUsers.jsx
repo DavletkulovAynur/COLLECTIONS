@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { DefineAvatarUrl } from "../../../utils/DefineAvatarUrl";
 import { Shruggie } from "../../Shruggie/Shruggie";
+import { Loading } from "Common/components/Loading/Loading";
 
 // TODO ошибки в именах
 export function SubscribePopupUsers({
@@ -90,10 +91,12 @@ export function SubscribePopupUsers({
         </section>
         <section className="User-information__subscribe-popup-users">
           {getSubscribeLoader
-            ? "LOADING"
+            ? <div className='User-information__subscribe-popup-loader'>
+                <Loading/>
+              </div>
             : typeSubscribeValue === "subscribers"
-            ? arrSubscribe(onlySubscribers)
-            : arrSubscribe(onlySubscriptions)}
+              ? arrSubscribe(onlySubscribers)
+              : arrSubscribe(onlySubscriptions)}
         </section>
       </div>
     </Popup>

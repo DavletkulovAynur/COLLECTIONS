@@ -77,8 +77,9 @@ class UserControllers {
       const user = await USER_MODEL.findOne({ _id: req.user.id });
 
       const pathAvatar = path.join(__dirname, `../static/avatars`);
+
       if (!fs.existsSync(pathAvatar)) {
-        fs.mkdir(pathAvatar);
+        fs.mkdirSync(pathAvatar, { recursive: true });
       }
 
       let pathWay = path.join(__dirname, `../static/avatars/${avatarName}`);

@@ -27,7 +27,6 @@ function* getUserCollectionWorker(data) {
       userId: data.payload
     }
     const payload = yield call(() => Fetcher(`${API_URL}/users/get-user-collection`, 'POST', user))
-    console.log('payload', payload)
     yield put({type: WRITE_DOWN_USER_COLLECTION, payload})
   } catch(e) {
     console.log('error', e)

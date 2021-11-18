@@ -45,7 +45,6 @@ export const collectionReducer = (state = initialState, action) => {
       return {...state, subscriptionsCollection: action.payload.data}
 
     case UPDATE_ADD_COLLECTION:
-		console.log(action.payload.data)
         return {...state, 
 			myCollection: [action.payload.data, ...state.myCollection, ],
 			allCollection: [action.payload.data, ...state.allCollection],

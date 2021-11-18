@@ -50,7 +50,6 @@ function* userAvatarEditWorker(data) {
         false
       )
     );
-    console.log(payload);
     yield put({ type: LOAD_AVATAR_COMPLETE });
     yield put(showMessageAction({ text: `${alertMessagesText.userEditAvatar}` }));
     yield put(loadNewAvatarAction(payload));
