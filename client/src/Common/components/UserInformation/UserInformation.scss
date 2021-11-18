@@ -99,6 +99,12 @@
     font-size: 12px;
   }
 
+  &__subscribe-popup-loader {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+  }
+
   @media (max-width: 760px) {
     &-root {
       flex-direction: column;
@@ -121,6 +127,10 @@
 
     &__publication-subscribe-item {
       font-size: 12px;
+    }
+
+    &__subscribe-popup-content {
+      width: 90% !important;
     }
   }
 }

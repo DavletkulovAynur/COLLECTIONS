@@ -52,7 +52,7 @@ export function PopUpCard() {
   }
 
   function copyUrl() {
-    navigator.clipboard.writeText(`${URL_CLIENT}article-view/${idCollection}`)
+    navigator.clipboard.writeText(`${URL_CLIENT}/article-view/${idCollection}`)
       .then(() => {
         closePopUp()
       })
