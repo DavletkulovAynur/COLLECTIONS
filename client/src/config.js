@@ -24,6 +24,7 @@ export const alertMessagesText = {
   userInfoEdit: 'Вы отредактировали свой профиль',
   subscribeOnUser: 'Вы подписались',
   unSubscribeOnUser: 'Вы отписались',
-  authEmailResending: 'Повторное подтверждение отправлено на почту'
-
+  authEmailResending: 'Повторное подтверждение отправлено на почту',
+  addBookmark: 'Вы сохранили коллекцию',
+  deleteBookmark: 'Вы удалили коллекцию из сохраненных',
 }

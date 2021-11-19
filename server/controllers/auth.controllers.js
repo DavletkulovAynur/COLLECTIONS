@@ -43,10 +43,9 @@ class AuthControllers {
         expiresIn: "1h",
       });
 
-      emailService(email, user);
+      emailService(email, user, password);
 
       const filePath = path.join(__dirname, `../static/${user._id}`);
-      
 
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
@@ -63,7 +62,7 @@ class AuthControllers {
         .status(201)
         .json({ resData: resUser, message: "Добавлен новый пользователь" });
     } catch (e) {
-      console.log('ERROR', e)
+      console.log("ERROR", e);
       res.status(500).json({ message: "ERROR" });
     }
   }
@@ -134,7 +133,8 @@ class AuthControllers {
         resData: resUser,
       });
     } catch (e) {
-      res.status(500).json({ message: "Auth error" });
+      //TODO: подумать ???
+      res.status(200).json({ message: "Auth error" });
     }
   }
 }

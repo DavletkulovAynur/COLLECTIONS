@@ -85,10 +85,10 @@ export const useRoutes = (isAuthenticated, active) => {
   return (
       <>
           <Switch>
-            <Route exact path='/login'>
+            <Route exact path='/'>
               <Auth/>
             </Route>
-            <Redirect to="/login"/>
+            <Redirect to="/"/>
           </Switch>
       </>
   )

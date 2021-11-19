@@ -7,7 +7,7 @@ import {
 } from "../../reducers/components/deleteCollectionReducer";
 import { CHANGE_STATE_POPUP } from "../../reducers/components/PopUpCardReducer";
 import { showMessageAction } from "../../reducers/components/showMessageReducer";
-import { WRITE_DOWN_ALL_COLLECTION } from "../../types";
+import { WRITE_DOWN_ALL_COLLECTION, WRITE_DOWN_BOOKMARK_COLLECTION, WRITE_DOWN_COLLECTION } from "../../types";
 
 const collection = (state) => state.collectionReducer;
 
@@ -31,12 +31,20 @@ function* sagaDeleteCollectionWorker(data) {
     });
     const showMessageText = { text: `${alertMessagesText.deleteCollection}` };
     yield put(showMessageAction(showMessageText));
-    // TODO обновление функции
-    let { allCollection } = yield select(collection);
+    // TODO: ужасная реализация 
+    let { allCollection, myCollection, bookmarkCollection } = yield select(collection);
     const a = allCollection.filter(
       (item) => item._id !== data.payload.idCollection
     );
+    const b = myCollection.filter(
+      (item) => item._id !== data.payload.idCollection
+    );
+    const c = bookmarkCollection.filter(
+      (item) => item._id !== data.payload.idCollection
+    );
     yield put({ type: WRITE_DOWN_ALL_COLLECTION, payload: a });
+    yield put({ type: WRITE_DOWN_COLLECTION, payload: b });
+    yield put({ type: WRITE_DOWN_BOOKMARK_COLLECTION, payload: {data: c} });
   } catch (e) {
     console.log(e);
   }
@@ -58,7 +66,9 @@ function* sagaComplainCollectionWorker(data) {
         idCollection: null,
       },
     });
-    yield put(showMessageAction({ text: `${alertMessagesText.complainCollection}` }));
+    yield put(
+      showMessageAction({ text: `${alertMessagesText.complainCollection}` })
+    );
   } catch (e) {
     console.log(e);
   }

@@ -6,15 +6,17 @@ const config = require("config");
 class AuthenticationEmailControllers {
   async authenticationEmail(req, res) {
     try {
-      console.log("super");
       const hash = req.query.id;
       const email = await EMAIL_HASH_MODEL.findOne({ hash: hash });
       if (email) {
         await USER_MODEL.updateMany({ _id: email.owner }, { active: true });
-        //FIXME: baseUrl должен указывать на локальный сервер
-        res.redirect(config.get("baseUrl"));
         await EMAIL_HASH_MODEL.remove({ hash: hash });
       }
+      // FIXME: 
+      // TODO: должен вести сразу на страницу
+      // без ввода пароля
+      res.redirect(`http://localhost:3000`);
+      // res.redirect(config.get("baseUrl"));
     } catch (e) {
       console.log("Error", e);
     }
@@ -25,9 +27,9 @@ class AuthenticationEmailControllers {
       const userId = req.user.id;
       const user = await EMAIL_HASH_MODEL.find({ owner: userId });
 
-      const { email, hash } = user[0];
+      const { email, password, hash } = user[0];
 
-      await emailService(email, user, hash);
+      await emailService(email, user, password, hash);
       res.status(201).json({ message: "success", status: true });
     } catch (e) {
       console.log(e);
