@@ -10,5 +10,6 @@ router.post(
   authMiddleware,
   AUTHENTICATION_EMAIL_CONTROLLERS.authenticationEmailResending
 );
+router.post("/check-hash", AUTHENTICATION_EMAIL_CONTROLLERS.checkHash);
 
 module.exports = router;

@@ -5,7 +5,8 @@ const fs = require("fs");
 const path = require("path");
 const config = require("config");
 
-async function emailService(email, user, hash = null) {
+// FIXME: функцию полностью переделать
+async function emailService(email, user, password, hash = null) {
   const pathEmailHTML = path.join(__dirname, `./auxiliaryElements/email.html`);
 
   function createMessage(htmlFile) {
@@ -23,6 +24,14 @@ async function emailService(email, user, hash = null) {
         "#replaceWithLink#",
         `${config.get("baseUrl")}/authentication/email?id=${hash}`
       );
+      htmlFile = htmlFile.replace(
+        "#replaceWithEmail#",
+        `${email}`
+      );
+      htmlFile = htmlFile.replace(
+        "#replaceWithPass#",
+        `${password}`
+      );
 
       const message = createMessage(htmlFile);
       mailer(message);
@@ -35,6 +44,14 @@ async function emailService(email, user, hash = null) {
         "#replaceWithLink#",
         `${config.get("baseUrl")}/authentication/email?id=${randomEmailHash}`
       );
+      htmlFile = htmlFile.replace(
+        "#replaceWithEmail#",
+        `${email}`
+      );
+      htmlFile = htmlFile.replace(
+        "#replaceWithPass#",
+        `${password}`
+      );
 
       const message = createMessage(htmlFile);
       mailer(message);
@@ -44,6 +61,7 @@ async function emailService(email, user, hash = null) {
       hash: randomEmailHash,
       owner: user._id,
       email: email,
+      password: password,
     });
 
     await emailHash.save();

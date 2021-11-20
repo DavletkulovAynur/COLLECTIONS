@@ -58,7 +58,6 @@ export function PopUpCard() {
       })
       .catch(err => {
         closePopUp()
-        console.log('Something went wrong', err);
       });
   }
 
