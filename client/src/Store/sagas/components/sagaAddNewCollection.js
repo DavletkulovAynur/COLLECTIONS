@@ -23,7 +23,6 @@ function* addNewCollectionWorker(formData) {
         false
       )
     );
-    console.log(" payload", payload);
     yield put(updateAddCollectionAction(payload));
     yield put({ type: SUCCESSFULLY_SEND_COLLECTION, payload });
 

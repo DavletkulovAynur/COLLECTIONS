@@ -89,7 +89,6 @@ function* getSubscribeCollection(data) {
         { Authorization: `Bearer ${localStorage.getItem("token")}` }
       )
     );
-    console.log("payload", payload);
     yield put(writeDownSubscribeCollectionAction(payload));
   } catch (e) {
     console.log("ERROR", e);

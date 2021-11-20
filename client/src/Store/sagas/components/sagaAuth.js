@@ -14,7 +14,10 @@ import Fetcher from "../../../Common/utils/fetch";
 
 import { showMessageAction } from "../../reducers/components/showMessageReducer";
 import { alertMessagesText, API_URL } from "../../../config";
-import { logoutAction } from "Store/reducers/components/authReducer";
+import {
+  CHECK_HASH,
+  logoutAction,
+} from "Store/reducers/components/authReducer";
 
 function* loginWorker(user) {
   try {
@@ -76,9 +79,22 @@ function* authEmailResendingWorker() {
   }
 }
 
+function* checkHashWorker(data) {
+  try {
+    const payload = yield call(() =>
+      Fetcher(`${API_URL}/authentication/check-hash`, "POST", data.payload)
+    );
+
+    if(payload.message === 'success') {
+      yield put(showMessageAction({ text: `Hash есть` }));
+    }
+  } catch (e) {}
+}
+
 export function* authWatcher() {
   yield takeEvery(SAGA_AUTH_TOKEN, authWorker);
   yield takeEvery(REGISTRATION, registrationWorker);
   yield takeEvery(SAGA_LOGIN, loginWorker);
   yield takeEvery(EMAIL_RESENDING, authEmailResendingWorker);
+  yield takeEvery(CHECK_HASH, checkHashWorker);
 }

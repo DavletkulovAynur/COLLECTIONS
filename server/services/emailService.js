@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const config = require("config");
 
+// FIXME: функцию полностью переделать
 async function emailService(email, user, password, hash = null) {
   const pathEmailHTML = path.join(__dirname, `./auxiliaryElements/email.html`);
 
@@ -23,6 +24,14 @@ async function emailService(email, user, password, hash = null) {
         "#replaceWithLink#",
         `${config.get("baseUrl")}/authentication/email?id=${hash}`
       );
+      htmlFile = htmlFile.replace(
+        "#replaceWithEmail#",
+        `${email}`
+      );
+      htmlFile = htmlFile.replace(
+        "#replaceWithPass#",
+        `${password}`
+      );
 
       const message = createMessage(htmlFile);
       mailer(message);
@@ -34,6 +43,14 @@ async function emailService(email, user, password, hash = null) {
       htmlFile = htmlFile.replace(
         "#replaceWithLink#",
         `${config.get("baseUrl")}/authentication/email?id=${randomEmailHash}`
+      );
+      htmlFile = htmlFile.replace(
+        "#replaceWithEmail#",
+        `${email}`
+      );
+      htmlFile = htmlFile.replace(
+        "#replaceWithPass#",
+        `${password}`
       );
 
       const message = createMessage(htmlFile);
