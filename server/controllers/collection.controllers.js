@@ -24,18 +24,15 @@ class CollectionControllers {
         __dirname,
         `../static/${req.user.id}/original`
       );
+      if (!fs.existsSync(originalImgPathWay)) {
+        fs.mkdirSync(originalImgPathWay);
+      } 
+
       let pathWay = path.join(
         __dirname,
         `../static/${req.user.id}/original/${mainImg}`
       );
-
-      if (!fs.existsSync(originalImgPathWay)) {
-        fs.mkdir(originalImgPathWay, () => {
-          file.mv(pathWay);
-        });
-      } else {
-        file.mv(pathWay);
-      }
+      file.mv(pathWay);
 
       await imagemin(
         [
