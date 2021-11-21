@@ -86,7 +86,7 @@ function* checkHashWorker(data) {
     );
 
     if(payload.message === 'success') {
-      yield put(showMessageAction({ text: `Hash есть` }));
+      yield put(showMessageAction({ text: `Ваш адрес электронной почты подтвержден` }));
     }
   } catch (e) {}
 }
