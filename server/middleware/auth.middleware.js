@@ -8,15 +8,15 @@ module.exports = (req, res, next) => {
 
 	try {
 		const token = req.headers.authorization.split(' ')[1]
-		console.log('token', token)
+		
 		if (!token) {
-			return res.status(401).json({message: 'Auth error', status: false})
+			return res.status(201).json({message: 'token absence', status: false})
 		}
 		const decoded = jwt.verify(token, config.get('jwtSecret'))
 
 		req.user = decoded
 		next()
 	} catch (e) {
-		return res.status(401).json({message: 'Auth error catch', status: false})
+		return res.status(201).json({message: 'Auth error catch', status: false})
 	}
 }
