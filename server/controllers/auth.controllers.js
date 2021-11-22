@@ -134,7 +134,7 @@ class AuthControllers {
       });
     } catch (e) {
       //TODO: подумать ???
-      res.status(400).json({ message: "Auth error" });
+      res.status(201).json({ message: "Auth error" });
     }
   }
 }
