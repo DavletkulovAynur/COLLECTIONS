@@ -3,10 +3,12 @@ const USER_MODEL = require("../models/user");
 const path = require("path");
 const fs = require("fs");
 const Uuid = require("uuid");
-const imagemin = require("imagemin");
-const imageminPngquant = require("imagemin-pngquant");
-const imageminMozjpeg = require("imagemin-mozjpeg");
+// const imagemin = require("imagemin");
+// const imageminPngquant = require("imagemin-pngquant");
+// const imageminMozjpeg = require("imagemin-mozjpeg");
 const timestamp = require("time-stamp");
+const tinify = require("tinify");
+tinify.key = "8N69rLJvs98bgFPF0fFtrpNRDlBF3rYw";
 
 class CollectionControllers {
   async addCollection(req, res) {
@@ -24,36 +26,44 @@ class CollectionControllers {
         __dirname,
         `../static/${req.user.id}/original`
       );
+      let compressedWayTest = path.join(
+        __dirname,
+        `../static/${req.user.id}/compressed`
+      );
       if (!fs.existsSync(originalImgPathWay)) {
         fs.mkdirSync(originalImgPathWay);
+      } 
+      if (!fs.existsSync(compressedWayTest)) {
+        fs.mkdirSync(compressedWayTest);
       } 
 
       let pathWay = path.join(
         __dirname,
         `../static/${req.user.id}/original/${mainImg}`
       );
-      file.mv(pathWay);
-
-      await imagemin(
-        [
-          `${path.join(
-            __dirname,
-            `../static/${req.user.id}/original/${mainImg}`
-          )}`,
-        ],
-        {
-          destination: `${path.join(
-            __dirname,
-            `../static/${req.user.id}/compressed`
-          )}`,
-          plugins: [
-            imageminMozjpeg({ number: 10, progressive: false }),
-            imageminPngquant({
-              quality: [0.1, 0.1],
-            }),
-          ],
-        }
+      
+      let compressedWay = path.join(
+        __dirname,
+        `../static/${req.user.id}/compressed/${mainImg}`
       );
+      
+      await file.mv(pathWay, function(err) {
+        if(err) {
+          console.log(err)
+        }
+
+        fs.readFile(`${pathWay}`, function (err, sourceData) {
+          if (err) throw err;
+          tinify.fromBuffer(sourceData).toBuffer(function (err, resultData) {
+            if (err) throw err;
+  
+            fs.writeFile(`${compressedWay}`, resultData, function (err) {
+              if (err) throw err;
+              console.log("It's saved!");
+            });
+          });
+        });
+      });
 
       //DATE
       const dateTimestamp = Date.now();
@@ -78,7 +88,7 @@ class CollectionControllers {
         .status(201)
         .json({ message: "success", status: true, resData: collection });
     } catch (e) {
-      res.status(400).json(e);
+      res.status(400).json({ message: "Ошибка png" });
     }
   }
 

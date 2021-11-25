@@ -16,10 +16,10 @@ class AuthenticationEmailControllers {
           { active: true }
         );
         //FIXME: 
-        await res.redirect(`http://localhost:3000?email=${hashObject.email}`);
+        await res.redirect(`https://collectio.site?email=${hashObject.email}`);
         await EMAIL_HASH_MODEL.remove({ hash: hash });
       } else {
-        await res.redirect(`http://localhost:3000`);
+        await res.redirect(`https://collectio.site`);
       }
 
       // res.redirect(config.get("baseUrl"));
