@@ -1,7 +1,7 @@
-export const API_URL = "http://localhost:4000";
+export const API_URL = "https://collectio.site";
 
 // TODO: на сервере переделать
-export const URL_CLIENT = "http://localhost:3000";
+export const URL_CLIENT = "https://collectio.site";
 export const SITE_NAME = "collecttion.ru";
 
 export const typeCollection = [
@@ -9,10 +9,20 @@ export const typeCollection = [
   { value: "game", label: " Игра" },
   { value: "movie", label: "Фильм" },
   { value: "tv-series", label: "Сериал" },
+  { value: "music", label: "Музыка" },
   { value: "travel", label: "Путешествие" },
   { value: "nostalgia", label: "Ностальгия" },
+  { value: "dream", label: "Мечта" },
+  { value: "fashion", label: "Мода" },
+  { value: "restaurant", label: "Ресторан" },
+  { value: "cafe", label: "Кафе" },
+  { value: "place", label: "Место" },
+  { value: "Interior Design", label: "Дизайн интерьера"},
+  { value: "food", label: "Еда" },
+  { value: "picture", label: "Картинка" },
+  { value: "video", label: "Видео" },
   { value: "other", label: "Другое" },
-];
+  ];
 
 export const alertMessagesText = {
   addCommentText: 'Комментарий добавлен',

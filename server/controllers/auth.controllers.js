@@ -31,7 +31,7 @@ class AuthControllers {
 
       const hashedPassword = await bcrypt.hash(password, 12);
       const user = new USER_MODEL({
-        email,
+        email: email.toLowerCase(),
         username,
         password: hashedPassword,
         active: false,

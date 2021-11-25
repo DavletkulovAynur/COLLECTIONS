@@ -22,6 +22,7 @@
     "pm2": "^5.1.2",
     "randombytes": "^2.1.0",
     "time-stamp": "^2.2.0",
+    "tinify": "^1.6.1",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
