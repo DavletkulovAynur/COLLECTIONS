@@ -3,9 +3,6 @@ const USER_MODEL = require("../models/user");
 const path = require("path");
 const fs = require("fs");
 const Uuid = require("uuid");
-// const imagemin = require("imagemin");
-// const imageminPngquant = require("imagemin-pngquant");
-// const imageminMozjpeg = require("imagemin-mozjpeg");
 const timestamp = require("time-stamp");
 const tinify = require("tinify");
 tinify.key = "8N69rLJvs98bgFPF0fFtrpNRDlBF3rYw";
@@ -32,31 +29,31 @@ class CollectionControllers {
       );
       if (!fs.existsSync(originalImgPathWay)) {
         fs.mkdirSync(originalImgPathWay);
-      } 
+      }
       if (!fs.existsSync(compressedWayTest)) {
         fs.mkdirSync(compressedWayTest);
-      } 
+      }
 
       let pathWay = path.join(
         __dirname,
         `../static/${req.user.id}/original/${mainImg}`
       );
-      
+
       let compressedWay = path.join(
         __dirname,
         `../static/${req.user.id}/compressed/${mainImg}`
       );
-      
-      await file.mv(pathWay, function(err) {
-        if(err) {
-          console.log(err)
+
+      await file.mv(pathWay, function (err) {
+        if (err) {
+          console.log(err);
         }
 
         fs.readFile(`${pathWay}`, function (err, sourceData) {
           if (err) throw err;
           tinify.fromBuffer(sourceData).toBuffer(function (err, resultData) {
             if (err) throw err;
-  
+
             fs.writeFile(`${compressedWay}`, resultData, function (err) {
               if (err) throw err;
               console.log("It's saved!");
@@ -94,9 +91,6 @@ class CollectionControllers {
 
   async deleteCollection(req, res) {
     try {
-      // удалить коллекцию
-
-      // await  COLLECTION_MODEL.updateMany({_id: id}, {$push: {comments : commentObj}})
       const { idCollection } = req.body;
       const collection = await COLLECTION_MODEL.find({ _id: idCollection });
       const { mainImg } = collection[0];

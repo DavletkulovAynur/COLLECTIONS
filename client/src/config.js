@@ -1,7 +1,8 @@
-export const API_URL = "https://collectio.site";
+export const API_URL = "http://localhost:4000";
 
 // TODO: на сервере переделать
-export const URL_CLIENT = "https://collectio.site";
+export const URL_CLIENT = "http://localhost:3000";
+
 export const SITE_NAME = "collecttion.ru";
 
 export const typeCollection = [
